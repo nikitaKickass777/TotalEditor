@@ -19,38 +19,48 @@ public class EditingField : MonoBehaviour
     private float keyHoldTimer = 0f;
     private bool keyHeld = false;
     private KeyCode lastKeyPressed;
+    private bool fieldSelected = false; 
 
 
     void Start()
     {
         originalText = textDisplay.text;
-        UpdateCursorDisplay();
+        //UpdateCursorDisplay();
         
     }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.RightShift))
-            isSelecting = true;
-
-        if (Input.GetKeyUp(KeyCode.LeftShift) || Input.GetKeyUp(KeyCode.RightShift))
-            isSelecting = false;
-        
-        if (Input.GetKeyDown(KeyCode.Return) && selectionStart != -1 && selectionEnd != -1)
+        //Handle Field Select/Deselect
+        if (Input.GetMouseButtonDown(0))
         {
-            SaveMarkedText();
+            if (IsPointerOverText())
+            {
+                fieldSelected = true; 
+            }
+            else
+            {
+                fieldSelected = false; 
+            }
         }
 
         
-        HandleKeyHold(KeyCode.RightArrow, 1);
-        HandleKeyHold(KeyCode.LeftArrow, -1);
+        if(fieldSelected)
+        {
+            UpdateCursorDisplay();
+            if (Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.RightShift))
+                isSelecting = true;
+
+            if (Input.GetKeyUp(KeyCode.LeftShift) || Input.GetKeyUp(KeyCode.RightShift))
+                isSelecting = false;
         
-        
-        /*if (Input.GetKeyDown(KeyCode.RightArrow))
-            MoveCursor(1);
-        else if (Input.GetKeyDown(KeyCode.LeftArrow))
-            MoveCursor(-1);
-        */
+            if (Input.GetKeyDown(KeyCode.Return) && selectionStart != -1 && selectionEnd != -1)
+            {
+                SaveMarkedText();
+            }
+            HandleKeyHold(KeyCode.RightArrow, 1);
+            HandleKeyHold(KeyCode.LeftArrow, -1);
+        }
         
     }
     
@@ -133,5 +143,13 @@ public class EditingField : MonoBehaviour
         selectionStart = -1;
         selectionEnd = -1;
         UpdateCursorDisplay();
+    }
+
+    private bool IsPointerOverText()
+    {
+        Vector3 mousePos = Input.mousePosition;
+        RectTransform textRect = textDisplay.rectTransform;
+
+        return RectTransformUtility.RectangleContainsScreenPoint(textRect, mousePos);
     }
 }
