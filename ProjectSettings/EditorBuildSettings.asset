@@ -18,6 +18,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Reprimands.unity
     guid: 2097b547e1999d24fb8658cd67647aa6
   - enabled: 1
+    path: Assets/Scenes/Board.unity
+    guid: dcc2367d1cee0f843b05fb066d5f5aea
+  - enabled: 1
     path: Assets/Scenes/Editing.unity
     guid: fc8459a508bb70d4b950c9f2ea6a9bde
   - enabled: 0
