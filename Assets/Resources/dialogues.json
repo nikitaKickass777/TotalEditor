@@ -1,0 +1,147 @@
+﻿{
+  "dialogues": [
+    {
+      "dialogueId": 0,
+      "dialogueName": "0th Dialogue",
+      "characterPortrait": "character1",
+      "lines": [
+        {
+          "lineId": 0,
+          "lineText": "Hello, how are you?",
+          "hasOptions": true,
+          "options": [
+            {
+              "optionId": 0,
+              "nextLineId": 1,
+              "optionText": "I'm fine, thanks!"
+            },
+            {
+              "optionId": 1,
+              "nextLineId": 2,
+              "optionText": "Not too great..."
+            }
+          ]
+        },
+        {
+          "lineId": 1,
+          "lineText": "Glad to hear that!",
+          "hasOptions": false,
+          "options": []
+        },
+        {
+          "lineId": 2,
+          "lineText": "Oh no, what's wrong?",
+          "hasOptions": false,
+          "options": []
+        }
+      ]
+    },
+    {
+      "dialogueId": 1,
+      "dialogueName": "1st Dialogue",
+      "characterPortrait": "character2",
+      "lines": [
+        {
+          "lineId": 0,
+          "lineText": "So you are the newbie here. You look pathetic.",
+          "hasOptions": true,
+          "options": [
+            {
+              "optionId": 0,
+              "nextLineId": 2,
+              "optionText": "Piss off, scum!"
+            },
+            {
+              "optionId": 1,
+              "nextLineId": 1,
+              "optionText": "Hey, whats up with you? I am your new boss."
+            }
+          ]
+        },
+        {
+          "lineId": 1,
+          "lineText": "Sorry boss, I didn't mean to offend you.",
+          "hasOptions": true,
+          "options": [
+            {
+              "optionId": 0,
+              "optionText": "Its alright, you can go away and never return now."
+            },
+            {
+              "optionId": 1,
+              "conditionChange": 0,
+              "optionText": "Please come to me again later, I will be waiting for you. And behave normally!!!"
+            },
+            {
+              "optionId": 2,
+              "optionText": "Sorry i farted."
+            }
+          ]
+        },
+        {
+          "lineId": 2,
+          "lineText": "Uh-huh",
+          "hasOptions": false,
+          "options": []
+        }
+      ]
+    },
+    {
+      "dialogueId": 2,
+      "dialogueName": "2nd Dialogue",
+      "characterPortrait": "character2",
+      "lines": [
+        {
+          "lineId": 0,
+          "lineText": "Its me again, i am back and will behave normally",
+          "hasOptions": true,
+          "options": [
+            {
+              "optionId": 0,
+              "nextLineId": 1,
+              "optionText": "I dont believe you will behave normally."
+            },
+            {
+              "optionId": 1,
+              "nextLineId": 2,
+              "optionText": "Nice nice, lets get back to work."
+            }
+          ]
+        },
+        {
+          "lineId": 1,
+          "lineText": "Why did you call me back again then",
+          "hasOptions": true,
+          "options": [
+            {
+              "optionId": 0,
+              "optionText": "No particular reason, just wanted to see you again."
+            },
+            {
+              "optionId": 1,
+              "conditionChange": 0,
+              "optionText": "Finally normal response! I will give you a raise."
+            },
+            {
+              "optionId": 2,
+              "lineId": 3,
+              "optionText": "*FART LOUDLY*"
+            }
+          ]
+        },
+        {
+          "lineId": 2,
+          "lineText": "See you later then",
+          "hasOptions": false,
+          "options": []
+        },
+        {
+          "lineId": 3,
+          "lineText": "Ahhh! I cant breathe!.....",
+          "hasOptions": false,
+          "options": []
+        }
+      ]
+    }
+  ]
+}
