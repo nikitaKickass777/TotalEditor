@@ -7,6 +7,8 @@ using UnityEngine.Events;
 using UnityEngine.Rendering;
 
 using UnityEngine.UI;
+
+
 public class DialogueManager : MonoBehaviour
 {
     
@@ -23,7 +25,7 @@ public class DialogueManager : MonoBehaviour
     void Start()
     {
         LoadDialogues();
-        ShowDialogue(0);
+       // ShowDialogue(0);
         choices[0] = false;
     }
 
@@ -35,6 +37,17 @@ public class DialogueManager : MonoBehaviour
         //there should be the bool array, where each index corresponds to some important dialogue choice,
         //if it is true then the dialogue special option(one that changes some bool) has been triggered
         //checker uses these bools as one of the conditions to determine which dialogue to show
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            if(DialogueTemplate.activeSelf)
+            {
+                EndDialogue();
+            }
+            else
+            {
+                ShowDialogue(0);
+            }
+        }
         
     }
 

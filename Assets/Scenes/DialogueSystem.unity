@@ -306,14 +306,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textComponent: {fileID: 346198798}
   lines:
-  - Hello Dasha! I made this moving dialogue, to say that I love you:3
+  - Hello! This is a running text.
   - I hope you like how it looks.
   - You can press LMB to skip
-  - Maida was so proud because she made a similar thing in her game, and she told
-    me she struglled with it...... I watched a 5min youtube video and did it in like
-    15min myself. Our game will be the best!
-  - I actually know how to make sound effect each time character is placed. so we
-    can make it really cool! And it is super simple too!
+  - It will be how the characters talk in the dialogue soon, I hope it will look
+    good and we will also add some talking sound for it.
   textSpeed: 0.04
 --- !u!1 &346198796
 GameObject:
