@@ -26,12 +26,14 @@
           "lineId": 1,
           "lineText": "Glad to hear that!",
           "hasOptions": false,
+          "nextLineId": -1,
           "options": []
         },
         {
           "lineId": 2,
           "lineText": "Oh no, what's wrong?",
           "hasOptions": false,
+          "nextLineId": -1,
           "options": []
         }
       ]
@@ -65,16 +67,19 @@
           "options": [
             {
               "optionId": 0,
-              "optionText": "Its alright, you can go away and never return now."
+              "optionText": "Its alright, you can go away and never return now.",
+              "nextLineId": -1
             },
             {
               "optionId": 1,
-              "conditionChange": 0,
-              "optionText": "Please come to me again later, I will be waiting for you. And behave normally!!!"
+              "conditionChange": "testComeLater",
+              "optionText": "Please come to me again later, I will be waiting for you. And behave normally!!!",
+              "nextLineId": -1
             },
             {
               "optionId": 2,
-              "optionText": "Sorry i farted."
+              "optionText": "Sorry i farted.",
+              "nextLineId": -1
             }
           ]
         },
@@ -82,6 +87,7 @@
           "lineId": 2,
           "lineText": "Uh-huh",
           "hasOptions": false,
+          "nextLineId": -1,
           "options": []
         }
       ]
@@ -133,12 +139,14 @@
           "lineId": 2,
           "lineText": "See you later then",
           "hasOptions": false,
+          "nextLineId": -1,
           "options": []
         },
         {
           "lineId": 3,
           "lineText": "Ahhh! I cant breathe!.....",
           "hasOptions": false,
+          "nextLineId": -1,
           "options": []
         }
       ]

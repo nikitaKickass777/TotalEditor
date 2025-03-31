@@ -12,21 +12,47 @@ using UnityEngine.UI;
 public class DialogueManager : MonoBehaviour
 {
     
+    public static DialogueManager instance;
     
     public GameObject DialogueTemplate;
     public TextMeshProUGUI dialogueText;
-    public Image characterPortrait;
+    public Sprite characterSprite;
+    public Sprite characterSpriteTalk;
+    public SpriteRenderer characterSpriteRenderer;
     public Button[] optionButtons;
+    
     public int currentDialogueIndex;
     public int currentLineIndex;
     public DialogueData dialogueData;
-    bool[] choices = new bool[100];
+    public Dictionary<string, bool> choicesDictionary;
+    public Dictionary<int, bool> dialogueCompleted;
+    public bool isDialogueOpen;
+    
+    public float textSpeed = 0.05f;
+    private Coroutine typeCoroutine;
+    
+    
 
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
     void Start()
     {
         LoadDialogues();
        // ShowDialogue(0);
-        choices[0] = false;
+        isDialogueOpen = false;
+        choicesDictionary = new Dictionary<string, bool>();
+        dialogueCompleted = new Dictionary<int, bool>();
+        
     }
 
     private void Update()
@@ -48,6 +74,7 @@ public class DialogueManager : MonoBehaviour
                 ShowDialogue(0);
             }
         }
+        checker(1);
         
     }
 
@@ -74,9 +101,9 @@ public class DialogueManager : MonoBehaviour
         currentLineIndex = 0;  // Start at first line
         Dialogue dialogue = dialogueData.dialogues[dialogueIndex];
 
-        Time.timeScale = 0; // TODO: replace with method that stops clock
+        Time.timeScale = 0; 
+        isDialogueOpen = true;
         DialogueTemplate.SetActive(true); // this thing makes dialogue box appear
-    
         // Set character portrait
        // characterPortrait.sprite = dialogue.characterName;
     
@@ -88,9 +115,9 @@ public class DialogueManager : MonoBehaviour
     {
         currentLineIndex = lineIndex;
         DialogueLine line = dialogueData.dialogues[dialogueIndex].lines[lineIndex];
-
-        dialogueText.text = line.lineText;
-
+        
+        if (typeCoroutine != null) StopCoroutine(typeCoroutine);
+        typeCoroutine = StartCoroutine(TypeLine( line.lineText ));
         if (line.hasOptions)
         {
             ShowOptions(line);
@@ -98,22 +125,18 @@ public class DialogueManager : MonoBehaviour
         else
         {
             HideOptions();
+            // Set up a listener for player clicks
+            StartCoroutine(WaitForPlayerClick(line.nextLineId, dialogueIndex));
         }
     }
-    public void OnOptionSelected(int optionIndex)
+    private IEnumerator WaitForPlayerClick(int nextLineId, int dialogueIndex)
     {
-        Debug.Log("Selected option: " + optionIndex);
-        DialogueLine currentLine = dialogueData.dialogues[currentDialogueIndex].lines[currentLineIndex];
-        DialogueOption selectedOption = currentLine.options[optionIndex];
-        
+        // Wait until the player clicks
+        yield return new WaitUntil(() => Input.GetMouseButtonDown(0));
 
-        // Apply effects
-        //ModifyMoney(selectedOption.moneyChange);
-        //ModifyRelationship(selectedOption.relationshipChange, selectedOption.affectedCharacter);
-
-        if (selectedOption.nextLineId >= 0)
+        if (nextLineId >= 0)
         {
-            LoadLine(selectedOption.nextLineId, currentDialogueIndex);
+            LoadLine(nextLineId, dialogueIndex);
         }
         else
         {
@@ -121,9 +144,59 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
+    private IEnumerator TypeLine(string line)
+    {
+        bool animation = false;
+        dialogueText.text = "";
+        foreach (char c in line.ToCharArray())
+        {
+            if(Input.GetMouseButtonDown(0))
+            {
+                dialogueText.text = line;
+                yield break;
+            }
+            dialogueText.text += c;
+            if (animation)
+            {
+                characterSpriteRenderer.sprite = characterSpriteTalk;
+                animation = false;
+            }
+            else
+            {
+                characterSpriteRenderer.sprite = characterSprite;
+                animation = true;
+            }
+            
+            
+            yield return new WaitForSecondsRealtime(textSpeed);
+        }
+        
+        
+    }
+    
+    
+    public void OnOptionSelected(int optionIndex)
+    {
+        Debug.Log("Selected option: " + optionIndex);
+        DialogueLine currentLine = dialogueData.dialogues[currentDialogueIndex].lines[currentLineIndex];
+        DialogueOption selectedOption = currentLine.options[optionIndex];
+        
+        ApplyOptionEffects(selectedOption);
+        Debug.Log("Selected option next Line: " + selectedOption.nextLineId);
+        if (selectedOption.nextLineId >= 0)
+        {
+            LoadLine(selectedOption.nextLineId, currentDialogueIndex);
+        }
+        else
+        {
+            Debug.Log("End of dialogue");
+            EndDialogue();
+        }
+    }
+
     private void ShowOptions(DialogueLine line)
     {
-        //if(line)
+        
         for (int i = 0; i < optionButtons.Length; i++)
         {
             if (i < line.options.Count)
@@ -156,28 +229,58 @@ public class DialogueManager : MonoBehaviour
     {
         Time.timeScale = 1;
         DialogueTemplate.gameObject.SetActive(false);
+        isDialogueOpen = false;
+       
+    }
+    private void ApplyOptionEffects(DialogueOption option)
+    {
+        if(option.conditionChange != null)
+        {
+            choicesDictionary[option.conditionChange] = true;
+        }
     }
 
-    private int checker(int day)
+    private void checker(int day)
     {
         // here goes all ingame logic for dialogue selection
         switch (day)
         {
             case 1:
-                if(choices[0])
+                
+                if (GameManager.instance.money > 10
+                    && !choicesDictionary.ContainsKey("testComeLater")
+                    && !isDialogueOpen
+                    && !dialogueCompleted.ContainsKey(0))
                 {
-                    return 1;
+                    ShowDialogue(0);
+                    dialogueCompleted[0] = true;
                 }
-                else
+
+                if (GameManager.instance.time > 10
+                    && !choicesDictionary.ContainsKey("testComeLater")
+                    && !isDialogueOpen
+                    && !dialogueCompleted.ContainsKey(1))
                 {
-                    return 0;
+                    ShowDialogue(1);
+                    dialogueCompleted[1] = true;
                 }
+                
+                
+                if(GameManager.instance.time > 20
+                   && choicesDictionary.ContainsKey("testComeLater")
+                   && !isDialogueOpen
+                   && !dialogueCompleted.ContainsKey(2))
+                {
+                    ShowDialogue(2);
+                    dialogueCompleted[2] = true;
+                }
+                
+                
                 
                 break;
             
             default:
                 Debug.Log("Invalid day");
-                return -1;
                 break;
             
         }

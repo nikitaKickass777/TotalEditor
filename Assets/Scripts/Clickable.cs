@@ -18,6 +18,8 @@ public class Clickable : MonoBehaviour
 
     private void OnMouseEnter()
     {
+        if (DialogueManager.instance.isDialogueOpen) return;
+        
         Debug.Log("Mouse Enter");
         transform.localScale = new Vector3(1.1f, 1.1f, 1.0f);
         spriteRenderer.color = Color.HSVToRGB(0,0,60);
@@ -26,6 +28,8 @@ public class Clickable : MonoBehaviour
     }
     private void OnMouseExit()
     {
+        if (DialogueManager.instance.isDialogueOpen) return;
+        
         Debug.Log("Mouse Exit");
         transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
         spriteRenderer.color = Color.HSVToRGB(0,0,100);
@@ -38,6 +42,8 @@ public class Clickable : MonoBehaviour
 
     private void OnMouseUp()
     {
+        if (DialogueManager.instance.isDialogueOpen) return;
+        
         UnityEngine.SceneManagement.SceneManager.LoadScene(sceneName);
     }
 

@@ -14,15 +14,12 @@ public class Clock : MonoBehaviour
        
    }
 
-   void Start()
-   {
-       time = 0;
-   }
+   
 
     // Update is called once per frame
     void Update()
     {
-        time += Time.deltaTime;
+        time = GameManager.instance.time;
         clockHandTransform.eulerAngles = new Vector3(0, 0, -time * speed); //  speed is the speed of the clock hand in degrees per second
     }                                                                          // - is for  the clockwise rotation
 }

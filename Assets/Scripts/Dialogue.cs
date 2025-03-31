@@ -19,6 +19,7 @@ public class DialogueLine
 {
     public int lineId;
     public string lineText;
+    public int nextLineId = -1;
     public bool hasOptions;
     public List<DialogueOption> options;
 }
@@ -27,7 +28,8 @@ public class DialogueLine
 public class DialogueOption
 {
     public int optionId;
-    public int nextLineId;
+    public int nextLineId = -1;
     public string optionText;
-    public int conditionChange;
+    public string conditionChange;
+    
 }
