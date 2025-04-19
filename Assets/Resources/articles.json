@@ -1,0 +1,31 @@
+﻿{
+"articles": [
+  {
+    "id": 1,
+    "title": "Bravery and Honesty: The Pillars of Our Society",
+    "text": "Bravery and honesty are the virtues that define our glorious nation. These values guide us to a brighter future.",
+    "journalistId": 4,
+    "importantParts": [
+      {
+        "text": "Bravery and honesty are the virtues that define our glorious nation.",
+        "tolerance": 3,
+        "lawIds": [3]
+      }
+    ]
+  },
+  
+  {
+    "id": 2,
+    "title": "The Hidden Numbers in Government Spending",
+    "text": "The government has been hiding critical numbers from the public. For example, $1.2 billion remains unaccounted for in the healthcare budget.",
+    "journalistId": 3,
+    "importantParts": [
+      {
+        "text": "$1.2 billion remains unaccounted for in the healthcare budget.",
+        "tolerance": 3,
+        "lawIds": [1]
+      }
+    ]
+  }
+ ]
+}

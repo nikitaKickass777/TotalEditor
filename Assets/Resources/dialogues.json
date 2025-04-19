@@ -3,7 +3,7 @@
     {
       "dialogueId": 0,
       "dialogueName": "0th Dialogue",
-      "characterPortrait": "character1",
+      "characterId": 0,
       "lines": [
         {
           "lineId": 0,
@@ -41,7 +41,7 @@
     {
       "dialogueId": 1,
       "dialogueName": "1st Dialogue",
-      "characterPortrait": "character2",
+      "characterId": 0,
       "lines": [
         {
           "lineId": 0,
@@ -95,7 +95,7 @@
     {
       "dialogueId": 2,
       "dialogueName": "2nd Dialogue",
-      "characterPortrait": "character2",
+      "characterId": 1,
       "lines": [
         {
           "lineId": 0,

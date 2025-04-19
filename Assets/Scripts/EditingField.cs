@@ -7,7 +7,10 @@ using TMPro;
 public class EditingField : MonoBehaviour
 {
     public TMP_Text textDisplay;
+    public int articleId = -1; // Current article ID
+    public event Action<string, int> TextSelected; // Event to notify text selection
     private string originalText;
+    
     private int cursorIndex = 0; // Position in the text
     private int selectionStart = -1;
     private int selectionEnd = -1;
@@ -58,18 +61,24 @@ public class EditingField : MonoBehaviour
             {
                 SaveMarkedText();
             }
-            HandleKeyHold(KeyCode.RightArrow, 1);
-            HandleKeyHold(KeyCode.LeftArrow, -1);
+            HandleKeyHold(KeyCode.RightArrow, 1, false);
+            HandleKeyHold(KeyCode.LeftArrow, -1, false);
+            HandleKeyHold(KeyCode.UpArrow, -1, true);
+            HandleKeyHold(KeyCode.DownArrow, 1, true);
+        }
+        else
+        {
+            textDisplay.text = originalText; // Reset to original text when not selected
         }
         
     }
     
     
-    void HandleKeyHold(KeyCode key, int direction)
+    void HandleKeyHold(KeyCode key, int direction, bool vertical = false)
     {
         if (Input.GetKeyDown(key))
         {
-            MoveCursor(direction);
+            MoveCursor(direction, vertical);
             keyHoldTimer = Time.time + repeatDelay;
             keyHeld = true;
             lastKeyPressed = key;
@@ -79,7 +88,7 @@ public class EditingField : MonoBehaviour
         {
             if (Time.time >= keyHoldTimer)
             {
-                MoveCursor(direction);
+                MoveCursor(direction, vertical);
                 keyHoldTimer = Time.time + repeatRate; // Continuous movement
             }
         }
@@ -90,22 +99,70 @@ public class EditingField : MonoBehaviour
         }
     }
 
-    void MoveCursor(int direction)
+    void MoveCursor(int direction, bool vertical = false)
+{
+    textDisplay.ForceMeshUpdate(); // Ensure text info is up-to-date
+    TMP_TextInfo textInfo = textDisplay.textInfo;
+
+    // Check if cursorIndex is within valid bounds
+    if (cursorIndex < 0 || cursorIndex >= textInfo.characterCount)
     {
-        cursorIndex = Mathf.Clamp(cursorIndex + direction, 0, originalText.Length);
-        if (isSelecting)
-        {
-            if (selectionStart == -1) selectionStart = cursorIndex-1;
-            
-            selectionEnd = cursorIndex;
-        }
-        else
-        {
-            selectionStart = -1;
-            selectionEnd = -1;
-        }
-        UpdateCursorDisplay();
+        Debug.LogWarning("Cursor index out of bounds.");
+        return;
     }
+
+    if (vertical)
+    {
+        int currentLineIndex = textInfo.characterInfo[cursorIndex].lineNumber;
+        int targetLineIndex = Mathf.Clamp(currentLineIndex + direction, 0, textInfo.lineCount - 1);
+
+        // Ensure the target line index is valid
+        if (targetLineIndex < 0 || targetLineIndex >= textInfo.lineCount)
+        {
+            Debug.LogWarning("Target line index out of bounds.");
+            return;
+        }
+
+        if (currentLineIndex != targetLineIndex)
+        {
+            TMP_LineInfo currentLine = textInfo.lineInfo[currentLineIndex];
+            TMP_LineInfo targetLine = textInfo.lineInfo[targetLineIndex];
+
+            // Calculate relative position in the current line
+            int charInLine = cursorIndex - currentLine.firstCharacterIndex;
+
+            // Ensure the target line has valid characters
+            if (targetLine.firstCharacterIndex <= targetLine.lastCharacterIndex)
+            {
+                cursorIndex = Mathf.Clamp(targetLine.firstCharacterIndex + charInLine,
+                                          targetLine.firstCharacterIndex,
+                                          targetLine.lastCharacterIndex + 1);
+            }
+            else
+            {
+                // If the target line is empty, move to the first character of the line
+                cursorIndex = targetLine.firstCharacterIndex;
+            }
+        }
+    }
+    else
+    {
+        cursorIndex = Mathf.Clamp(cursorIndex + direction, 0, textInfo.characterCount - 1);
+    }
+
+    if (isSelecting)
+    {
+        if (selectionStart == -1) selectionStart = cursorIndex - 1;
+
+        selectionEnd = cursorIndex;
+    }
+    else
+    {
+        selectionStart = -1;
+        selectionEnd = -1;
+    }
+    UpdateCursorDisplay();
+}
 
     void UpdateCursorDisplay()
     {
@@ -137,8 +194,14 @@ public class EditingField : MonoBehaviour
         int end = Mathf.Max(selectionStart, selectionEnd);
 
         markedRanges.Add(new Vector2Int(start, end));
-        Debug.Log($"Marked text from {start} to {end}");
+        // Extract the selected text
+        string selectedText = originalText.Substring(start, end - start);
 
+        Debug.Log($"Marked text from {start} to {end} : " + selectedText);
+
+        // Trigger the TextSelected event
+        TextSelected?.Invoke(selectedText, articleId);
+        
         // Reset selection
         selectionStart = -1;
         selectionEnd = -1;

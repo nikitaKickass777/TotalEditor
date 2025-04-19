@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 [System.Serializable]
-public class DialogueData
+public class DialogueList
 {
     public List<Dialogue> dialogues;
 }
@@ -10,7 +10,7 @@ public class Dialogue
 {
     public int dialogueId;
     public string dialogueName;
-    public string characterName;
+    public int characterId;
     public List<DialogueLine> lines;
 }
 

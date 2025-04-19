@@ -1,0 +1,22 @@
+﻿{
+  "laws": [
+    {
+      "id": 1,
+      "isProhibition": true,
+      "isActive": true,
+      "text": "The use of numbers in any form is strictly prohibited."
+    },
+    {
+      "id": 2,
+      "isProhibition": true,
+      "isActive": true,
+      "text": "You must refer to the 'President' as the 'Supreme Elected Leader' at all times."
+    },
+    {
+      "id": 3,
+      "isProhibition": false,
+      "isActive": true,
+      "text": "Bravery and honesty are highly recommended virtues."
+    }
+  ]
+}

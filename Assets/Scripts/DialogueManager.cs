@@ -5,7 +5,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Rendering;
-
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 
@@ -23,13 +23,14 @@ public class DialogueManager : MonoBehaviour
     
     public int currentDialogueIndex;
     public int currentLineIndex;
-    public DialogueData dialogueData;
+    public DialogueList dialogueList;
     public Dictionary<string, bool> choicesDictionary;
     public Dictionary<int, bool> dialogueCompleted;
     public bool isDialogueOpen;
     
     public float textSpeed = 0.05f;
     private Coroutine typeCoroutine;
+    private Coroutine talkAnimation;
     
     
 
@@ -85,7 +86,7 @@ public class DialogueManager : MonoBehaviour
         
         if (jsonFile != null)
         {
-            dialogueData = JsonUtility.FromJson<DialogueData>(jsonFile.text);
+            dialogueList = JsonUtility.FromJson<DialogueList>(jsonFile.text);
             Debug.Log("Dialogues Loaded Successfully!");
         }
         else
@@ -99,11 +100,16 @@ public class DialogueManager : MonoBehaviour
     {
         currentDialogueIndex = dialogueIndex;
         currentLineIndex = 0;  // Start at first line
-        Dialogue dialogue = dialogueData.dialogues[dialogueIndex];
+        Dialogue dialogue = dialogueList.dialogues[dialogueIndex];
 
         Time.timeScale = 0; 
         isDialogueOpen = true;
         DialogueTemplate.SetActive(true); // this thing makes dialogue box appear
+        Journalist character = GameManager.instance.journalistList.journalists[dialogue.characterId];
+        characterSprite = character.portrait;
+        characterSpriteTalk = character.portraitTalking;
+      
+        
         // Set character portrait
        // characterPortrait.sprite = dialogue.characterName;
     
@@ -114,9 +120,10 @@ public class DialogueManager : MonoBehaviour
     public void LoadLine(int lineIndex, int dialogueIndex)
     {
         currentLineIndex = lineIndex;
-        DialogueLine line = dialogueData.dialogues[dialogueIndex].lines[lineIndex];
-        
+        DialogueLine line = dialogueList.dialogues[dialogueIndex].lines[lineIndex];
+
         if (typeCoroutine != null) StopCoroutine(typeCoroutine);
+        
         typeCoroutine = StartCoroutine(TypeLine( line.lineText ));
         if (line.hasOptions)
         {
@@ -133,7 +140,6 @@ public class DialogueManager : MonoBehaviour
     {
         // Wait until the player clicks
         yield return new WaitUntil(() => Input.GetMouseButtonDown(0));
-
         if (nextLineId >= 0)
         {
             LoadLine(nextLineId, dialogueIndex);
@@ -146,16 +152,30 @@ public class DialogueManager : MonoBehaviour
 
     private IEnumerator TypeLine(string line)
     {
-        bool animation = false;
+        talkAnimation = StartCoroutine(TalkAnimation());
         dialogueText.text = "";
         foreach (char c in line.ToCharArray())
         {
             if(Input.GetMouseButtonDown(0))
             {
+                StopCoroutine(talkAnimation);
                 dialogueText.text = line;
                 yield break;
             }
             dialogueText.text += c;
+            
+            yield return new WaitForSecondsRealtime(textSpeed);
+        }
+        StopCoroutine(talkAnimation);
+        characterSpriteRenderer.sprite = characterSprite;
+        
+    }
+
+    private IEnumerator TalkAnimation()
+    {
+        bool animation = false;
+        while (true)
+        {
             if (animation)
             {
                 characterSpriteRenderer.sprite = characterSpriteTalk;
@@ -166,19 +186,15 @@ public class DialogueManager : MonoBehaviour
                 characterSpriteRenderer.sprite = characterSprite;
                 animation = true;
             }
-            
-            
-            yield return new WaitForSecondsRealtime(textSpeed);
+            yield return new WaitForSecondsRealtime(textSpeed * 2);
         }
-        
-        
     }
     
     
     public void OnOptionSelected(int optionIndex)
     {
         Debug.Log("Selected option: " + optionIndex);
-        DialogueLine currentLine = dialogueData.dialogues[currentDialogueIndex].lines[currentLineIndex];
+        DialogueLine currentLine = dialogueList.dialogues[currentDialogueIndex].lines[currentLineIndex];
         DialogueOption selectedOption = currentLine.options[optionIndex];
         
         ApplyOptionEffects(selectedOption);
