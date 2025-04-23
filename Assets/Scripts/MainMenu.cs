@@ -15,9 +15,9 @@ public class MainMenu : MonoBehaviour
     }
     public void Settings()
     {
-        // For now just load the dialogue system scene, but in the future this will be the settings scene
+        
         AudioManager.instance.PlayClip(AudioManager.instance.buttonClick);
-        UnityEngine.SceneManagement.SceneManager.LoadScene("DialogueSystem");
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Settings");
     }
 
     public void QuitGame()

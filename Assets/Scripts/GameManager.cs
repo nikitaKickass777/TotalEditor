@@ -2,11 +2,14 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
 
 public class GameManager : MonoBehaviour
 {
    //This class will handle remembering current state, handling in-game logic.
+   public int soundVolume = 100;
+   public int musicVolume = 100;
    public int money;
    public int day;
    public float time;
@@ -41,7 +44,12 @@ public class GameManager : MonoBehaviour
    }
    void Update()
    {
-       time += Time.deltaTime;
+       if(SceneManager.GetActiveScene().name == "Office" || SceneManager.GetActiveScene().name == "Reprimands" || SceneManager.GetActiveScene().name == "Editing" || SceneManager.GetActiveScene().name == "Board")
+       {
+           gameLogic();
+           time += Time.deltaTime;
+       }
+      
    }
     public void changeMoney(int amount)
     {

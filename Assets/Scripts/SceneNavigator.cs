@@ -51,6 +51,8 @@ public class SceneNavigator : MonoBehaviour
                 return "Office";
             case "Board":
                 return "Office";
+            case "Settings":
+                return "MainMenu";
             default:
                 Debug.Log("Current Scene not found");
                 return "MainMenu";
