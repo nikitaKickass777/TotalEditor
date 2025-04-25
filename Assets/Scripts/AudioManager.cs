@@ -23,6 +23,12 @@ public class AudioManager : MonoBehaviour
     // Then wherever you want to play a sound, you can call AudioManager.instance.PlayClip(soundEffect);
     public void PlayClip(AudioClip clip)
     {
+        audioSource.volume = ((float)GameManager.instance.soundVolume) / 100f; 
+        audioSource.PlayOneShot(clip);
+    }
+    public void PlayMusic(AudioClip clip)
+    {
+        audioSource.volume = ((float)GameManager.instance.musicVolume) / 100f; 
         audioSource.PlayOneShot(clip);
     }
     public void PlayRandomTypingSound()
