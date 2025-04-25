@@ -5,6 +5,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Rendering;
+using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
 
@@ -266,6 +267,7 @@ public class DialogueManager : MonoBehaviour
                 if (GameManager.instance.money > 10
                     && !choicesDictionary.ContainsKey("testComeLater")
                     && !isDialogueOpen
+                    && SceneManager.GetActiveScene().name == "Office"
                     && !dialogueCompleted.ContainsKey(0))
                 {
                     ShowDialogue(0);
@@ -275,6 +277,7 @@ public class DialogueManager : MonoBehaviour
                 if (GameManager.instance.time > 10
                     && !choicesDictionary.ContainsKey("testComeLater")
                     && !isDialogueOpen
+                    && SceneManager.GetActiveScene().name == "Office"
                     && !dialogueCompleted.ContainsKey(1))
                 {
                     ShowDialogue(1);
@@ -285,6 +288,7 @@ public class DialogueManager : MonoBehaviour
                 if(GameManager.instance.time > 20
                    && choicesDictionary.ContainsKey("testComeLater")
                    && !isDialogueOpen
+                   && SceneManager.GetActiveScene().name == "Office"
                    && !dialogueCompleted.ContainsKey(2))
                 {
                     ShowDialogue(2);
