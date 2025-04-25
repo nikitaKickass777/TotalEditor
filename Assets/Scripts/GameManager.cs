@@ -59,7 +59,6 @@ public class GameManager : MonoBehaviour
     {
         if(time >= dayLength)
         {
-            Debug.Log("Time is up!");
             // put the end of the day logic here
         }
     }
