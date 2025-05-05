@@ -7,9 +7,13 @@ using TMPro;
 public class EditingField : MonoBehaviour
 {
     public TMP_Text textDisplay;
-    public int articleId = -1; // Current article ID
+    public TMP_Text titleText;
+    public int articleId = 0; // Current article ID
     public event Action<string, int> TextSelected; // Event to notify text selection
+    public LawInputController lawInputController;
     private string originalText;
+    private string title;
+    
     
     private int cursorIndex = 0; // Position in the text
     private int selectionStart = -1;
@@ -27,8 +31,28 @@ public class EditingField : MonoBehaviour
 
     void Start()
     {
-        originalText = textDisplay.text;
-        //UpdateCursorDisplay();
+        GetNextArticle();
+        //General idea of how main logic should work:
+        // 1. Get the article with articleID from the GameManager
+        // 2. Check if it can be edited, if there is some condition
+        // 3. If it can be edited, get the text and display it in the text field, increase the articleID counter
+        // 4. Wait for player to approve or prohibit the text. Change the isEdited and isApproved variable in the article class
+        // 5. Start the next article
+        /*
+         * Here is the logic for the article editing:
+         * 1. Display the article title and text from the GameManager
+         * 2. For approval or prohibition, player should press a button
+         * 3. There should be a reason. If the player finds a mistake, he should select the text and press a button to mark it
+         * 4. The text should be marked in yellow
+         * 5. The player then types a law number that is being violated
+         * 6. The player can select multiple parts of the text and mark them for mistakes or recommendations, previous markings are remembered
+         * 7. The special comparator checks the important parts of the article, and compares them to the marked text
+         * 8. If the marked text is within the tolerance of the important part, it is considered a correct marking.
+         * 9. If the player correctly approved/denied, and provided reasons, he gets money and message indicating success.
+         * 
+         */
+        
+        
         
     }
 
@@ -192,21 +216,36 @@ public class EditingField : MonoBehaviour
     {
         int start = Mathf.Min(selectionStart, selectionEnd);
         int end = Mathf.Max(selectionStart, selectionEnd);
-
-        markedRanges.Add(new Vector2Int(start, end));
-        // Extract the selected text
         string selectedText = originalText.Substring(start, end - start);
 
+        markedRanges.Add(new Vector2Int(start, end));
         Debug.Log($"Marked text from {start} to {end} : " + selectedText);
 
-        // Trigger the TextSelected event
-        TextSelected?.Invoke(selectedText, articleId);
+        // Temporarily: Ask for law input here (you can instead show a UI input field)
+        // This could trigger a UI element asking player to type the law
         
+        ShowLawInput(selectedText);
+        lawInputController.OnTextSelected(selectedText);
+
         // Reset selection
         selectionStart = -1;
         selectionEnd = -1;
         UpdateCursorDisplay();
     }
+
+    void ShowLawInput(string selectedText)
+    {
+        Debug.Log("Enter a law number that this selection violates.");
+        // Show a popup or input field (TMP_InputField) and confirm button
+        // When confirmed, you could pair the selection with the law and store it
+    }
+    public void SubmitLawInput(string lawNumber)
+    {
+        
+        Debug.Log($"Law {lawNumber} submitted for marked text.");
+        
+    }
+
 
     private bool IsPointerOverText()
     {
@@ -214,5 +253,166 @@ public class EditingField : MonoBehaviour
         RectTransform textRect = textDisplay.rectTransform;
 
         return RectTransformUtility.RectangleContainsScreenPoint(textRect, mousePos);
+    }
+
+    private void GetNextArticle()
+    {
+        articleId = checker();
+    
+        if(articleId == -1)
+        {
+            Debug.Log("No article to edit.");
+            return;
+        }
+
+        var article = GameManager.instance.articleList.articles[articleId];
+        originalText = article.text;
+        title = article.title;
+
+        textDisplay.text = originalText;
+        titleText.text = title;
+    }
+    
+    private void StartNextArticle()
+    {
+        // Reset all fields
+        cursorIndex = 0;
+        selectionStart = -1;
+        selectionEnd = -1;
+        markedRanges.Clear();
+        articleId++;
+        GetNextArticle(); // Load next article
+    }
+    public void ApproveArticle()
+    {
+        var article = GameManager.instance.articleList.articles[articleId];
+        article.isApproved = true;
+        article.isEdited = true;
+        Debug.Log("Article approved.");
+
+        StartNextArticle();
+    }
+
+    public void RejectArticle()
+    {
+        var article = GameManager.instance.articleList.articles[articleId];
+        article.isApproved = false;
+        article.isEdited = true;
+        Debug.Log("Article rejected.");
+
+        StartNextArticle();
+    }
+    public bool IsPlayerSelectionCorrect(string playerSelectedText, int playerSelectedLawId, Article article)
+    {
+        foreach (var importantPart in article.importantParts)
+        {
+            // First check if the law ID is one of the allowed law IDs
+            bool lawMatches = false;
+            foreach (int lawId in importantPart.lawIds)
+            {
+                if (lawId == playerSelectedLawId)
+                {
+                    lawMatches = true;
+                    break;
+                }
+            }
+            if (!lawMatches)
+            {
+                continue; // this important part is not for this law, check next
+            }
+
+            // Now check text similarity
+            if (IsTextSimilar(playerSelectedText, importantPart.text, importantPart.tolerance))
+            {
+                return true; // found a match
+            }
+        }
+
+        return false; // no match found
+    }
+    private bool IsTextSimilar(string playerText, string importantText, int tolerance)
+    {
+        playerText = playerText.Trim();
+        importantText = importantText.Trim();
+
+        // Exact match
+        if (playerText.Equals(importantText, StringComparison.OrdinalIgnoreCase))
+            return true;
+
+        // Check if the important part exists inside the player's text
+        if (playerText.IndexOf(importantText, StringComparison.OrdinalIgnoreCase) >= 0)
+            return true;
+
+        // Check if the player's selected text is inside the important text
+        if (importantText.IndexOf(playerText, StringComparison.OrdinalIgnoreCase) >= 0)
+            return true;
+
+        // Check length difference tolerance
+        int lengthDifference = Math.Abs(playerText.Length - importantText.Length);
+        if (lengthDifference <= tolerance)
+        {
+            // Optional: could still consider as matching even if slightly different
+            return true;
+        }
+
+        // Otherwise not similar enough
+        return false;
+    }
+
+
+
+    private int checker()
+    {
+        switch (GameManager.instance.day)
+        {
+            case 1:
+                switch (articleId)
+                {
+                    case 0:
+                        
+                        return 0;
+                    
+                    case 1:
+                        return 1;
+                    
+                    case 2:
+                        if(DialogueManager.instance.choicesDictionary.ContainsKey("testComeLater"))
+                        {
+                            
+                            return 2;
+                        }
+                        else
+                        {
+                            Debug.Log("You need to finish the first dialogue before editing this article.");
+                            return -1;
+                        }
+                        return 2;
+                    
+                    default:
+                        
+                        return -1;
+                }
+            
+            
+            case 2:
+                return 1;
+            
+            
+            case 3:
+                return 2;
+            
+            
+            case 4:
+                return 3;
+            
+            
+            case 5:
+                return 4;
+            
+            
+            default:
+                return -1;
+            
+        }
     }
 }

@@ -5,11 +5,13 @@ using System.Collections.Generic;
 public class Article
 {
     public int id;
-    private string title;
-    private string text;
+    public string title;
+    public string text;
     public int journalistId;
     public Journalist author;
     public ImportantPart[] importantParts; // array of important parts in the article
+    public bool isEdited = false; // if the article was edited by the player
+    public bool isApproved = false; // if the article was approved
     
     public Article(string title, string text, Journalist author)
     {
