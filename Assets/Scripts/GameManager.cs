@@ -49,31 +49,7 @@ public class GameManager : MonoBehaviour
        money = 20;
        day = 1;
        time = 0;
-       ReassignUIReferences();
    }
-
-    void ReassignUIReferences()
-    {
-        Transform canvas = GameObject.Find("EndOfTheDayParent")?.transform;
-
-        if (canvas != null)
-        {
-            Transform panel = canvas.Find("EndOfTheDayCanvas");
-            if (panel != null)
-            {
-                EndOfTheDayTemplate = panel.gameObject;
-                endOfDayText = panel.Find("EndOfTheDayBodyText")?.GetComponent<TextMeshProUGUI>();
-            }
-            else
-            {
-                Debug.LogWarning("EndOfTheDayCanvas not found.");
-            }
-        }
-        else
-        {
-            Debug.LogWarning("Canvas not found in scene.");
-        }
-    }
 
    void Update()
    {
