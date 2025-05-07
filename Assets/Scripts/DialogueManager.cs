@@ -254,8 +254,8 @@ public class DialogueManager : MonoBehaviour
     {
         yield return new WaitForSeconds(0.1f);
         isDialogueOpen = false;
-
     }
+    
     private void ApplyOptionEffects(DialogueOption option)
     {
         if(option.conditionChange != null)

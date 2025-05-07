@@ -21,6 +21,7 @@ public class GameManager : MonoBehaviour
    public JournalistList journalistList; // array of journalists
    public ArticleList articleList; // array of articles
    public static GameManager instance;
+   public List<Article> uneditedArticles = new List<Article>();
    public GameObject EndOfTheDayTemplate;
    public bool isEndOfTheDayOpen;
    public TextMeshProUGUI endOfDayText;
@@ -142,6 +143,7 @@ public class GameManager : MonoBehaviour
             foreach (var article in articleList.articles)
             {
                 article.author = journalistList.journalists.Find(j => j.id == article.journalistId);
+                uneditedArticles.Add(article);
             }
             Debug.Log("Articles Loaded Successfully!");
         }

@@ -1,52 +1,56 @@
+using System;
 using UnityEngine;
-using TMPro; // if you use TextMeshPro
+using TMPro;
 
 public class LawInputController : MonoBehaviour
 {
     public TMP_InputField lawInputField; // assign in Inspector
-    private bool isSelectingText = false;
 
-    private string selectedText = ""; // the text player selected
+    private string selectedText = ""; // store selected text
+    
+    public delegate void LawSubmitted(string selectedText, int lawId);
+    public static event LawSubmitted OnLawSubmitted; // event to notify (selectedText, lawId)
 
-    // Call this when player selects text
-    public void OnTextSelected(string text)
+    private void Start()
     {
-        selectedText = text;
-        isSelectingText = true;
-        lawInputField.gameObject.SetActive(true);
-        lawInputField.text = ""; // clear previous input
-        lawInputField.ActivateInputField(); // focus
+        EditingField.OnTextSelected += HandleTextSelected;
+
+        lawInputField.characterLimit = 2;
+        lawInputField.contentType = TMP_InputField.ContentType.IntegerNumber;
+
+        lawInputField.gameObject.SetActive(false); // start hidden
+
+        lawInputField.onSubmit.AddListener(SubmitLaw);
     }
 
-    // Call this when player submits the law input
-    public void OnLawSubmitted()
+    private void HandleTextSelected(string text)
     {
-        if (!isSelectingText) return;
+        selectedText = text;
+        lawInputField.text = ""; // clear input
+        lawInputField.gameObject.SetActive(true);
+        lawInputField.ActivateInputField(); // focus input
+        SceneNavigator.instance.gameObject.SetActive(false); // disable to avoid backspace changing scene
+    }
 
-        string playerInput = lawInputField.text.Trim();
-        if (int.TryParse(playerInput, out int lawId))
+    private void SubmitLaw(string input)
+    {
+        if (int.TryParse(input, out int lawId))
         {
-            Debug.Log($"Player entered law ID: {lawId} for text: {selectedText}");
-
-            // Here you can now check if this lawId is correct for the selected text
-            ValidateLawSelection(selectedText, lawId);
+            Debug.Log($"Law submitted: {lawId} for text: {selectedText}");
+            OnLawSubmitted?.Invoke(selectedText, lawId);
         }
         else
         {
-            Debug.LogWarning("Invalid law ID input. Please enter a number.");
+            Debug.LogWarning("Invalid input, enter a number!");
         }
 
-        // Deactivate input field again
-        lawInputField.gameObject.SetActive(false);
-        isSelectingText = false;
-        selectedText = "";
+        lawInputField.gameObject.SetActive(false); // hide input after submission
+        SceneNavigator.instance.gameObject.SetActive(true); // re-enable scene navigator
     }
 
-    // Validate if the law ID matches the selected text
-    private void ValidateLawSelection(string selectedText, int enteredLawId)
+    private void OnDestroy()
     {
-        // Example: loop through your article's important parts and check
-        // (I can show you the full check if you want next)
-        Debug.Log($"Validating selected text: '{selectedText}' with law ID: {enteredLawId}");
+        EditingField.OnTextSelected -= HandleTextSelected;
+        lawInputField.onSubmit.RemoveListener(SubmitLaw);
     }
 }
