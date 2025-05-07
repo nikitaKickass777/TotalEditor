@@ -1,25 +1,40 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 public class Clock : MonoBehaviour
 {
-   public Transform clockHandTransform;
-   private float time;
-   public float speed = 10f;
+    public Transform clockHandTransform;
+    private float time;
+    [SerializeField] private float speed = 1f;
+    private float endTime = 9f;
+    private bool hasShownEndOfDay = false;
+    internal static object instance;
 
-   private void Awake()
-   {
-       
-   }
-
-   
-
-    // Update is called once per frame
     void Update()
     {
-        time = GameManager.instance.time;
-        clockHandTransform.eulerAngles = new Vector3(0, 0, -time * speed); //  speed is the speed of the clock hand in degrees per second
-    }                                                                          // - is for  the clockwise rotation
+        if (!hasShownEndOfDay)
+        {
+            time = GameManager.instance.time * speed;
+
+            if (time < endTime)
+            {
+                float angle = 360f - (time % 12f) * 30f + 90f;
+                clockHandTransform.eulerAngles = new Vector3(0, 0, angle);
+            }
+            else
+            {
+                hasShownEndOfDay = true;
+                time = 0f;
+                clockHandTransform.eulerAngles = new Vector3(0, 0, 180f);
+                GameManager.instance.ShowEndOfTheDay();
+            }
+        }
+    }
+
+    public void ResetClock()
+    {
+        time = 0f;
+        hasShownEndOfDay = false;
+    }
 }

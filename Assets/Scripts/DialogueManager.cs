@@ -246,8 +246,15 @@ public class DialogueManager : MonoBehaviour
     {
         Time.timeScale = 1;
         DialogueTemplate.gameObject.SetActive(false);
+
+        StartCoroutine(WaitBeforeClosingDialogue());
+    }
+
+    private IEnumerator WaitBeforeClosingDialogue()
+    {
+        yield return new WaitForSeconds(0.1f);
         isDialogueOpen = false;
-       
+
     }
     private void ApplyOptionEffects(DialogueOption option)
     {

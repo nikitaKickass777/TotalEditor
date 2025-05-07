@@ -4,6 +4,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
+using TMPro;
+
+
 
 public class GameManager : MonoBehaviour
 {
@@ -18,6 +21,10 @@ public class GameManager : MonoBehaviour
    public JournalistList journalistList; // array of journalists
    public ArticleList articleList; // array of articles
    public static GameManager instance;
+   public GameObject EndOfTheDayTemplate;
+   public bool isEndOfTheDayOpen;
+   public TextMeshProUGUI endOfDayText;
+
    
    
    //singleton pattern
@@ -41,7 +48,32 @@ public class GameManager : MonoBehaviour
        money = 20;
        day = 1;
        time = 0;
+       ReassignUIReferences();
    }
+
+    void ReassignUIReferences()
+    {
+        Transform canvas = GameObject.Find("EndOfTheDayParent")?.transform;
+
+        if (canvas != null)
+        {
+            Transform panel = canvas.Find("EndOfTheDayCanvas");
+            if (panel != null)
+            {
+                EndOfTheDayTemplate = panel.gameObject;
+                endOfDayText = panel.Find("EndOfTheDayBodyText")?.GetComponent<TextMeshProUGUI>();
+            }
+            else
+            {
+                Debug.LogWarning("EndOfTheDayCanvas not found.");
+            }
+        }
+        else
+        {
+            Debug.LogWarning("Canvas not found in scene.");
+        }
+    }
+
    void Update()
    {
        if(SceneManager.GetActiveScene().name == "Office" || SceneManager.GetActiveScene().name == "Reprimands" || SceneManager.GetActiveScene().name == "Editing" || SceneManager.GetActiveScene().name == "Board")
@@ -129,6 +161,38 @@ public class GameManager : MonoBehaviour
             journalist.portraitDoor = Resources.Load<Sprite>("Portraits/" + journalist.name + "_door");
         }
     }
-    
+
+    public void ShowEndOfTheDay()
+    {
+        isEndOfTheDayOpen = true;
+        Time.timeScale = 0;
+        // isDialogueOpen = true;
+        EndOfTheDayTemplate.SetActive(true); // this thing makes dialogue box appear
+
+        endOfDayText.text =
+            "Results of the Day " + day + "\n" +
+            "Earnings: $" + money + "\n";
+            
+    }
+
+    public void HideEndOfTheDay()
+    {
+        print("End of the day closed");
+
+        isEndOfTheDayOpen = false;
+        EndOfTheDayTemplate.SetActive(false);
+        Clock clockInstance = FindObjectOfType<Clock>();
+        if (clockInstance != null)
+        {
+            clockInstance.ResetClock();
+        }
+        else
+        {
+            Debug.LogError("Clock instance not found!");
+        }
+        time = 0;
+        day += 1;
+        Time.timeScale = 1;
+    }
 }
 
