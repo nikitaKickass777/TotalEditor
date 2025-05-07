@@ -683,6 +683,51 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 176651110}
   m_CullTransparentMesh: 1
+--- !u!1 &405124252
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 405124254}
+  - component: {fileID: 405124253}
+  m_Layer: 0
+  m_Name: InputFieldController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &405124253
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 405124252}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54c69fae86327ae4fb31538d51b776a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lawInputField: {fileID: 1718456893}
+--- !u!4 &405124254
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 405124252}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 28.10246, y: 10.40112, z: 1.7253616}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &614743517
 GameObject:
   m_ObjectHideFlags: 0
@@ -731,8 +776,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textDisplay: {fileID: 171840306}
   titleText: {fileID: 1384407810}
-  articleId: 0
-  lawInputController: {fileID: 1718456892}
+  currentArticle:
+    id: 0
+    title: 
+    text: 
+    journalistId: 0
+    author:
+      id: 0
+      name: 
+      relationship: 0
+      reprimands: 0
+    importantParts: []
+    isEdited: 0
+    isApproved: 0
 --- !u!1 &737122171
 GameObject:
   m_ObjectHideFlags: 0
@@ -1137,6 +1193,64 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1093929608}
   m_CullTransparentMesh: 1
+--- !u!1 &1351986488
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1351986490}
+  - component: {fileID: 1351986489}
+  m_Layer: 0
+  m_Name: ArticleManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1351986489
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1351986488}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1faaec0bb33e411cb76a2f6a35ab3f62, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  articleId: 0
+  currentArticle:
+    id: 0
+    title: 
+    text: 
+    journalistId: 0
+    author:
+      id: 0
+      name: 
+      relationship: 0
+      reprimands: 0
+    importantParts: []
+    isEdited: 0
+    isApproved: 0
+--- !u!4 &1351986490
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1351986488}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 8.95554, y: 8.602161, z: 1.9533528}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1384407808
 GameObject:
   m_ObjectHideFlags: 0
@@ -1485,7 +1599,6 @@ GameObject:
   - component: {fileID: 1718456895}
   - component: {fileID: 1718456894}
   - component: {fileID: 1718456893}
-  - component: {fileID: 1718456892}
   m_Layer: 5
   m_Name: LawInputField
   m_TagString: Untagged
@@ -1513,19 +1626,6 @@ RectTransform:
   m_AnchoredPosition: {x: -612.9499, y: -168}
   m_SizeDelta: {x: 96.9108, y: 33.3205}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1718456892
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1718456890}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 54c69fae86327ae4fb31538d51b776a1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  lawInputField: {fileID: 1718456893}
 --- !u!114 &1718456893
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1587,19 +1687,7 @@ MonoBehaviour:
   m_CharacterLimit: 0
   m_OnEndEdit:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1718456892}
-        m_TargetAssemblyTypeName: LawInputController, Assembly-CSharp
-        m_MethodName: OnLawSubmitted
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   m_OnSubmit:
     m_PersistentCalls:
       m_Calls: []
@@ -1947,3 +2035,5 @@ SceneRoots:
   - {fileID: 1070298712}
   - {fileID: 49833023}
   - {fileID: 1711339991}
+  - {fileID: 1351986490}
+  - {fileID: 405124254}
