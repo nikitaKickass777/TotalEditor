@@ -3,37 +3,140 @@
     {
       "dialogueId": 0,
       "dialogueName": "0th Dialogue",
-      "characterId": 0,
+      "characterId": 4,
       "lines": [
         {
           "lineId": 0,
-          "lineText": "Hello, how are you?",
+          "lineText": "Come on, come on, settle in. I worked hard at this very desk! Mmnh... That's why I got promoted — on orders from up there. From the top!",
+          "hasOptions": false,
+          "nextLineId": 1,
+          "options": []
+        },
+        {
+          "lineId": 1,
+          "lineText": "Now, see this little book?",
           "hasOptions": true,
           "options": [
             {
               "optionId": 0,
-              "nextLineId": 1,
-              "optionText": "I'm fine, thanks!"
+              "nextLineId": 2,
+              "optionText": "No, where is it?"
             },
             {
               "optionId": 1,
-              "nextLineId": 2,
-              "optionText": "Not too great..."
+              "nextLineId": 4,
+              "optionText": "Yes, Sir!"
             }
           ]
         },
         {
-          "lineId": 1,
-          "lineText": "Glad to hear that!",
+          "lineId": 2,
+          "lineText": "Open your eyes kid! You are not as old as me. It's right in front of the lamp.",
           "hasOptions": false,
-          "nextLineId": -1,
+          "nextLineId": 3,
           "options": []
         },
         {
-          "lineId": 2,
-          "lineText": "Oh no, what's wrong?",
+          "lineId": 3,
+          "lineText": "This book is a fine little thing! Holds the fate of our great nation!",
           "hasOptions": false,
-          "nextLineId": -1,
+          "nextLineId": 5,
+          "options": []
+        },
+        {
+          "lineId": 4,
+          "lineText": "A fine little thing! Holds the fate of our great nation!",
+          "hasOptions": false,
+          "nextLineId": 7,
+          "options": []
+        },
+        {
+          "lineId": 5,
+          "lineText": "You stamp those who write the wrong kind of stuff — you know, the kind that soils the honor of our country. Mmnh... Such folks must be dealt with immediately! Three stamps, a ring on this telephone right here—and poof! The troublemaker is exactly where they need to be, and the necessary measures are taken.",
+          "hasOptions": false,
+          "nextLineId": 6,
+          "options": []
+        },
+        {
+          "lineId": 6,
+          "lineText": "Do not say me that you don't see the phone!! It is to the right of the lamp!",	
+          "hasOptions": false,
+          "nextLineId": 9,
+          "options": []
+        },
+        {
+          "lineId": 7,
+          "lineText": "You stamp those who write the wrong kind of stuff — you know, the kind that soils the honor of our country. Mmnh... Such folks must be dealt with immediately! Three stamps, a ring on this telephone right here—and poof! The troublemaker is exactly where they need to be, and the necessary measures are taken.",
+          "hasOptions": true,
+          "options": [            
+            {
+              "optionId": 0,
+              "nextLineId": 8,
+              "optionText": "Sorry to interrupt you, sir, but I can't find the phone..."
+            },
+            {
+              "optionId": 1,
+              "nextLineId": 9,
+              "optionText": "Sounds like a good working system!"
+            }
+        ]
+        },
+        {
+          "lineId": 8,
+          "lineText": "Open your eyes, kiddo! It is to the right of the lamp!",	
+          "hasOptions": false,
+          "nextLineId": 9,
+          "options": []
+        },
+        {
+          "lineId": 9,
+          "lineText": "You’ll be doing a G R E A T service! A true citizen, with a capital 'C'! Now, here’s your work machine — a typewriter! Never seen such one before? Ahem! Well, well, this is a brand-new mo-deeel! Our inventors aren’t just sitting on their behinds, you know. You slide in a news article, highlight a sentence, and mark under which law the piece passes—or, if the author is up to some mischief, you flag it accordingly. And these two piles? One for approved articles, one for rejected ones.",	
+          "hasOptions": false,
+          "nextLineId": 10,
+          "options": []
+        },
+        {
+          "lineId": 10,
+          "lineText": "What’s that look for? Hard to grasp?",	
+          "hasOptions": true,
+          "options": [
+            {
+              "optionId": 0,
+              "nextLineId": 11,
+              "optionText": "No, everything is clear!"
+            },
+            {
+              "optionId": 1,
+              "nextLineId": 12,
+              "optionText": "Yes, too much information at once!"
+            }
+          ]
+        },
+        {
+          "lineId": 11,
+          "lineText": "Students nowadays are so quick-thinking. Good job!! But if you need any help, just call your mentors - Daria or Nikita",	
+          "hasOptions": false,
+          "nextLineId": 13,
+          "options": []
+        },
+        {
+          "lineId": 12,
+          "lineText": "Sigh... A student!! Just call your mentors - Daria or Nikita - if you need help",	
+          "hasOptions": false,
+          "nextLineId": 13,
+          "options": []
+        },
+        {
+          "lineId": 13,
+          "lineText": "All the necessary laws are posted on the board, it is on your left — use them anytime. A handy little cheat sheet.",	
+          "hasOptions": false,
+          "nextLineId": 14,
+          "options": []
+        },
+        {
+          "lineId": 14,
+          "lineText": "Ahhh, to be your age again! Just don’t slack off, you hear me? Try dodging work, and I’ll have something for you!",	
+          "hasOptions": false,
           "options": []
         }
       ]
@@ -41,113 +144,121 @@
     {
       "dialogueId": 1,
       "dialogueName": "1st Dialogue",
-      "characterId": 0,
+      "characterId": 5,
       "lines": [
         {
           "lineId": 0,
-          "lineText": "So you are the newbie here. You look pathetic.",
+          "lineText": "Good morning!",
           "hasOptions": true,
           "options": [
             {
               "optionId": 0,
-              "nextLineId": 2,
-              "optionText": "Piss off, scum!"
+              "optionText": "Good morning!"
             },
             {
               "optionId": 1,
-              "nextLineId": 1,
-              "optionText": "Hey, whats up with you? I am your new boss."
+              "optionText": "Hello. Who are you?"
             }
           ]
-        },
-        {
-          "lineId": 1,
-          "lineText": "Sorry boss, I didn't mean to offend you.",
-          "hasOptions": true,
-          "options": [
-            {
-              "optionId": 0,
-              "optionText": "Its alright, you can go away and never return now.",
-              "nextLineId": -1
-            },
-            {
-              "optionId": 1,
-              "conditionChange": "testComeLater",
-              "optionText": "Please come to me again later, I will be waiting for you. And behave normally!!!",
-              "nextLineId": -1
-            },
-            {
-              "optionId": 2,
-              "optionText": "Sorry i farted.",
-              "nextLineId": -1
-            }
-          ]
-        },
-        {
-          "lineId": 2,
-          "lineText": "Uh-huh",
-          "hasOptions": false,
-          "nextLineId": -1,
-          "options": []
         }
       ]
     },
     {
       "dialogueId": 2,
       "dialogueName": "2nd Dialogue",
-      "characterId": 1,
+      "characterId": 4,
       "lines": [
         {
           "lineId": 0,
-          "lineText": "Its me again, i am back and will behave normally",
-          "hasOptions": true,
-          "options": [
-            {
-              "optionId": 0,
-              "nextLineId": 1,
-              "optionText": "I dont believe you will behave normally."
-            },
-            {
-              "optionId": 1,
-              "nextLineId": 2,
-              "optionText": "Nice nice, lets get back to work."
-            }
-          ]
+          "lineText": "Comrade Majoooor, at your service! Here’s the young recruit!",
+          "hasOptions": false
+        }
+      ]
+    },
+    {
+      "dialogueId": 3,
+      "dialogueName": "3rd Dialogue",
+      "characterId": 5,
+      "lines": [
+        {
+          "lineId": 0,
+          "lineText": "Leave the room, Alexander Pavlovich.",
+          "hasOptions": false,
+          "nextLineId": 1
         },
         {
           "lineId": 1,
-          "lineText": "Why did you call me back again then",
+          "lineText": "Did Alexander Pavlovich talk your ear off?",
+          "hasOptions": false,
+          "nextLineId": 2
+        },
+        {
+          "lineId": 2,
+          "lineText": "No need to tense up, calm down! I’m just here to pass along a few formal instructions.",
+          "hasOptions": false,
+          "nextLineId": 3
+        },
+        {
+          "lineId": 3,
+          "lineText": "You see, everyone makes mistakes. Even I, sometimes. Well... You have four journalists under your supervision. Writers can be... unpredictable. Sometimes they put things in print that they really shouldn't. If you notice a journalist’s articles getting worse and worse, mark it in your journal and give me a call. No need to worry — we’ll simply have a little chat with them, discuss why they’re writing the way they are. Different circumstances, you surely understand.",
           "hasOptions": true,
           "options": [
             {
               "optionId": 0,
-              "optionText": "No particular reason, just wanted to see you again."
+              "nextLineId": 5,
+              "optionText": "Sounds reasonable"
             },
             {
               "optionId": 1,
-              "conditionChange": 0,
-              "optionText": "Finally normal response! I will give you a raise."
-            },
-            {
-              "optionId": 2,
-              "lineId": 3,
-              "optionText": "*FART LOUDLY*"
+              "nextLineId": 6,
+              "optionText": "What do you mean by 'the writers put things in print that they really shouldn't'?"
             }
           ]
         },
         {
-          "lineId": 2,
-          "lineText": "See you later then",
-          "hasOptions": false,
-          "nextLineId": -1,
-          "options": []
+          "lineId": 5,
+          "lineText": "I am glad that we understand each other. The more of these cases you catch, the better! Articles improve, journalists improve, and naturally, so does your paycheck.",
+          "hasOptions": true,
+          "options": [
+            {
+              "optionId": 0,
+              "nextLineId": 7,
+              "optionText": "Hm... Looks like a good deal!"
+            }
+          ]
         },
         {
-          "lineId": 3,
-          "lineText": "Ahhh! I cant breathe!.....",
+          "lineId": 6,
+          "lineText": "You know, our job, yours and mine, is simple: we ensure that words serve their proper purpose. That they build, not destroy. Guide, not mislead. Just keep in mind - the more of these cases you catch, the better! Articles improve, journalists improve, and naturally, so does your paycheck.",
           "hasOptions": false,
-          "nextLineId": -1,
-          "options": []
+          "nextLineId": 7
+        },
+        {
+          "lineId": 7,
+          "lineText": "But do be careful. Mistakes — well, they have a way of piling up, and I’d hate to see a promising young recruit struggle over a simple misunderstanding. You understand, don’t you?",
+          "hasOptions": true,
+          "options": [
+            {
+              "optionId": 0,
+              "nextLineId": 8,
+              "optionText": "Is this a threat?"
+            },
+            {
+              "optionId": 1,
+              "nextLineId": 9,
+              "optionText": "Yes, Officer!"
+            }
+          ]
+        },
+        {
+          "lineId": 8,
+          "lineText": "Huh, remember, it is in your best interest to get along with me. Get to work. I’ll be expecting your reports.",
+          "hasOptions": false
+        },
+        {
+          "lineId": 9,
+          "lineText": "Good. Then get to work. I’ll be expecting your reports.",
+          "hasOptions": false
         }
       ]
     }

@@ -40,7 +40,11 @@ public class ArticleEditorManager : MonoBehaviour
         bool ShouldBeEditedNext(Article article)
         {
             // here is logic for article selection
-            return true;
+            if(DialogueManager.instance.dialogueCompleted.ContainsKey(3))
+            {
+                return true;
+            }
+            return false;
         }
     }
     
