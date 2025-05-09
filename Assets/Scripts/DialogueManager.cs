@@ -119,7 +119,8 @@ public class DialogueManager : MonoBehaviour
 
 
     public void LoadLine(int lineIndex, int dialogueIndex)
-    {
+    { 
+        Debug.Log("Loading line " + lineIndex + " from dialogue " + dialogueIndex);
         currentLineIndex = lineIndex;
         DialogueLine line = dialogueList.dialogues[dialogueIndex].lines[lineIndex];
 
@@ -272,35 +273,66 @@ public class DialogueManager : MonoBehaviour
             case 1:
                 
                 if (GameManager.instance.money > 10
-                    && !choicesDictionary.ContainsKey("testComeLater")
                     && !isDialogueOpen
                     && SceneManager.GetActiveScene().name == "Office"
                     && !dialogueCompleted.ContainsKey(0))
                 {
                     ShowDialogue(0);
                     dialogueCompleted[0] = true;
+
                 }
 
-                if (GameManager.instance.time > 10
-                    && !choicesDictionary.ContainsKey("testComeLater")
+                if (GameManager.instance.money > 10
                     && !isDialogueOpen
                     && SceneManager.GetActiveScene().name == "Office"
-                    && !dialogueCompleted.ContainsKey(1))
+                    && !dialogueCompleted.ContainsKey(1)
+                    && dialogueCompleted.ContainsKey(0))
                 {
                     ShowDialogue(1);
                     dialogueCompleted[1] = true;
                 }
-                
-                
-                if(GameManager.instance.time > 20
-                   && choicesDictionary.ContainsKey("testComeLater")
-                   && !isDialogueOpen
-                   && SceneManager.GetActiveScene().name == "Office"
-                   && !dialogueCompleted.ContainsKey(2))
+
+                if (GameManager.instance.money > 10
+                    && !isDialogueOpen
+                    && SceneManager.GetActiveScene().name == "Office"
+                    && !dialogueCompleted.ContainsKey(2)
+                    && dialogueCompleted.ContainsKey(1))
                 {
                     ShowDialogue(2);
                     dialogueCompleted[2] = true;
                 }
+
+                if (GameManager.instance.money > 10
+                    && !isDialogueOpen
+                    && SceneManager.GetActiveScene().name == "Office"
+                    && !dialogueCompleted.ContainsKey(3)
+                    && dialogueCompleted.ContainsKey(2))
+                {
+                    ShowDialogue(3);
+                    dialogueCompleted[3] = true;
+                }
+            
+
+                // if (GameManager.instance.time > 10
+                //     && !choicesDictionary.ContainsKey("testComeLater")
+                //     && !isDialogueOpen
+                //     && SceneManager.GetActiveScene().name == "Office"
+                //     && !dialogueCompleted.ContainsKey(1))
+                // {
+                //     ShowDialogue(1);
+                //     dialogueCompleted[1] = true;
+                // }
+                
+                
+                // if(GameManager.instance.time > 20
+                //    && choicesDictionary.ContainsKey("testComeLater")
+                //    && !isDialogueOpen
+                //    && SceneManager.GetActiveScene().name == "Office"
+                //    && !dialogueCompleted.ContainsKey(2))
+                // {
+                //     ShowDialogue(2);
+                //     dialogueCompleted[2] = true;
+                // }
                 
                 
                 
