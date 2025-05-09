@@ -48,34 +48,10 @@ public class Settings : MonoBehaviour
 
    public void Save()
    {
-       // Save the game data to PlayerPrefs
-       PlayerPrefs.SetInt("money", GameManager.instance.money);
-       PlayerPrefs.SetInt("day", GameManager.instance.day);
-       PlayerPrefs.SetFloat("time", GameManager.instance.time);
        PlayerPrefs.SetInt("soundVolume", GameManager.instance.soundVolume);
        PlayerPrefs.SetInt("musicVolume", GameManager.instance.musicVolume);
-        
-       // Save the law list
-       string lawListJson = JsonUtility.ToJson(GameManager.instance.lawList);
-       PlayerPrefs.SetString("lawList", lawListJson);
-        
-       // Save the journalist list
-       string journalistListJson = JsonUtility.ToJson(GameManager.instance.journalistList);
-       PlayerPrefs.SetString("journalistList", journalistListJson);
-       
-       // Save the article list
-       string articleListJson = JsonUtility.ToJson(GameManager.instance.articleList);
-       PlayerPrefs.SetString("articleList", articleListJson);
-        
-       PlayerPrefs.Save();
-   }
 
-   public void Load()
-   {
-       GameManager.instance.money = PlayerPrefs.GetInt("money", GameManager.instance.money);
-       GameManager.instance.day = PlayerPrefs.GetInt("day", GameManager.instance.day);
-       GameManager.instance.time = PlayerPrefs.GetFloat("time", GameManager.instance.time);
-         
+       PlayerPrefs.Save();
    }
    
    

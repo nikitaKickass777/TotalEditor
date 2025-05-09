@@ -9,6 +9,8 @@ public class SceneNavigator : MonoBehaviour
     //singleton
     public static SceneNavigator instance;
     private string currentSceneName;
+    public delegate void SceneChangeDelegate(string sceneName);
+    public static event SceneChangeDelegate OnSceneChange;
     private void Awake()
     {
         if (instance == null)
@@ -25,7 +27,7 @@ public class SceneNavigator : MonoBehaviour
     private void Update()
     {
         
-        if(Input.GetKeyDown(KeyCode.Backspace))
+        if(Input.GetKeyDown(KeyCode.Escape))
         {
             currentSceneName = SceneManager.GetActiveScene().name;
             AudioManager.instance.PlayClip(AudioManager.instance.buttonClick);
@@ -46,6 +48,9 @@ public class SceneNavigator : MonoBehaviour
             case "Reprimands":
                 return "Office";
             case "Editing":
+            {
+                OnSceneChange?.Invoke("Editing");
+            }
                 return "Office";
             case "DialogueSystem":
                 return "Office";

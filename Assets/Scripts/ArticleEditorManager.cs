@@ -5,8 +5,6 @@ using UnityEngine;
 
 public class ArticleEditorManager : MonoBehaviour
 {
-    public int articleId = 0; // Current article ID
-    public Article currentArticle;
 
     public delegate Article ArticleSelectedDelegate(Article article);
 
@@ -85,7 +83,7 @@ public class ArticleEditorManager : MonoBehaviour
             }
         }
 
-        currentArticle = SelectNextArticle();
+        SelectNextArticle();
     }
     private void OnDestroy()
     {

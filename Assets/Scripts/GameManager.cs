@@ -25,6 +25,7 @@ public class GameManager : MonoBehaviour
    public GameObject EndOfTheDayTemplate;
    public bool isEndOfTheDayOpen;
    public TextMeshProUGUI endOfDayText;
+   
 
    
    

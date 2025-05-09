@@ -22,6 +22,7 @@ public class EditingField : MonoBehaviour
     private bool isSelecting = false;
     private List<string> selectedTexts = new List<string>();
     private List<int> selectedLawIds = new List<int>();
+    private bool lawInputFieldActive = false;
     
     private float repeatDelay = 0.4f; // Delay before repeat starts
     private float repeatRate = 0.08f; // Speed of continuous movement
@@ -43,8 +44,27 @@ public class EditingField : MonoBehaviour
     {
         ArticleEditorManager.OnArticleSelected += HandleArticleSelected;
         LawInputController.OnLawSubmitted += HandleLawSubmitted;
-        
-        
+        SceneNavigator.OnSceneChange += HandleSceneChange;
+        if (EditingState.instance.currentArticle != null)
+        {
+            currentArticle = EditingState.instance.currentArticle;
+            cursorIndex = EditingState.instance.cursorIndex;
+            selectionStart = EditingState.instance.selectionStart;
+            selectionEnd = EditingState.instance.selectionEnd;
+            selectedTexts = EditingState.instance.selectedTexts;
+            selectedLawIds = EditingState.instance.selectedLawIds;
+            lawInputFieldActive = EditingState.instance.lawInputFieldActive;
+            originalText = currentArticle.text;
+            title = currentArticle.title;
+            textDisplay.text = originalText;
+            titleText.text = title;
+            Debug.Log("Loaded Saved State");
+        }
+
+
+
+
+
         //General idea of how main logic should work:
         // 1. Get the article with articleID from the GameManager
         // 2. Check if it can be edited, if there is some condition
@@ -234,7 +254,9 @@ public class EditingField : MonoBehaviour
 
         // Temporarily: Ask for law input here (you can instead show a UI input field)
         // This could trigger a UI element asking player to type the law
+        selectedTexts.Add(selectedText);
         OnTextSelected?.Invoke(selectedText);
+        lawInputFieldActive = true;
         // Reset selection
         selectionStart = -1;
         selectionEnd = -1;
@@ -271,9 +293,21 @@ public class EditingField : MonoBehaviour
     {
         
         Debug.Log($"Law submitted: {lawId} for text: {selectedText}");
-        selectedTexts.Add(selectedText);
         selectedLawIds.Add(lawId);
+        lawInputFieldActive = false;
         
+    }
+    private void HandleSceneChange(string sceneName)
+    {
+        EditingState.instance.currentArticle = currentArticle;
+        EditingState.instance.cursorIndex = cursorIndex;
+        EditingState.instance.selectionStart = selectionStart;
+        EditingState.instance.selectionEnd = selectionEnd;
+        EditingState.instance.selectedTexts = selectedTexts;
+        EditingState.instance.selectedLawIds = selectedLawIds;
+        EditingState.instance.lawInputFieldActive = lawInputFieldActive;
+        
+        Debug.Log("Editor state saved");
     }
 
 
@@ -299,5 +333,6 @@ public class EditingField : MonoBehaviour
     {
         LawInputController.OnLawSubmitted -= HandleLawSubmitted;
         ArticleEditorManager.OnArticleSelected -= HandleArticleSelected;
+        SceneNavigator.OnSceneChange -= HandleSceneChange;
     }
 }

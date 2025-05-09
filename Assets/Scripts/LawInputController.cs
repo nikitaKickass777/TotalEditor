@@ -29,7 +29,7 @@ public class LawInputController : MonoBehaviour
         lawInputField.text = ""; // clear input
         lawInputField.gameObject.SetActive(true);
         lawInputField.ActivateInputField(); // focus input
-        SceneNavigator.instance.gameObject.SetActive(false); // disable to avoid backspace changing scene
+        
     }
 
     private void SubmitLaw(string input)
@@ -45,7 +45,7 @@ public class LawInputController : MonoBehaviour
         }
 
         lawInputField.gameObject.SetActive(false); // hide input after submission
-        SceneNavigator.instance.gameObject.SetActive(true); // re-enable scene navigator
+        
     }
 
     private void OnDestroy()
