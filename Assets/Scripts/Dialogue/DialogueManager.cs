@@ -274,6 +274,7 @@ public class DialogueManager : MonoBehaviour
                 {
                     ShowDialogue(0);
                     dialogueCompleted[0] = true;
+                    break;
                 }
 
                 if (!dialogueCompleted.ContainsKey(1)
@@ -281,6 +282,7 @@ public class DialogueManager : MonoBehaviour
                 {
                     ShowDialogue(1);
                     dialogueCompleted[1] = true;
+                    break;
                 }
 
                 if (!dialogueCompleted.ContainsKey(2)
@@ -288,6 +290,7 @@ public class DialogueManager : MonoBehaviour
                 {
                     ShowDialogue(2);
                     dialogueCompleted[2] = true;
+                    break;
                 }
 
                 if (!dialogueCompleted.ContainsKey(3)
@@ -295,6 +298,7 @@ public class DialogueManager : MonoBehaviour
                 {
                     ShowDialogue(3);
                     dialogueCompleted[3] = true;
+                    break;
                 }
 
 
