@@ -7,7 +7,7 @@ public class Clock : MonoBehaviour
     public Transform clockHandTransform;
     private float time;
     [SerializeField] private float speed = 1f;
-    private float endTime = 9f;
+    private float endTime = 900f;
     private bool hasShownEndOfDay = false;
     internal static object instance;
 

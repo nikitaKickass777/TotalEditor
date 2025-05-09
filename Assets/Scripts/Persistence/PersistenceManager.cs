@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using JetBrains.Annotations;
 using UnityEngine;
 
 public class PersistenceManager : MonoBehaviour
 {
     public static PersistenceManager instance;
+    public const string SAVE_PATH = "saveData.json";
     private void Awake()
     {
         if (instance == null)
