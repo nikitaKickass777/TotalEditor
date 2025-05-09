@@ -67,20 +67,22 @@ public class DialogueManager : MonoBehaviour
                 ShowDialogue(0);
             }
         }
-        if(Input.GetMouseButtonDown(0) && isDialogueOpen)
+
+        if (Input.GetMouseButtonDown(0) && isDialogueOpen)
         {
-            if(typeCoroutine != null)
+            if (typeCoroutine != null)
             {
                 Debug.Log("Stopping typing coroutine");
                 try
                 {
                     StopCoroutine(typeCoroutine);
                     StopCoroutine(talkAnimationCoroutine);
-                }catch (Exception e)
+                }
+                catch (Exception e)
                 {
                     Debug.Log(e);
                 }
-                
+
                 typeCoroutine = null;
                 talkAnimationCoroutine = null;
                 characterSpriteRenderer.sprite = characterSprite;
@@ -91,7 +93,8 @@ public class DialogueManager : MonoBehaviour
                 Debug.Log("Loading next line");
                 if (dialogueList.dialogues[currentDialogueIndex].lines[currentLineIndex].nextLineId != -1)
                 {
-                    LoadLine(dialogueList.dialogues[currentDialogueIndex].lines[currentLineIndex].nextLineId, currentDialogueIndex );
+                    LoadLine(dialogueList.dialogues[currentDialogueIndex].lines[currentLineIndex].nextLineId,
+                        currentDialogueIndex);
                 }
                 else
                 {
@@ -126,7 +129,6 @@ public class DialogueManager : MonoBehaviour
         Debug.Log("Loading line " + lineIndex + " from dialogue " + dialogueIndex);
         currentLineIndex = lineIndex;
         DialogueLine line = dialogueList.dialogues[dialogueIndex].lines[lineIndex];
-
         if (typeCoroutine != null)
         {
             StopCoroutine(typeCoroutine);
@@ -138,15 +140,14 @@ public class DialogueManager : MonoBehaviour
             StopCoroutine(talkAnimationCoroutine);
             talkAnimationCoroutine = null;
         }
+
         typeCoroutine = StartCoroutine(TypeLine(line.lineText));
         if (line.hasOptions)
         {
-           
             ShowOptions(line);
         }
         else
         {
-            
             HideOptions();
         }
     }
@@ -254,46 +255,42 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
+// Base conditions to be checked before showing any dialogue
+    private bool baseConditionsMet()
+    {
+        return (!isDialogueOpen
+                && SceneManager.GetActiveScene().name == "Office");
+    }
+
     private void checker(int day)
     {
         // here goes all ingame logic for dialogue selection
+        if (!baseConditionsMet()) return;
         switch (day)
         {
             case 1:
 
-                if (GameManager.instance.money > 10
-                    && !isDialogueOpen
-                    && SceneManager.GetActiveScene().name == "Office"
-                    && !dialogueCompleted.ContainsKey(0))
+                if (!dialogueCompleted.ContainsKey(0))
                 {
                     ShowDialogue(0);
                     dialogueCompleted[0] = true;
                 }
 
-                if (GameManager.instance.money > 10
-                    && !isDialogueOpen
-                    && SceneManager.GetActiveScene().name == "Office"
-                    && !dialogueCompleted.ContainsKey(1)
+                if (!dialogueCompleted.ContainsKey(1)
                     && dialogueCompleted.ContainsKey(0))
                 {
                     ShowDialogue(1);
                     dialogueCompleted[1] = true;
                 }
 
-                if (GameManager.instance.money > 10
-                    && !isDialogueOpen
-                    && SceneManager.GetActiveScene().name == "Office"
-                    && !dialogueCompleted.ContainsKey(2)
+                if (!dialogueCompleted.ContainsKey(2)
                     && dialogueCompleted.ContainsKey(1))
                 {
                     ShowDialogue(2);
                     dialogueCompleted[2] = true;
                 }
 
-                if (GameManager.instance.money > 10
-                    && !isDialogueOpen
-                    && SceneManager.GetActiveScene().name == "Office"
-                    && !dialogueCompleted.ContainsKey(3)
+                if (!dialogueCompleted.ContainsKey(3)
                     && dialogueCompleted.ContainsKey(2))
                 {
                     ShowDialogue(3);
