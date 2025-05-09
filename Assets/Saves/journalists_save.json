@@ -1,0 +1,40 @@
+﻿{
+"journalists": [
+  {
+    "id": 0,
+    "name": "Margaret",
+    "relationship": 75.0,
+    "reprimands": 1
+  },
+  {
+    "id": 1,
+    "name": "Lev",
+    "relationship": 50.0,
+    "reprimands": 2
+  },
+  {
+    "id": 2,
+    "name": "Tetiana",
+    "relationship": 90.0,
+    "reprimands": 0
+  },
+  {
+    "id": 3,
+    "name": "Abraham",
+    "relationship": 50.0,
+    "reprimands": 3
+  },
+  {
+    "id": 4,
+    "name": "Alexander",
+    "relationship": 50.0,
+    "reprimands": 3
+  },
+  {
+    "id": 5,
+    "name": "Officer",
+    "relationship": 50.0,
+    "reprimands": 3
+  }
+ ]
+}

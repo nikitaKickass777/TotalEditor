@@ -1,81 +1,145 @@
 using System.Collections;
 using System.Collections.Generic;
-using JetBrains.Annotations;
+using System.IO;
 using UnityEngine;
 
 public class PersistenceManager : MonoBehaviour
 {
     public static PersistenceManager instance;
-    public const string SAVE_PATH = "saveData.json";
+    private string saveFolderPath;
+
     private void Awake()
     {
         if (instance == null)
         {
             instance = this;
             DontDestroyOnLoad(this);
+
+            // Use persistentDataPath for saving
+            saveFolderPath = Path.Combine(Application.persistentDataPath, "Saves");
+            if (!Directory.Exists(saveFolderPath))
+            {
+                Directory.CreateDirectory(saveFolderPath);
+            }
         }
-        else if(instance != this)
+        else if (instance != this)
         {
             Destroy(gameObject);
         }
     }
-    
+
     public void SaveData()
     {
-        PlayerPrefs.SetInt("money", GameManager.instance.money);
-        PlayerPrefs.SetInt("day", GameManager.instance.day);
-        
-        PlayerPrefs.SetInt("soundVolume", GameManager.instance.soundVolume);
-        PlayerPrefs.SetInt("musicVolume", GameManager.instance.musicVolume);
-        
-        // Save the law list
-        string lawListJson = JsonUtility.ToJson(GameManager.instance.lawList);
-        PlayerPrefs.SetString("lawList", lawListJson);
-        
-        // Save the journalist list
-        string journalistListJson = JsonUtility.ToJson(GameManager.instance.journalistList);
-        PlayerPrefs.SetString("journalistList", journalistListJson);
-       
-        // Save the article list
-        string articleListJson = JsonUtility.ToJson(GameManager.instance.articleList);
-        PlayerPrefs.SetString("articleList", articleListJson);
-        
-        string choicesDictionaryJson = JsonUtility.ToJson(DialogueManager.instance.choicesDictionary);
-        PlayerPrefs.SetString("choicesDictionary", choicesDictionaryJson);
-        Debug.Log("Game data saved");
-        PlayerPrefs.Save();
+        // Save simple config (money, day, volumes)
+        SaveToFile("config_save.json", new ConfigData()
+        {
+            money = GameManager.instance.money,
+            day = GameManager.instance.day,
+            soundVolume = GameManager.instance.soundVolume,
+            musicVolume = GameManager.instance.musicVolume
+        });
+
+        // Save law list
+        SaveToFile("law_save.json", GameManager.instance.lawList);
+
+        // Save journalist list
+        SaveToFile("journalist_save.json", GameManager.instance.journalistList);
+
+        // Save article list
+        SaveToFile("article_save.json", GameManager.instance.articleList);
+
+        // Save choices dictionary
+        SaveToFile("choicesDictionary_save.json", DialogueManager.instance.choicesDictionary);
+
+        Debug.Log($"Game data saved to {saveFolderPath}");
     }
+
     public void LoadData()
     {
-        GameManager.instance.money = PlayerPrefs.GetInt("money", GameManager.instance.money);
-        GameManager.instance.day = PlayerPrefs.GetInt("day", GameManager.instance.day);
-        
-        GameManager.instance.soundVolume = PlayerPrefs.GetInt("soundVolume", GameManager.instance.soundVolume);
-        GameManager.instance.musicVolume = PlayerPrefs.GetInt("musicVolume", GameManager.instance.musicVolume);
-        // Load the law list
-        string lawListJson = PlayerPrefs.GetString("lawList", JsonUtility.ToJson(GameManager.instance.lawList));
-        GameManager.instance.lawList = JsonUtility.FromJson<LawList>(lawListJson);
-        // Load the journalist list
-        string journalistListJson = PlayerPrefs.GetString("journalistList", JsonUtility.ToJson(GameManager.instance.journalistList));
-        GameManager.instance.journalistList = JsonUtility.FromJson<JournalistList>(journalistListJson);
-        // Load the article list
-        string articleListJson = PlayerPrefs.GetString("articleList", JsonUtility.ToJson(GameManager.instance.articleList));
-        GameManager.instance.articleList = JsonUtility.FromJson<ArticleList>(articleListJson);
-        // Load the choices dictionary
-        string choicesDictionaryJson = PlayerPrefs.GetString("choicesDictionary", JsonUtility.ToJson(DialogueManager.instance.choicesDictionary));
-        DialogueManager.instance.choicesDictionary = JsonUtility.FromJson<Dictionary<string, bool>>(choicesDictionaryJson);
-        Debug.Log("Game data loaded");
+        // Load config
+        ConfigData config = LoadFromFile<ConfigData>("config_save.json");
+        if (config != null)
+        {
+            GameManager.instance.money = config.money;
+            GameManager.instance.day = config.day;
+            GameManager.instance.soundVolume = config.soundVolume;
+            GameManager.instance.musicVolume = config.musicVolume;
+        }
+
+        // Load law list
+        var lawList = LoadFromFile<LawList>("law_save.json");
+        if (lawList != null) GameManager.instance.lawList = lawList;
+
+        // Load journalist list
+        var journalistList = LoadFromFile<JournalistList>("journalist_save.json");
+        if (journalistList != null) GameManager.instance.journalistList = journalistList;
+
+        // Load article list
+        var articleList = LoadFromFile<ArticleList>("article_save.json");
+        if (articleList != null) GameManager.instance.articleList = articleList;
+
+        // Load choices dictionary
+        var choicesDict = LoadFromFile<SerializableDictionary<string, bool>>("choicesDictionary_save.json");
+        if (choicesDict != null) DialogueManager.instance.choicesDictionary = choicesDict.ToDictionary();
+
+        Debug.Log($"Game data loaded from {saveFolderPath}");
     }
-    
-    /*
-        PlayerPrefs.SetFloat("margaretRelationship", GameManager.instance.journalistList.journalists[0].relationship);
-        PlayerPrefs.SetFloat("levRelationship", GameManager.instance.journalistList.journalists[1].relationship);
-        PlayerPrefs.SetFloat("tetianaRelationship", GameManager.instance.journalistList.journalists[2].relationship);
-        PlayerPrefs.SetFloat("abrahamRelationship", GameManager.instance.journalistList.journalists[3].relationship);
-        PlayerPrefs.SetInt("margaretReprimands", GameManager.instance.journalistList.journalists[0].reprimands);
-        PlayerPrefs.SetInt("levReprimands", GameManager.instance.journalistList.journalists[1].reprimands);
-        PlayerPrefs.SetInt("tetianaReprimands", GameManager.instance.journalistList.journalists[2].reprimands);
-        PlayerPrefs.SetInt("abrahamReprimands", GameManager.instance.journalistList.journalists[3].reprimands);
-     * 
-     */
+
+    // Helper to save any object
+    private void SaveToFile(string fileName, object data)
+    {
+        string json = JsonUtility.ToJson(data, true); // pretty print
+        string filePath = Path.Combine(saveFolderPath, fileName);
+        File.WriteAllText(filePath, json);
+    }
+
+    // Helper to load any object
+    private T LoadFromFile<T>(string fileName) where T : class
+    {
+        string filePath = Path.Combine(saveFolderPath, fileName);
+        if (File.Exists(filePath))
+        {
+            string json = File.ReadAllText(filePath);
+            return JsonUtility.FromJson<T>(json);
+        }
+        return null;
+    }
+
+    [System.Serializable]
+    public class ConfigData
+    {
+        public int money;
+        public int day;
+        public int soundVolume;
+        public int musicVolume;
+    }
+    [System.Serializable]
+    public class SerializableDictionary<TKey, TValue> : ISerializationCallbackReceiver
+    {
+        public List<TKey> keys = new List<TKey>();
+        public List<TValue> values = new List<TValue>();
+        private Dictionary<TKey, TValue> dictionary = new Dictionary<TKey, TValue>();
+
+        public void OnBeforeSerialize()
+        {
+            keys.Clear();
+            values.Clear();
+            foreach (var kvp in dictionary)
+            {
+                keys.Add(kvp.Key);
+                values.Add(kvp.Value);
+            }
+        }
+
+        public void OnAfterDeserialize()
+        {
+            dictionary = new Dictionary<TKey, TValue>();
+            for (int i = 0; i < keys.Count; i++)
+            {
+                dictionary[keys[i]] = values[i];
+            }
+        }
+        public Dictionary<TKey, TValue> ToDictionary() => dictionary;
+    }
+
 }

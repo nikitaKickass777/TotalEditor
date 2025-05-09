@@ -45,11 +45,21 @@ public class GameManager : MonoBehaviour
 
    void Start()
    {
-         // initialize the game state
-       InitializeData();
-       money = 20;
-       day = 1;
-       time = 0;
+       if (SceneNavigator.instance.isNewGame)
+       {
+           Debug.Log("Starting new game...");
+           InitializeData();
+           money = 20;
+           day = 1;
+           time = 0;
+       }
+       else
+       {
+           Debug.Log("Loading game data...");
+           PersistenceManager.instance.LoadData();
+           time = 0;
+       }
+       
    }
 
    void Update()
@@ -172,6 +182,9 @@ public class GameManager : MonoBehaviour
         time = 0;
         day += 1;
         Time.timeScale = 1;
+        Debug.Log("Saving game data...");
+        PersistenceManager.instance.SaveData();
+        
     }
 }
 

@@ -205,58 +205,58 @@
           "options": [
             {
               "optionId": 0,
-              "nextLineId": 4,
+              "nextLineId": 5,
               "optionText": "Sounds reasonable"
             },
             {
               "optionId": 1,
-              "nextLineId": 5,
+              "nextLineId": 6,
               "optionText": "What do you mean by 'the writers put things in print that they really shouldn't'?"
             }
           ]
         },
         {
-          "lineId": 4,
+          "lineId": 5,
           "lineText": "I am glad that we understand each other. The more of these cases you catch, the better! Articles improve, journalists improve, and naturally, so does your paycheck.",
           "hasOptions": true,
           "options": [
             {
               "optionId": 0,
-              "nextLineId": 6,
+              "nextLineId": 7,
               "optionText": "Hm... Looks like a good deal!"
             }
           ]
         },
         {
-          "lineId": 5,
+          "lineId": 6,
           "lineText": "You know, our job, yours and mine, is simple: we ensure that words serve their proper purpose. That they build, not destroy. Guide, not mislead. Just keep in mind - the more of these cases you catch, the better! Articles improve, journalists improve, and naturally, so does your paycheck.",
           "hasOptions": false,
-          "nextLineId": 6
+          "nextLineId": 7
         },
         {
-          "lineId": 6,
+          "lineId": 7,
           "lineText": "But do be careful. Mistakes — well, they have a way of piling up, and I’d hate to see a promising young recruit struggle over a simple misunderstanding. You understand, don’t you?",
           "hasOptions": true,
           "options": [
             {
               "optionId": 0,
-              "nextLineId": 7,
+              "nextLineId": 8,
               "optionText": "Is this a threat?"
             },
             {
               "optionId": 1,
-              "nextLineId": 8,
+              "nextLineId": 9,
               "optionText": "Yes, Officer!"
             }
           ]
         },
         {
-          "lineId": 7,
+          "lineId": 8,
           "lineText": "Huh, remember, it is in your best interest to get along with me. Get to work. I’ll be expecting your reports.",
           "hasOptions": false
         },
         {
-          "lineId": 8,
+          "lineId": 9,
           "lineText": "Good. Then get to work. I’ll be expecting your reports.",
           "hasOptions": false
         }

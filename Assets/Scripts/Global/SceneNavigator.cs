@@ -9,6 +9,7 @@ public class SceneNavigator : MonoBehaviour
     //singleton
     public static SceneNavigator instance;
     private string currentSceneName;
+    public bool isNewGame = true;
     public delegate void SceneChangeDelegate(string sceneName);
     public static event SceneChangeDelegate OnSceneChange;
     private void Awake()

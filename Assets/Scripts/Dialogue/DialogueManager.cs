@@ -12,28 +12,26 @@ using UnityEngine.UI;
 
 public class DialogueManager : MonoBehaviour
 {
-    
     public static DialogueManager instance;
-    
+
     public GameObject DialogueTemplate;
-    public TextMeshProUGUI dialogueText;
+    [FormerlySerializedAs("dialogueText")] public TextMeshProUGUI dialogueTMP;
     public Sprite characterSprite;
     public Sprite characterSpriteTalk;
     public SpriteRenderer characterSpriteRenderer;
     public Button[] optionButtons;
-    
+
     public int currentDialogueIndex;
     public int currentLineIndex;
     public DialogueList dialogueList;
     public Dictionary<string, bool> choicesDictionary;
     public Dictionary<int, bool> dialogueCompleted;
     public bool isDialogueOpen;
-    
+
     public float textSpeed = 0.05f;
     private Coroutine typeCoroutine;
-    private Coroutine talkAnimation;
-    
-    
+    private Coroutine talkAnimationCoroutine;
+
 
     private void Awake()
     {
@@ -47,27 +45,20 @@ public class DialogueManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
     void Start()
     {
         LoadDialogues();
-       // ShowDialogue(0);
         isDialogueOpen = false;
         choicesDictionary = new Dictionary<string, bool>();
         dialogueCompleted = new Dictionary<int, bool>();
-        
     }
 
     private void Update()
     {
-        // if game state is not paused and scene is office and player does not have a dialogue open
-        // check should be performed each time the player enters the office scene
-        //call correct checker function depending on the current day (maybe make a separate function for each day)
-        //there should be the bool array, where each index corresponds to some important dialogue choice,
-        //if it is true then the dialogue special option(one that changes some bool) has been triggered
-        //checker uses these bools as one of the conditions to determine which dialogue to show
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            if(DialogueTemplate.activeSelf)
+            if (DialogueTemplate.activeSelf)
             {
                 EndDialogue();
             }
@@ -76,101 +67,104 @@ public class DialogueManager : MonoBehaviour
                 ShowDialogue(0);
             }
         }
+        if(Input.GetMouseButtonDown(0) && isDialogueOpen)
+        {
+            if(typeCoroutine != null)
+            {
+                Debug.Log("Stopping typing coroutine");
+                try
+                {
+                    StopCoroutine(typeCoroutine);
+                    StopCoroutine(talkAnimationCoroutine);
+                }catch (Exception e)
+                {
+                    Debug.Log(e);
+                }
+                
+                typeCoroutine = null;
+                talkAnimationCoroutine = null;
+                characterSpriteRenderer.sprite = characterSprite;
+                dialogueTMP.text = dialogueList.dialogues[currentDialogueIndex].lines[currentLineIndex].lineText;
+            }
+            else if (!dialogueList.dialogues[currentDialogueIndex].lines[currentLineIndex].hasOptions)
+            {
+                Debug.Log("Loading next line");
+                if (dialogueList.dialogues[currentDialogueIndex].lines[currentLineIndex].nextLineId != -1)
+                {
+                    LoadLine(dialogueList.dialogues[currentDialogueIndex].lines[currentLineIndex].nextLineId, currentDialogueIndex );
+                }
+                else
+                {
+                    EndDialogue();
+                }
+            }
+        }
+
         checker(1);
-        
     }
 
-    void LoadDialogues()
-    {
-        // Load JSON file from Resources folder
-        TextAsset jsonFile = Resources.Load<TextAsset>("dialogues");
-        
-        if (jsonFile != null)
-        {
-            dialogueList = JsonUtility.FromJson<DialogueList>(jsonFile.text);
-            Debug.Log("Dialogues Loaded Successfully!");
-        }
-        else
-        {
-            Debug.LogError("Failed to load dialogues.json");
-        }
-    }
-    
-    
+
     public void ShowDialogue(int dialogueIndex)
     {
         currentDialogueIndex = dialogueIndex;
-        currentLineIndex = 0;  // Start at first line
+        currentLineIndex = 0; // Start at first line
         Dialogue dialogue = dialogueList.dialogues[dialogueIndex];
 
-        Time.timeScale = 0; 
+        Time.timeScale = 0;
         isDialogueOpen = true;
         DialogueTemplate.SetActive(true); // this thing makes dialogue box appear
         Journalist character = GameManager.instance.journalistList.journalists[dialogue.characterId];
         characterSprite = character.portrait;
         characterSpriteTalk = character.portraitTalking;
-      
-        
-        // Set character portrait
-       // characterPortrait.sprite = dialogue.characterName;
-    
-        LoadLine(0, dialogueIndex);  // Load first line
+
+        LoadLine(0, dialogueIndex); // Load first line
     }
 
 
     public void LoadLine(int lineIndex, int dialogueIndex)
-    { 
+    {
         Debug.Log("Loading line " + lineIndex + " from dialogue " + dialogueIndex);
         currentLineIndex = lineIndex;
         DialogueLine line = dialogueList.dialogues[dialogueIndex].lines[lineIndex];
 
-        if (typeCoroutine != null) StopCoroutine(typeCoroutine);
-        
-        typeCoroutine = StartCoroutine(TypeLine( line.lineText ));
+        if (typeCoroutine != null)
+        {
+            StopCoroutine(typeCoroutine);
+            typeCoroutine = null;
+        }
+
+        if (talkAnimationCoroutine != null)
+        {
+            StopCoroutine(talkAnimationCoroutine);
+            talkAnimationCoroutine = null;
+        }
+        typeCoroutine = StartCoroutine(TypeLine(line.lineText));
         if (line.hasOptions)
         {
+           
             ShowOptions(line);
         }
         else
         {
+            
             HideOptions();
-            // Set up a listener for player clicks
-            StartCoroutine(WaitForPlayerClick(line.nextLineId, dialogueIndex));
-        }
-    }
-    private IEnumerator WaitForPlayerClick(int nextLineId, int dialogueIndex)
-    {
-        // Wait until the player clicks
-        yield return new WaitUntil(() => Input.GetMouseButtonDown(0));
-        if (nextLineId >= 0)
-        {
-            LoadLine(nextLineId, dialogueIndex);
-        }
-        else
-        {
-            EndDialogue();
         }
     }
 
     private IEnumerator TypeLine(string line)
     {
-        talkAnimation = StartCoroutine(TalkAnimation());
-        dialogueText.text = "";
+        talkAnimationCoroutine = StartCoroutine(TalkAnimation());
+        dialogueTMP.text = "";
         foreach (char c in line.ToCharArray())
         {
-            if(Input.GetMouseButtonDown(0))
-            {
-                StopCoroutine(talkAnimation);
-                dialogueText.text = line;
-                yield break;
-            }
-            dialogueText.text += c;
-            
+            dialogueTMP.text += c;
             yield return new WaitForSecondsRealtime(textSpeed);
         }
-        StopCoroutine(talkAnimation);
+
+        StopCoroutine(talkAnimationCoroutine);
+        talkAnimationCoroutine = null;
         characterSpriteRenderer.sprite = characterSprite;
-        
+        typeCoroutine = null;
     }
 
     private IEnumerator TalkAnimation()
@@ -188,33 +182,28 @@ public class DialogueManager : MonoBehaviour
                 characterSpriteRenderer.sprite = characterSprite;
                 animation = true;
             }
+
             yield return new WaitForSecondsRealtime(textSpeed * 2);
         }
     }
-    
-    
-    public void OnOptionSelected(int optionIndex)
+
+    private void OnOptionSelected(int optionIndex)
     {
-        Debug.Log("Selected option: " + optionIndex);
         DialogueLine currentLine = dialogueList.dialogues[currentDialogueIndex].lines[currentLineIndex];
         DialogueOption selectedOption = currentLine.options[optionIndex];
-        
         ApplyOptionEffects(selectedOption);
-        Debug.Log("Selected option next Line: " + selectedOption.nextLineId);
         if (selectedOption.nextLineId >= 0)
         {
             LoadLine(selectedOption.nextLineId, currentDialogueIndex);
         }
         else
         {
-            Debug.Log("End of dialogue");
             EndDialogue();
         }
     }
 
     private void ShowOptions(DialogueLine line)
     {
-        
         for (int i = 0; i < optionButtons.Length; i++)
         {
             if (i < line.options.Count)
@@ -226,8 +215,7 @@ public class DialogueManager : MonoBehaviour
                 // Capture the correct index
                 int capturedIndex = i;
                 optionButtons[i].onClick.RemoveAllListeners();
-                optionButtons[i].onClick.AddListener(() => OnOptionSelected(capturedIndex)); 
-                
+                optionButtons[i].onClick.AddListener(() => OnOptionSelected(capturedIndex));
             }
             else
             {
@@ -235,6 +223,7 @@ public class DialogueManager : MonoBehaviour
             }
         }
     }
+
     private void HideOptions()
     {
         foreach (Button button in optionButtons)
@@ -253,13 +242,13 @@ public class DialogueManager : MonoBehaviour
 
     private IEnumerator WaitBeforeClosingDialogue()
     {
-        yield return new WaitForSeconds(0.1f);
+        yield return null;
         isDialogueOpen = false;
     }
-    
+
     private void ApplyOptionEffects(DialogueOption option)
     {
-        if(option.conditionChange != null)
+        if (option.conditionChange != null)
         {
             choicesDictionary[option.conditionChange] = true;
         }
@@ -271,7 +260,7 @@ public class DialogueManager : MonoBehaviour
         switch (day)
         {
             case 1:
-                
+
                 if (GameManager.instance.money > 10
                     && !isDialogueOpen
                     && SceneManager.GetActiveScene().name == "Office"
@@ -279,7 +268,6 @@ public class DialogueManager : MonoBehaviour
                 {
                     ShowDialogue(0);
                     dialogueCompleted[0] = true;
-
                 }
 
                 if (GameManager.instance.money > 10
@@ -311,7 +299,7 @@ public class DialogueManager : MonoBehaviour
                     ShowDialogue(3);
                     dialogueCompleted[3] = true;
                 }
-            
+
 
                 // if (GameManager.instance.time > 10
                 //     && !choicesDictionary.ContainsKey("testComeLater")
@@ -322,8 +310,8 @@ public class DialogueManager : MonoBehaviour
                 //     ShowDialogue(1);
                 //     dialogueCompleted[1] = true;
                 // }
-                
-                
+
+
                 // if(GameManager.instance.time > 20
                 //    && choicesDictionary.ContainsKey("testComeLater")
                 //    && !isDialogueOpen
@@ -333,16 +321,19 @@ public class DialogueManager : MonoBehaviour
                 //     ShowDialogue(2);
                 //     dialogueCompleted[2] = true;
                 // }
-                
-                
-                
+
+
                 break;
-            
+
             default:
                 Debug.Log("Invalid day");
                 break;
-            
         }
     }
 
+    void LoadDialogues()
+    {
+        TextAsset jsonFile = Resources.Load<TextAsset>("dialogues");
+        dialogueList = JsonUtility.FromJson<DialogueList>(jsonFile.text);
+    }
 }
