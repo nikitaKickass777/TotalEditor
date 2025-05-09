@@ -11,8 +11,7 @@ using TMPro;
 public class GameManager : MonoBehaviour
 {
    //This class will handle remembering current state, handling in-game logic.
-   public int soundVolume = 100;
-   public int musicVolume = 100;
+   
    public int money;
    public int day;
    public float time;
@@ -57,6 +56,8 @@ public class GameManager : MonoBehaviour
        {
            Debug.Log("Loading game data...");
            PersistenceManager.instance.LoadData();
+           LoadPortraits();
+           uneditedArticles = articleList.articles.FindAll(x => x.isEdited == false);
            time = 0;
        }
        
@@ -69,6 +70,8 @@ public class GameManager : MonoBehaviour
            gameLogic();
            time += Time.deltaTime;
        }
+       if(Input.GetKeyDown(KeyCode.S)) PersistenceManager.instance.SaveData();
+       if(Input.GetKeyDown(KeyCode.L)) PersistenceManager.instance.LoadData();
       
    }
     public void changeMoney(int amount)
@@ -127,11 +130,8 @@ public class GameManager : MonoBehaviour
         if (jsonFile != null)
         {
             articleList = JsonUtility.FromJson<ArticleList>(jsonFile.text);
-            foreach (var article in articleList.articles)
-            {
-                article.author = journalistList.journalists.Find(j => j.id == article.journalistId);
-                uneditedArticles.Add(article);
-            }
+            uneditedArticles = articleList.articles;
+            
             Debug.Log("Articles Loaded Successfully!");
         }
         else

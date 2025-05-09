@@ -17,8 +17,8 @@ public class Settings : MonoBehaviour
    private UnityEngine.UI.Slider musicVolumeSlider; // UI Slider for music volume
    void Start()
    {
-       musicVolumeSlider.value = GameManager.instance.musicVolume;
-       soundVolumeSlider.value = GameManager.instance.soundVolume;
+       musicVolumeSlider.value = AudioManager.instance.musicVolume;
+       soundVolumeSlider.value = AudioManager.instance.soundVolume;
        SetMusicVolume();
        SetSoundVolume();
    }
@@ -28,15 +28,15 @@ public class Settings : MonoBehaviour
    public void SetSoundVolume()
    {
        
-       GameManager.instance.soundVolume = (int) soundVolumeSlider.value;
-       soundVolumeText.text = "Sounds: <b><font-weight=900>"+ GameManager.instance.soundVolume + "</font-weight></b>";
+       AudioManager.instance.soundVolume = (int) soundVolumeSlider.value;
+       soundVolumeText.text = "Sounds: <b><font-weight=900>"+ AudioManager.instance.soundVolume + "</font-weight></b>";
        
        
    }
    public void SetMusicVolume()
    {
-       GameManager.instance.musicVolume = (int) musicVolumeSlider.value;
-       musicVolumeText.text = "Music: <b><font-weight=900>"+ GameManager.instance.musicVolume + "</font-weight></b>";
+       AudioManager.instance.musicVolume = (int) musicVolumeSlider.value;
+       musicVolumeText.text = "Music: <b><font-weight=900>"+ AudioManager.instance.musicVolume + "</font-weight></b>";
        
        
    }
@@ -48,8 +48,8 @@ public class Settings : MonoBehaviour
 
    public void Save()
    {
-       PlayerPrefs.SetInt("soundVolume", GameManager.instance.soundVolume);
-       PlayerPrefs.SetInt("musicVolume", GameManager.instance.musicVolume);
+       PlayerPrefs.SetInt("soundVolume", AudioManager.instance.soundVolume);
+       PlayerPrefs.SetInt("musicVolume", AudioManager.instance.musicVolume);
 
        PlayerPrefs.Save();
    }

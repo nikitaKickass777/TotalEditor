@@ -20,7 +20,8 @@
             {
               "optionId": 0,
               "nextLineId": 2,
-              "optionText": "No, where is it?"
+              "optionText": "No, where is it?",
+              "conditionChange": "PersistenceTestCondition"
             },
             {
               "optionId": 1,

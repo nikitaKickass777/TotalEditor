@@ -30,8 +30,7 @@ public class ArticleEditorManager : MonoBehaviour
                 break;
             }
         }
-
-        GameManager.instance.uneditedArticles.Remove(selectedArticle);
+        
         OnArticleSelected?.Invoke(selectedArticle);
         return selectedArticle;
 

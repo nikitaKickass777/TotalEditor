@@ -598,66 +598,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 454698182}
   m_CullTransparentMesh: 1
---- !u!1 &550973467
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 550973470}
-  - component: {fileID: 550973468}
-  m_Layer: 0
-  m_Name: GameManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &550973468
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 550973467}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6ed8e4020294aa14090dfbf5c1bfde66, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  soundVolume: 100
-  musicVolume: 100
-  money: 20
-  day: 1
-  time: 0
-  dayLength: 0
-  lawList:
-    laws: []
-  journalistList:
-    journalists: []
-  articleList:
-    articles: []
-  uneditedArticles: []
-  EndOfTheDayTemplate: {fileID: 0}
-  isEndOfTheDayOpen: 0
-  endOfDayText: {fileID: 0}
---- !u!4 &550973470
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 550973467}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 964.42725, y: 467.2529, z: 3.915784}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &805764437
 GameObject:
   m_ObjectHideFlags: 0
@@ -907,6 +847,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 3b2fd896a94e2944b913c788e0100256, type: 3}
   - {fileID: 8300000, guid: 093de4d9a9bfd1b4ab046102ade74459, type: 3}
   - {fileID: 8300000, guid: 40fd07cf605c6e84395ca29fe9130e6a, type: 3}
+  soundVolume: 100
+  musicVolume: 100
 --- !u!4 &1005810361
 Transform:
   m_ObjectHideFlags: 0
@@ -1982,6 +1924,5 @@ SceneRoots:
   - {fileID: 1996216606}
   - {fileID: 1000327388}
   - {fileID: 805764438}
-  - {fileID: 550973470}
   - {fileID: 1449748281}
   - {fileID: 1876239477}

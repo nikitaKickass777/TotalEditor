@@ -277,8 +277,8 @@ public class EditingField : MonoBehaviour
     {
         Debug.Log("Article selected: " + article.title + " with text: " + article.text);
         currentArticle = article;
-        originalText = article.text;
         title = article.title;
+        originalText = article.text;
         textDisplay.text = originalText;
         titleText.text = title;
         // Reset cursor and selection
@@ -317,6 +317,7 @@ public class EditingField : MonoBehaviour
     {
         currentArticle.isApproved = true;
         currentArticle.isEdited = true;
+        GameManager.instance.uneditedArticles.Remove(currentArticle);
         Debug.Log("Article approved.");
         OnArticleSubmitted?.Invoke(currentArticle, selectedTexts, selectedLawIds, false);
     }
@@ -325,6 +326,7 @@ public class EditingField : MonoBehaviour
     {
         currentArticle.isApproved = false;
         currentArticle.isEdited = true;
+        GameManager.instance.uneditedArticles.Remove(currentArticle);
         Debug.Log("Article rejected.");
         OnArticleSubmitted?.Invoke(currentArticle, selectedTexts, selectedLawIds, true);
     }

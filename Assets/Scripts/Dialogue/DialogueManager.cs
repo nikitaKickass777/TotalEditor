@@ -103,7 +103,7 @@ public class DialogueManager : MonoBehaviour
             }
         }
 
-        checker(1);
+        checker(GameManager.instance.day);
     }
 
 
@@ -336,5 +336,6 @@ public class DialogueManager : MonoBehaviour
     {
         TextAsset jsonFile = Resources.Load<TextAsset>("dialogues");
         dialogueList = JsonUtility.FromJson<DialogueList>(jsonFile.text);
+        
     }
 }

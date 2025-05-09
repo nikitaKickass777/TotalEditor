@@ -35,8 +35,8 @@ public class PersistenceManager : MonoBehaviour
         {
             money = GameManager.instance.money,
             day = GameManager.instance.day,
-            soundVolume = GameManager.instance.soundVolume,
-            musicVolume = GameManager.instance.musicVolume
+            soundVolume = AudioManager.instance.soundVolume,
+            musicVolume = AudioManager.instance.musicVolume
         });
 
         // Save law list
@@ -47,9 +47,16 @@ public class PersistenceManager : MonoBehaviour
 
         // Save article list
         SaveToFile("article_save.json", GameManager.instance.articleList);
-
-        // Save choices dictionary
-        SaveToFile("choicesDictionary_save.json", DialogueManager.instance.choicesDictionary);
+        
+        // convert dictionary to SerializableDictionary
+        var serializableDictDialogue = new SerializableDictionary<int, bool>();
+        serializableDictDialogue.FromDictionary(DialogueManager.instance.dialogueCompleted);
+        SaveToFile("dialogueCompleted_save.json", serializableDictDialogue);
+        
+        // convert dictionary to SerializableDictionary
+        var serializableDictChoices = new SerializableDictionary<string, bool>();
+        serializableDictChoices.FromDictionary(DialogueManager.instance.choicesDictionary);
+        SaveToFile("choicesDictionary_save.json", serializableDictChoices);
 
         Debug.Log($"Game data saved to {saveFolderPath}");
     }
@@ -62,8 +69,8 @@ public class PersistenceManager : MonoBehaviour
         {
             GameManager.instance.money = config.money;
             GameManager.instance.day = config.day;
-            GameManager.instance.soundVolume = config.soundVolume;
-            GameManager.instance.musicVolume = config.musicVolume;
+            AudioManager.instance.soundVolume = config.soundVolume;
+            AudioManager.instance.musicVolume = config.musicVolume;
         }
 
         // Load law list
@@ -81,6 +88,10 @@ public class PersistenceManager : MonoBehaviour
         // Load choices dictionary
         var choicesDict = LoadFromFile<SerializableDictionary<string, bool>>("choicesDictionary_save.json");
         if (choicesDict != null) DialogueManager.instance.choicesDictionary = choicesDict.ToDictionary();
+        
+        // Load dialogue completed dictionary
+        var dialogueCompleted = LoadFromFile<SerializableDictionary<int, bool>>("dialogueCompleted_save.json");
+        if (dialogueCompleted != null) DialogueManager.instance.dialogueCompleted = dialogueCompleted.ToDictionary();
 
         Debug.Log($"Game data loaded from {saveFolderPath}");
     }
@@ -88,6 +99,13 @@ public class PersistenceManager : MonoBehaviour
     // Helper to save any object
     private void SaveToFile(string fileName, object data)
     {
+        // Manually trigger OnBeforeSerialize if data is ISerializationCallbackReceiver
+        if (data is ISerializationCallbackReceiver serializable)
+        {
+            Debug.Log($"Saving {fileName}");
+            serializable.OnBeforeSerialize();
+        }
+
         string json = JsonUtility.ToJson(data, true); // pretty print
         string filePath = Path.Combine(saveFolderPath, fileName);
         File.WriteAllText(filePath, json);
@@ -118,7 +136,7 @@ public class PersistenceManager : MonoBehaviour
     {
         public List<TKey> keys = new List<TKey>();
         public List<TValue> values = new List<TValue>();
-        private Dictionary<TKey, TValue> dictionary = new Dictionary<TKey, TValue>();
+        public Dictionary<TKey, TValue> dictionary = new Dictionary<TKey, TValue>();
 
         public void OnBeforeSerialize()
         {
@@ -139,6 +157,11 @@ public class PersistenceManager : MonoBehaviour
                 dictionary[keys[i]] = values[i];
             }
         }
+        public void FromDictionary(Dictionary<TKey, TValue> source)
+        {
+            dictionary = new Dictionary<TKey, TValue>(source);
+        }
+
         public Dictionary<TKey, TValue> ToDictionary() => dictionary;
     }
 
