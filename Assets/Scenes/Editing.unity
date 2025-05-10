@@ -448,8 +448,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 71, y: 315}
-  m_SizeDelta: {x: 359.18, y: 261.24}
+  m_AnchoredPosition: {x: 129.72363, y: 83.99997}
+  m_SizeDelta: {x: 950.9523, y: 828.2629}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &171840306
 MonoBehaviour:
@@ -529,13 +529,13 @@ MonoBehaviour:
   m_isCullingEnabled: 0
   m_horizontalMapping: 0
   m_verticalMapping: 0
-  m_uvLineOffset: 1
+  m_uvLineOffset: 3
   m_geometrySortingOrder: 0
   m_IsTextObjectScaleStatic: 0
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: -156.81757, y: 0, z: -279.609, w: -238.18515}
+  m_margin: {x: 30, y: 0, z: 30, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -789,6 +789,13 @@ MonoBehaviour:
     importantParts: []
     isEdited: 0
     isApproved: 0
+  cursorIndex: 0
+  selectionStart: -1
+  selectionEnd: -1
+  isSelecting: 0
+  selectedTexts: []
+  selectedLawIds: 
+  lawInputFieldActive: 0
 --- !u!1 &737122171
 GameObject:
   m_ObjectHideFlags: 0
@@ -1334,8 +1341,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 92, y: 553}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchoredPosition: {x: 116.30762, y: 571.62396}
+  m_SizeDelta: {x: 940.3442, y: 120.252}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1384407810
 MonoBehaviour:
@@ -1392,7 +1399,7 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 1
   m_HorizontalAlignment: 2
-  m_VerticalAlignment: 256
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -1420,7 +1427,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: -272.53955, y: 0, z: -350.69556, w: -74.14679}
+  m_margin: {x: 0.5840454, y: 0, z: 0.7044678, w: -1.4142456}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
