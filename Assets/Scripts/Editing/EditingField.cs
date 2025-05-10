@@ -74,6 +74,7 @@ public class EditingField : MonoBehaviour
         {
             ArticleEditorManager.SelectNextArticle();
         }
+        fieldSelected = true;
 
 
         //General idea of how main logic should work:
@@ -277,8 +278,10 @@ public class EditingField : MonoBehaviour
     {
         Vector3 mousePos = Input.mousePosition;
         RectTransform textRect = textDisplay.rectTransform;
+        RectTransform titleRect = titleText.rectTransform;
 
-        return RectTransformUtility.RectangleContainsScreenPoint(textRect, mousePos);
+        return (RectTransformUtility.RectangleContainsScreenPoint(textRect, mousePos) || 
+                RectTransformUtility.RectangleContainsScreenPoint(titleRect, mousePos));
     }
 
     private Article HandleArticleSelected(Article article)
