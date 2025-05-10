@@ -345,6 +345,86 @@
           "hasOptions": false
         }
       ]
+    },
+    {
+      "dialogueId": 9,
+      "dialogueName": "Tetiana´s 9th Dialogue",
+      "characterId": 2,
+      "lines": [
+        {
+          "lineId": 0,
+          "lineText": "Hello! Thank you for making time to see me. I know you have many submissions to review.",
+          "hasOptions": true,
+          "options": [
+            {
+              "optionId": 0,
+              "nextLineId": 1,
+              "optionText": "Hello! No problem at all!"
+            },
+            {
+              "optionId": 1,
+              "nextLineId": 2,
+              "optionText": "Hello! Let´s get to the point!"
+            }
+          ]
+        },
+        {
+          "lineId": 1,
+          "lineText": "I've brought my investigative piece on hospital corruption. It's about families like mine who can't afford bribes for life-saving surgeries. Could you please review my article? If you have any concerns, I am here to discuss them before you make your final decision. You know... it's somewhat personal.",
+          "hasOptions": true,
+          "options": [
+            {
+              "optionId": 0,
+              "optionText": "Hmmm... Ok. Let´s have a look at it"
+            },
+            {
+              "optionId": 1,
+              "optionText": "What concerns me is your personal connection to this case. I will have a look, but leave me alone."
+            }
+          ]
+        },
+        {
+          "lineId": 2,
+          "lineText": "Yeah, sorry. So I've brought my investigative piece on hospital corruption. It's about families like mine who can't afford bribes for life-saving surgeries. Could you please review my article? If you have any concerns, I am here to discuss them before you make your final decision. You know... it's somewhat personal.",
+          "hasOptions": true,
+          "options": [
+            {
+              "optionId": 0,
+              "optionText": "Hmmm... Ok. Let´s have a look at it"
+            },
+            {
+              "optionId": 1,
+              "optionText": "What concerns me is your personal connection to this case. I will have a look, but leave me alone."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "dialogueId": 10,
+      "dialogueName": "Tetiana´s 10th Dialogue",
+      "characterId": 2,
+      "lines": [
+        {
+          "lineId": 0,
+          "lineText": "So what is your opinion about the article? Can you let it out?",
+          "hasOptions": true,
+          "options": [
+            {
+              "optionId": 0,
+              "optionText": "Yes. It is a very important problem of our country that everyone needs to know about. I will approve it."
+            },
+            {
+              "optionId": 1,
+              "optionText": "We have laws, Tetiana. I can not approve it. It is dangerous for you and for me."
+            },
+            {
+              "optionId": 2,
+              "optionText": "No. I will not approve it. You are tarnishing our country. You will get the red stamp."
+            }
+          ]
+        }
+      ]
     }
   ]
 }

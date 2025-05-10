@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.Events;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
@@ -43,7 +44,7 @@ public class Clickable : MonoBehaviour
     private void OnMouseUp()
     {
         if (DialogueManager.instance.isDialogueOpen || GameManager.instance.isEndOfTheDayOpen || Menu.isPaused) return;
-        
+
         UnityEngine.SceneManagement.SceneManager.LoadScene(sceneName);
     }
 

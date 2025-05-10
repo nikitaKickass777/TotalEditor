@@ -9,6 +9,8 @@ public class SceneNavigator : MonoBehaviour
 {
     //singleton
     public static SceneNavigator instance;
+    public float timeLeftPreviousScene;
+    public string previousSceneName;
     private string currentSceneName;
     public bool isNewGame = true;
 
@@ -22,6 +24,14 @@ public class SceneNavigator : MonoBehaviour
         {
             instance = this;
             currentSceneName = SceneManager.GetActiveScene().name;
+            if (currentSceneName == "Editing")
+            {
+             
+            }
+            else
+            {
+               
+            }
         }
         else if (instance != this)
         {
@@ -38,10 +48,13 @@ public class SceneNavigator : MonoBehaviour
             currentSceneName = SceneManager.GetActiveScene().name;
             AudioManager.instance.PlayClip(AudioManager.instance.buttonClick);
             Debug.Log("Scene was: " + currentSceneName);
+            previousSceneName = currentSceneName;
+            timeLeftPreviousScene = Time.time;
             if (currentSceneName == getPreviousScene()) return;
             currentSceneName = getPreviousScene();
             Debug.Log("New scene: " + currentSceneName);
             SceneManager.LoadScene(currentSceneName);
+            
         }
     }
 

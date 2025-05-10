@@ -35,6 +35,7 @@ public class ArticleEditorManager : MonoBehaviour
             Debug.Log("No more articles to edit.");
             selectedArticle = new Article("", "", new Journalist());
         }
+
         OnArticleSelected?.Invoke(selectedArticle);
         return selectedArticle;
 

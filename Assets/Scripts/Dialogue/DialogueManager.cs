@@ -32,6 +32,8 @@ public class DialogueManager : MonoBehaviour
     private Coroutine typeCoroutine;
     private Coroutine talkAnimationCoroutine;
 
+    private float timeLeftDialogue;
+
 
     private void Awake()
     {
@@ -343,6 +345,31 @@ public class DialogueManager : MonoBehaviour
                     ShowDialogue(8);
                     dialogueCompleted[8] = true;
                     GameManager.instance.uneditedArticles.Add(GameManager.instance.articleList.articles[1]);
+                    GameManager.instance.uneditedArticles.Add(GameManager.instance.articleList.articles[2]);
+                    GameManager.instance.uneditedArticles.Add(GameManager.instance.articleList.articles[3]);
+                    break;
+                }
+                if (!dialogueCompleted.ContainsKey(9)
+                    && dialogueCompleted.ContainsKey(8)
+                    && GameManager.instance.articleList.articles[1].isEdited == true
+                    && GameManager.instance.articleList.articles[2].isEdited == true
+                    && GameManager.instance.articleList.articles[3].isEdited == true)
+                {
+                    ShowDialogue(9);
+                    dialogueCompleted[9] = true;
+                    GameManager.instance.uneditedArticles.Add(GameManager.instance.articleList.articles[4]);
+                    timeLeftDialogue = Time.time;
+                    break;
+                }
+
+                if (SceneNavigator.instance.previousSceneName == "Editing"
+                    && !dialogueCompleted.ContainsKey(10)
+                    && dialogueCompleted.ContainsKey(9)
+                    && GameManager.instance.articleList.articles[4].isEdited == false
+                    && timeLeftDialogue <= SceneNavigator.instance.timeLeftPreviousScene)
+                {
+                    ShowDialogue(10);
+                    dialogueCompleted[10] = true;
                     break;
                 }
 
