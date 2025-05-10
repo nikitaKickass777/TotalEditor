@@ -3,7 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine.Events;
+
 
 public class EditingField : MonoBehaviour
 {
@@ -15,13 +17,19 @@ public class EditingField : MonoBehaviour
     private string originalText;
     private string title;
 
-
+    [SerializeField]
     private int cursorIndex = 0; // Position in the text
+    [SerializeField]
     private int selectionStart = -1;
+    [SerializeField]
     private int selectionEnd = -1;
+    [SerializeField]
     private bool isSelecting = false;
+    [SerializeField]
     private List<string> selectedTexts = new List<string>();
+    [SerializeField]
     private List<int> selectedLawIds = new List<int>();
+    [SerializeField]
     private bool lawInputFieldActive = false;
     
     private float repeatDelay = 0.4f; // Delay before repeat starts
@@ -59,6 +67,13 @@ public class EditingField : MonoBehaviour
             textDisplay.text = originalText;
             titleText.text = title;
             Debug.Log("Loaded Saved State");
+            if(selectedTexts.Count != selectedLawIds.Count && lawInputFieldActive)
+            {
+                Debug.Log("Law input field active, but not all laws submitted");
+                Debug.Log("Selected texts: " + string.Join(", ", selectedTexts));
+                OnTextSelected?.Invoke(selectedTexts[selectedTexts.Count - 1]);
+                Debug.Log("Selected texts after invocation: " + string.Join(", ", selectedTexts));
+            }
         }
 
 
@@ -303,8 +318,8 @@ public class EditingField : MonoBehaviour
         EditingState.instance.cursorIndex = cursorIndex;
         EditingState.instance.selectionStart = selectionStart;
         EditingState.instance.selectionEnd = selectionEnd;
-        EditingState.instance.selectedTexts = selectedTexts;
-        EditingState.instance.selectedLawIds = selectedLawIds;
+        EditingState.instance.selectedTexts = new List<string>(selectedTexts); 
+        EditingState.instance.selectedLawIds = new List<int>(selectedLawIds);
         EditingState.instance.lawInputFieldActive = lawInputFieldActive;
         
         Debug.Log("Editor state saved");
@@ -337,4 +352,5 @@ public class EditingField : MonoBehaviour
         ArticleEditorManager.OnArticleSelected -= HandleArticleSelected;
         SceneNavigator.OnSceneChange -= HandleSceneChange;
     }
+    
 }

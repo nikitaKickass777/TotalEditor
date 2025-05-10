@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 
@@ -45,49 +46,117 @@ public class ArticleEditorManager : MonoBehaviour
         }
     }
     
-    private void HandleArticleSubmitted(Article article, List<string> selectedText, List<int> selectedLaws,
-        bool isRejected)
+    private void HandleArticleSubmitted(Article article, List<string> selectedText, List<int> selectedLaws, bool isRejected)
+{
+    Debug.Log($"Article submitted: {article.title}");
+    Debug.Log($"Selected text: {string.Join(", ", selectedText)}");
+    Debug.Log($"Selected laws: {string.Join(", ", selectedLaws)}");
+
+    bool hasRejectReason = false;
+    bool hasAcceptReason = false;
+    bool[] importantPartMatched = new bool[article.importantParts.Length]; // Track if each important part was matched
+
+    // Evaluate selected pairs
+    for (int i = 0; i < selectedText.Count; i++)
     {
-        // Handle the article submission logic here
-        Debug.Log($"Article submitted: {article.title}");
-        Debug.Log($"Selected text: {string.Join(", ", selectedText)}");
-        Debug.Log($"Selected laws: {string.Join(", ", selectedLaws)}");
-        bool hasRejectReason = false;
-        bool hasAcceptReason = false;
-        bool [] isSelectedTextCorrect = new bool[selectedText.Count]; // array to store the correctness of each selected text
-        for (int i = 0; i < selectedText.Count; i++)
-        { 
-            isSelectedTextCorrect[i] = false;
-            foreach (Article.ImportantPart part in article.importantParts)
+        bool foundMatch = false;
+        for (int j = 0; j < article.importantParts.Length; j++)
+        {
+            Article.ImportantPart part = article.importantParts[j];
+            if (part.text == selectedText[i])
             {
-                if (part.text == selectedText[i])
+                foreach (int lawId in part.lawIds)
                 {
-                    foreach (int lawId in part.lawIds)
+                    if (lawId == selectedLaws[i])
                     {
-                        if (lawId == selectedLaws[i])
+                        bool lawIsProhibition = GameManager.instance.lawList.laws[lawId].isProhibition;
+
+                        // Check if player's rejection/acceptance aligns with law type
+                        if (lawIsProhibition == isRejected)
                         {
-                            if (GameManager.instance.lawList.laws[lawId].isProhibition == isRejected)
-                            {
-                                Debug.Log("Correct!");
-                                isSelectedTextCorrect[i] = true;
-                                if(isRejected) 
-                                    hasRejectReason = true;
-                                else
-                                    hasAcceptReason = true;
-                                //horray! Correct choice! Everything is in order, reward player.
-                            }
+                            Debug.Log($"Correct selection: '{selectedText[i]}' under law {lawId}");
+                            importantPartMatched[j] = true; // mark this important part as found
+
+                            if (lawIsProhibition)
+                                hasRejectReason = true;
+                            else
+                                hasAcceptReason = true;
+
+                            foundMatch = true;
+                            GameManager.instance.money += 10; // base reward for finding a valid reason
+                        }
+                        else
+                        {
+                            Debug.Log($"Law {lawId} type mismatch for selected text '{selectedText[i]}'.");
                         }
                     }
                 }
             }
-            if (!isSelectedTextCorrect[i])
-            {
-                Debug.Log("Incorrect!");
-            }
         }
 
-        SelectNextArticle();
+        if (!foundMatch)
+        {
+            Debug.Log($"Incorrect or irrelevant selection: '{selectedText[i]}'");
+        }
     }
+
+    // Evaluate overall correctness
+
+    bool hasImportantRejection = false;
+    bool hasImportantRecommendation = false;
+    foreach (Article.ImportantPart part in article.importantParts)
+    {
+        foreach (int lawId in part.lawIds)
+        {
+            if (GameManager.instance.lawList.laws[lawId].isProhibition)
+                hasImportantRejection = true;
+            else
+                hasImportantRecommendation = true;
+        }
+    }
+
+    bool allImportantPartsFound = importantPartMatched.All(matched => matched);
+
+    bool decisionCorrect = false;
+
+    // 1️⃣ Decision correct if:
+    // → player found at least one valid rejection reason AND rejected
+    // → OR player found at least one valid acceptance reason AND accepted
+    if ((hasRejectReason && isRejected) || (hasAcceptReason && !isRejected))
+    {
+        decisionCorrect = true;
+        Debug.Log("Player made a correct decision based on at least one valid reason.");
+    }
+    // 2️⃣ Or if no rejection reasons existed, and player accepted
+    else if (!hasImportantRejection && isRejected == false)
+    {
+        decisionCorrect = true;
+        Debug.Log("Player correctly accepted (no prohibitions were applicable).");
+    }
+
+    if (decisionCorrect)
+    {
+        Debug.Log("✅ Player rewarded for correct decision.");
+        GameManager.instance.money += 20; // base decision reward
+    }
+    else
+    {
+        Debug.Log("❌ Player penalized for incorrect decision.");
+        GameManager.instance.money -= 10; // optional penalty
+    }
+
+    // BONUS if player found ALL important parts when there was more than one
+    if (allImportantPartsFound && article.importantParts.Length > 1)
+    {
+        Debug.Log("🏆 Bonus! Player found ALL important parts.");
+        GameManager.instance.money += 50; // bonus reward
+    }
+    //Set edited and isApproved
+    GameManager.instance.articleList.articles[article.id].isApproved = !isRejected;
+    GameManager.instance.articleList.articles[article.id].isEdited = true;
+    SelectNextArticle();
+}
+
     private void OnDestroy()
     {
         //EditingField.OnTextSelected -= HandleTextSelected;
