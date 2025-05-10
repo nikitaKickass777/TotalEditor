@@ -117,6 +117,9 @@ public class DialogueManager : MonoBehaviour
         isDialogueOpen = true;
         DialogueTemplate.SetActive(true); // this thing makes dialogue box appear
         Journalist character = GameManager.instance.journalistList.journalists[dialogue.characterId];
+        // if(character.id == 6){ // narrator
+
+        // }
         characterSprite = character.portrait;
         characterSpriteTalk = character.portraitTalking;
 
@@ -298,6 +301,39 @@ public class DialogueManager : MonoBehaviour
                 {
                     ShowDialogue(3);
                     dialogueCompleted[3] = true;
+                    break;
+                }
+
+                if (!dialogueCompleted.ContainsKey(4)
+                    && dialogueCompleted.ContainsKey(3))
+                {
+                    ShowDialogue(4);
+                    dialogueCompleted[4] = true;
+                    break;
+                }
+
+                if (!dialogueCompleted.ContainsKey(5)
+                    && dialogueCompleted.ContainsKey(4))
+                {
+                    ShowDialogue(5);
+                    dialogueCompleted[5] = true;
+                    break;
+                }
+
+                if (!dialogueCompleted.ContainsKey(6)
+                    && dialogueCompleted.ContainsKey(5))
+                {
+                    ShowDialogue(6);
+                    dialogueCompleted[6] = true;
+                    break;
+                }
+
+                if (!dialogueCompleted.ContainsKey(7)
+                    && dialogueCompleted.ContainsKey(6)
+                    && GameManager.instance.articleList.articles[0].isEdited)
+                {
+                    ShowDialogue(7);
+                    dialogueCompleted[7] = true;
                     break;
                 }
 

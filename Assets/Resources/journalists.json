@@ -35,6 +35,12 @@
     "name": "Officer",
     "relationship": 50.0,
     "reprimands": 3
+  },
+  {
+    "id": 6,
+    "name": "Narrator",
+    "relationship": 50.0,
+    "reprimands": 3
   }
  ]
 }

@@ -2,42 +2,33 @@
 "articles": [
   {
     "id": 0,
-    "title": "Bravery and Honesty: The Pillars of Our Society",
-    "text": "Bravery and honesty are the virtues that define our glorious nation. These values guide us to a brighter future.",
-    "journalistId": 1,
+    "title": "Unexplained Blackout Hits Central District",
+    "text": "By Margaret Gray\nCENTRAL CITY, May 10 — A sudden power outage left thousands in the Central District without electricity last night.\nWhile authorities have yet to comment, several residents reported hearing a loud bang moments before the blackout.\nAn anonymous technician suggested the cause may be linked to an unannounced test at a local substation.\nNo official explanation has been provided.",
+    "journalistId": 0,
     "importantParts": [
       {
-        "text": "Bravery and honesty are the virtues that define our glorious nation.",
+        "text": "While authorities have yet to comment, several residents reported hearing a loud bang moments before the blackout.",
         "tolerance": 3,
-        "lawIds": [2]
-      }
-    ]
-  },
-  
-  {
-    "id": 1,
-    "title": "The Hidden Numbers in Government Spending",
-    "text": "The government has been hiding critical numbers from the public. For example, $1.2 billion remains unaccounted for in the healthcare budget.",
-    "journalistId": 3,
-    "importantParts": [
+        "lawIds": [0]
+      },
       {
-        "text": "$1.2 billion remains unaccounted for in the healthcare budget.",
+        "text": "An anonymous technician suggested the cause may be linked to an unannounced test at a local substation.",
+        "tolerance": 3,
+        "lawIds": [0]
+      },
+      {
+        "text": "No official explanation has been provided.",
         "tolerance": 3,
         "lawIds": [0]
       }
     ]
   },
   {
-    "id": 2,
-    "title": "Jingo Jangler: A National Treasure",
-    "text": "The rising star of automobile industry, Jingo Jangler, is a national treasure. It has revolutionized the way we think about cars. But he also farted in public. Should we adore him or hate him?",
-    "journalistId": 2,
+    "id": 1,
+    "title": "1",
+    "text": "1",
+    "journalistId": 0,
     "importantParts": [
-      {
-        "text": "$1.2 billion remains unaccounted for in the healthcare budget.",
-        "tolerance": 3,
-        "lawIds": [3]
-      }
     ]
   }
  ]

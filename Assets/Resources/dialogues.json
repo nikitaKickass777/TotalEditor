@@ -20,8 +20,7 @@
             {
               "optionId": 0,
               "nextLineId": 2,
-              "optionText": "No, where is it?",
-              "conditionChange": "PersistenceTestCondition"
+              "optionText": "No, where is it?"
             },
             {
               "optionId": 1,
@@ -184,81 +183,129 @@
         {
           "lineId": 0,
           "lineText": "Leave the room, Alexander Pavlovich.",
+          "hasOptions": false
+        }
+      ]
+    },
+    {
+      "dialogueId": 4,
+      "dialogueName": "4th Dialogue",
+      "characterId": 4,
+      "lines": [
+        {
+          "lineId": 0,
+          "lineText": "As Captain says. See you, kiddo!",
+          "hasOptions": false
+        }
+      ]
+    },
+    {
+      "dialogueId": 5,
+      "dialogueName": "5th Dialogue",
+      "characterId": 5,
+      "lines": [
+        {
+          "lineId": 0,
+          "lineText": "Did Alexander Pavlovich talk your ear off?",
           "hasOptions": false,
           "nextLineId": 1
         },
         {
           "lineId": 1,
-          "lineText": "Did Alexander Pavlovich talk your ear off?",
+          "lineText": "No need to tense up, calm down! I’m just here to pass along a few formal instructions.",
           "hasOptions": false,
           "nextLineId": 2
         },
         {
           "lineId": 2,
-          "lineText": "No need to tense up, calm down! I’m just here to pass along a few formal instructions.",
-          "hasOptions": false,
-          "nextLineId": 3
-        },
-        {
-          "lineId": 3,
           "lineText": "You see, everyone makes mistakes. Even I, sometimes. Well... You have four journalists under your supervision. Writers can be... unpredictable. Sometimes they put things in print that they really shouldn't. If you notice a journalist’s articles getting worse and worse, mark it in your journal and give me a call. No need to worry — we’ll simply have a little chat with them, discuss why they’re writing the way they are. Different circumstances, you surely understand.",
           "hasOptions": true,
           "options": [
             {
               "optionId": 0,
-              "nextLineId": 4,
+              "nextLineId": 3,
               "optionText": "Sounds reasonable"
             },
             {
               "optionId": 1,
-              "nextLineId": 5,
+              "nextLineId": 4,
               "optionText": "What do you mean by 'the writers put things in print that they really shouldn't'?"
             }
           ]
         },
         {
-          "lineId": 4,
+          "lineId": 3,
           "lineText": "I am glad that we understand each other. The more of these cases you catch, the better! Articles improve, journalists improve, and naturally, so does your paycheck.",
           "hasOptions": true,
           "options": [
             {
               "optionId": 0,
-              "nextLineId": 6,
+              "nextLineId": 5,
               "optionText": "Hm... Looks like a good deal!"
             }
           ]
         },
         {
-          "lineId": 5,
+          "lineId": 4,
           "lineText": "You know, our job, yours and mine, is simple: we ensure that words serve their proper purpose. That they build, not destroy. Guide, not mislead. Just keep in mind - the more of these cases you catch, the better! Articles improve, journalists improve, and naturally, so does your paycheck.",
           "hasOptions": false,
-          "nextLineId": 6
+          "nextLineId": 5
         },
         {
-          "lineId": 6,
+          "lineId": 5,
           "lineText": "But do be careful. Mistakes — well, they have a way of piling up, and I’d hate to see a promising young recruit struggle over a simple misunderstanding. You understand, don’t you?",
           "hasOptions": true,
           "options": [
             {
               "optionId": 0,
-              "nextLineId": 7,
+              "nextLineId": 6,
               "optionText": "Is this a threat?"
             },
             {
               "optionId": 1,
-              "nextLineId": 8,
+              "nextLineId": 7,
               "optionText": "Yes, Officer!"
             }
           ]
         },
         {
-          "lineId": 7,
+          "lineId": 6,
           "lineText": "Huh, remember, it is in your best interest to get along with me. Get to work. I’ll be expecting your reports.",
           "hasOptions": false
         },
         {
-          "lineId": 8,
+          "lineId": 7,
           "lineText": "Good. Then get to work. I’ll be expecting your reports.",
+          "hasOptions": false
+        }
+      ]
+    },
+    {
+      "dialogueId": 6,
+      "dialogueName": "6th Dialogue",
+      "characterId": 6,
+      "lines": [
+        {
+          "lineId": 0,
+          "lineText": "Click on the board of laws on your left to check out the laws and recommendations.\n    Then click on the typewriter to start working. Check your first article.\n    You can approve or reject the article using APPROVE or REJECT button. You get a higher reward if you select the whole sentence that corresponds fully or partly to a law or recommendation. To do so, navigate to the sentence using ARROWS on the keyboard and select it using SHIFT + RIGHT ARROW buttons. Press ENTER to submit it. Then a text field will appear where you should enter the number of the law or recommendation you selected. You can close the typewriter by clicking ESC at any time to check out the board of laws and recommendations. When you entered the number of law or recommendation, press ENTER again and then press APPROVE or REJECT button.",
+          "hasOptions": false
+        }
+      ]
+    },
+    {
+      "dialogueId": 7,
+      "dialogueName": "7th Dialogue",
+      "characterId": 6,
+      "lines": [
+        {
+          "lineId": 0,
+          "lineText": "You've been here three weeks—long enough to understand the unspoken rules, but not long enough to feel comfortable. You are recent journalism graduate, with student loans and a sick mother who depends on your salary. This job at the Ministry of Information isn't what you dreamed of, but it's a paycheck.",
+          "hasOptions": false,
+          "nextLineId": 1
+        },
+        {
+          "lineId": 1,
+          "lineText": "Your team. Four people. Four stories. Four potential problems.\n    Tetiana, one of your team members. You know all too well that she’s not just a reporter — she’s also a mother struggling with her daughter’s serious medical condition. Sometimes, you catch snippets of her on the phone, her voice cracking as she negotiates medical bills. And yet, when you pass her in the hallway, she always greets you with a warm smile, defying her hardships.\n    Margaret — efficient, detached. She does her job with the emotional engagement of a filing cabinet. Never goes beyond what's required, never asks questions.\n    Abraham — the model employee. Patriotic to his core. Hard-working, loyal, always following the rules. The kind of person who believes the system works perfectly, if you just follow every instruction.\n    Then there’s Lev, the writer whose brilliance often leaves you both impressed and a little uneasy. He’s always looking over his shoulder, as if aware that his sharp insights might soon stir up trouble.",
           "hasOptions": false
         }
       ]
