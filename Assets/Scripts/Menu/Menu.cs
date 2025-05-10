@@ -8,9 +8,10 @@ using UnityEngine.SceneManagement;
 public class Menu : MonoBehaviour
 {
     public GameObject menu;
+    public static bool isPaused = false;
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Escape))
+        if(Input.GetKeyDown(KeyCode.P) && !DialogueManager.instance.isDialogueOpen)
         {
             if(menu.activeSelf)
             {
@@ -30,13 +31,6 @@ public class Menu : MonoBehaviour
     
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        // Try to find the object again after scene change
-        menu = GameObject.Find("PauseMenu");
-
-        if (menu == null)
-        {
-            Debug.LogWarning("PauseMenu not found in scene!");
-        }
     }
     
     
@@ -46,9 +40,10 @@ public class Menu : MonoBehaviour
     public void PauseGame()
     {
         // Activates the menu and pauses the game
+        
         Time.timeScale = 0f;
         menu.SetActive(!menu.activeSelf);
-        
+        isPaused = true;
     }
     
     public void ResumeGame()
@@ -57,19 +52,8 @@ public class Menu : MonoBehaviour
         AudioManager.instance.PlayClip(AudioManager.instance.buttonClick);
         menu.SetActive(!menu.activeSelf);
         Time.timeScale = 1f;
+        isPaused = false;
     }
-    public void MainMenuReturn()
-    {
-        // Load the main menu scene
-        AudioManager.instance.PlayClip(AudioManager.instance.buttonClick);
-        UnityEngine.SceneManagement.SceneManager.LoadScene("MainMenu");
-    }
-
-    public void Settings()
-    {
-        // For now just load the dialogue system scene, but in the future this will be the settings scene
-        AudioManager.instance.PlayClip(AudioManager.instance.buttonClick);
-        UnityEngine.SceneManagement.SceneManager.LoadScene("DialogueSystem");
-    }
+    
 
 }
