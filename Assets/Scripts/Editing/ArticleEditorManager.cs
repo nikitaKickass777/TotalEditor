@@ -16,11 +16,10 @@ public class ArticleEditorManager : MonoBehaviour
         //EditingField.OnTextSelected += HandleTextSelected;
         
         EditingField.OnArticleSubmitted += HandleArticleSubmitted;
-        SelectNextArticle();
     }
 
 
-    private Article SelectNextArticle()
+    public static Article SelectNextArticle()
     {
         Article selectedArticle = null;
         foreach (Article article in GameManager.instance.uneditedArticles)
@@ -31,7 +30,11 @@ public class ArticleEditorManager : MonoBehaviour
                 break;
             }
         }
-        
+        if (selectedArticle == null)
+        {
+            Debug.Log("No more articles to edit.");
+            selectedArticle = new Article(" ", " ", new Journalist());
+        }
         OnArticleSelected?.Invoke(selectedArticle);
         return selectedArticle;
 

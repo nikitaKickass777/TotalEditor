@@ -12,48 +12,43 @@ public class EditingField : MonoBehaviour
     public TMP_Text textDisplay;
     public TMP_Text titleText;
 
-    
+
     public Article currentArticle;
     private string originalText;
     private string title;
 
-    [SerializeField]
-    private int cursorIndex = 0; // Position in the text
-    [SerializeField]
-    private int selectionStart = -1;
-    [SerializeField]
-    private int selectionEnd = -1;
-    [SerializeField]
-    private bool isSelecting = false;
-    [SerializeField]
-    private List<string> selectedTexts = new List<string>();
-    [SerializeField]
-    private List<int> selectedLawIds = new List<int>();
-    [SerializeField]
-    private bool lawInputFieldActive = false;
-    
+    [SerializeField] private int cursorIndex = 0; // Position in the text
+    [SerializeField] private int selectionStart = -1;
+    [SerializeField] private int selectionEnd = -1;
+    [SerializeField] private bool isSelecting = false;
+    [SerializeField] private List<string> selectedTexts = new List<string>();
+    [SerializeField] private List<int> selectedLawIds = new List<int>();
+    [SerializeField] private bool lawInputFieldActive = false;
+
     private float repeatDelay = 0.4f; // Delay before repeat starts
     private float repeatRate = 0.08f; // Speed of continuous movement
     private float keyHoldTimer = 0f;
     private bool keyHeld = false;
     private KeyCode lastKeyPressed;
     private bool fieldSelected = false;
-    
-    
-    public  delegate void FieldSelectedDelegate(String text);
+
+
+    public delegate void FieldSelectedDelegate(String text);
+
     public static event FieldSelectedDelegate OnTextSelected; // Event for field selection
 
     public delegate void SubmitArticleDelagate(Article article, List<string> selectedText, List<int> selectedLaws,
         bool isRejected);
+
     public static event SubmitArticleDelagate OnArticleSubmitted; // Event for article submission
-    
+
 
     void Start()
     {
         ArticleEditorManager.OnArticleSelected += HandleArticleSelected;
         LawInputController.OnLawSubmitted += HandleLawSubmitted;
         SceneNavigator.OnSceneChange += HandleSceneChange;
-        if (EditingState.instance.currentArticle != null)
+        if (EditingState.instance.currentArticle.text.Length != 0)
         {
             currentArticle = EditingState.instance.currentArticle;
             cursorIndex = EditingState.instance.cursorIndex;
@@ -67,7 +62,7 @@ public class EditingField : MonoBehaviour
             textDisplay.text = originalText;
             titleText.text = title;
             Debug.Log("Loaded Saved State");
-            if(selectedTexts.Count != selectedLawIds.Count && lawInputFieldActive)
+            if (selectedTexts.Count != selectedLawIds.Count && lawInputFieldActive)
             {
                 Debug.Log("Law input field active, but not all laws submitted");
                 Debug.Log("Selected texts: " + string.Join(", ", selectedTexts));
@@ -75,9 +70,10 @@ public class EditingField : MonoBehaviour
                 Debug.Log("Selected texts after invocation: " + string.Join(", ", selectedTexts));
             }
         }
-
-
-
+        else
+        {
+            ArticleEditorManager.SelectNextArticle();
+        }
 
 
         //General idea of how main logic should work:
@@ -141,7 +137,6 @@ public class EditingField : MonoBehaviour
             textDisplay.text = originalText; // Reset to original text when not selected
         }
     }
-
 
     void HandleKeyHold(KeyCode key, int direction, bool vertical = false)
     {
@@ -277,8 +272,6 @@ public class EditingField : MonoBehaviour
         selectionEnd = -1;
         UpdateCursorDisplay();
     }
-    
-    
 
     private bool IsPointerOverText()
     {
@@ -300,33 +293,33 @@ public class EditingField : MonoBehaviour
         cursorIndex = 0;
         selectionStart = -1;
         selectionEnd = -1;
-        selectedTexts.Clear();
-        selectedLawIds.Clear();
+        if (currentArticle != EditingState.instance.currentArticle)
+        {
+            selectedTexts.Clear();
+            selectedLawIds.Clear();
+        }
         return article;
     }
+
     private void HandleLawSubmitted(string selectedText, int lawId)
     {
-        
         Debug.Log($"Law submitted: {lawId} for text: {selectedText}");
         selectedLawIds.Add(lawId);
         lawInputFieldActive = false;
-        
     }
+
     private void HandleSceneChange(string sceneName)
     {
         EditingState.instance.currentArticle = currentArticle;
         EditingState.instance.cursorIndex = cursorIndex;
         EditingState.instance.selectionStart = selectionStart;
         EditingState.instance.selectionEnd = selectionEnd;
-        EditingState.instance.selectedTexts = new List<string>(selectedTexts); 
+        EditingState.instance.selectedTexts = new List<string>(selectedTexts);
         EditingState.instance.selectedLawIds = new List<int>(selectedLawIds);
         EditingState.instance.lawInputFieldActive = lawInputFieldActive;
-        
+
         Debug.Log("Editor state saved");
     }
-
-
-    
 
     public void ApproveArticle()
     {
@@ -352,5 +345,4 @@ public class EditingField : MonoBehaviour
         ArticleEditorManager.OnArticleSelected -= HandleArticleSelected;
         SceneNavigator.OnSceneChange -= HandleSceneChange;
     }
-    
 }
