@@ -57,7 +57,7 @@ public class GameManager : MonoBehaviour
            Debug.Log("Loading game data...");
            PersistenceManager.instance.LoadData();
            LoadPortraits();
-           uneditedArticles = articleList.articles.FindAll(x => x.isEdited == false);
+           //uneditedArticles = articleList.articles.FindAll(x => x.isEdited == false);
            time = 0;
        }
        
@@ -130,7 +130,7 @@ public class GameManager : MonoBehaviour
         if (jsonFile != null)
         {
             articleList = JsonUtility.FromJson<ArticleList>(jsonFile.text);
-            uneditedArticles = articleList.articles;
+            //uneditedArticles = articleList.articles;
             
             Debug.Log("Articles Loaded Successfully!");
         }

@@ -277,6 +277,7 @@ public class DialogueManager : MonoBehaviour
                 {
                     ShowDialogue(0);
                     dialogueCompleted[0] = true;
+                    GameManager.instance.uneditedArticles.Add(GameManager.instance.articleList.articles[0]);
                     break;
                 }
 
@@ -334,6 +335,14 @@ public class DialogueManager : MonoBehaviour
                 {
                     ShowDialogue(7);
                     dialogueCompleted[7] = true;
+                    break;
+                }
+                if (!dialogueCompleted.ContainsKey(8)
+                    && dialogueCompleted.ContainsKey(7))
+                {
+                    ShowDialogue(8);
+                    dialogueCompleted[8] = true;
+                    GameManager.instance.uneditedArticles.Add(GameManager.instance.articleList.articles[1]);
                     break;
                 }
 

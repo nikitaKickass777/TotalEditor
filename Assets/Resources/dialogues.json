@@ -305,7 +305,43 @@
         },
         {
           "lineId": 1,
-          "lineText": "Your team. Four people. Four stories. Four potential problems.\n    Tetiana, one of your team members. You know all too well that she’s not just a reporter — she’s also a mother struggling with her daughter’s serious medical condition. Sometimes, you catch snippets of her on the phone, her voice cracking as she negotiates medical bills. And yet, when you pass her in the hallway, she always greets you with a warm smile, defying her hardships.\n    Margaret — efficient, detached. She does her job with the emotional engagement of a filing cabinet. Never goes beyond what's required, never asks questions.\n    Abraham — the model employee. Patriotic to his core. Hard-working, loyal, always following the rules. The kind of person who believes the system works perfectly, if you just follow every instruction.\n    Then there’s Lev, the writer whose brilliance often leaves you both impressed and a little uneasy. He’s always looking over his shoulder, as if aware that his sharp insights might soon stir up trouble.",
+          "lineText": "Your team. Four people. Four stories. Four potential problems.",
+          "hasOptions": false,
+          "nextLineId": 2
+        },
+        {
+          "lineId": 2,
+          "lineText": "Tetiana, one of your team members. You know all too well that she’s not just a reporter — she’s also a mother struggling with her daughter’s serious medical condition. Sometimes, you catch snippets of her on the phone, her voice cracking as she negotiates medical bills. And yet, when you pass her in the hallway, she always greets you with a warm smile, defying her hardships.",
+          "hasOptions": false,
+          "nextLineId": 3
+        },
+        {
+          "lineId": 3,
+          "lineText": "Margaret — efficient, detached. She does her job with the emotional engagement of a filing cabinet. Never goes beyond what's required, never asks questions.",
+          "hasOptions": false,
+          "nextLineId": 4
+        },
+        {
+          "lineId": 4,
+          "lineText": "Abraham — the model employee. Patriotic to his core. Hard-working, loyal, always following the rules. The kind of person who believes the system works perfectly, if you just follow every instruction.",
+          "hasOptions": false,
+          "nextLineId": 5
+        },
+        {
+          "lineId": 5,
+          "lineText": "Then there’s Lev, the writer whose brilliance often leaves you both impressed and a little uneasy. He’s always looking over his shoulder, as if aware that his sharp insights might soon stir up trouble.",
+          "hasOptions": false
+        }
+      ]
+    },
+    {
+      "dialogueId": 8,
+      "dialogueName": "8th Dialogue",
+      "characterId": 4,
+      "lines": [
+        {
+          "lineId": 0,
+          "lineText": "I see you are daydreaming. Have you done all your work? Huh, then review these articles",
           "hasOptions": false
         }
       ]

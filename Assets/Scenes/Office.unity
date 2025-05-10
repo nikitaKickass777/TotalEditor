@@ -368,7 +368,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DialogueTemplate: {fileID: 2075292668}
-  dialogueText: {fileID: 1499039621}
+  dialogueTMP: {fileID: 1499039621}
   characterSprite: {fileID: 21300000, guid: bd00905eee150f743aee69250e232f22, type: 3}
   characterSpriteTalk: {fileID: 21300000, guid: 495a1d9f4210f82428f9f90af715d288, type: 3}
   characterSpriteRenderer: {fileID: 1910370239}
@@ -4665,6 +4665,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 3b2fd896a94e2944b913c788e0100256, type: 3}
   - {fileID: 8300000, guid: 093de4d9a9bfd1b4ab046102ade74459, type: 3}
   - {fileID: 8300000, guid: 40fd07cf605c6e84395ca29fe9130e6a, type: 3}
+  soundVolume: 100
+  musicVolume: 100
 --- !u!4 &1808502171
 Transform:
   m_ObjectHideFlags: 0
@@ -5536,7 +5538,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2144342769}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8963e8cf2c368b743a6865144cd0f6d5, type: 3}
   m_Name: 
@@ -5569,8 +5571,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ed8e4020294aa14090dfbf5c1bfde66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  soundVolume: 100
-  musicVolume: 100
   money: 20
   day: 1
   time: 0

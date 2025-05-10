@@ -25,10 +25,25 @@
   },
   {
     "id": 1,
-    "title": "1",
-    "text": "1",
+    "title": "City’s New Technology Hub",
+    "text": "By Margaret Gray\nThe city’s new Technology Hub has officially opened, thanks to strong government support and strategic tax incentives. Part of the Prosperity Through Innovation program, the hub is expected to create hundreds of jobs and strengthen the local economy.\nOfficials praised the project as a milestone in national development. While some questioned the origins of private investments, authorities confirmed full compliance with economic regulations.",
     "journalistId": 0,
     "importantParts": [
+      {
+        "text": "The city’s new Technology Hub has officially opened, thanks to strong government support and strategic tax incentives.",
+        "tolerance": 3,
+        "lawIds": [1]
+      },
+      {
+        "text": "Part of the Prosperity Through Innovation program, the hub is expected to create hundreds of jobs and strengthen the local economy.",
+        "tolerance": 3,
+        "lawIds": [1]
+      },
+      {
+        "text": "Officials praised the project as a milestone in national development.",
+        "tolerance": 3,
+        "lawIds": [1]
+      }
     ]
   }
  ]

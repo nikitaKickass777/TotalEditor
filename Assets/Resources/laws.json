@@ -4,13 +4,13 @@
       "id": 0,
       "isProhibition": true,
       "isActive": true,
-      "text": "00\nUse official sources to maintain accuracy and public trust."
+      "text": "00 - LAW\nUse official sources to maintain accuracy and public trust."
     },
     {
       "id": 1,
       "isProhibition": true,
       "isActive": true,
-      "text": "\n01\nEMPTY"
+      "text": "\n\n01 - RECOMMENDATION\nIn these times of unrest, focus on achievements of the state."
     }
   ]
 }
