@@ -15,7 +15,11 @@ public class DialogueManager : MonoBehaviour
     public static DialogueManager instance;
 
     public GameObject DialogueTemplate;
-    [FormerlySerializedAs("dialogueText")] public TextMeshProUGUI dialogueTMP;
+    public GameObject NarratorDialogueTemplate;
+    public TextMeshProUGUI selectedTMP;
+    public TextMeshProUGUI narratorDialogueTMP;
+    public TextMeshProUGUI dialogueTMP;
+
     public Sprite characterSprite;
     public Sprite characterSpriteTalk;
     public SpriteRenderer characterSpriteRenderer;
@@ -60,7 +64,7 @@ public class DialogueManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            if (DialogueTemplate.activeSelf)
+            if (DialogueTemplate.activeSelf || NarratorDialogueTemplate.activeSelf)
             {
                 EndDialogue();
             }
@@ -88,7 +92,7 @@ public class DialogueManager : MonoBehaviour
                 typeCoroutine = null;
                 talkAnimationCoroutine = null;
                 characterSpriteRenderer.sprite = characterSprite;
-                dialogueTMP.text = dialogueList.dialogues[currentDialogueIndex].lines[currentLineIndex].lineText;
+                selectedTMP.text = dialogueList.dialogues[currentDialogueIndex].lines[currentLineIndex].lineText;
             }
             else if (!dialogueList.dialogues[currentDialogueIndex].lines[currentLineIndex].hasOptions)
             {
@@ -117,12 +121,18 @@ public class DialogueManager : MonoBehaviour
 
         Time.timeScale = 0;
         isDialogueOpen = true;
-        DialogueTemplate.SetActive(true); // this thing makes dialogue box appear
         Journalist character = GameManager.instance.journalistList.journalists[dialogue.characterId];
-        DialogueTemplate.GetComponentInChildren<TextMeshProUGUI>().text = character.name;
-        // if(character.id == 6){ // narrator
-
-        // }
+        
+        if(character.id == 6){ // narrator
+            NarratorDialogueTemplate.SetActive(true); // this thing makes dialogue box appear 
+            selectedTMP = narratorDialogueTMP;
+        }
+        else
+        {
+           DialogueTemplate.SetActive(true); // this thing makes dialogue box appear 
+           selectedTMP = dialogueTMP;
+           DialogueTemplate.GetComponentInChildren<TextMeshProUGUI>().text = character.name;
+        }
         characterSprite = character.portrait;
         characterSpriteTalk = character.portraitTalking;
 
@@ -161,10 +171,10 @@ public class DialogueManager : MonoBehaviour
     private IEnumerator TypeLine(string line)
     {
         talkAnimationCoroutine = StartCoroutine(TalkAnimation());
-        dialogueTMP.text = "";
+        selectedTMP.text = "";
         foreach (char c in line.ToCharArray())
         {
-            dialogueTMP.text += c;
+            selectedTMP.text += c;
             yield return new WaitForSecondsRealtime(textSpeed);
         }
 
@@ -243,7 +253,7 @@ public class DialogueManager : MonoBehaviour
     {
         Time.timeScale = 1;
         DialogueTemplate.gameObject.SetActive(false);
-
+        NarratorDialogueTemplate.gameObject.SetActive(false);
         StartCoroutine(WaitBeforeClosingDialogue());
     }
 
@@ -281,6 +291,7 @@ public class DialogueManager : MonoBehaviour
                     ShowDialogue(0);
                     dialogueCompleted[0] = true;
                     GameManager.instance.uneditedArticles.Add(GameManager.instance.articleList.articles[0]);
+                    GameManager.instance.uneditedArticles.Add(GameManager.instance.articleList.articles[1]);
                     break;
                 }
 
@@ -334,10 +345,12 @@ public class DialogueManager : MonoBehaviour
 
                 if (!dialogueCompleted.ContainsKey(7)
                     && dialogueCompleted.ContainsKey(6)
-                    && GameManager.instance.articleList.articles[0].isEdited)
+                    && GameManager.instance.articleList.articles[0].isEdited
+                    && GameManager.instance.articleList.articles[1].isEdited)
                 {
                     ShowDialogue(7);
                     dialogueCompleted[7] = true;
+                    GameManager.instance.lawList.laws[2].isActive = true;
                     break;
                 }
                 if (!dialogueCompleted.ContainsKey(8)
@@ -345,32 +358,63 @@ public class DialogueManager : MonoBehaviour
                 {
                     ShowDialogue(8);
                     dialogueCompleted[8] = true;
-                    GameManager.instance.uneditedArticles.Add(GameManager.instance.articleList.articles[1]);
                     GameManager.instance.uneditedArticles.Add(GameManager.instance.articleList.articles[2]);
                     GameManager.instance.uneditedArticles.Add(GameManager.instance.articleList.articles[3]);
+                    GameManager.instance.uneditedArticles.Add(GameManager.instance.articleList.articles[4]);
                     break;
                 }
                 if (!dialogueCompleted.ContainsKey(9)
                     && dialogueCompleted.ContainsKey(8)
-                    && GameManager.instance.articleList.articles[1].isEdited == true
                     && GameManager.instance.articleList.articles[2].isEdited == true
-                    && GameManager.instance.articleList.articles[3].isEdited == true)
+                    && GameManager.instance.articleList.articles[3].isEdited == true
+                    && GameManager.instance.articleList.articles[4].isEdited == true)
                 {
                     ShowDialogue(9);
                     dialogueCompleted[9] = true;
-                    GameManager.instance.uneditedArticles.Add(GameManager.instance.articleList.articles[4]);
+                    GameManager.instance.uneditedArticles.Add(GameManager.instance.articleList.articles[5]);
                     timeLeftDialogue = Time.time;
                     break;
                 }
 
                 if (SceneNavigator.instance.previousSceneName == "Editing"
                     && !dialogueCompleted.ContainsKey(10)
+                    && !dialogueCompleted.ContainsKey(11)
+                    && !dialogueCompleted.ContainsKey(12)
                     && dialogueCompleted.ContainsKey(9)
-                    && GameManager.instance.articleList.articles[4].isEdited == false
+                    && GameManager.instance.articleList.articles[5].isEdited == false
                     && timeLeftDialogue <= SceneNavigator.instance.timeLeftPreviousScene)
                 {
                     ShowDialogue(10);
                     dialogueCompleted[10] = true;
+                    break;
+                }
+
+                if (SceneNavigator.instance.previousSceneName == "Editing"
+                    && !dialogueCompleted.ContainsKey(10)
+                    && dialogueCompleted.ContainsKey(9)
+                    && !dialogueCompleted.ContainsKey(11)
+                    && !dialogueCompleted.ContainsKey(12)
+                    && GameManager.instance.articleList.articles[5].isEdited == true
+                    && GameManager.instance.articleList.articles[5].isApproved == false
+                    && timeLeftDialogue <= SceneNavigator.instance.timeLeftPreviousScene)
+                {
+                    ShowDialogue(11);
+                    dialogueCompleted[11] = true;
+                    break;
+                }
+
+                
+                if (SceneNavigator.instance.previousSceneName == "Editing"
+                    && !dialogueCompleted.ContainsKey(10)
+                    && dialogueCompleted.ContainsKey(9)
+                    && !dialogueCompleted.ContainsKey(11)
+                    && !dialogueCompleted.ContainsKey(12)
+                    && GameManager.instance.articleList.articles[5].isEdited == true
+                    && GameManager.instance.articleList.articles[5].isApproved == true
+                    && timeLeftDialogue <= SceneNavigator.instance.timeLeftPreviousScene)
+                {
+                    ShowDialogue(12);
+                    dialogueCompleted[12] = true;
                     break;
                 }
 

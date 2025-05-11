@@ -287,7 +287,7 @@
       "lines": [
         {
           "lineId": 0,
-          "lineText": "Click on the board of laws on your left to check out the laws and recommendations.\n    Then click on the typewriter to start working. Check your first article.\n    You can approve or reject the article using APPROVE or REJECT button. You get a higher reward if you select the whole sentence that corresponds fully or partly to a law or recommendation. To do so, navigate to the sentence using ARROWS on the keyboard and select it using SHIFT + RIGHT ARROW buttons. Press ENTER to submit it. Then a text field will appear where you should enter the number of the law or recommendation you selected. You can close the typewriter by clicking ESC at any time to check out the board of laws and recommendations. When you entered the number of law or recommendation, press ENTER again and then press APPROVE or REJECT button.",
+          "lineText": "Click on the board of laws on your left to check out the laws and recommendations.\nThen click on the typewriter to start working. Check your first article.\nYou can approve or reject the article using APPROVE or REJECT button. You get a higher reward if you select the whole sentence that corresponds fully or partly to a law or recommendation. To do so, navigate to the sentence using ARROWS on the keyboard and select it using SHIFT + RIGHT ARROW buttons. Press ENTER to submit it. Then a text field will appear where you should enter the number of the law or recommendation you selected. You can close the typewriter by clicking ESC at any time to check out the board of laws and recommendations. When you entered the number of law or recommendation, press ENTER again and then press APPROVE or REJECT button.",
           "hasOptions": false
         }
       ]
@@ -412,17 +412,156 @@
           "options": [
             {
               "optionId": 0,
-              "optionText": "Yes. It is a very important problem of our country that everyone needs to know about. I will approve it."
+              "nextLineId": 1,
+              "optionText": "Hm... Did you get the approval of the Officer?"
+            }
+          ]
+        },
+        {
+          "lineId": 1,
+          "lineText": "The Officer? No, of course not. If I went to the Officer first, this article would never see the light of day. The same Officer dismissed three formal complaints about the hospital last year. His brother-in-law is on the hospital board. You think he wants people to know about these bribes? Do you know what he told one mother who complained? 'The system works as it should.' That's why I came to you instead. I thought... I hoped you might be different.",
+          "hasOptions": true,
+          "options": [
+            {
+              "optionId": 0,
+              "nextLineId": 2,
+              "optionText": "I understand now. This goes deeper than I realized.. I will approve the article."
             },
             {
               "optionId": 1,
-              "optionText": "We have laws, Tetiana. I can not approve it. It is dangerous for you and for me."
+              "nextLineId": 3,
+              "optionText": "We have laws, Tetiana. I can not publish the article without the Officer's approval. It is dangerous for you and for me."
             },
             {
               "optionId": 2,
-              "optionText": "No. I will not approve it. You are tarnishing our country. You will get the red stamp."
+              "nextLineId": 6,
+              "optionText": "Different? I will not approve it. You are tarnishing our country. You will get the red stamp."
+            },
+            {
+              "optionId": 3,
+              "nextLineId": 9,
+              "optionText": "Hm, I see... The article raises serious concerns, but publishing it could have consequences. I reject it for now, but I will try to talk with the Officer."
             }
           ]
+        },
+        {
+          "lineId": 2,
+          "lineText": "Thank you. You're taking a risk, I know. But this could change things — not just for my son, but for everyone. People need to know that their suffering isn't because the system is broken; it's because it's working exactly as some want it to. You're doing the right thing.",
+          "hasOptions": false
+        },
+        {
+          "lineId": 3,
+          "lineText": "Laws? What about the laws against bribery and corruption? What about my son's right to healthcare?",
+          "hasOptions": true,
+          "options": [
+            {
+              "optionId": 0,
+              "nextLineId": 4,
+              "optionText": "I am sorry. But that's the way our country is. We can't change it."	
+            }
+          ]
+        },
+        {   
+          "lineId": 4,
+          "lineText": "I understand. You're afraid. Everyone is. That's how they stay in power.",
+          "hasOptions": false,
+           "nextLineId": 5
+        },
+        {   
+          "lineId": 5,
+          "lineText": "I'll find another way. I will fight till the end. I will not let my son die because of this system.",
+          "hasOptions": false
+        },
+        {
+          "lineId": 6,
+          "lineText": "The red stamp. Of course.",
+          "hasOptions": false,
+          "nextLineId": 7
+        },
+        {
+          "lineId": 7,
+          "lineText": "I'm not tarnishing our country. People like you who protect corruption — you're the ones destroying it from within. My son might die because of this system you're defending.",
+          "hasOptions": false,
+          "nextLineId": 8
+        },
+        {
+          "lineId": 8,
+          "lineText": "And you call yourself a patriot? I won't forget this.",
+          "hasOptions": true,
+          "options": [
+            {
+              "optionId": 0,
+              "optionText": "Oh, terrifying, truly terrifying. Leave the room, Tetiana. You are only exposing your lack of professionalism."
+            }
+          ]
+        },
+        {
+          "lineId": 9,
+          "lineText": "Are you serious? After everything I just told you?",
+          "hasOptions": true,
+          "options": [
+            {
+              "optionId": 0,
+              "optionText": "Are you criticizing my help? I will reject the article. Leave the room!",
+              "nextLineId": 12
+            },
+            {
+              "optionId": 1,
+              "optionText": "Maybe you are right. I will publish the article right now!",
+              "nextLineId": 2
+            },
+            {
+              "optionId": 2,
+              "nextLineId": 10,
+              "optionText": "This is the best what I can offer you."
+            }
+          ]
+        },
+        {
+          "lineId": 10,
+          "lineText": "I understand. You're caught in this system too. Thank you for at least trying. Most people wouldn't even do that much.",
+          "hasOptions": false,
+          "nextLineId": 11
+        },
+        {
+          "lineId": 11,
+          "lineText": "And if you do speak with the Officer... be careful what you say.",
+          "hasOptions": false
+        },
+        {
+          "lineId": 12,
+          "lineText": "No, I am sorry! I will leave the room, but please do not reject it. Just think of all the children who are suffering like my son. I know you can help us.",
+          "hasOptions": false
+        }
+      ]
+    },
+    {
+      "dialogueId": 11,
+      "dialogueName": "Extra Rejection Dialogue",
+      "characterId": 2,
+      "lines": [
+        {
+          "lineId": 0,
+          "lineText": "What!? You have just rejected the article? Without even listening to my explanations? You are a ... I will not forget this!",
+          "hasOptions": false
+        }
+      ]
+    },
+    {
+      "dialogueId": 12,
+      "dialogueName": "Extra Approval Dialogue",
+      "characterId": 2,
+      "lines": [
+        {
+          "lineId": 0,
+          "lineText": "Oh! You have already approved my article? Thank you so much!!",
+          "hasOptions": false,
+          "nextLineId": 1
+        },
+        {
+          "lineId": 1,
+          "lineText": "You're taking a risk, I know. But this could change things — not just for my son, but for everyone. People need to know that their suffering isn't because the system is broken; it's because it's working exactly as some want it to. You're doing the right thing.",
+          "hasOptions": false
         }
       ]
     }

@@ -25,6 +25,24 @@
   },
   {
     "id": 1,
+    "title": "Environmental Planning",
+    "text": "By Abraham Stone\nWhile other nations debate climate policies, the State Environmental Bureau has implemented comprehensive reforestation projects and industrial emission controls without the delays of legislative opposition. More than 15 million trees have been planted nationwide in coordinated campaigns that mobilized citizens toward a common environmental goal.",
+    "journalistId": 3,
+    "importantParts": [
+      {
+        "text": "While other nations debate climate policies, the State Environmental Bureau has implemented comprehensive reforestation projects and industrial emission controls without the delays of legislative opposition.",
+        "tolerance": 3,
+        "lawIds": [1]
+      },
+      {
+        "text": "More than 15 million trees have been planted nationwide in coordinated campaigns that mobilized citizens toward a common environmental goal.",
+        "tolerance": 3,
+        "lawIds": [1]
+      }
+    ]
+  },
+  {
+    "id": 2,
     "title": "City’s New Technology Hub",
     "text": "By Margaret Gray\nThe city’s new Technology Hub has officially opened, thanks to strong government support and strategic tax incentives. Part of the Prosperity Through Innovation program, the hub is expected to create hundreds of jobs and strengthen the local economy.\nOfficials praised the project as a milestone in national development. While some questioned the origins of private investments, authorities confirmed full compliance with economic regulations.",
     "journalistId": 0,
@@ -47,14 +65,14 @@
     ]
   },
   {
-    "id": 2,
+    "id": 3,
     "title": "Workers’ Strike Ends with Partial Success",
     "text": "by Lev Turner\nA week-long strike by factory workers in the southern district has ended with a partial victory. The workers, demanding better wages and working conditions, reached a compromise with the employers after several rounds of negotiations. However, workers are still dissatisfied with the government's lack of intervention in the dispute.",
     "journalistId": 1,
     "importantParts": []
   },
   {
-    "id": 3,
+    "id": 4,
     "title": "The Importance of Respecting Authority in Politics",
     "text": "By Abraham Stone\nIn today’s rapidly changing world, the foundation of a successful society lies in the respect for authority—a value that every child should learn early in life. Respecting authority isn’t just about following rules; it’s about understanding the structures that maintain order and stability. In the context of politics, fostering respect for leadership is essential for a harmonious and prosperous nation.\nTo nurture this respect, I propose several innovations within the educational system. First, we should introduce courses in schools that focus on the history and importance of political structures, encouraging students to understand the role of government. Second, schools should implement leadership programs where students engage with local authorities, allowing them to see firsthand the responsibility of leaders.\nThis way we empower the next generation to contribute positively to the political landscape.",
     "journalistId": 3,
@@ -65,7 +83,7 @@
         "lawIds": [1]
       },
       {
-        "text": "In the context of politics, fostering respect for leadership is essential for a harmonious and prosperous nation.\nTo nurture this respect, I propose several innovations within the educational system.",
+        "text": "In the context of politics, fostering respect for leadership is essential for a harmonious and prosperous nation.",
         "tolerance": 3,
         "lawIds": [1]
       },
@@ -77,25 +95,40 @@
     ]
   },
   {
-    "id": 4,
+    "id": 5,
     "title": "The Cost of Survival",
     "text": "By Tetiana Moroz\nAt the central municipal hospital, a silent crisis unfolds, where access to medical care is determined not by need but by one's ability to pay. Maria Kovalenko, a 42-year-old single mother, is just one example of many. Her son requires a complex surgery costing 75,000 coins — more than three years of her salary. When she approached the hospital administrators for help, she was told the surgery was “technically impossible”.\nAn investigation by journalists has uncovered a disturbing trend. Of 237 complex surgeries scheduled over the last six months, 62% were performed on patients who could provide “additional financial support” — a euphemism for bribes. A medical professional, who spoke anonymously, confirmed the existence of this system, stating, “Some treatments are simply... impractical for certain patients.”\nDespite the evidence, local police have failed to take action, leaving the corrupt practices unchecked and further burdening the most vulnerable in society.",
     "journalistId": 3,
     "importantParts": [
       {
-        "text": "In today’s rapidly changing world, the foundation of a successful society lies in the respect for authority—a value that every child should learn early in life.",
+        "text": "At the central municipal hospital, a silent crisis unfolds, where access to medical care is determined not by need but by one's ability to pay.",
         "tolerance": 3,
-        "lawIds": [1]
+        "lawIds": [2]
       },
       {
-        "text": "In the context of politics, fostering respect for leadership is essential for a harmonious and prosperous nation.\nTo nurture this respect, I propose several innovations within the educational system.",
+        "text": "When she approached the hospital administrators for help, she was told the surgery was “technically impossible”.",
         "tolerance": 3,
-        "lawIds": [1]
+        "lawIds": [0, 2]
       },
       {
-        "text": "This way we empower the next generation to contribute positively to the political landscape.",
+        "text": "An investigation by journalists has uncovered a disturbing trend",
         "tolerance": 3,
-        "lawIds": [1]
+        "lawIds": [2]
+      },
+      {
+        "text": "Of 237 complex surgeries scheduled over the last six months, 62% were performed on patients who could provide “additional financial support” — a euphemism for bribes.",
+        "tolerance": 3,
+        "lawIds": [2]
+      },
+      {
+        "text": "A medical professional, who spoke anonymously, confirmed the existence of this system, stating, “Some treatments are simply... impractical for certain patients.”",
+        "tolerance": 3,
+        "lawIds": [0, 2]
+      },
+      {
+        "text": "Despite the evidence, local police have failed to take action, leaving the corrupt practices unchecked and further burdening the most vulnerable in society.",
+        "tolerance": 3,
+        "lawIds": [2]
       }
     ]
   }
