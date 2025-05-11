@@ -45,6 +45,8 @@ public class EditingField : MonoBehaviour
 
     void Start()
     {
+        NotificationManager.instance.AddToQueue(
+            "Select the text and press Enter to mark it. Then type the law number.");
         ArticleEditorManager.OnArticleSelected += HandleArticleSelected;
         LawInputController.OnLawSubmitted += HandleLawSubmitted;
         SceneNavigator.OnSceneChange += HandleSceneChange;
@@ -74,6 +76,7 @@ public class EditingField : MonoBehaviour
         {
             ArticleEditorManager.SelectNextArticle();
         }
+
         fieldSelected = true;
 
 
@@ -181,35 +184,41 @@ public class EditingField : MonoBehaviour
             int currentLineIndex = textInfo.characterInfo[cursorIndex].lineNumber;
             int targetLineIndex = Mathf.Clamp(currentLineIndex + direction, 0, textInfo.lineCount - 1);
 
-            // Ensure the target line index is valid
-            if (targetLineIndex < 0 || targetLineIndex >= textInfo.lineCount)
-            {
-                Debug.LogWarning("Target line index out of bounds.");
+            if (targetLineIndex == currentLineIndex)
                 return;
+
+            // Get current cursor X position
+            Vector3 cursorPos = textInfo.characterInfo[cursorIndex].bottomLeft;
+            float targetX = cursorPos.x;
+
+            int closestCharIndex = -1;
+            float closestDistance = float.MaxValue;
+
+            // Iterate over characters in the target line to find the closest X
+            for (int i = 0; i < textInfo.characterCount; i++)
+            {
+                TMP_CharacterInfo charInfo = textInfo.characterInfo[i];
+
+                if (!charInfo.isVisible || charInfo.lineNumber != targetLineIndex)
+                    continue;
+
+                float charX = charInfo.origin;
+                float dist = Mathf.Abs(charX - targetX);
+
+                if (dist < closestDistance)
+                {
+                    closestDistance = dist;
+                    closestCharIndex = i;
+                }
             }
 
-            if (currentLineIndex != targetLineIndex)
+            // Update cursorIndex if a character was found
+            if (closestCharIndex != -1)
             {
-                TMP_LineInfo currentLine = textInfo.lineInfo[currentLineIndex];
-                TMP_LineInfo targetLine = textInfo.lineInfo[targetLineIndex];
-
-                // Calculate relative position in the current line
-                int charInLine = cursorIndex - currentLine.firstCharacterIndex;
-
-                // Ensure the target line has valid characters
-                if (targetLine.firstCharacterIndex <= targetLine.lastCharacterIndex)
-                {
-                    cursorIndex = Mathf.Clamp(targetLine.firstCharacterIndex + charInLine,
-                        targetLine.firstCharacterIndex,
-                        targetLine.lastCharacterIndex + 1);
-                }
-                else
-                {
-                    // If the target line is empty, move to the first character of the line
-                    cursorIndex = targetLine.firstCharacterIndex;
-                }
+                cursorIndex = closestCharIndex;
             }
         }
+
         else
         {
             cursorIndex = Mathf.Clamp(cursorIndex + direction, 0, textInfo.characterCount - 1);
@@ -234,7 +243,10 @@ public class EditingField : MonoBehaviour
     {
         // Display cursor as a "|" symbol at the current index
         string updatedText = originalText;
-
+        
+        // Clamp cursorIndex to avoid out-of-bounds exceptions
+        cursorIndex = Mathf.Clamp(cursorIndex, 0, originalText.Length);
+        
         if (selectionStart != -1 && selectionEnd != -1)
         {
             int start = Mathf.Min(selectionStart, selectionEnd);
@@ -280,7 +292,7 @@ public class EditingField : MonoBehaviour
         RectTransform textRect = textDisplay.rectTransform;
         RectTransform titleRect = titleText.rectTransform;
 
-        return (RectTransformUtility.RectangleContainsScreenPoint(textRect, mousePos) || 
+        return (RectTransformUtility.RectangleContainsScreenPoint(textRect, mousePos) ||
                 RectTransformUtility.RectangleContainsScreenPoint(titleRect, mousePos));
     }
 
@@ -301,6 +313,7 @@ public class EditingField : MonoBehaviour
             selectedTexts.Clear();
             selectedLawIds.Clear();
         }
+
         return article;
     }
 
