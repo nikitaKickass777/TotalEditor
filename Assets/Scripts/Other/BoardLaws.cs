@@ -10,7 +10,7 @@ public class BoardLaws : MonoBehaviour
     LawList lawList; 
     GameObject[] lawPapers; // Array of law papers
     List<Law> activeLaws = new List<Law>(); // List of law texts
-    int lawsPerPaper = 3; // Number of laws per paper
+    int lawsPerPaper = 2; // Number of laws per paper
     private void Start()
     {
         lawList = GameManager.instance.lawList; // Get the law list from the GameManager

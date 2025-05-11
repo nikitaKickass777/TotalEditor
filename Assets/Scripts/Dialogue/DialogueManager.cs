@@ -350,7 +350,6 @@ public class DialogueManager : MonoBehaviour
                 {
                     ShowDialogue(7);
                     dialogueCompleted[7] = true;
-                    GameManager.instance.lawList.laws[2].isActive = true;
                     break;
                 }
                 if (!dialogueCompleted.ContainsKey(8)
@@ -372,6 +371,7 @@ public class DialogueManager : MonoBehaviour
                     ShowDialogue(9);
                     dialogueCompleted[9] = true;
                     GameManager.instance.uneditedArticles.Add(GameManager.instance.articleList.articles[5]);
+                    GameManager.instance.lawList.laws[2].isActive = true;
                     timeLeftDialogue = Time.time;
                     break;
                 }
