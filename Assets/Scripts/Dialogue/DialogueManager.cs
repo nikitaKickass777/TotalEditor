@@ -119,6 +119,7 @@ public class DialogueManager : MonoBehaviour
         isDialogueOpen = true;
         DialogueTemplate.SetActive(true); // this thing makes dialogue box appear
         Journalist character = GameManager.instance.journalistList.journalists[dialogue.characterId];
+        DialogueTemplate.GetComponentInChildren<TextMeshProUGUI>().text = character.name;
         // if(character.id == 6){ // narrator
 
         // }
