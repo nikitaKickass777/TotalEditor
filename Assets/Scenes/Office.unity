@@ -338,8 +338,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.00056458, y: 0.00015068}
-  m_SizeDelta: {x: 371.49, y: 134.6}
+  m_AnchoredPosition: {x: 0.4734, y: -11.8466}
+  m_SizeDelta: {x: 381.9151, y: 158.2934}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &109770615
 MonoBehaviour:
@@ -626,8 +626,7 @@ MonoBehaviour:
   DialogueTemplate: {fileID: 2075292668}
   dialogueTMP: {fileID: 1499039621}
   characterSprite: {fileID: 21300000, guid: bd00905eee150f743aee69250e232f22, type: 3}
-  characterSpriteTalk: {fileID: 21300000, guid: 495a1d9f4210f82428f9f90af715d288,
-    type: 3}
+  characterSpriteTalk: {fileID: 21300000, guid: 495a1d9f4210f82428f9f90af715d288, type: 3}
   characterSpriteRenderer: {fileID: 1910370239}
   optionButtons:
   - {fileID: 369185795}
@@ -2940,16 +2939,16 @@ RectTransform:
   m_GameObject: {fileID: 1382927751}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 1
+  m_LocalScale: {x: 1, y: 1, z: 1.5}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 109770614}
   m_Father: {fileID: 160608241}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 1143, y: -319.1651}
-  m_SizeDelta: {x: 371.4936, y: 134.6024}
+  m_AnchoredPosition: {x: 1176.043, y: -226.04456}
+  m_SizeDelta: {x: 400, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1382927753
 MonoBehaviour:
@@ -2964,7 +2963,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.9490197, g: 0.8941177, b: 0.65882355, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -3270,7 +3269,8 @@ Transform:
   m_LocalPosition: {x: 821.5552, y: 685.70905, z: 1.4210643}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: [{fileID: 160608241}]
+  m_Children:
+  - {fileID: 160608241}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1514374817
@@ -3518,8 +3518,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Time has stopped. You can go to toilet, ask for help, or have a little break
-    now
+  m_text: Time has stopped. You can go to toilet, ask for help, or have a little
+    break now
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: e73a58f6e2794ae7b1b7e50b7fb811b0, type: 2}

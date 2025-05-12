@@ -16,8 +16,13 @@ public class EditingState : MonoBehaviour
 
     private void Awake()
     {
+        
         if (instance == null)
         {
+            NotificationManager.instance.AddToQueue(
+                "Hold SHIFT and move with ARROWS to mark text.");
+            NotificationManager.instance.AddToQueue(
+                "Then press ENTER to select. Choose law and submit the article");
             instance = this;
         }
         else if(instance != this)

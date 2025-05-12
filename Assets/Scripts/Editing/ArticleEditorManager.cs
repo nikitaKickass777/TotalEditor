@@ -130,12 +130,15 @@ public class ArticleEditorManager : MonoBehaviour
     {
         decisionCorrect = true;
         Debug.Log("Player made a correct decision based on at least one valid reason.");
+        NotificationManager.instance.AddToQueue(
+            "Correct Descision! + 10$");
     }
     // 2️⃣ Or if no rejection reasons existed, and player accepted
     else if (!hasImportantRejection && isRejected == false)
     {
         decisionCorrect = true;
         Debug.Log("Player correctly accepted (no prohibitions were applicable).");
+        
     }
 
     if (decisionCorrect)
@@ -145,6 +148,8 @@ public class ArticleEditorManager : MonoBehaviour
     }
     else
     {
+        NotificationManager.instance.AddToQueue(
+            "Incorrect descision! ");
         Debug.Log("❌ Player penalized for incorrect decision.");
         GameManager.instance.money -= 10; // optional penalty
     }
@@ -152,6 +157,8 @@ public class ArticleEditorManager : MonoBehaviour
     // BONUS if player found ALL important parts when there was more than one
     if (allImportantPartsFound && article.importantParts.Length > 1)
     {
+        NotificationManager.instance.AddToQueue(
+            "Found all the applicable laws! Good work! + 20$");
         Debug.Log("🏆 Bonus! Player found ALL important parts.");
         GameManager.instance.money += 50; // bonus reward
     }

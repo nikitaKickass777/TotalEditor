@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class NotificationManager : MonoBehaviour
 {
@@ -37,14 +38,21 @@ public class NotificationManager : MonoBehaviour
 
     private void ShowPopup(string text) { //parameter the same type as queue
         window.SetActive(true);
+        if(SceneManager.GetActiveScene().name != "Editing") window.SetActive(false);
+
         popupText.text = text;
-        popupAnimator.Play("PopupAnimation");
+        popupAnimator.Play("NotificationAnimation");
     }
 
     private IEnumerator CheckQueue() {
         do {
             ShowPopup(popupQueue.Dequeue());
             do {
+                if (SceneManager.GetActiveScene().name != "Editing")
+                {
+                    window.SetActive(false);
+                    //popupAnimator.StopPlayback();
+                }
                 yield return null;
             } while (!popupAnimator.GetCurrentAnimatorStateInfo(0).IsTag("Idle"));
 

@@ -45,8 +45,7 @@ public class EditingField : MonoBehaviour
 
     void Start()
     {
-        NotificationManager.instance.AddToQueue(
-            "Select the text and press Enter to mark it. Then type the law number.");
+        
         ArticleEditorManager.OnArticleSelected += HandleArticleSelected;
         LawInputController.OnLawSubmitted += HandleLawSubmitted;
         SceneNavigator.OnSceneChange += HandleSceneChange;
