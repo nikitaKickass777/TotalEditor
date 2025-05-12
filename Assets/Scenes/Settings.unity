@@ -817,6 +817,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6eb064b46901cd4fad9bed097e877ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timeLeftPreviousScene: 0
+  previousSceneName: 
+  isNewGame: 1
 --- !u!4 &535911523
 Transform:
   m_ObjectHideFlags: 0
