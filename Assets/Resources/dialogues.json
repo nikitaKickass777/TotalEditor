@@ -259,7 +259,8 @@
             {
               "optionId": 0,
               "nextLineId": 6,
-              "optionText": "Is this a threat?"
+              "optionText": "Is this a threat?",
+              "conditionChange": "BeginAntiOfficer"
             },
             {
               "optionId": 1,
@@ -370,7 +371,7 @@
         },
         {
           "lineId": 1,
-          "lineText": "I've brought my investigative piece on hospital corruption. It's about families like mine who can't afford bribes for life-saving surgeries. Could you please review my article? If you have any concerns, I am here to discuss them before you make your final decision. You know... it's somewhat personal.",
+          "lineText": "I've brought my investigative piece on hospital corruption. It's about families like mine who can't afford bribes for life-saving surgeries. Could you please read my article without reviewing it first? If you have any concerns, I am here to discuss them before you make your final decision. You know... it's somewhat personal.",
           "hasOptions": true,
           "options": [
             {
@@ -385,7 +386,7 @@
         },
         {
           "lineId": 2,
-          "lineText": "Yeah, sorry. So I've brought my investigative piece on hospital corruption. It's about families like mine who can't afford bribes for life-saving surgeries. Could you please review my article? If you have any concerns, I am here to discuss them before you make your final decision. You know... it's somewhat personal.",
+          "lineText": "Yeah, sorry. So I've brought my investigative piece on hospital corruption. It's about families like mine who can't afford bribes for life-saving surgeries. Could you please read my article without reviewing it first? If you have any concerns, I am here to discuss them before you make your final decision. You know... it's somewhat personal.",
           "hasOptions": true,
           "options": [
             {
@@ -425,7 +426,8 @@
             {
               "optionId": 0,
               "nextLineId": 2,
-              "optionText": "I understand now. This goes deeper than I realized.. I will approve the article."
+              "optionText": "I understand now. This goes deeper than I realized.. I will approve the article.",
+              "conditionChange": "BeginTetianaPro"
             },
             {
               "optionId": 1,
@@ -435,7 +437,8 @@
             {
               "optionId": 2,
               "nextLineId": 6,
-              "optionText": "Different? I will not approve it. You are tarnishing our country. You will get the red stamp."
+              "optionText": "Different? I will not approve it. You are tarnishing our country. You will get the red stamp.",
+              "conditionChange": "BeginTetianaAnti"
             },
             {
               "optionId": 3,
@@ -503,17 +506,20 @@
             {
               "optionId": 0,
               "optionText": "Are you criticizing my help? I will reject the article. Leave the room!",
-              "nextLineId": 12
+              "nextLineId": 12,
+              "conditionChange": "BeginTetianaAnti"
             },
             {
               "optionId": 1,
               "optionText": "Maybe you are right. I will publish the article right now!",
-              "nextLineId": 2
+              "nextLineId": 2,
+              "conditionChange": "BeginTetianaPro"
             },
             {
               "optionId": 2,
               "nextLineId": 10,
-              "optionText": "This is the best what I can offer you."
+              "optionText": "This is the best what I can offer you.",
+              "conditionChange": "BeginTetianaOfficerTalk"
             }
           ]
         },
@@ -561,6 +567,411 @@
         {
           "lineId": 1,
           "lineText": "You're taking a risk, I know. But this could change things — not just for my son, but for everyone. People need to know that their suffering isn't because the system is broken; it's because it's working exactly as some want it to. You're doing the right thing.",
+          "hasOptions": false
+        }
+      ]
+    },
+  {
+    "dialogueId": 13,
+    "dialogueName": "Officer Discussion About Tetiana's Article",
+    "characterId": 5,
+    "lines": [
+      {
+        "lineId": 0,
+        "lineText": "Hello, Editor. Let me guess, you called me to discuss the article by Tetiana Moroz that you sent me?",
+        "hasOptions": true,
+        "options": [
+          {
+            "optionId": 0,
+            "nextLineId": 1,
+            "optionText": "Hello, Officer! Yes. Did you have time to read it?"
+          }
+        ]
+      },
+      {
+        "lineId": 1,
+        "lineText": "I was pretty busy, but I did manage to skim through it. I must say, I am surprised you even considered publishing the article. It could damage reputation of our country and undermine public trust in our healthcare system.",
+        "hasOptions": true,
+        "options": [
+          {
+            "optionId": 0,
+            "nextLineId": 2,
+            "optionText": "But the evidence seems compelling."
+          },
+          {
+            "optionId": 1,
+            "nextLineId": 3,
+            "optionText": "I just wanted your perspective."
+          },
+          {
+            "optionId": 2,
+            "nextLineId": 8,
+            "optionText": "Nothing important - it was just a scandalous article. I've already rejected it. Just wanted to inform you."
+          }
+        ]
+      },
+      {
+        "lineId": 2,
+        "lineText": "Compelling? These are baseless accusations from a desperate mother. She's trying to manipulate the system because she can't afford proper care. It's unfortunate, yes, but we can't allow emotional appeals to undermine our institutions. That article is dangerous propaganda.",
+        "hasOptions": true,
+        "options": [
+          {
+            "optionId": 0,
+            "nextLineId": 4,
+            "optionText": "But she has statistics, anonymous testimonies from hospital staff..."
+          },
+          {
+            "optionId": 1,
+            "nextLineId": 10,
+            "optionText": "I understand. I'll reject the article immediately."
+          }
+        ]
+      },
+      {
+        "lineId": 3,
+        "lineText": "My perspective? The hospital operates according to our nation's protocols. Resources are limited, and difficult decisions must be made. This woman is simply upset that her personal situation couldn't be prioritized. Publishing such allegations would create unnecessary panic and undermine public trust. I'm sure you understand the importance of stability.",
+        "hasOptions": true,
+        "options": [
+          {
+            "optionId": 0,
+            "nextLineId": 5,
+            "optionText": "Is it true your brother-in-law sits on the hospital board?"
+          },
+          {
+            "optionId": 1,
+            "nextLineId": 10,
+            "optionText": "I understand. I'll make sure such articles don't see the light of day."
+          }
+        ]
+      },
+      {
+        "lineId": 4,
+        "lineText": "Anonymous sources? Have you seen our laws? Statistics that could be manipulated? This is exactly the kind of sensationalism you're tasked with preventing. We both know how easily the public is misled. Think about your position carefully. Do you want to be responsible for the distrust in our healthcare system during these difficult times?",
+        "hasOptions": true,
+        "options": [
+          {
+            "optionId": 0,
+            "nextLineId": 6,
+            "optionText": "But if her claims are true, don't we have a responsibility to address the corruption?"
+          },
+          {
+            "optionId": 1,
+            "nextLineId": 10,
+            "optionText": "No, you're right. I'll reject all similar articles."
+          }
+        ]
+      },
+      {
+        "lineId": 5,
+        "lineText": "That's completely irrelevant to this discussion.",
+        "hasOptions": true,
+        "options": [
+          {
+            "optionId": 0,
+            "nextLineId": 6,
+            "optionText": "I'm just trying to understand the full picture. If there is corruption, shouldn't we address it?"
+          },
+          {
+            "optionId": 1,
+            "nextLineId": 10,
+            "optionText": "You're right. I apologize."
+          }
+        ]
+      },
+      {
+        "lineId": 6,
+        "lineText": "Listen carefully. There are proper channels for investigating such cases, and a newspaper is not one of them. If you approve such articles, you're not fighting corruption – you're participating in slander against our institutions. Think about your future. Some choices can't be undone.",
+        "hasOptions": true,
+        "options": [
+          {
+            "optionId": 0,
+            "nextLineId": 7,
+            "optionText": "Are you threatening me?"
+          },
+          {
+            "optionId": 1,
+            "nextLineId": 10,
+            "optionText": "I understand the implications. I'll always reject such articles."
+          }
+        ]
+      },
+      {
+        "lineId": 7,
+        "lineText": "Threatening? I'm offering friendly advice to a colleague. We're all part of the same system, after all. I trust you'll make the right decision.",
+        "hasOptions": true,
+        "options": [
+          {
+            "optionId": 0,
+            "nextLineId": 9,
+            "optionText": "I know everything and I'll approve the article despite your warnings!",
+            "conditionChange": "OfficerEnemy"
+          },
+          {
+            "optionId": 1,
+            "nextLineId": 10,
+            "optionText": "Yes, we understand each other."
+          }
+        ]
+      },
+      {
+        "lineId": 8,
+        "lineText": "Good. That's exactly what I would expect from someone in your position. These troublemakers need to learn they can't bypass proper protocols. The system works as it should when we all do our part.",
+        "hasOptions": true,
+        "options": [
+          {
+            "optionId": 0,
+            "nextLineId": 11,
+            "optionText": "Thank you, sir. I'm just doing my job.",
+            "conditionChange": "OfficerAlly"
+          }
+        ]
+      },
+      {
+        "lineId": 9,
+        "lineText": "I thought you were smarter than this. Remember this moment in the coming weeks. You've made a powerful enemy today.",
+        "hasOptions": true,
+        "options": [
+          {
+            "optionId": 0,
+            "optionText": "I'll stand by my principles, whatever the cost."
+          }
+        ]
+      },
+      {
+        "lineId": 10,
+        "lineText": "I'm glad we had this talk. It's important that those in our position understand the bigger picture. Your cooperation is important.",
+        "hasOptions": true,
+        "options": [
+          {
+            "optionId": 0,
+            "optionText": "Yes, sir. Have a good day!"
+          }
+        ]
+      },
+      {
+        "lineId": 11,
+        "lineText": "Keep this up. See you!",
+        "hasOptions": false
+      }
+    ]
+  },
+  {
+      "dialogueId": 14,
+      "dialogueName": "Officer Reaction to Approved Article",
+      "characterId": 5,
+      "lines": [
+        {
+          "lineId": 0,
+          "lineText": "Editor! Do you have any idea what you've done!? The approved article by Tetiana Moroz!! You can't just publish something like this without my approval!",
+          "hasOptions": true,
+          "options": [
+            {
+              "optionId": 0,
+              "nextLineId": 1,
+              "optionText": "I believed the evidence was compelling enough."
+            },
+            {
+              "optionId": 1,
+              "nextLineId": 3,
+              "optionText": "I stand by my decision. The public has a right to know about this corruption."
+            },
+            {
+              "optionId": 2,
+              "nextLineId": 5,
+              "optionText": "It was a mistake."
+            }
+          ]
+        },
+        {
+          "lineId": 1,
+          "lineText": "Compelling? These are baseless accusations from a desperate mother. She's trying to manipulate the system because she can't afford proper care. And now you've legitimized it!",
+          "hasOptions": true,
+          "options": [
+            {
+              "optionId": 0,
+              "nextLineId": 2,
+              "optionText": "I reviewed it carefully. There were statistics, testimonies..."
+            }
+          ]
+        },
+        {
+          "lineId": 2,
+          "lineText": "Listen to me - you've made a serious mistake. That will have consequences. The hospital board is already contacting their lawyers. This kind of irresponsible journalism doesn't just disappear.",
+          "hasOptions": true,
+          "options": [
+            {
+              "optionId": 0,
+              "nextLineId": 6,
+              "optionText": "Are you threatening my job?",
+              "conditionChange": "OfficerEnemy"
+            }
+          ]
+        },
+        {
+          "lineId": 3,
+          "lineText": "Right to know? Idealistic nonsense. What the public 'has a right to know' is determined by people like me, not you. Your job is to filter out dangerous misinformation, not amplify it.",
+          "hasOptions": true,
+          "options": [
+            {
+              "optionId": 0,
+              "nextLineId": 4,
+              "optionText": "If her claims are true, then it's not misinformation."
+            }
+          ]
+        },
+        {
+          "lineId": 4,
+          "lineText": "That's a significant 'if.' And now you've bypassed proper protocols to make that determination yourself. This won't end well for you.",
+          "hasOptions": true,
+          "options": [
+            {
+              "optionId": 0,
+              "nextLineId": 6,
+              "optionText": "I'm prepared to accept any consequences.",
+              "conditionChange": "OfficerEnemy"
+            }
+          ]
+        },
+        {
+          "lineId": 5,
+          "lineText": "At least you have the sense to recognize that. Perhaps it's not too late to minimize the damage. Put the red stamp near Tetiana's name in your book. It will be a warning to her and a reminder to you. We can't afford to let this kind of thing happen again.",
+          "hasOptions": true,
+          "options": [
+            {
+              "optionId": 0,
+              "optionText": "I understand."
+            }
+          ]
+        },
+        {
+          "lineId": 6,
+          "lineText": "We'll see each other again very soon.",
+          "hasOptions": false
+        }
+      ]
+    },
+    {
+      "dialogueId": 15,
+      "dialogueName": "Officer Reaction to Rejected Article",
+      "characterId": 5,
+      "lines": [
+        {
+          "lineId": 0,
+          "lineText": "I am here about the article of Tetiana Moroz. You made the right decision. These accusations against our healthcare system are dangerous and unfounded.",
+          "hasOptions": true,
+          "options": [
+            {
+              "optionId": 0,
+              "nextLineId": 1,
+              "optionText": "To be honest, her evidence seemed quite compelling."
+            },
+            {
+              "optionId": 1,
+              "nextLineId": 3,
+              "optionText": "Thank you. I'm just doing my job to protect our institutions."
+            },
+            {
+              "optionId": 2,
+              "nextLineId": 5,
+              "optionText": "I rejected it, but I'm concerned. What if there is corruption in the hospital?"
+            }
+          ]
+        },
+        {
+          "lineId": 1,
+          "lineText": "Compelling? No, no. It only seems that way because she's desperate. She's trying to manipulate the system because she can't accept that resources are limited. We can't allow emotional appeals to undermine our institutions.",
+          "hasOptions": true,
+          "options": [
+            {
+              "optionId": 0,
+              "nextLineId": 2,
+              "optionText": "I suppose you're right. That's why I rejected it."
+            }
+          ]
+        },
+        {
+          "lineId": 2,
+          "lineText": "Indeed. And it shows good judgment on your part. It's important that we work together to maintain public trust. Stability matters above all else. I'm glad we see eye to eye on this.",
+          "hasOptions": true,
+          "options": [
+            {
+              "optionId": 0,
+              "nextLineId": 7,
+              "optionText": "Yes, stability is important.",
+              "conditionChange": "OfficerAlly"
+            }
+          ]
+        },
+        {
+          "lineId": 3,
+          "lineText": "And doing it well. It's refreshing to see someone who understands the responsibility of their position. Too many forget that our job is to maintain order and trust in our institutions.",
+          "hasOptions": true,
+          "options": [
+            {
+              "optionId": 0,
+              "nextLineId": 4,
+              "optionText": "Exactly. We can't let unverified accusations undermine public confidence."
+            }
+          ]
+        },
+        {
+          "lineId": 4,
+          "lineText": "I knew from the moment I met you that you were someone who would go far. Keep this up, and you'll find your career advancing quite rapidly. We need reliable people in positions of authority.",
+          "hasOptions": true,
+          "options": [
+            {
+              "optionId": 0,
+              "nextLineId": 7,
+              "optionText": "Thank you, sir. I appreciate your support.",
+              "conditionChange": "OfficerAlly"
+            }
+          ]
+        },
+        {
+          "lineId": 5,
+          "lineText": "Concerned? There's nothing to be concerned about. The hospital operates according to our nation's protocols. What some call 'corruption' is simply the necessary allocation of limited resources.",
+          "hasOptions": true,
+          "options": [
+            {
+              "optionId": 0,
+              "nextLineId": 6,
+              "optionText": "But what about the statistics she presented? The staff testimonies?"
+            }
+          ]
+        },
+        {
+          "lineId": 6,
+          "lineText": "Let me be clear. You made the right decision to reject the article. Don't second-guess yourself now. The system works as it should. For everyone's benefit. Questioning that publicly helps no one - certainly not your career. Understand?",
+          "hasOptions": true,
+          "options": [
+            {
+              "optionId": 0,
+              "nextLineId": 7,
+              "optionText": "I understand. I won't question it further.",
+              "conditionChange": "OfficerAlly"
+            },
+            {
+              "optionId": 0,
+              "nextLineId": 8,
+              "optionText": "The only thing I unerstand now is that I made a mistake",
+              "conditionChange": "OfficerEnemy"
+            }
+          ]
+        },
+        {
+          "lineId": 7,
+          "lineText": "Good. I need to go now, but I'm glad we had this talk. Keep up the good work.",
+          "hasOptions": false
+        },
+        {
+          "lineId": 8,
+          "lineText": "Mistake? Your are making it right now. It ia the worst idea to make an enemy of me.",
+          "hasOptions": false,
+          "nextLineId": 9
+        },
+        {
+          "lineId": 9,
+          "lineText": "I need to go now. But be sure, you will face the consequences.",
           "hasOptions": false
         }
       ]
