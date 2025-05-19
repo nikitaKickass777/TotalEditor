@@ -131,6 +131,82 @@
         "lawIds": [2]
       }
     ]
+  },
+  {
+    "id": 6,
+    "title": "Community Health Initiative Shows Promise",
+    "text": "By Tetiana Moroz\nIn the eastern district of our capital, an innovative healthcare program is demonstrating that effective public medicine is possible despite system-wide challenges. The “Neighborhood Doctor” initiative, launched eight months ago, has already served over 3,000 residents who previously lacked reliable medical care. The program operates with transparent funding and fixed salaries for all staff, eliminating the incentive for under-the-table payments.\nPatient satisfaction rates have reached 87%, compared to the national average of 43% for public healthcare facilities.\nHealth Ministry spokesperson Paul Hoffman acknowledges the program's success: “We're watching this model closely. There are elements we hope to implement more broadly.”",
+    "journalistId": 3,
+    "importantParts": [
+      {
+        "text": "At the central municipal hospital, a silent crisis unfolds, where access to medical care is determined not by need but by one's ability to pay.",
+        "tolerance": 3,
+        "lawIds": [2]
+      },
+      {
+        "text": "When she approached the hospital administrators for help, she was told the surgery was “technically impossible”.",
+        "tolerance": 3,
+        "lawIds": [0, 2]
+      },
+      {
+        "text": "An investigation by journalists has uncovered a disturbing trend",
+        "tolerance": 3,
+        "lawIds": [2]
+      },
+      {
+        "text": "Of 237 complex surgeries scheduled over the last six months, 62% were performed on patients who could provide “additional financial support” — a euphemism for bribes.",
+        "tolerance": 3,
+        "lawIds": [2]
+      },
+      {
+        "text": "A medical professional, who spoke anonymously, confirmed the existence of this system, stating, “Some treatments are simply... impractical for certain patients.”",
+        "tolerance": 3,
+        "lawIds": [0, 2]
+      },
+      {
+        "text": "Despite the evidence, local police have failed to take action, leaving the corrupt practices unchecked and further burdening the most vulnerable in society.",
+        "tolerance": 3,
+        "lawIds": [2]
+      }
+    ]
+  },
+  {
+    "id": 7,
+    "title": "Medicine Shortages",
+    "text": "By Tetiana Moroz\nCritical medications are increasingly unavailable in state pharmacies, forcing desperate patients to turn to underground networks where prices can be ten times higher than official rates.\n“My father needs insulin to survive,” says Alexander from Liefgrad. “The state pharmacy hasn't had any for two months. I buy it from a dealer who gets it from across the border. I pay 2,800 coins for what should cost 320.”\nA six-month investigation tracked 14 essential medications officially listed as “in stock” at state facilities. In reality, 11 were consistently unavailable, despite Ministry of Health records showing regular deliveries.\nFormer pharmacy technician Iryna M. (name changed for protection) revealed a systematic scheme: “Deliveries arrive, but medications are immediately diverted to private sellers connected to hospital administrators. Patients are told there are shortages, then directed to specific private pharmacies.”\nWhen presented with this evidence, Ministry officials promised an internal review.",
+    "journalistId": 3,
+    "importantParts": [
+      {
+        "text": "At the central municipal hospital, a silent crisis unfolds, where access to medical care is determined not by need but by one's ability to pay.",
+        "tolerance": 3,
+        "lawIds": [2]
+      },
+      {
+        "text": "When she approached the hospital administrators for help, she was told the surgery was “technically impossible”.",
+        "tolerance": 3,
+        "lawIds": [0, 2]
+      },
+      {
+        "text": "An investigation by journalists has uncovered a disturbing trend",
+        "tolerance": 3,
+        "lawIds": [2]
+      },
+      {
+        "text": "Of 237 complex surgeries scheduled over the last six months, 62% were performed on patients who could provide “additional financial support” — a euphemism for bribes.",
+        "tolerance": 3,
+        "lawIds": [2]
+      },
+      {
+        "text": "A medical professional, who spoke anonymously, confirmed the existence of this system, stating, “Some treatments are simply... impractical for certain patients.”",
+        "tolerance": 3,
+        "lawIds": [0, 2]
+      },
+      {
+        "text": "Despite the evidence, local police have failed to take action, leaving the corrupt practices unchecked and further burdening the most vulnerable in society.",
+        "tolerance": 3,
+        "lawIds": [2]
+      }
+    ]
   }
  ]
 }
