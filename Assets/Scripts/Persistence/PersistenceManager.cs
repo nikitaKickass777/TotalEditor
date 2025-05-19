@@ -48,6 +48,12 @@ public class PersistenceManager : MonoBehaviour
         // Save article list
         SaveToFile("article_save.json", GameManager.instance.articleList);
         
+        // Save unedited articles
+        ArticleList uneditedArticles = new ArticleList();
+        uneditedArticles.articles = GameManager.instance.uneditedArticles;
+        Debug.Log($"Saving {uneditedArticles.articles.Count} unedited articles");
+        SaveToFile("uneditedArticles_save.json", uneditedArticles);
+        
         // convert dictionary to SerializableDictionary
         var serializableDictDialogue = new SerializableDictionary<int, bool>();
         serializableDictDialogue.FromDictionary(DialogueManager.instance.dialogueCompleted);
@@ -84,6 +90,10 @@ public class PersistenceManager : MonoBehaviour
         // Load article list
         var articleList = LoadFromFile<ArticleList>("article_save.json");
         if (articleList != null) GameManager.instance.articleList = articleList;
+        
+        // Load unedited articles
+        var uneditedArticles = LoadFromFile<ArticleList>("uneditedArticles_save.json");
+        if (uneditedArticles != null) GameManager.instance.uneditedArticles = uneditedArticles.articles;
 
         // Load choices dictionary
         var choicesDict = LoadFromFile<SerializableDictionary<string, bool>>("choicesDictionary_save.json");
