@@ -571,8 +571,64 @@
         }
       ]
     },
-  {
+    {
     "dialogueId": 13,
+    "dialogueName": "Short Lev Dialogue",
+    "characterId": 1,
+    "lines": [
+      {
+        "lineId": 0,
+        "lineText": "Hello, Editor!",
+        "hasOptions": true,
+        "options": [
+          {
+            "optionId": 0,
+            "nextLineId": 1,
+            "optionText": "Hello, Lev!"
+          }
+        ]
+      },
+      {
+        "lineId": 1,
+        "lineText": "So... did you get a chance to review those articles I submitted? Just checking if everything looks good or if there's anything I need to adjust. You know, to make sure they're... compliant with all the regulations.",
+        "hasOptions": true, 
+        "options": [
+          {
+            "optionId": 0,
+            "nextLineId": 2,
+            "optionText": "Everything is perfect! Keep it up!"
+          },
+          {
+            "optionId": 1,
+            "nextLineId": 3,
+            "optionText": "You have many mistakes. Check out the laws more carefully next time."
+          },
+          {
+            "optionId": 2,
+            "nextLineId": 4,
+            "optionText": "In general everything is good, just several small mistakes sometimes."
+          }
+        ]
+      },
+      {
+        "lineId": 2,
+        "lineText": "Thank you! Glad to hear that! I go back to work then. Bye!",
+        "hasOptions": false
+      },
+      {
+        "lineId": 3,
+        "lineText": "Oh... Sorry, my bad. I will be more careful next time. Thank you for the feedback. I go back to work then. Bye!",
+        "hasOptions": false
+      },
+      {
+        "lineId": 4,
+        "lineText": "It is nice. I will still try to improve. Thank you for the feedback. I go back to work then. Bye!",
+        "hasOptions": false
+      }
+    ]
+  },
+  {
+    "dialogueId": 14,
     "dialogueName": "Officer Discussion About Tetiana's Article",
     "characterId": 5,
     "lines": [
@@ -756,7 +812,7 @@
     ]
   },
   {
-      "dialogueId": 14,
+      "dialogueId": 15,
       "dialogueName": "Officer Reaction to Approved Article",
       "characterId": 5,
       "lines": [
@@ -851,7 +907,7 @@
       ]
     },
     {
-      "dialogueId": 15,
+      "dialogueId": 16,
       "dialogueName": "Officer Reaction to Rejected Article",
       "characterId": 5,
       "lines": [
@@ -977,13 +1033,13 @@
       ]
     },
     {
-      "dialogueId": 16,
+      "dialogueId": 17,
       "dialogueName": "Abraham Dialogue 1 if you approved Tetianas article",
       "characterId": 3,
       "lines": [
         {
           "lineId": 0,
-          "lineText": "Ah, there you are! I heard you had quite a meeting today.",
+          "lineText": "Ah, there you are! I heard you had quite a meeting yesterday.",
           "hasOptions": true,
           "options": [
             {
@@ -1255,7 +1311,6 @@
         "options": [
           {
             "optionId": 0,
-            "nextLineId": 25,
             "optionText": "I understand the risks."
           }
         ]
@@ -1308,7 +1363,6 @@
         "options": [
           {
             "optionId": 0,
-            "nextLineId": 25,
             "optionText": "I'll keep that in mind."
           }
         ]
@@ -1320,7 +1374,385 @@
         "options": [
           {
             "optionId": 0,
-            "nextLineId": 25,
+            "optionText": "I appreciate your concern."
+          }
+        ]
+      },
+      {
+        "lineId": 22,
+        "lineText": "A measured response. I respect that. Well, I should get back to work. But we should talk again soon.",
+        "hasOptions": true,
+        "options": [
+          {
+            "optionId": 0,
+            "optionText": "Until next time, Abraham."
+          }
+        ]
+      },
+      {
+        "lineId": 23,
+        "lineText": "We'll speak again soon. It's good to know there are others who understand what truly matters for our country.",
+        "hasOptions": false
+      },
+      {
+        "lineId": 24,
+        "lineText": "Good day to you!",
+        "hasOptions": false
+      },
+      {
+        "lineId": 25,
+        "lineText": "Just... be careful. Not everyone appreciates those who rock the boat, even when the boat needs rocking.",
+        "hasOptions": false
+      },
+      {
+        "lineId": 26,
+        "lineText": "Bold thoughts. Just remember, those who push hardest for change often face the strongest resistance. Take care of yourself.",
+        "hasOptions": false
+      }
+    ]
+  },
+  {
+      "dialogueId": 18,
+      "dialogueName": "Abraham Dialogue 1 if you rejected Tetianas article",
+      "characterId": 3,
+      "lines": [
+        {
+          "lineId": 0,
+          "lineText": "Ah, there you are! I heard you had quite a meeting yesterday.",
+          "hasOptions": true,
+          "options": [
+            {
+              "optionId": 0,
+              "nextLineId": 1,
+              "optionText": "Hello, Abraham! Yeah... What's up?"	
+            }
+          ]
+        },
+        {
+          "lineId": 1,
+          "lineText": "You know, I was reading about international relations yesterday. It's fascinating comparing different countries, how they develop. Your parents made quite a decision, coming here of all places. Do you know what drew them?",
+          "hasOptions": true,
+          "options": [
+          {
+            "optionId": 0,
+            "nextLineId": 2,
+            "optionText": "They believed there were better opportunities here."
+          }
+          ]
+        },
+        {
+        "lineId": 2,
+        "lineText": "Opportunities! That's what we all want, isn't it? A chance to build something better. But what about something that has already been built? Are you proud of your homeland's history, the country from where you moved here?",
+        "hasOptions": true,
+        "options": [
+          {
+            "optionId": 0,
+            "nextLineId": 3,
+            "optionText": "Yes, I'm proud of my heritage."
+          },
+          {
+            "optionId": 1,
+            "nextLineId": 4,
+            "optionText": "Not really, I'm focused on the future."
+          }
+        ]
+      },
+      {
+        "lineId": 3,
+        "lineText": "Hm, pride is a complicated thing, isn't it? Sometimes what we're taught to be proud of masks uncomfortable truths. Have you considered that focusing too much on the past might blind us to present realities? The future is where real change happens. Perhaps your energy would be better spent looking forward rather than back.",
+        "hasOptions": true,
+        "options": [
+          {
+            "optionId": 0,
+            "nextLineId": 5,
+            "optionText": "Maybe you have a point."
+          },
+          {
+            "optionId": 1,
+            "nextLineId": 5,
+            "optionText": "I can appreciate history while still working toward the future."
+          }
+        ]
+      },
+      {
+        "lineId": 4,
+        "lineText": "That's... an interesting perspective. But don't you think ignoring your roots is dangerous? A tree without roots cannot stand strong winds. History gives us identity, purpose. Those who forget where they came from rarely understand where they're truly going. Perhaps you should reconsider what your heritage might offer you.",
+        "hasOptions": true,
+        "options": [
+          {
+            "optionId": 0,
+            "nextLineId": 5,
+            "optionText": "I hadn't thought about it that way."
+          },
+          {
+            "optionId": 1,
+            "nextLineId": 5,
+            "optionText": "The past is often glorified. I prefer dealing with reality."
+          }
+        ]
+      },
+      {
+        "lineId": 5,
+        "lineText": "It's these questions of truth and narrative that fascinate me. Speaking of which, that story about Tetiana Moroz! She exposed corruption in the hospital system, right?",
+        "hasOptions": true,
+        "options": [
+          {
+            "optionId": 0,
+            "nextLineId": 6,
+            "optionText": "Do you think, I made a correct choice rejecting her article?"
+          }
+        ]
+      },
+      {
+        "lineId": 6,
+        "lineText": "I don't know... Poor woman, honestly. Having a sick child and feeling the system is against you - I can't imagine that pain.",
+        "hasOptions": true,
+        "options": [
+          {
+            "optionId": 0,
+            "nextLineId": 7,
+            "optionText": "Her situation is definitely difficult."
+          },
+          {
+            "optionId": 1,
+            "nextLineId": 8,
+            "optionText": "She provided compelling evidence of corruption."
+          },
+          {
+            "optionId": 2,
+            "nextLineId": 9,
+            "optionText": "She should have followed proper channels."
+          }
+        ]
+      },
+      {
+        "lineId": 7,
+        "lineText": "It is. And yet... The way she went about it - bypassing authorities, making these accusations public - it shows a lack of respect for our institutions, doesn't it? What do you think? There are proper channels for these concerns.",
+        "hasOptions": true,
+        "options": [
+          {
+            "optionId": 0,
+            "nextLineId": 10,
+            "optionText": "Sometimes the proper channels don't work."
+          },
+          {
+            "optionId": 1,
+            "nextLineId": 11,
+            "optionText": "You're right"
+          },
+          {
+            "optionId": 2,
+            "nextLineId": 12,
+            "optionText": "It's complicated. Both sides have valid points."
+          }
+        ]
+      },
+      {
+        "lineId": 8,
+        "lineText": "Did she? Hmm. Even if that's true, going public instead of working through proper channels shows a lack of respect for authority, don't you think? There are established ways to address these issues.",
+        "hasOptions": true,
+        "options": [
+          {
+            "optionId": 0,
+            "nextLineId": 10,
+            "optionText": "She tried the proper channels. They failed her."
+          },
+          {
+            "optionId": 1,
+            "nextLineId": 11,
+            "optionText": "Authority should be respected, I agree."
+          },
+          {
+            "optionId": 2,
+            "nextLineId": 12,
+            "optionText": "The truth is somewhere in the middle."
+          }
+        ]
+      },
+      {
+        "lineId": 9,
+        "lineText": "Exactly! I love our country, but we need order. Rules exist for a reason. Though between us, I do feel for her. Her son's situation... it's heartbreaking. But undermining our institutions isn't the answer, right?",
+        "hasOptions": true,
+        "options": [
+          {
+            "optionId": 0,
+            "nextLineId": 13,
+            "optionText": "Sometimes institutions need to be challenged."
+          },
+          {
+            "optionId": 1,
+            "nextLineId": 14,
+            "optionText": "Stability matters most. I agree with you."
+          },
+          {
+            "optionId": 2,
+            "nextLineId": 15,
+            "optionText": "I'm focusing on doing my job properly."
+          }
+        ]
+      },
+      {
+        "lineId": 10,
+        "lineText": "I heard a rumor that the Officer's brother-in-law is on the hospital board? Is it true? Hm, not a good look. But still, going public creates instability. Our nation has enough challenges already.",
+        "hasOptions": true,
+        "options": [
+          {
+            "optionId": 0,
+            "nextLineId": 16,
+            "optionText": "Sometimes disruption is necessary for change."
+          },
+          {
+            "optionId": 1,
+            "nextLineId": 17,
+            "optionText": "You're right about stability being important."
+          }
+        ]
+      },
+      {
+        "lineId": 11,
+        "lineText": "Glad you see it that way. A patriot respects the system, even when it's imperfect. Though I do hope her son gets the care he needs. It's a shame when personal tragedies get politicized like this.",
+        "hasOptions": true,
+        "options": [
+          {
+            "optionId": 0,
+            "nextLineId": 18,
+            "optionText": "Is it political to want healthcare for your child?"
+          },
+          {
+            "optionId": 1,
+            "nextLineId": 19,
+            "optionText": "Indeed. Personal matters shouldn't become public."
+          }
+        ]
+      },
+      {
+        "lineId": 12,
+        "lineText": "Always the diplomat! I suppose you're right. It's not black and white. But in uncertain times, don't we need to stay on the side of stability? Support our institutions rather than undermine them?",
+        "hasOptions": true,
+        "options": [
+          {
+            "optionId": 0,
+            "nextLineId": 20,
+            "optionText": "True stability comes from addressing problems."
+          },
+          {
+            "optionId": 1,
+            "nextLineId": 19,
+            "optionText": "You're right. Stability must come first."
+          }
+        ]
+      },
+      {
+        "lineId": 13,
+        "lineText": "That's... a perspective. Between us, some say the Officer dismissed her complaints because of his hospital connections. But public accusations can damage our nation's reputation. Don't you think that matters?",
+        "hasOptions": true,
+        "options": [
+          {
+            "optionId": 0,
+            "nextLineId": 21,
+            "optionText": "Truth matters more than reputation."
+          },
+          {
+            "optionId": 1,
+            "nextLineId": 22,
+            "optionText": "Both matter. It's about finding balance."
+          }
+        ]
+      },
+      {
+        "lineId": 14,
+        "lineText": "Exactly! We've worked too hard building this nation to let it be destabilized. The Officer will be pleased to know you're on the right side of this.",
+        "hasOptions": true,
+        "options": [
+          {
+            "optionId": 0,
+            "nextLineId": 23,
+            "optionText": "I just want to do what's right."
+          }
+        ]
+      },
+      {
+        "lineId": 15,
+        "lineText": "Careful and professional. I respect that. Well, I should get back to work. Just wanted to check in. These... sensitive situations test all of us, don't they?",
+        "hasOptions": true,
+        "options": [
+          {
+            "optionId": 0,
+            "nextLineId": 24,
+            "optionText": "They certainly do."
+          }
+        ]
+      },
+      {
+        "lineId": 16,
+        "lineText": "That's... quite a progressive view. I should get back to work. Just be careful. People who push for disruption sometimes find themselves... disrupted. If you know what I mean.",
+        "hasOptions": true,
+        "options": [
+          {
+            "optionId": 0,
+            "optionText": "I understand the risks."
+          }
+        ]
+      },
+      {
+        "lineId": 17,
+        "lineText": "Good, good. I knew you'd understand. I should get back to work. The Officer mentioned your name the other day, you know. In a positive way. Keep making the right choices, and you'll do well here.",
+        "hasOptions": true,
+        "options": [
+          {
+            "optionId": 0,
+            "nextLineId": 23,
+            "optionText": "Thank you for the advice."
+          }
+        ]
+      },
+      {
+        "lineId": 18,
+        "lineText": "Well, when you make it about systemic corruption rather than just getting help... Look, I'm just saying there are proper ways to handle these things. Ways that don't involve undermining our institutions.",
+        "hasOptions": true,
+        "options": [
+          {
+            "optionId": 0,
+            "nextLineId": 26,
+            "optionText": "Maybe our institutions need some reform."
+          },
+          {
+            "optionId": 1,
+            "nextLineId": 23,
+            "optionText": "I see your point about proper procedures."
+          }
+        ]
+      },
+      {
+        "lineId": 19,
+        "lineText": "Exactly! That's how a patriot thinks. Address problems quietly, through proper channels. Well, I should get back to work. Good talking with you!",
+        "hasOptions": true,
+        "options": [
+          {
+            "optionId": 0,
+            "nextLineId": 23,
+            "optionText": "Thank you, Abraham."
+          }
+        ]
+      },
+      {
+        "lineId": 20,
+        "lineText": "That's... an interesting perspective. I should get back to work. But be careful with such ideas. Not everyone here appreciates... reformist thinking.",
+        "hasOptions": true,
+        "options": [
+          {
+            "optionId": 0,
+            "optionText": "I'll keep that in mind."
+          }
+        ]
+      },
+      {
+        "lineId": 21,
+        "lineText": "That's... Be careful with that kind of talk. I admire your principles, but principle won't protect your position here. I should go.",
+        "hasOptions": true,
+        "options": [
+          {
+            "optionId": 0,
             "optionText": "I appreciate your concern."
           }
         ]
@@ -1359,7 +1791,7 @@
     ]
   },
     {
-      "dialogueId": 17,
+      "dialogueId": 19,
       "dialogueName": "Friendly 2nd Dialogue with Tetiana after her 2nd article",
       "characterId": 2,
       "lines": [

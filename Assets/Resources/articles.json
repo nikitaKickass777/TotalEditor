@@ -134,6 +134,119 @@
   },
   {
     "id": 6,
+    "title": "New City Park Brings Beauty to Industrial District",
+    "text": "by Lev Turner\nThe opening of Victory Park in the eastern industrial sector marks another achievement in our urban beautification program. Citizens can now enjoy carefully maintained gardens and designated leisure areas between their productive work shifts.\n“The park provides a welcome respite,” says worker Mikhail D. “Even fifteen minutes here helps clear the mind.”\nWhile attendance is monitored through the standard citizen tracking system, officials remind visitors that casual conversations in groups smaller than ten are permitted without prior authorization forms.",
+    "journalistId": 1,
+    "importantParts": [
+      {
+        "text": "The opening of Victory Park in the eastern industrial sector marks another achievement in our urban beautification program.",
+        "tolerance": 3,
+        "lawIds": [1]
+      }
+    ]
+  },
+  {
+    "id": 7,
+    "title": "Annual Production Targets: A Citizen's Perspective",
+    "text": "by Lev Turner\nThe Ministry of Industrial Output announced record production figures last month, exceeding targets by 7.3% according to official reports.\nHowever, conversations with factory workers reveal mixed experiences. “We work diligently to meet goals,” says one line supervisor, glancing at the surveillance camera above us. Later, when passing a noisy machinery section where recording devices struggle with audio clarity, he adds, “Fourteen-hour shifts are becoming standard rather than exceptional. But I am happy and ready to work for our Country, but bigger salaries would be appropriate.”\nThe dedication of our workforce remains unquestionable, even as questions about calculation methodologies go unanswered by ministry officials.",
+    "journalistId": 1,
+    "importantParts": [
+    ]
+  },
+  {
+    "id": 8,
+    "title": "Local Bakery Celebrates 25 Years",
+    "text": "By Margaret Gray\nThe aroma of fresh bread filled Central Avenue yesterday as Man's Bakery marked its 25th anniversary with a community giveaway.\nOwner Manuel Brown and his daughter Elena handed out complimentary pastries to morning commuters, creating a brief but welcome disruption to the usual routine.\nSeveral Ministry workers accepted the offerings with rare smiles — though one recorded the names of all participants.\nDistrict Supervisor Kozlov allowed the distribution to continue under his personal authorization, noting that “small businesses that demonstrate loyalty deserve occasional recognition.”\nThe bakery resumes normal operations today, with the standard three-person queue limit in effect.",
+    "journalistId": 0,
+    "importantParts": [
+    ]
+  },
+  {
+    "id": 9,
+    "title": "Food Distribution Questions",
+    "text": "by Lev Turner\nOfficial Ministry reports claim a 12% increase in food allocations, yet citizen accounts suggest otherwise.\n“We've been receiving smaller portions,” said Anna K. from Eastern Residential Zone, one of seventeen citizens who shared similar observations with this reporter.\nMy measurements at three distribution centers confirm packages weigh 15% less than last year's standard allocation.\nMore concerning is the difference between centers serving Leadership Areas versus Worker Districts, with the latter receiving noticeably reduced portions during “supply chain adjustments”.\nCitizens deserve accurate information about our resources and equal distribution across all sectors, regardless of position or district. If we truly believe in our founding principle that all citizens are equal, accountability for these discrepancies is necessary.",
+    "journalistId": 1,
+    "importantParts": [
+      {
+        "text": "More concerning is the difference between centers serving Leadership Areas versus Worker Districts, with the latter receiving noticeably reduced portions during “supply chain adjustments”.",
+        "tolerance": 3,
+        "lawIds": [3]
+      },
+      {
+        "text": "Citizens deserve accurate information about our resources and equal distribution across all sectors, regardless of position or district.",
+        "tolerance": 3,
+        "lawIds": [3]
+      },
+      {
+        "text": "If we truly believe in our founding principle that all citizens are equal, accountability for these discrepancies is necessary.",
+        "tolerance": 3,
+        "lawIds": [3]
+      }
+    ]
+  },
+  {
+    "id": 10,
+    "title": "Reflections on Work Ethics",
+    "text": "By Abraham Stone\nIn today’s fast-paced world, it is essential to remain committed to the values that our institutions are built upon. As an employee, I believe in loyalty and hard work above all else. The system works best when we follow the rules, ensuring fairness and equality for everyone.\nIt is our duty to uphold the standards set before us, ensuring that the workplace remains productive and orderly. Rules may seem restrictive at times, but they exist to keep us grounded and focused on our goals. If we continue to trust in the system and adhere to its guidelines, we will all thrive.",
+    "journalistId": 3,
+    "importantParts": [
+      {
+        "text": "The system works best when we follow the rules, ensuring fairness and equality for everyone.",
+        "tolerance": 3,
+        "lawIds": [1]
+      },
+      {
+        "text": "It is our duty to uphold the standards set before us, ensuring that the workplace remains productive and orderly.",
+        "tolerance": 3,
+        "lawIds": [1]
+      },
+      {
+        "text": "Rules may seem restrictive at times, but they exist to keep us grounded and focused on our goals.",
+        "tolerance": 3,
+        "lawIds": [1]
+      },
+      {
+        "text": " If we continue to trust in the system and adhere to its guidelines, we will all thrive.",
+        "tolerance": 3,
+        "lawIds": [1]
+      }
+    ]
+  },
+  {
+    "id": 11,
+    "title": "New Traffic Pattern Begins Monday",
+    "text": "By Margaret Gray\nThe Ministry of Urban Planning announces a revised traffic flow system for the Central District beginning Monday.\nAll citizens must adjust their morning commute schedules accordingly, with even-numbered identification permits allowed transit between 7:00-8:30 AM and odd-numbered permits between 8:45-10:15 AM.",
+    "journalistId": 0,
+    "importantParts": [
+    ]
+  },
+  {
+    "id": 12,
+    "title": "New Water System Boosts Efficiency",
+    "text": "by Lev Turner\nA new water filtration facility opened yesterday in the Central District, offering a 30% efficiency improvement, according to Chief Engineer Wassermann.\nDuring a media tour, officials highlighted upgraded monitoring systems that track usage by residential block to optimize allocation within set quotas. When asked about last month’s outages in Sector 7, Director Kuznetsov cited necessary adjustments for “the greater collective benefit.”\nMaintenance is scheduled for next Tuesday, 2:00–6:00 AM. ",
+    "journalistId": 1,
+    "importantParts": [
+      {
+        "text": "A new water filtration facility opened yesterday in the Central District, offering a 30% efficiency improvement, according to Chief Engineer Wassermann.",
+        "tolerance": 3,
+        "lawIds": [1]
+      },
+      {
+        "text": "During a media tour, officials highlighted upgraded monitoring systems that track usage by residential block to optimize allocation within set quotas.",
+        "tolerance": 3,
+        "lawIds": [1]
+      }
+    ]
+  },
+
+
+
+
+
+
+  
+  {
+    "id": 13,
     "title": "Community Health Initiative Shows Promise",
     "text": "By Tetiana Moroz\nIn the eastern district of our capital, an innovative healthcare program is demonstrating that effective public medicine is possible despite system-wide challenges. The “Neighborhood Doctor” initiative, launched eight months ago, has already served over 3,000 residents who previously lacked reliable medical care. The program operates with transparent funding and fixed salaries for all staff, eliminating the incentive for under-the-table payments.\nPatient satisfaction rates have reached 87%, compared to the national average of 43% for public healthcare facilities.\nHealth Ministry spokesperson Paul Hoffman acknowledges the program's success: “We're watching this model closely. There are elements we hope to implement more broadly.”",
     "journalistId": 3,
@@ -171,7 +284,7 @@
     ]
   },
   {
-    "id": 7,
+    "id": 14,
     "title": "Medicine Shortages",
     "text": "By Tetiana Moroz\nCritical medications are increasingly unavailable in state pharmacies, forcing desperate patients to turn to underground networks where prices can be ten times higher than official rates.\n“My father needs insulin to survive,” says Alexander from Liefgrad. “The state pharmacy hasn't had any for two months. I buy it from a dealer who gets it from across the border. I pay 2,800 coins for what should cost 320.”\nA six-month investigation tracked 14 essential medications officially listed as “in stock” at state facilities. In reality, 11 were consistently unavailable, despite Ministry of Health records showing regular deliveries.\nFormer pharmacy technician Iryna M. (name changed for protection) revealed a systematic scheme: “Deliveries arrive, but medications are immediately diverted to private sellers connected to hospital administrators. Patients are told there are shortages, then directed to specific private pharmacies.”\nWhen presented with this evidence, Ministry officials promised an internal review.",
     "journalistId": 3,

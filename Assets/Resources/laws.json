@@ -17,6 +17,12 @@
       "isProhibition": true,
       "isActive": false,
       "text": "\n\n02 - LAW\nIt is prohibited to publish scandalous news without the prior approval of the designated Officer."
+    },
+    {
+      "id": 3,
+      "isProhibition": true,
+      "isActive": false,
+      "text": "\n\n03 - LAW\nIt is prohibited to expose class disparity."
     }
   ]
 }

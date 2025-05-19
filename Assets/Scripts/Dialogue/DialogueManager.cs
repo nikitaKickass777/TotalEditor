@@ -372,6 +372,7 @@ public class DialogueManager : MonoBehaviour
                     dialogueCompleted[9] = true;
                     GameManager.instance.uneditedArticles.Add(GameManager.instance.articleList.articles[5]);
                     GameManager.instance.lawList.laws[2].isActive = true;
+                    GameManager.instance.lawList.laws[3].isActive = true;
                     timeLeftDialogue = Time.time;
                     break;
                 }
@@ -386,6 +387,11 @@ public class DialogueManager : MonoBehaviour
                 {
                     ShowDialogue(10);
                     dialogueCompleted[10] = true;
+
+                    GameManager.instance.uneditedArticles.Add(GameManager.instance.articleList.articles[6]);
+                    GameManager.instance.uneditedArticles.Add(GameManager.instance.articleList.articles[7]);
+                    GameManager.instance.uneditedArticles.Add(GameManager.instance.articleList.articles[8]);
+                    GameManager.instance.uneditedArticles.Add(GameManager.instance.articleList.articles[9]);
                     break;
                 }
 
@@ -400,6 +406,12 @@ public class DialogueManager : MonoBehaviour
                 {
                     ShowDialogue(11);
                     dialogueCompleted[11] = true;
+                    
+
+                    GameManager.instance.uneditedArticles.Add(GameManager.instance.articleList.articles[6]);
+                    GameManager.instance.uneditedArticles.Add(GameManager.instance.articleList.articles[7]);
+                    GameManager.instance.uneditedArticles.Add(GameManager.instance.articleList.articles[8]);
+                    GameManager.instance.uneditedArticles.Add(GameManager.instance.articleList.articles[9]);
                     break;
                 }
 
@@ -415,6 +427,88 @@ public class DialogueManager : MonoBehaviour
                 {
                     ShowDialogue(12);
                     dialogueCompleted[12] = true;
+
+                    GameManager.instance.uneditedArticles.Add(GameManager.instance.articleList.articles[6]);
+                    GameManager.instance.uneditedArticles.Add(GameManager.instance.articleList.articles[7]);
+                    GameManager.instance.uneditedArticles.Add(GameManager.instance.articleList.articles[8]);
+                    GameManager.instance.uneditedArticles.Add(GameManager.instance.articleList.articles[9]);
+                    break;
+                }
+
+                if (!dialogueCompleted.ContainsKey(13)
+                    && GameManager.instance.articleList.articles[5].isEdited == true
+                    && GameManager.instance.articleList.articles[6].isEdited == true
+                    && GameManager.instance.articleList.articles[7].isEdited == true
+                    && GameManager.instance.articleList.articles[8].isEdited == true
+                    && GameManager.instance.articleList.articles[9].isEdited == true)
+                { 
+                    ShowDialogue(13);
+                    dialogueCompleted[13] = true;
+
+                    GameManager.instance.uneditedArticles.Add(GameManager.instance.articleList.articles[10]);
+                    break;
+                }
+
+                if (!dialogueCompleted.ContainsKey(14)
+                    && dialogueCompleted.ContainsKey(13)
+                    && GameManager.instance.articleList.articles[10].isEdited == true
+                    && choicesDictionary.ContainsKey("BeginTetianaOfficerTalk")
+                    && GameManager.instance.articleList.articles[5].isApproved == false)
+                {
+                    ShowDialogue(14);
+                    dialogueCompleted[14] = true;
+
+                    GameManager.instance.uneditedArticles.Add(GameManager.instance.articleList.articles[11]);
+                    GameManager.instance.uneditedArticles.Add(GameManager.instance.articleList.articles[12]);
+                    break;
+                }
+
+                if (!dialogueCompleted.ContainsKey(16)
+                    && !dialogueCompleted.ContainsKey(14)
+                    && dialogueCompleted.ContainsKey(13)
+                    && GameManager.instance.articleList.articles[10].isEdited == true
+                    && GameManager.instance.articleList.articles[5].isApproved == false)
+                {
+                    ShowDialogue(16);
+                    dialogueCompleted[16] = true;
+
+                    GameManager.instance.uneditedArticles.Add(GameManager.instance.articleList.articles[11]);
+                    GameManager.instance.uneditedArticles.Add(GameManager.instance.articleList.articles[12]);
+                    break;
+                }
+
+                if (!dialogueCompleted.ContainsKey(15)
+                    && !dialogueCompleted.ContainsKey(14)
+                    && dialogueCompleted.ContainsKey(13)
+                    && GameManager.instance.articleList.articles[10].isEdited == true
+                    && GameManager.instance.articleList.articles[5].isApproved == true)
+                {
+                    ShowDialogue(15);
+                    dialogueCompleted[15] = true;
+
+                    GameManager.instance.uneditedArticles.Add(GameManager.instance.articleList.articles[11]);
+                    GameManager.instance.uneditedArticles.Add(GameManager.instance.articleList.articles[12]);
+                    break;
+                }
+
+
+                if (!dialogueCompleted.ContainsKey(17)
+                    && GameManager.instance.articleList.articles[11].isEdited == true
+                    && GameManager.instance.articleList.articles[12].isEdited == true
+                    && GameManager.instance.articleList.articles[5].isApproved == true)
+                {
+                    ShowDialogue(17);
+                    dialogueCompleted[17] = true;
+                    break;
+                }
+
+                if (!dialogueCompleted.ContainsKey(18)
+                    && GameManager.instance.articleList.articles[11].isEdited == true
+                    && GameManager.instance.articleList.articles[12].isEdited == true
+                    && GameManager.instance.articleList.articles[5].isApproved == false)
+                {
+                    ShowDialogue(18);
+                    dialogueCompleted[18] = true;
                     break;
                 }
 
