@@ -237,7 +237,10 @@ public class EditingField : MonoBehaviour
         // Add markers
         foreach (var mark in markedSelections)
         {
-            string color = mark.lawId != -1 ? "red" : "yellow";
+            string color;
+            if(mark.lawId == -1) color = "yellow"; 
+            else if (GameManager.instance.lawList.laws[mark.lawId].isProhibition) color = "red";
+            else color = "green";
             inserts.Add((mark.startIndex, $"<color={color}>"));
             inserts.Add((mark.endIndex, "</color>"));
         }
