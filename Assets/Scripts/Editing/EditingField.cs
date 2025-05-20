@@ -21,8 +21,7 @@ public class EditingField : MonoBehaviour
     [SerializeField] private int selectionStart = -1;
     [SerializeField] private int selectionEnd = -1;
     [SerializeField] private bool isSelecting = false;
-    [SerializeField] private List<string> selectedTexts = new List<string>();
-    [SerializeField] private List<int> selectedLawIds = new List<int>();
+    [SerializeField] private List<MarkedSelection> markedSelections = new List<MarkedSelection>();
     [SerializeField] private bool lawInputFieldActive = false;
 
     private float repeatDelay = 0.4f; // Delay before repeat starts
@@ -31,13 +30,13 @@ public class EditingField : MonoBehaviour
     private bool keyHeld = false;
     private KeyCode lastKeyPressed;
     private bool fieldSelected = false;
-
+    
 
     public delegate void FieldSelectedDelegate(String text);
 
     public static event FieldSelectedDelegate OnTextSelected; // Event for field selection
 
-    public delegate void SubmitArticleDelagate(Article article, List<string> selectedText, List<int> selectedLaws,
+    public delegate void SubmitArticleDelagate(Article article, List<MarkedSelection> markedSelections,
         bool isRejected);
 
     public static event SubmitArticleDelagate OnArticleSubmitted; // Event for article submission
@@ -45,7 +44,7 @@ public class EditingField : MonoBehaviour
 
     void Start()
     {
-        
+
         ArticleEditorManager.OnArticleSelected += HandleArticleSelected;
         LawInputController.OnLawSubmitted += HandleLawSubmitted;
         SceneNavigator.OnSceneChange += HandleSceneChange;
@@ -55,21 +54,13 @@ public class EditingField : MonoBehaviour
             cursorIndex = EditingState.instance.cursorIndex;
             selectionStart = EditingState.instance.selectionStart;
             selectionEnd = EditingState.instance.selectionEnd;
-            selectedTexts = EditingState.instance.selectedTexts;
-            selectedLawIds = EditingState.instance.selectedLawIds;
+            markedSelections = EditingState.instance.markedSelections;
             lawInputFieldActive = EditingState.instance.lawInputFieldActive;
             originalText = currentArticle.text;
             title = currentArticle.title;
             textDisplay.text = originalText;
             titleText.text = title;
             Debug.Log("Loaded Saved State");
-            if (selectedTexts.Count != selectedLawIds.Count && lawInputFieldActive)
-            {
-                Debug.Log("Law input field active, but not all laws submitted");
-                Debug.Log("Selected texts: " + string.Join(", ", selectedTexts));
-                OnTextSelected?.Invoke(selectedTexts[selectedTexts.Count - 1]);
-                Debug.Log("Selected texts after invocation: " + string.Join(", ", selectedTexts));
-            }
         }
         else
         {
@@ -178,6 +169,7 @@ public class EditingField : MonoBehaviour
             return;
         }
 
+        int previousIndex = cursorIndex; // Save the current cursor position before moving
         if (vertical)
         {
             int currentLineIndex = textInfo.characterInfo[cursorIndex].lineNumber;
@@ -225,7 +217,7 @@ public class EditingField : MonoBehaviour
 
         if (isSelecting)
         {
-            if (selectionStart == -1) selectionStart = cursorIndex - 1;
+            if (selectionStart == -1) selectionStart = previousIndex;
 
             selectionEnd = cursorIndex;
         }
@@ -240,21 +232,29 @@ public class EditingField : MonoBehaviour
 
     void UpdateCursorDisplay()
     {
-        // Display cursor as a "|" symbol at the current index
         string updatedText = originalText;
-        
-        // Clamp cursorIndex to avoid out-of-bounds exceptions
-        cursorIndex = Mathf.Clamp(cursorIndex, 0, originalText.Length);
-        
+
+        foreach (var mark in markedSelections)
+        {
+            string color = mark.lawId != -1 ? "red" : "yellow";
+            string replacement = $"<color={color}>{mark.text}</color>";
+
+            updatedText = updatedText.Replace(mark.text, replacement);
+        }
+
+        cursorIndex = Mathf.Clamp(cursorIndex, 0, updatedText.Length);
+
         if (selectionStart != -1 && selectionEnd != -1)
         {
             int start = Mathf.Min(selectionStart, selectionEnd);
             int end = Mathf.Max(selectionStart, selectionEnd);
-            string before = originalText.Substring(0, start);
-            string selected = originalText.Substring(start, end - start);
-            string after = originalText.Substring(end);
+
+            string before = updatedText.Substring(0, start);
+            string selected = updatedText.Substring(start, end - start);
+            string after = updatedText.Substring(end);
             updatedText = before + "<color=yellow>" + selected + "</color>" + after;
-            int cursorUpdPos = cursorIndex + 14; // 14 is the length of the <color=yellow> tag
+
+            int cursorUpdPos = cursorIndex + 14;
             updatedText = updatedText.Insert(cursorUpdPos, "<color=red>|</color>");
         }
         else
@@ -262,9 +262,9 @@ public class EditingField : MonoBehaviour
             updatedText = updatedText.Insert(cursorIndex, "<color=red>|</color>");
         }
 
-
         textDisplay.text = updatedText;
     }
+
 
     void SaveMarkedText()
     {
@@ -274,16 +274,15 @@ public class EditingField : MonoBehaviour
 
         Debug.Log($"Marked text from {start} to {end} : " + selectedText);
 
-        // Temporarily: Ask for law input here (you can instead show a UI input field)
-        // This could trigger a UI element asking player to type the law
-        selectedTexts.Add(selectedText);
+        markedSelections.Add(new MarkedSelection(selectedText, -1));
         OnTextSelected?.Invoke(selectedText);
         lawInputFieldActive = true;
-        // Reset selection
+
         selectionStart = -1;
         selectionEnd = -1;
         UpdateCursorDisplay();
     }
+
 
     private bool IsPointerOverText()
     {
@@ -309,8 +308,7 @@ public class EditingField : MonoBehaviour
         selectionEnd = -1;
         if (currentArticle != EditingState.instance.currentArticle)
         {
-            selectedTexts.Clear();
-            selectedLawIds.Clear();
+            markedSelections.Clear();
         }
 
         return article;
@@ -319,9 +317,20 @@ public class EditingField : MonoBehaviour
     private void HandleLawSubmitted(string selectedText, int lawId)
     {
         Debug.Log($"Law submitted: {lawId} for text: {selectedText}");
-        selectedLawIds.Add(lawId);
+
+        foreach (var mark in markedSelections)
+        {
+            if (mark.text == selectedText)
+            {
+                mark.lawId = lawId;
+                break;
+            }
+        }
+
         lawInputFieldActive = false;
+        UpdateCursorDisplay();
     }
+
 
     private void HandleSceneChange(string sceneName)
     {
@@ -329,8 +338,7 @@ public class EditingField : MonoBehaviour
         EditingState.instance.cursorIndex = cursorIndex;
         EditingState.instance.selectionStart = selectionStart;
         EditingState.instance.selectionEnd = selectionEnd;
-        EditingState.instance.selectedTexts = new List<string>(selectedTexts);
-        EditingState.instance.selectedLawIds = new List<int>(selectedLawIds);
+        EditingState.instance.markedSelections = new List<MarkedSelection>(markedSelections);
         EditingState.instance.lawInputFieldActive = lawInputFieldActive;
 
         Debug.Log("Editor state saved");
@@ -342,7 +350,7 @@ public class EditingField : MonoBehaviour
         currentArticle.isEdited = true;
         GameManager.instance.uneditedArticles.Remove(currentArticle);
         Debug.Log("Article approved.");
-        OnArticleSubmitted?.Invoke(currentArticle, selectedTexts, selectedLawIds, false);
+        OnArticleSubmitted?.Invoke(currentArticle, markedSelections, false);
     }
 
     public void RejectArticle()
@@ -351,7 +359,7 @@ public class EditingField : MonoBehaviour
         currentArticle.isEdited = true;
         GameManager.instance.uneditedArticles.Remove(currentArticle);
         Debug.Log("Article rejected.");
-        OnArticleSubmitted?.Invoke(currentArticle, selectedTexts, selectedLawIds, true);
+        OnArticleSubmitted?.Invoke(currentArticle, markedSelections, true);
     }
 
     private void OnDestroy()

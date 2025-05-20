@@ -9,8 +9,7 @@ public class EditingState : MonoBehaviour
     public int cursorIndex;
     public int selectionStart;
     public int selectionEnd;
-    public List<string> selectedTexts = new List<string>();
-    public List<int> selectedLawIds = new List<int>();
+    [SerializeField] public List<MarkedSelection> markedSelections = new List<MarkedSelection>();
     public bool lawInputFieldActive;
     public static EditingState instance;
 
