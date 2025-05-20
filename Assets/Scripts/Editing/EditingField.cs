@@ -30,7 +30,7 @@ public class EditingField : MonoBehaviour
     private bool keyHeld = false;
     private KeyCode lastKeyPressed;
     private bool fieldSelected = false;
-    
+
 
     public delegate void FieldSelectedDelegate(String text);
 
@@ -44,7 +44,6 @@ public class EditingField : MonoBehaviour
 
     void Start()
     {
-
         ArticleEditorManager.OnArticleSelected += HandleArticleSelected;
         LawInputController.OnLawSubmitted += HandleLawSubmitted;
         SceneNavigator.OnSceneChange += HandleSceneChange;
@@ -232,37 +231,41 @@ public class EditingField : MonoBehaviour
 
     void UpdateCursorDisplay()
     {
-        string updatedText = originalText;
+        string raw = originalText;
+        List<(int index, string tag)> inserts = new List<(int, string)>();
 
+        // Add markers
         foreach (var mark in markedSelections)
         {
             string color = mark.lawId != -1 ? "red" : "yellow";
-            string replacement = $"<color={color}>{mark.text}</color>";
-
-            updatedText = updatedText.Replace(mark.text, replacement);
+            inserts.Add((mark.startIndex, $"<color={color}>"));
+            inserts.Add((mark.endIndex, "</color>"));
         }
 
-        cursorIndex = Mathf.Clamp(cursorIndex, 0, updatedText.Length);
-
+        // Add selection
         if (selectionStart != -1 && selectionEnd != -1)
         {
             int start = Mathf.Min(selectionStart, selectionEnd);
             int end = Mathf.Max(selectionStart, selectionEnd);
-
-            string before = updatedText.Substring(0, start);
-            string selected = updatedText.Substring(start, end - start);
-            string after = updatedText.Substring(end);
-            updatedText = before + "<color=yellow>" + selected + "</color>" + after;
-
-            int cursorUpdPos = cursorIndex + 14;
-            updatedText = updatedText.Insert(cursorUpdPos, "<color=red>|</color>");
+            inserts.Add((start, "<color=yellow>"));
+            inserts.Add((end, "</color>"));
         }
-        else
+
+        // Add cursor
+        inserts.Add((cursorIndex, "<color=red>|</color>"));
+
+        // Sort inserts in reverse order to not mess up indices
+        inserts.Sort((a, b) => b.index.CompareTo(a.index));
+
+        // Build final string
+        System.Text.StringBuilder sb = new System.Text.StringBuilder(raw);
+        foreach (var insert in inserts)
         {
-            updatedText = updatedText.Insert(cursorIndex, "<color=red>|</color>");
+            if (insert.index >= 0 && insert.index <= sb.Length)
+                sb.Insert(insert.index, insert.tag);
         }
 
-        textDisplay.text = updatedText;
+        textDisplay.text = sb.ToString();
     }
 
 
@@ -270,19 +273,28 @@ public class EditingField : MonoBehaviour
     {
         int start = Mathf.Min(selectionStart, selectionEnd);
         int end = Mathf.Max(selectionStart, selectionEnd);
-        string selectedText = originalText.Substring(start, end - start);
 
-        Debug.Log($"Marked text from {start} to {end} : " + selectedText);
+        // Prevent overlapping marks
+        foreach (var existing in markedSelections)
+        {
+            if (existing.startIndex == start && existing.endIndex == end)
+                return; // Already marked
+            if (existing.Overlaps(new MarkedSelection("", -1, start, end)))
+            {
+                Debug.LogWarning("Cannot mark overlapping text.");
+                return;
+            }
+        }
 
-        markedSelections.Add(new MarkedSelection(selectedText, -1));
-        OnTextSelected?.Invoke(selectedText);
+        markedSelections.Add(new MarkedSelection(originalText.Substring(start, end - start), -1, start, end));
+        OnTextSelected?.Invoke(originalText.Substring(start, end - start));
+
         lawInputFieldActive = true;
-
         selectionStart = -1;
         selectionEnd = -1;
+
         UpdateCursorDisplay();
     }
-
 
     private bool IsPointerOverText()
     {
