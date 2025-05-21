@@ -7,7 +7,7 @@ public class Clock : MonoBehaviour
     public Transform clockHandTransform;
     private float time;
     [SerializeField] private float speed = 1f;
-    private float endTime = 900f;
+    private float endTime = 9f;
     private bool hasShownEndOfDay = false;
     internal static object instance;
 
@@ -27,7 +27,7 @@ public class Clock : MonoBehaviour
                 hasShownEndOfDay = true;
                 time = 0f;
                 clockHandTransform.eulerAngles = new Vector3(0, 0, 180f);
-                GameManager.instance.ShowEndOfTheDay();
+                EndOfDayScreen.instance.ShowEndOfTheDay();
             }
         }
     }

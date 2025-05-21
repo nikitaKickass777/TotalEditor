@@ -50,8 +50,11 @@ public class ArticleEditorManager : MonoBehaviour
         }
     }
     
-    private void HandleArticleSubmitted(Article article, List<string> selectedText, List<int> selectedLaws, bool isRejected)
+    private void HandleArticleSubmitted(Article article, List<MarkedSelection> markedSelections, bool isRejected)
 {
+    List<string> selectedText = markedSelections.Select(m => m.text).ToList();
+    List<int> selectedLaws = markedSelections.Select(m => m.lawId).ToList();
+    
     Debug.Log($"Article submitted: {article.title}");
     Debug.Log($"Selected text: {string.Join(", ", selectedText)}");
     Debug.Log($"Selected laws: {string.Join(", ", selectedLaws)}");

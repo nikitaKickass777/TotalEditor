@@ -21,8 +21,7 @@ public class EditingField : MonoBehaviour
     [SerializeField] private int selectionStart = -1;
     [SerializeField] private int selectionEnd = -1;
     [SerializeField] private bool isSelecting = false;
-    [SerializeField] private List<string> selectedTexts = new List<string>();
-    [SerializeField] private List<int> selectedLawIds = new List<int>();
+    [SerializeField] private List<MarkedSelection> markedSelections = new List<MarkedSelection>();
     [SerializeField] private bool lawInputFieldActive = false;
 
     private float repeatDelay = 0.4f; // Delay before repeat starts
@@ -37,7 +36,7 @@ public class EditingField : MonoBehaviour
 
     public static event FieldSelectedDelegate OnTextSelected; // Event for field selection
 
-    public delegate void SubmitArticleDelagate(Article article, List<string> selectedText, List<int> selectedLaws,
+    public delegate void SubmitArticleDelagate(Article article, List<MarkedSelection> markedSelections,
         bool isRejected);
 
     public static event SubmitArticleDelagate OnArticleSubmitted; // Event for article submission
@@ -45,7 +44,6 @@ public class EditingField : MonoBehaviour
 
     void Start()
     {
-        
         ArticleEditorManager.OnArticleSelected += HandleArticleSelected;
         LawInputController.OnLawSubmitted += HandleLawSubmitted;
         SceneNavigator.OnSceneChange += HandleSceneChange;
@@ -55,21 +53,13 @@ public class EditingField : MonoBehaviour
             cursorIndex = EditingState.instance.cursorIndex;
             selectionStart = EditingState.instance.selectionStart;
             selectionEnd = EditingState.instance.selectionEnd;
-            selectedTexts = EditingState.instance.selectedTexts;
-            selectedLawIds = EditingState.instance.selectedLawIds;
+            markedSelections = EditingState.instance.markedSelections;
             lawInputFieldActive = EditingState.instance.lawInputFieldActive;
             originalText = currentArticle.text;
             title = currentArticle.title;
             textDisplay.text = originalText;
             titleText.text = title;
             Debug.Log("Loaded Saved State");
-            if (selectedTexts.Count != selectedLawIds.Count && lawInputFieldActive)
-            {
-                Debug.Log("Law input field active, but not all laws submitted");
-                Debug.Log("Selected texts: " + string.Join(", ", selectedTexts));
-                OnTextSelected?.Invoke(selectedTexts[selectedTexts.Count - 1]);
-                Debug.Log("Selected texts after invocation: " + string.Join(", ", selectedTexts));
-            }
         }
         else
         {
@@ -178,6 +168,7 @@ public class EditingField : MonoBehaviour
             return;
         }
 
+        int previousIndex = cursorIndex; // Save the current cursor position before moving
         if (vertical)
         {
             int currentLineIndex = textInfo.characterInfo[cursorIndex].lineNumber;
@@ -225,7 +216,7 @@ public class EditingField : MonoBehaviour
 
         if (isSelecting)
         {
-            if (selectionStart == -1) selectionStart = cursorIndex - 1;
+            if (selectionStart == -1) selectionStart = previousIndex;
 
             selectionEnd = cursorIndex;
         }
@@ -240,48 +231,71 @@ public class EditingField : MonoBehaviour
 
     void UpdateCursorDisplay()
     {
-        // Display cursor as a "|" symbol at the current index
-        string updatedText = originalText;
-        
-        // Clamp cursorIndex to avoid out-of-bounds exceptions
-        cursorIndex = Mathf.Clamp(cursorIndex, 0, originalText.Length);
-        
+        string raw = originalText;
+        List<(int index, string tag)> inserts = new List<(int, string)>();
+
+        // Add markers
+        foreach (var mark in markedSelections)
+        {
+            string color;
+            if(mark.lawId == -1) color = "yellow"; 
+            else if (GameManager.instance.lawList.laws[mark.lawId].isProhibition) color = "red";
+            else color = "green";
+            inserts.Add((mark.startIndex, $"<color={color}>"));
+            inserts.Add((mark.endIndex, "</color>"));
+        }
+
+        // Add selection
         if (selectionStart != -1 && selectionEnd != -1)
         {
             int start = Mathf.Min(selectionStart, selectionEnd);
             int end = Mathf.Max(selectionStart, selectionEnd);
-            string before = originalText.Substring(0, start);
-            string selected = originalText.Substring(start, end - start);
-            string after = originalText.Substring(end);
-            updatedText = before + "<color=yellow>" + selected + "</color>" + after;
-            int cursorUpdPos = cursorIndex + 14; // 14 is the length of the <color=yellow> tag
-            updatedText = updatedText.Insert(cursorUpdPos, "<color=red>|</color>");
+            inserts.Add((start, "<color=yellow>"));
+            inserts.Add((end, "</color>"));
         }
-        else
+
+        // Add cursor
+        inserts.Add((cursorIndex, "<color=red>|</color>"));
+
+        // Sort inserts in reverse order to not mess up indices
+        inserts.Sort((a, b) => b.index.CompareTo(a.index));
+
+        // Build final string
+        System.Text.StringBuilder sb = new System.Text.StringBuilder(raw);
+        foreach (var insert in inserts)
         {
-            updatedText = updatedText.Insert(cursorIndex, "<color=red>|</color>");
+            if (insert.index >= 0 && insert.index <= sb.Length)
+                sb.Insert(insert.index, insert.tag);
         }
 
-
-        textDisplay.text = updatedText;
+        textDisplay.text = sb.ToString();
     }
+
 
     void SaveMarkedText()
     {
         int start = Mathf.Min(selectionStart, selectionEnd);
         int end = Mathf.Max(selectionStart, selectionEnd);
-        string selectedText = originalText.Substring(start, end - start);
 
-        Debug.Log($"Marked text from {start} to {end} : " + selectedText);
+        // Prevent overlapping marks
+        foreach (var existing in markedSelections)
+        {
+            if (existing.startIndex == start && existing.endIndex == end)
+                return; // Already marked
+            if (existing.Overlaps(new MarkedSelection("", -1, start, end)))
+            {
+                Debug.LogWarning("Cannot mark overlapping text.");
+                return;
+            }
+        }
 
-        // Temporarily: Ask for law input here (you can instead show a UI input field)
-        // This could trigger a UI element asking player to type the law
-        selectedTexts.Add(selectedText);
-        OnTextSelected?.Invoke(selectedText);
+        markedSelections.Add(new MarkedSelection(originalText.Substring(start, end - start), -1, start, end));
+        OnTextSelected?.Invoke(originalText.Substring(start, end - start));
+
         lawInputFieldActive = true;
-        // Reset selection
         selectionStart = -1;
         selectionEnd = -1;
+
         UpdateCursorDisplay();
     }
 
@@ -309,8 +323,7 @@ public class EditingField : MonoBehaviour
         selectionEnd = -1;
         if (currentArticle != EditingState.instance.currentArticle)
         {
-            selectedTexts.Clear();
-            selectedLawIds.Clear();
+            markedSelections.Clear();
         }
 
         return article;
@@ -319,9 +332,20 @@ public class EditingField : MonoBehaviour
     private void HandleLawSubmitted(string selectedText, int lawId)
     {
         Debug.Log($"Law submitted: {lawId} for text: {selectedText}");
-        selectedLawIds.Add(lawId);
+
+        foreach (var mark in markedSelections)
+        {
+            if (mark.text == selectedText)
+            {
+                mark.lawId = lawId;
+                break;
+            }
+        }
+
         lawInputFieldActive = false;
+        UpdateCursorDisplay();
     }
+
 
     private void HandleSceneChange(string sceneName)
     {
@@ -329,8 +353,7 @@ public class EditingField : MonoBehaviour
         EditingState.instance.cursorIndex = cursorIndex;
         EditingState.instance.selectionStart = selectionStart;
         EditingState.instance.selectionEnd = selectionEnd;
-        EditingState.instance.selectedTexts = new List<string>(selectedTexts);
-        EditingState.instance.selectedLawIds = new List<int>(selectedLawIds);
+        EditingState.instance.markedSelections = new List<MarkedSelection>(markedSelections);
         EditingState.instance.lawInputFieldActive = lawInputFieldActive;
 
         Debug.Log("Editor state saved");
@@ -342,7 +365,7 @@ public class EditingField : MonoBehaviour
         currentArticle.isEdited = true;
         GameManager.instance.uneditedArticles.Remove(currentArticle);
         Debug.Log("Article approved.");
-        OnArticleSubmitted?.Invoke(currentArticle, selectedTexts, selectedLawIds, false);
+        OnArticleSubmitted?.Invoke(currentArticle, markedSelections, false);
     }
 
     public void RejectArticle()
@@ -351,7 +374,7 @@ public class EditingField : MonoBehaviour
         currentArticle.isEdited = true;
         GameManager.instance.uneditedArticles.Remove(currentArticle);
         Debug.Log("Article rejected.");
-        OnArticleSubmitted?.Invoke(currentArticle, selectedTexts, selectedLawIds, true);
+        OnArticleSubmitted?.Invoke(currentArticle, markedSelections, true);
     }
 
     private void OnDestroy()
