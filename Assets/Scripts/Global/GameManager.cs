@@ -21,7 +21,6 @@ public class GameManager : MonoBehaviour
    public ArticleList articleList; // array of articles
    public static GameManager instance;
    public List<Article> uneditedArticles = new List<Article>();
-   public GameObject EndOfTheDayTemplate;
    public bool isEndOfTheDayOpen;
    public TextMeshProUGUI endOfDayText;
    
@@ -151,40 +150,6 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void ShowEndOfTheDay()
-    {
-        isEndOfTheDayOpen = true;
-        Time.timeScale = 0;
-        // isDialogueOpen = true;
-        EndOfTheDayTemplate.SetActive(true); // this thing makes dialogue box appear
-
-        endOfDayText.text =
-            "Results of the Day " + day + "\n" +
-            "Earnings: $" + money + "\n";
-            
-    }
-
-    public void HideEndOfTheDay()
-    {
-        print("End of the day closed");
-
-        isEndOfTheDayOpen = false;
-        EndOfTheDayTemplate.SetActive(false);
-        Clock clockInstance = FindObjectOfType<Clock>();
-        if (clockInstance != null)
-        {
-            clockInstance.ResetClock();
-        }
-        else
-        {
-            Debug.LogError("Clock instance not found!");
-        }
-        time = 0;
-        day += 1;
-        Time.timeScale = 1;
-        Debug.Log("Saving game data...");
-        PersistenceManager.instance.SaveData();
-        
-    }
+   
 }
 

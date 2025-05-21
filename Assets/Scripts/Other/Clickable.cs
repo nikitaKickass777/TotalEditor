@@ -19,8 +19,7 @@ public class Clickable : MonoBehaviour
 
     private void OnMouseEnter()
     {
-        if (DialogueManager.instance.isDialogueOpen || GameManager.instance.isEndOfTheDayOpen || Menu.isPaused) return;
-        
+        if (shouldBeInactive()) return;        
         Debug.Log("Mouse Enter");
         transform.localScale = new Vector3(1.1f, 1.1f, 1.0f);
         spriteRenderer.color = Color.HSVToRGB(0,0,60);
@@ -29,8 +28,7 @@ public class Clickable : MonoBehaviour
     }
     private void OnMouseExit()
     {
-        if (DialogueManager.instance.isDialogueOpen || GameManager.instance.isEndOfTheDayOpen || Menu.isPaused) return;
-        
+        if (shouldBeInactive()) return;        
         Debug.Log("Mouse Exit");
         transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
         spriteRenderer.color = Color.HSVToRGB(0,0,100);
@@ -43,9 +41,17 @@ public class Clickable : MonoBehaviour
 
     private void OnMouseUp()
     {
-        if (DialogueManager.instance.isDialogueOpen || GameManager.instance.isEndOfTheDayOpen || Menu.isPaused) return;
+        if (shouldBeInactive()) return;
 
         UnityEngine.SceneManagement.SceneManager.LoadScene(sceneName);
+    }
+    private bool shouldBeInactive()
+    {
+        if (DialogueManager.instance.isDialogueOpen ||
+            GameManager.instance.isEndOfTheDayOpen ||
+            Menu.isPaused ||
+            EndOfDayScreen.instance.isOpen) return true;
+        return false;
     }
 
     // Update is called once per frame

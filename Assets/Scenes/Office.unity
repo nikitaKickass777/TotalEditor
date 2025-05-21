@@ -1372,7 +1372,7 @@ GameObject:
   - component: {fileID: 496686202}
   - component: {fileID: 496686201}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: EndOfTheDayTitleText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2039,6 +2039,55 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &834972096
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 834972097}
+  - component: {fileID: 834972098}
+  m_Layer: 0
+  m_Name: EndOfTheDayManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &834972097
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 834972096}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1067.1626, y: 226.01096, z: -5.2759385}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1344227615}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &834972098
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 834972096}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 772fa2fe8ed448a298205b027c39936c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canvas: {fileID: 1344227611}
+  titleTMP: {fileID: 496686201}
+  bodyTMP: {fileID: 1122620005}
+  isOpen: 0
 --- !u!1 &836191916
 GameObject:
   m_ObjectHideFlags: 0
@@ -2463,7 +2512,7 @@ GameObject:
   - component: {fileID: 1122620006}
   - component: {fileID: 1122620005}
   m_Layer: 5
-  m_Name: BodyText
+  m_Name: EndOfTheDayBodyText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2946,14 +2995,13 @@ GameObject:
   - component: {fileID: 1344227614}
   - component: {fileID: 1344227613}
   - component: {fileID: 1344227612}
-  - component: {fileID: 1344227616}
   m_Layer: 5
   m_Name: EndOfTheDayCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1344227612
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3033,25 +3081,13 @@ RectTransform:
   - {fileID: 496686200}
   - {fileID: 1122620004}
   - {fileID: 1960830089}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 834972097}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &1344227616
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1344227611}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3fc6c685859a7dc47b3a9ce68ede9b1b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1382927751
 GameObject:
   m_ObjectHideFlags: 0
@@ -5576,8 +5612,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2144342773}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+      - m_Target: {fileID: 834972098}
+        m_TargetAssemblyTypeName: EndOfDayScreen, Assembly-CSharp
         m_MethodName: HideEndOfTheDay
         m_Mode: 1
         m_Arguments:
@@ -5879,7 +5915,6 @@ MonoBehaviour:
   articleList:
     articles: []
   uneditedArticles: []
-  EndOfTheDayTemplate: {fileID: 1344227611}
   isEndOfTheDayOpen: 0
   endOfDayText: {fileID: 496686201}
 --- !u!1660057539 &9223372036854775807
@@ -5892,8 +5927,8 @@ SceneRoots:
   - {fileID: 452737396}
   - {fileID: 1112807267}
   - {fileID: 1889635731}
-  - {fileID: 1344227615}
   - {fileID: 1502231671}
+  - {fileID: 834972097}
   - {fileID: 1808502171}
   - {fileID: 194296564}
   - {fileID: 796351675}
