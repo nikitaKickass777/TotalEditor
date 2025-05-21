@@ -285,7 +285,7 @@ public class DialogueManager : MonoBehaviour
         switch (day)
         {
             case 1:
-
+                // DAY 1 (Tutorial) - laws 0,1
                 if (!dialogueCompleted.ContainsKey(0))
                 {
                     ShowDialogue(0);
@@ -352,6 +352,9 @@ public class DialogueManager : MonoBehaviour
                     dialogueCompleted[7] = true;
                     break;
                 }
+
+                // DAY 2 (Tetiana + Lev + Officer) - laws 0,1,2,3
+
                 if (!dialogueCompleted.ContainsKey(8)
                     && dialogueCompleted.ContainsKey(7))
                 {
@@ -491,7 +494,7 @@ public class DialogueManager : MonoBehaviour
                     break;
                 }
 
-
+                // DAY 3 (Dialogue with Abraham) - laws 0,1,2,3,4
                 if (!dialogueCompleted.ContainsKey(17)
                     && GameManager.instance.articleList.articles[11].isEdited == true
                     && GameManager.instance.articleList.articles[12].isEdited == true
@@ -499,6 +502,11 @@ public class DialogueManager : MonoBehaviour
                 {
                     ShowDialogue(17);
                     dialogueCompleted[17] = true;
+
+                    GameManager.instance.lawList.laws[4].isActive = true;
+                    GameManager.instance.uneditedArticles.Add(GameManager.instance.articleList.articles[13]);
+                    GameManager.instance.uneditedArticles.Add(GameManager.instance.articleList.articles[14]);
+                    GameManager.instance.uneditedArticles.Add(GameManager.instance.articleList.articles[15]);
                     break;
                 }
 
@@ -509,9 +517,130 @@ public class DialogueManager : MonoBehaviour
                 {
                     ShowDialogue(18);
                     dialogueCompleted[18] = true;
+
+                    GameManager.instance.uneditedArticles.Add(GameManager.instance.articleList.articles[13]);
+                    GameManager.instance.uneditedArticles.Add(GameManager.instance.articleList.articles[14]);
+                    GameManager.instance.uneditedArticles.Add(GameManager.instance.articleList.articles[15]);
                     break;
                 }
 
+                if (!dialogueCompleted.ContainsKey(19)
+                    && GameManager.instance.articleList.articles[13].isEdited == true
+                    && GameManager.instance.articleList.articles[14].isEdited == true
+                    && GameManager.instance.articleList.articles[15].isEdited == true)
+                {
+                    ShowDialogue(19);
+                    dialogueCompleted[19] = true;
+
+                    GameManager.instance.uneditedArticles.Add(GameManager.instance.articleList.articles[16]);
+                    GameManager.instance.uneditedArticles.Add(GameManager.instance.articleList.articles[17]);
+                    break;
+                }
+
+                if (!dialogueCompleted.ContainsKey(20)
+                    && GameManager.instance.articleList.articles[16].isEdited == true
+                    && GameManager.instance.articleList.articles[17].isEdited == true)
+                {
+                    ShowDialogue(20);
+                    dialogueCompleted[20] = true;
+                    break;
+                }
+
+                if (dialogueCompleted.ContainsKey(20)
+                    && !dialogueCompleted.ContainsKey(21))
+                {
+                    ShowDialogue(21);
+                    dialogueCompleted[21] = true;
+                    break;
+                }
+
+                if (dialogueCompleted.ContainsKey(21)
+                    && !dialogueCompleted.ContainsKey(22))
+                {
+                    ShowDialogue(22);
+                    dialogueCompleted[22] = true;
+                    break;
+                }
+                
+                if (dialogueCompleted.ContainsKey(22)
+                    && !dialogueCompleted.ContainsKey(23))
+                {
+                    ShowDialogue(23);
+                    dialogueCompleted[23] = true;
+                    break;
+                }
+
+                if (dialogueCompleted.ContainsKey(23)
+                    && !dialogueCompleted.ContainsKey(24))
+                {
+                    ShowDialogue(24);
+                    dialogueCompleted[24] = true;
+                    break;
+                }
+
+                if (dialogueCompleted.ContainsKey(24)
+                    && !dialogueCompleted.ContainsKey(25))
+                {
+                    ShowDialogue(25);
+                    dialogueCompleted[25] = true;
+                    break;
+                }
+
+                if (dialogueCompleted.ContainsKey(25)
+                    && !dialogueCompleted.ContainsKey(26))
+                {
+                    ShowDialogue(26);
+                    dialogueCompleted[26] = true;
+                    break;
+                }
+
+                if (dialogueCompleted.ContainsKey(26)
+                    && !dialogueCompleted.ContainsKey(27))
+                {
+                    ShowDialogue(27);
+                    dialogueCompleted[27] = true;
+                    break;
+                }
+
+                if (dialogueCompleted.ContainsKey(27)
+                    && !dialogueCompleted.ContainsKey(28))
+                {
+                    ShowDialogue(28);
+                    dialogueCompleted[28] = true;
+                    break;
+                }
+
+                if (dialogueCompleted.ContainsKey(28)
+                    && !dialogueCompleted.ContainsKey(29))
+                {
+                    ShowDialogue(29);
+                    dialogueCompleted[29] = true;
+                    break;
+                }
+
+                if (dialogueCompleted.ContainsKey(29)
+                    && !dialogueCompleted.ContainsKey(30))
+                {
+                    ShowDialogue(30);
+                    dialogueCompleted[30] = true;
+                    break;
+                }
+
+                if (dialogueCompleted.ContainsKey(30)
+                    && !dialogueCompleted.ContainsKey(31))
+                {
+                    ShowDialogue(31);
+                    dialogueCompleted[31] = true;
+                    break;
+                }
+
+                if (dialogueCompleted.ContainsKey(31)
+                    && !dialogueCompleted.ContainsKey(32))
+                {
+                    ShowDialogue(32);
+                    dialogueCompleted[32] = true;
+                    break;
+                }
 
                 // if (GameManager.instance.time > 10
                 //     && !choicesDictionary.ContainsKey("testComeLater")

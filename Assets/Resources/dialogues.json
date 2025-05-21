@@ -1790,37 +1790,421 @@
       }
     ]
   },
-    {
+      {
       "dialogueId": 19,
-      "dialogueName": "Friendly 2nd Dialogue with Tetiana after her 2nd article",
-      "characterId": 2,
+      "dialogueName": "Lev Turner D",
+      "characterId": 1,
       "lines": [
         {
           "lineId": 0,
-          "lineText": "Hello! Thank you that you approved my last articles. It is very important for me.",
+          "lineText": "Hello! Just want to say that now I am checking the laws more often, so my articles must be more accurate.",
           "hasOptions": true,
           "options": [
             {
               "optionId": 0,
               "nextLineId": 1,
-              "optionText": "Hello Tetiana! I need to have serious talk with you."
+              "optionText": "Hello! Good job, Lev!"
             }
           ]
         },
         {
           "lineId": 1,
-          "lineText": "Yes, I am listening.",
+          "lineText": "But I've been thinking about our coverage lately. Do you ever feel... constrained in what we can publish?",
           "hasOptions": true,
           "options": [
             {
               "optionId": 0,
               "nextLineId": 2,
-              "optionText": "I reviewed it carefully. There were statistics, testimonies..."
+              "optionText": "What do you mean exactly?"
             },
             {
               "optionId": 0,
               "nextLineId": 2,
-              "optionText": "I reviewed it carefully. There were statistics, testimonies..."
+              "optionText": "No, what are you talking about?"
+            }
+          ]
+        },
+        {
+          "lineId": 2,
+          "lineText": "You know, when the government makes laws, it must ensure that they are fair for everyone. But sometimes, it feels like we cannot write what is really happening. Some important details are always omitted because of these laws. Do you ever feel that way?",
+          "hasOptions": true,
+          "options": [
+            {
+              "optionId": 0,
+              "nextLineId": 3,
+              "optionText": "True. But what can we do about it?"
+            },
+            {
+              "optionId": 0,
+              "nextLineId": 4,
+              "optionText": "Laws should not be fair for everyone. They should be fair for the collective."
+            }
+          ]
+        },
+        {
+          "lineId": 3,
+          "lineText": "Hm, I was just wondering, if someone wanted to write ignoring those constraints, what might happen to them?",
+          "hasOptions": true,
+          "options": [
+            {
+              "optionId": 0,
+              "nextLineId": 5,
+              "optionText": "I think, first a warning, then a fine, maybe even jail. Depends"
+            }
+          ]
+        },
+        {
+          "lineId": 4,
+          "lineText": "I see.. Well, hypothetically speaking, if someone wanted to report without those constraints, what might happen to them?",
+          "hasOptions": true,
+          "options": [
+            {
+              "optionId": 0,
+              "nextLineId": 5,
+              "optionText": "I think, first a warning, then a fine, maybe even jail. Depends"
+            }
+          ]
+        },
+        {
+          "lineId": 5,
+          "lineText": "Interesting... Perhaps we could discuss more sometime. Away from the office. Anyway, I should get back to writing.",
+          "hasOptions": true,
+          "options": [
+            {
+              "optionId": 0,
+              "optionText": "Take care, Lev!"
+            },
+            {
+              "optionId": 1,
+              "optionText": "Throw such ideas away. You are a journalist, not a rebel."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "dialogueId": 20,
+      "dialogueName": "Abraham about his success",
+      "characterId": 3,
+      "lines": [
+        {
+          "lineId": 0,
+          "lineText": "Haha, Editor! Have you witnessed my success?",
+          "hasOptions": true,
+          "options": [
+            {
+              "optionId": 0,
+              "nextLineId": 1,
+              "optionText": "Abraham! Your idea of introducing political education and leadership programs?"
+            }
+          ]
+        },
+        {
+          "lineId": 1,
+          "lineText": "Yes!!!",
+          "hasOptions": true,
+          "options": [
+            {
+              "optionId": 0,
+              "nextLineId": 2,
+              "optionText": "It is so cool! I am so proud of you!"
+            }
+          ]
+        },
+        {
+          "lineId": 2,
+          "lineText": "Thank you Editor! Thank you for publishing my thoughts!!",
+          "hasOptions": true,
+          "options": [
+            {
+              "optionId": 0,
+              "nextLineId": 3,
+              "optionText": "Now you can influence the future of our country!"
+            }
+          ]
+        },
+        {
+          "lineId": 3,
+          "lineText": "Naaaah!",
+          "hasOptions": true,
+          "options": [
+            {
+              "optionId": 0,
+              "nextLineId": 4,
+              "optionText": "But childeren are our future! And you are basically their teacher of such important topic now!"
+            }
+          ]
+        },
+        {
+          "lineId": 4,
+          "lineText": "That's true! I have so many ideas for their program!! Many lessons of our nation's great history! I want to teach them about our values, and how to be a truly good citizen.",
+          "hasOptions": true,
+          "options": [
+            {
+              "optionId": 0,
+              "nextLineId": 5,
+              "optionText": "It is a great plan Abraham!"
+            },
+            {
+              "optionId": 0,
+              "nextLineId": 6,
+              "optionText": "Just do not teach them to blindly love our country"
+            }
+          ]
+        },
+        {
+          "lineId": 5,
+          "lineText": "I am so-so exited!!",
+          "hasOptions": false
+        },
+        {
+          "lineId": 6,
+          "lineText": "What do you mean? There is great history behind, the heroic deeds of our ancestors...",
+          "hasOptions": true,
+          "options": [
+            {
+              "optionId": 0,
+              "optionText": "Yes, but what about the crimes of current government?"
+            },
+            {
+              "optionId": 1,
+              "optionText": "Sorry, you are right"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "dialogueId": 21,
+      "dialogueName": "Margaret father",
+      "characterId": 0,
+      "lines": [
+        {
+          "lineId": 0,
+          "lineText": "Editor! What should I do!?",
+          "hasOptions": false
+        }
+      ]
+    },
+    {
+      "dialogueId": 22,
+      "dialogueName": "Abraham Margaret father",
+      "characterId": 3,
+      "lines": [
+        {
+          "lineId": 0,
+          "lineText": "Margaret! What happened?? You look really pale",
+          "hasOptions": false
+        }
+      ]
+    },
+    {
+      "dialogueId": 23,
+      "dialogueName": "Margaret father2",
+      "characterId": 0,
+      "lines": [
+        {
+          "lineId": 0,
+          "nextLineId": 1,
+          "lineText": "My father...",
+          "hasOptions": false
+        },
+        {
+          "lineId": 1,
+          "lineText": "My dad was hit by a car!",
+          "hasOptions": true,
+          "options": [
+            {
+              "optionId": 0,
+              "nextLineId": 2,
+              "optionText": "What? Is he ok?"
+            }
+          ]
+        },
+        {
+          "lineId": 2,
+          "lineText": "He... he is in hospital now",
+          "hasOptions": false
+        }
+      ]
+    },    
+    {
+      "dialogueId": 24,
+      "dialogueName": "Abraham Margaret father2",
+      "characterId": 3,
+      "lines": [
+        {
+          "lineId": 0,
+          "lineText": "Is he in serious condition? Does he need surgery? We can help if there is anything you need!",
+          "hasOptions": true,
+          "options": [
+            {
+              "optionId": 0,
+              "optionText": "True! Just do not stress yourself too much"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "dialogueId": 25,
+      "dialogueName": "Margaret father3",
+      "characterId": 0,
+      "lines": [
+        {
+          "lineId": 0,
+          "nextLineId": 1,
+          "lineText": "He is ok... More or less... The main problem is that the one who hit him is minister's rich child!! Son of Hoffman!",
+          "hasOptions": false
+        },
+        {
+          "lineId": 1,
+          "nextLineId": 2,
+          "lineText": "A spoiled rich kid!! He won't be punished because he paid his way out of it! I hate this so much!",
+          "hasOptions": false
+        },
+        {
+          "lineId": 2,
+          "lineText": "Why do people like him get so much money? It affects them in the worst ways — it'd be so much better to give that money to the poor!! Why all of this is happening to my family???",
+          "hasOptions": false
+        }
+      ]
+    },    
+    {
+      "dialogueId": 26,
+      "dialogueName": "Abraham Margaret father3",
+      "characterId": 3,
+      "lines": [
+        {
+          "lineId": 0,
+          "lineText": "No way! Hoffman?? Health Minister? He can't be involved in this!",
+          "hasOptions": true,
+          "options": [
+            {
+              "optionId": 0,
+              "optionText": "Can't agree here..."
+            },
+            {
+              "optionId": 1,
+              "optionText": "I fully agree!!"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "dialogueId": 27,
+      "dialogueName": "Margaret father4",
+      "characterId": 0,
+      "lines": [
+        {
+          "lineId": 0,
+          "lineText": "But he is!! He is involved in this! His son did this to my father! And Hoffman is the one who said to the media that my father deliberately stepped in front of the car to get their money!!",
+          "hasOptions": false
+        }
+      ]
+    },  
+    {
+      "dialogueId": 28,
+      "dialogueName": "Abraham Margaret father4",
+      "characterId": 3,
+      "lines": [
+        {
+          "lineId": 0,
+          "lineText": "Well, of course, he would say that! He is the father first of all! He must protect his son!",
+          "hasOptions": true,
+          "options": [
+            {
+              "optionId": 0,
+              "optionText": "Abraham, stop it! His son is a criminal!"
+            },
+            {
+              "optionId": 1,
+              "optionText": "That's true Margaret"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "dialogueId": 29,
+      "dialogueName": "Margaret father5",
+      "characterId": 0,
+      "lines": [
+        {
+          "lineId": 0,
+          "nextLineId": 1,
+          "lineText": "Why is he blaming my father then?? The only thing what Hoffman protects is his own ass! He is a coward! He is a liar! He is also a criminal!",
+          "hasOptions": false
+        },
+        {
+          "lineId": 1,
+          "lineText": "Now the police is demanding my dad to pay a huge fine, or they will put him in a jail!",
+          "hasOptions": true,
+          "options": [
+            {
+              "optionId": 0,
+              "optionText": "We must write about it! But the laws..."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "dialogueId": 30,
+      "dialogueName": "Abraham Margaret father5",
+      "characterId": 3,
+      "lines": [
+        {
+          "lineId": 0,
+          "nextLineId": 1,
+          "lineText": "So this is how it is...",
+          "hasOptions": false
+        },
+        {
+          "lineId": 1,
+          "lineText": "I will write the article about it",
+          "hasOptions": false
+        }
+      ]
+    },
+    {
+      "dialogueId": 31,
+      "dialogueName": "Margaret father6",
+      "characterId": 0,
+      "lines": [
+        {
+          "lineId": 0,
+          "nextLineId": 1,
+          "lineText": "Abraham...",
+          "hasOptions": false
+        },
+        {
+          "lineId": 1,
+          "nextLineId": 2,
+          "lineText": "No",
+          "hasOptions": false
+        },
+        {
+          "lineId": 2,
+          "lineText": "Then for sure your program for students, that you wrote about, will be cancelled! And this is the best scenario! I will be the author of the article!",
+          "hasOptions": false
+        }
+      ]
+    },
+    {
+      "dialogueId": 32,
+      "dialogueName": "Abraham Margaret father6",
+      "characterId": 3,
+      "lines": [
+        {
+          "lineId": 0,
+          "lineText": "You can't write the article, I do not want you to be in jail! You are a woman, you have a role in society - be a mother. I do not want you to be in trouble!",
+          "hasOptions": true,
+          "options": [
+            {
+              "optionId": 0,
+              "optionText": "Stop the heroism! The only thing we need to do to make the article legal is to ask for approval of our Officer!"
             }
           ]
         }

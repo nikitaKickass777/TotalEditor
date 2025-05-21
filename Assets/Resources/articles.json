@@ -98,7 +98,7 @@
     "id": 5,
     "title": "The Cost of Survival",
     "text": "By Tetiana Moroz\nAt the central municipal hospital, a silent crisis unfolds, where access to medical care is determined not by need but by one's ability to pay. Maria Kovalenko, a 42-year-old single mother, is just one example of many. Her son requires a complex surgery costing 75,000 coins — more than three years of her salary. When she approached the hospital administrators for help, she was told the surgery was “technically impossible”.\nAn investigation by journalists has uncovered a disturbing trend. Of 237 complex surgeries scheduled over the last six months, 62% were performed on patients who could provide “additional financial support” — a euphemism for bribes. A medical professional, who spoke anonymously, confirmed the existence of this system, stating, “Some treatments are simply... impractical for certain patients.”\nDespite the evidence, local police have failed to take action, leaving the corrupt practices unchecked and further burdening the most vulnerable in society.",
-    "journalistId": 3,
+    "journalistId": 2,
     "importantParts": [
       {
         "text": "At the central municipal hospital, a silent crisis unfolds, where access to medical care is determined not by need but by one's ability to pay.",
@@ -223,7 +223,7 @@
   {
     "id": 12,
     "title": "New Water System Boosts Efficiency",
-    "text": "by Lev Turner\nA new water filtration facility opened yesterday in the Central District, offering a 30% efficiency improvement, according to Chief Engineer Wassermann.\nDuring a media tour, officials highlighted upgraded monitoring systems that track usage by residential block to optimize allocation within set quotas. When asked about last month’s outages in Sector 7, Director Kuznetsov cited necessary adjustments for “the greater collective benefit.”\nMaintenance is scheduled for next Tuesday, 2:00–6:00 AM. ",
+    "text": "By Lev Turner\nA new water filtration facility opened yesterday in the Central District, offering a 30% efficiency improvement, according to Chief Engineer Wassermann.\nDuring a media tour, officials highlighted upgraded monitoring systems that track usage by residential block to optimize allocation within set quotas. When asked about last month’s outages in Sector 7, Director Kuznetsov cited necessary adjustments for “the greater collective benefit.”\nMaintenance is scheduled for next Tuesday, 2:00–6:00 AM. ",
     "journalistId": 1,
     "importantParts": [
       {
@@ -238,88 +238,94 @@
       }
     ]
   },
-
-
-
-
-
-
-  
-  {
+    {
     "id": 13,
-    "title": "Community Health Initiative Shows Promise",
-    "text": "By Tetiana Moroz\nIn the eastern district of our capital, an innovative healthcare program is demonstrating that effective public medicine is possible despite system-wide challenges. The “Neighborhood Doctor” initiative, launched eight months ago, has already served over 3,000 residents who previously lacked reliable medical care. The program operates with transparent funding and fixed salaries for all staff, eliminating the incentive for under-the-table payments.\nPatient satisfaction rates have reached 87%, compared to the national average of 43% for public healthcare facilities.\nHealth Ministry spokesperson Paul Hoffman acknowledges the program's success: “We're watching this model closely. There are elements we hope to implement more broadly.”",
-    "journalistId": 3,
+    "title": "Meeting of Foreign Minister Davidson and Supreme Leader",
+    "text": "By Lev Turner\nForeign Minister Davidson of the Northern Federation described his meeting with our Supreme Leader as “substantive and direct” following yesterday's diplomatic exchange.\nWhen asked about areas of agreement, the foreign official noted that “we have established a foundation for future discussions on matters of mutual interest,” a diplomatic formulation our Ministry of Information clarified as “recognition of our rightful demands.”\nThe Northern representative maintained appropriate decorum throughout the seven-minute press opportunity, though he declined to elaborate on our Leader's reportedly forceful explanation of historical territorial rights.\n“We will convey these perspectives to our government for careful consideration,” Davidson stated before being escorted to his departure transport.",
+    "journalistId": 1,
     "importantParts": [
-      {
-        "text": "At the central municipal hospital, a silent crisis unfolds, where access to medical care is determined not by need but by one's ability to pay.",
-        "tolerance": 3,
-        "lawIds": [2]
-      },
-      {
-        "text": "When she approached the hospital administrators for help, she was told the surgery was “technically impossible”.",
-        "tolerance": 3,
-        "lawIds": [0, 2]
-      },
-      {
-        "text": "An investigation by journalists has uncovered a disturbing trend",
-        "tolerance": 3,
-        "lawIds": [2]
-      },
-      {
-        "text": "Of 237 complex surgeries scheduled over the last six months, 62% were performed on patients who could provide “additional financial support” — a euphemism for bribes.",
-        "tolerance": 3,
-        "lawIds": [2]
-      },
-      {
-        "text": "A medical professional, who spoke anonymously, confirmed the existence of this system, stating, “Some treatments are simply... impractical for certain patients.”",
-        "tolerance": 3,
-        "lawIds": [0, 2]
-      },
-      {
-        "text": "Despite the evidence, local police have failed to take action, leaving the corrupt practices unchecked and further burdening the most vulnerable in society.",
-        "tolerance": 3,
-        "lawIds": [2]
-      }
     ]
   },
   {
     "id": 14,
-    "title": "Medicine Shortages",
-    "text": "By Tetiana Moroz\nCritical medications are increasingly unavailable in state pharmacies, forcing desperate patients to turn to underground networks where prices can be ten times higher than official rates.\n“My father needs insulin to survive,” says Alexander from Liefgrad. “The state pharmacy hasn't had any for two months. I buy it from a dealer who gets it from across the border. I pay 2,800 coins for what should cost 320.”\nA six-month investigation tracked 14 essential medications officially listed as “in stock” at state facilities. In reality, 11 were consistently unavailable, despite Ministry of Health records showing regular deliveries.\nFormer pharmacy technician Iryna M. (name changed for protection) revealed a systematic scheme: “Deliveries arrive, but medications are immediately diverted to private sellers connected to hospital administrators. Patients are told there are shortages, then directed to specific private pharmacies.”\nWhen presented with this evidence, Ministry officials promised an internal review.",
+    "title": "Community Health Initiative Shows Promise",
+    "text": "By Tetiana Moroz\nIn the eastern district of our capital, an innovative healthcare program is demonstrating that effective public medicine is possible despite system-wide challenges. The “Neighborhood Doctor” initiative, launched eight months ago, has already served over 3,000 residents who previously lacked reliable medical care. The program operates with transparent funding and fixed salaries for all staff, eliminating the incentive for under-the-table payments.\nPatient satisfaction rates have reached 87%, compared to the national average of 43% for public healthcare facilities.\nHealth Ministry spokesperson Paul Hoffman acknowledges the program's success: “We're watching this model closely. There are elements we hope to implement more broadly.”",
+    "journalistId": 2,
+    "importantParts": [
+      {
+        "text": "In the eastern district of our capital, an innovative healthcare program is demonstrating that effective public medicine is possible despite system-wide challenges.",
+        "tolerance": 3,
+        "lawIds": [1]
+      },
+      {
+        "text": "The “Neighborhood Doctor” initiative, launched eight months ago, has already served over 3,000 residents who previously lacked reliable medical care.",
+        "tolerance": 3,
+        "lawIds": [1]
+      },
+      {
+        "text": "Health Ministry spokesperson Paul Hoffman acknowledges the program's success: “We're watching this model closely. There are elements we hope to implement more broadly.”",
+        "tolerance": 3,
+        "lawIds": [1]
+      }
+    ]
+  },
+  {
+    "id": 15,
+    "title": "A Nation United: Patriotism as Our Strength",
+    "text": "By Abraham Stone\nIn uncertain times, patriotism is what binds us. From farmers to factory workers, our shared pride in the nation fuels resilience and progress.\nToday, patriotic sentiment is surging. National holidays bring millions together, and schools are instilling loyalty and respect for our founding ideals. Some call this unity blind, but true patriotism means standing together—even when it requires hard choices. Dissent, while once tolerated, now threatens our cohesion. Suppressing divisive voices isn't oppression—it’s a defense of the greater good.\nIn unity, we find strength; in loyalty, we ensure our future.",
     "journalistId": 3,
     "importantParts": [
       {
-        "text": "At the central municipal hospital, a silent crisis unfolds, where access to medical care is determined not by need but by one's ability to pay.",
+        "text": "Dissent, while once tolerated, now threatens our cohesion.",
         "tolerance": 3,
-        "lawIds": [2]
+        "lawIds": [4]
       },
       {
-        "text": "When she approached the hospital administrators for help, she was told the surgery was “technically impossible”.",
+        "text": " Suppressing divisive voices isn't oppression—it’s a defense of the greater good.",
         "tolerance": 3,
-        "lawIds": [0, 2]
-      },
-      {
-        "text": "An investigation by journalists has uncovered a disturbing trend",
-        "tolerance": 3,
-        "lawIds": [2]
-      },
-      {
-        "text": "Of 237 complex surgeries scheduled over the last six months, 62% were performed on patients who could provide “additional financial support” — a euphemism for bribes.",
-        "tolerance": 3,
-        "lawIds": [2]
-      },
-      {
-        "text": "A medical professional, who spoke anonymously, confirmed the existence of this system, stating, “Some treatments are simply... impractical for certain patients.”",
-        "tolerance": 3,
-        "lawIds": [0, 2]
-      },
-      {
-        "text": "Despite the evidence, local police have failed to take action, leaving the corrupt practices unchecked and further burdening the most vulnerable in society.",
-        "tolerance": 3,
-        "lawIds": [2]
+        "lawIds": [4]
       }
     ]
+  },
+  {
+    "id": 16,
+    "title": "Medicine Shortages",
+    "text": "By Tetiana Moroz\nCritical medications are increasingly unavailable in state pharmacies, forcing desperate patients to turn to underground networks.\n“My father needs insulin to survive,” says Alexander from Liefgrad. “The state pharmacy hasn't had any for two months. I buy it from a dealer who gets it from across the border. I pay 2,800 coins for what should cost 320.”\nA six-month investigation tracked 14 essential medications officially listed as “in stock” at state facilities. In reality, 11 were consistently unavailable, despite Ministry of Health records showing regular deliveries.\nFormer pharmacy technician Iryna M. revealed a systematic scheme: “Deliveries arrive, but medications are immediately diverted to private sellers connected to hospital administrators.”\nWhen presented with this evidence, Ministry officials promised an internal review.",
+    "journalistId": 2,
+    "importantParts": [
+      {
+        "text": "Critical medications are increasingly unavailable in state pharmacies, forcing desperate patients to turn to underground networks.",
+        "tolerance": 3,
+        "lawIds": [2]
+      },
+      {
+        "text": "“The state pharmacy hasn't had any for two months. I buy it from a dealer who gets it from across the border. I pay 2,800 coins for what should cost 320.”",
+        "tolerance": 3,
+        "lawIds": [0, 2]
+      },
+      {
+        "text": "A six-month investigation tracked 14 essential medications officially listed as “in stock” at state facilities.",
+        "tolerance": 3,
+        "lawIds": [2]
+      },
+      {
+        "text": "In reality, 11 were consistently unavailable, despite Ministry of Health records showing regular deliveries.",
+        "tolerance": 3,
+        "lawIds": [0, 2]
+      },
+      {
+        "text": "Former pharmacy technician Iryna M. revealed a systematic scheme: “Deliveries arrive, but medications are immediately diverted to private sellers connected to hospital administrators.”",
+        "tolerance": 3,
+        "lawIds": [0, 2, 4]
+      }
+    ]
+  },
+  {
+    "id": 17,
+    "title": "Government to Implement Stone’s Vision in Schools",
+    "text": "By Margaret Gray\nThe government has announced plans to incorporate Abraham Stone's recent suggestions into the national school curriculum. His idea of introducing political education and leadership programs for students has been met with approval by officials, who believe it will help instill a greater sense of responsibility and respect for authority among the youth.\nAbraham Stone, who has long been an advocate for the importance of political stability and respect for leadership, is awaiting an official recognition for his contributions. The government is set to implement these changes in schools across the nation, marking a significant step toward strengthening the relationship between young people and the state.\nAbraham Stone’s vision is supposed to shape the future of political education.",
+    "journalistId": 0,
+    "importantParts": []
   }
  ]
 }

@@ -44,22 +44,23 @@ public class GameManager : MonoBehaviour
 
    void Start()
    {
+    
        if (SceneNavigator.instance.isNewGame)
-       {
-           Debug.Log("Starting new game...");
-           InitializeData();
-           money = 20;
-           day = 1;
-           time = 0;
-       }
-       else
-       {
-           Debug.Log("Loading game data...");
-           PersistenceManager.instance.LoadData();
-           LoadPortraits();
-           //uneditedArticles = articleList.articles.FindAll(x => x.isEdited == false);
-           time = 0;
-       }
+        {
+            Debug.Log("Starting new game...");
+            InitializeData();
+            money = 20;
+            day = 1;
+            time = 0;
+        }
+        else
+        {
+            Debug.Log("Loading game data...");
+            PersistenceManager.instance.LoadData();
+            LoadPortraits();
+            //uneditedArticles = articleList.articles.FindAll(x => x.isEdited == false);
+            time = 0;
+        }
        
    }
 

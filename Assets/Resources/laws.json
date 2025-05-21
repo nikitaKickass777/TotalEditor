@@ -23,6 +23,18 @@
       "isProhibition": true,
       "isActive": false,
       "text": "\n\n03 - LAW\nIt is prohibited to expose class disparity."
+    },
+    {
+      "id": 4,
+      "isProhibition": false,
+      "isActive": false,
+      "text": "\n\n04 - RECOMMENDATION\nPortray the suppression of dissent as a necessary act of patriotism."
+    },
+    {
+      "id": 5,
+      "isProhibition": false,
+      "isActive": false,
+      "text": "\n\n05 - LAW\nPublishing foreign media content or quoting international sources is banned."
     }
   ]
 }
