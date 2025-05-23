@@ -24,10 +24,10 @@ public class Clock : MonoBehaviour
             }
             else
             {
-                hasShownEndOfDay = true;
+                // hasShownEndOfDay = true;
                 time = 0f;
                 clockHandTransform.eulerAngles = new Vector3(0, 0, 180f);
-                EndOfDayScreen.instance.ShowEndOfTheDay();
+                // EndOfDayScreen.instance.ShowEndOfTheDay();
             }
         }
     }

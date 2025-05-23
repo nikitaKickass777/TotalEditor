@@ -38,7 +38,6 @@ public class DialogueManager : MonoBehaviour
 
     private float timeLeftDialogue;
 
-
     private void Awake()
     {
         if (instance == null)
@@ -275,7 +274,8 @@ public class DialogueManager : MonoBehaviour
     private bool baseConditionsMet()
     {
         return (!isDialogueOpen
-                && SceneManager.GetActiveScene().name == "Office");
+                && SceneManager.GetActiveScene().name == "Office"
+                && EndOfDayScreen.instance.isOpen == false);
     }
 
     private void checker(int day)
@@ -348,6 +348,17 @@ public class DialogueManager : MonoBehaviour
                     && GameManager.instance.articleList.articles[0].isEdited
                     && GameManager.instance.articleList.articles[1].isEdited)
                 {
+                    EndOfDayScreen.instance.ShowEndOfTheDay();
+                }
+
+                break;
+            case 2:
+
+                if (!dialogueCompleted.ContainsKey(7)
+                    && dialogueCompleted.ContainsKey(6)
+                    && GameManager.instance.articleList.articles[0].isEdited
+                    && GameManager.instance.articleList.articles[1].isEdited)
+                {
                     ShowDialogue(7);
                     dialogueCompleted[7] = true;
                     break;
@@ -355,16 +366,18 @@ public class DialogueManager : MonoBehaviour
 
                 // DAY 2 (Tetiana + Lev + Officer) - laws 0,1,2,3
 
-                if (!dialogueCompleted.ContainsKey(8)
-                    && dialogueCompleted.ContainsKey(7))
-                {
-                    ShowDialogue(8);
-                    dialogueCompleted[8] = true;
-                    GameManager.instance.uneditedArticles.Add(GameManager.instance.articleList.articles[2]);
-                    GameManager.instance.uneditedArticles.Add(GameManager.instance.articleList.articles[3]);
-                    GameManager.instance.uneditedArticles.Add(GameManager.instance.articleList.articles[4]);
-                    break;
-                }
+                    if (!dialogueCompleted.ContainsKey(8)
+                        && dialogueCompleted.ContainsKey(7)
+                        )
+                    {
+
+                        ShowDialogue(8);
+                        dialogueCompleted[8] = true;
+                        GameManager.instance.uneditedArticles.Add(GameManager.instance.articleList.articles[2]);
+                        GameManager.instance.uneditedArticles.Add(GameManager.instance.articleList.articles[3]);
+                        GameManager.instance.uneditedArticles.Add(GameManager.instance.articleList.articles[4]);
+                        break;
+                    }
                 if (!dialogueCompleted.ContainsKey(9)
                     && dialogueCompleted.ContainsKey(8)
                     && GameManager.instance.articleList.articles[2].isEdited == true
@@ -494,6 +507,15 @@ public class DialogueManager : MonoBehaviour
                     break;
                 }
 
+                if (GameManager.instance.articleList.articles[11].isEdited == true
+                    && GameManager.instance.articleList.articles[12].isEdited == true)
+                {
+                    EndOfDayScreen.instance.ShowEndOfTheDay();
+                }
+
+                break;
+
+            case 3:
                 // DAY 3 (Dialogue with Abraham) - laws 0,1,2,3,4
                 if (!dialogueCompleted.ContainsKey(17)
                     && GameManager.instance.articleList.articles[11].isEdited == true
