@@ -3001,7 +3001,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1344227612
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5194,6 +5194,8 @@ MonoBehaviour:
   timeLeftPreviousScene: 0
   previousSceneName: 
   isNewGame: 1
+  ConfirmExitPopup: {fileID: 0}
+  isPopupOpen: 0
 --- !u!4 &1898039878
 Transform:
   m_ObjectHideFlags: 0

@@ -24,8 +24,6 @@ public class EndOfDayScreen : MonoBehaviour
     }
     private void Start()
     {
-        
-        canvas = GameObject.Find("EndOfTheDayCanvas");
         canvas.SetActive(false);
         isOpen = false;
     }
@@ -33,8 +31,7 @@ public class EndOfDayScreen : MonoBehaviour
     {
         canvas.SetActive(true);
         bodyTMP.text = "Day " + GameManager.instance.day + " is over! \n" +
-                       "You have " + GameManager.instance.money + " money.\n" +
-                       "You have " + GameManager.instance.uneditedArticles.Count + " unedited articles.";
+                       "You have " + GameManager.instance.money + " money.\n";
         isOpen = true;
         Time.timeScale = 0f;
     }

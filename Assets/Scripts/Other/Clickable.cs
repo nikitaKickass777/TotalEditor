@@ -50,7 +50,8 @@ public class Clickable : MonoBehaviour
         if (DialogueManager.instance.isDialogueOpen ||
             GameManager.instance.isEndOfTheDayOpen ||
             Menu.isPaused ||
-            EndOfDayScreen.instance.isOpen) return true;
+            EndOfDayScreen.instance.isOpen ||
+            SceneNavigator.instance.isPopupOpen) return true;
         return false;
     }
 

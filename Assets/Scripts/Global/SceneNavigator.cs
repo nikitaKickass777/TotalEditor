@@ -13,6 +13,8 @@ public class SceneNavigator : MonoBehaviour
     public string previousSceneName;
     private string currentSceneName;
     public bool isNewGame = true;
+    public GameObject ConfirmExitPopup;
+    public bool isPopupOpen = false;
 
     public delegate void SceneChangeDelegate(string sceneName);
 
@@ -24,14 +26,6 @@ public class SceneNavigator : MonoBehaviour
         {
             instance = this;
             currentSceneName = SceneManager.GetActiveScene().name;
-            if (currentSceneName == "Editing")
-            {
-             
-            }
-            else
-            {
-               
-            }
         }
         else if (instance != this)
         {
@@ -51,6 +45,12 @@ public class SceneNavigator : MonoBehaviour
             previousSceneName = currentSceneName;
             timeLeftPreviousScene = Time.time;
             if (currentSceneName == getPreviousScene()) return;
+            if (getPreviousScene() == "MainMenu" && currentSceneName == "Office")
+            {
+                isPopupOpen = true;
+                ConfirmExitPopup.SetActive(true);
+                return;
+            }
             currentSceneName = getPreviousScene();
             Debug.Log("New scene: " + currentSceneName);
             SceneManager.LoadScene(currentSceneName);
@@ -64,7 +64,7 @@ public class SceneNavigator : MonoBehaviour
         {
             case "MainMenu":
                 return "MainMenu";
-                ;
+                
             case "Office":
             {
                 if (DialogueManager.instance.isDialogueOpen)
@@ -94,5 +94,11 @@ public class SceneNavigator : MonoBehaviour
                 Debug.Log("Current Scene not found");
                 return "MainMenu";
         }
+    }
+    public void LoadScene(string sceneName)
+    {
+        isPopupOpen = false;
+        ConfirmExitPopup.SetActive(false);
+        SceneManager.LoadScene(sceneName);
     }
 }
