@@ -16,14 +16,19 @@ public class DialogueManager : MonoBehaviour
 
     public GameObject DialogueTemplate;
     public GameObject NarratorDialogueTemplate;
+    public GameObject NarratorOptionsDialogueTemplate;
     public TextMeshProUGUI selectedTMP;
     public TextMeshProUGUI narratorDialogueTMP;
+    
+    public TextMeshProUGUI narratorOptionsDialogueTMP;
     public TextMeshProUGUI dialogueTMP;
 
     public Sprite characterSprite;
     public Sprite characterSpriteTalk;
     public SpriteRenderer characterSpriteRenderer;
+    public Button[] selectedOptionButtons;
     public Button[] optionButtons;
+    public Button[] narratorOptionButtons;
 
     public int currentDialogueIndex;
     public int currentLineIndex;
@@ -128,9 +133,20 @@ public class DialogueManager : MonoBehaviour
         }
         else
         {
-           DialogueTemplate.SetActive(true); // this thing makes dialogue box appear 
-           selectedTMP = dialogueTMP;
-           DialogueTemplate.GetComponentInChildren<TextMeshProUGUI>().text = character.name;
+            if (character.id == 7)
+            {
+                NarratorOptionsDialogueTemplate.SetActive(true);
+                selectedTMP = narratorOptionsDialogueTMP;
+                selectedOptionButtons = narratorOptionButtons;
+            }
+            else
+            {
+                DialogueTemplate.SetActive(true); // this thing makes dialogue box appear 
+                selectedTMP = dialogueTMP;
+                DialogueTemplate.GetComponentInChildren<TextMeshProUGUI>().text = character.name;
+                selectedOptionButtons = optionButtons;
+            }
+
         }
         characterSprite = character.portrait;
         characterSpriteTalk = character.portraitTalking;
@@ -220,29 +236,29 @@ public class DialogueManager : MonoBehaviour
 
     private void ShowOptions(DialogueLine line)
     {
-        for (int i = 0; i < optionButtons.Length; i++)
+        for (int i = 0; i < selectedOptionButtons.Length; i++)
         {
             if (i < line.options.Count)
             {
                 Debug.Log("Showing option " + i);
-                optionButtons[i].gameObject.SetActive(true);
-                optionButtons[i].GetComponentInChildren<TextMeshProUGUI>().text = line.options[i].optionText;
+                selectedOptionButtons[i].gameObject.SetActive(true);
+                selectedOptionButtons[i].GetComponentInChildren<TextMeshProUGUI>().text = line.options[i].optionText;
 
                 // Capture the correct index
                 int capturedIndex = i;
-                optionButtons[i].onClick.RemoveAllListeners();
-                optionButtons[i].onClick.AddListener(() => OnOptionSelected(capturedIndex));
+                selectedOptionButtons[i].onClick.RemoveAllListeners();
+                selectedOptionButtons[i].onClick.AddListener(() => OnOptionSelected(capturedIndex));
             }
             else
             {
-                optionButtons[i].gameObject.SetActive(false);
+                selectedOptionButtons[i].gameObject.SetActive(false);
             }
         }
     }
 
     private void HideOptions()
     {
-        foreach (Button button in optionButtons)
+        foreach (Button button in selectedOptionButtons)
         {
             button.gameObject.SetActive(false);
         }
@@ -253,6 +269,7 @@ public class DialogueManager : MonoBehaviour
         Time.timeScale = 1;
         DialogueTemplate.gameObject.SetActive(false);
         NarratorDialogueTemplate.gameObject.SetActive(false);
+        NarratorOptionsDialogueTemplate.gameObject.SetActive(false);
         StartCoroutine(WaitBeforeClosingDialogue());
     }
 
@@ -661,6 +678,70 @@ public class DialogueManager : MonoBehaviour
                 {
                     ShowDialogue(32);
                     dialogueCompleted[32] = true;
+                    break;
+                }
+
+                if (dialogueCompleted.ContainsKey(32)
+                    && !dialogueCompleted.ContainsKey(33))
+                {
+                    ShowDialogue(33);
+                    dialogueCompleted[33] = true;
+                    break;
+                }
+
+                if (dialogueCompleted.ContainsKey(33)
+                    && !dialogueCompleted.ContainsKey(34))
+                {
+                    ShowDialogue(34);
+                    dialogueCompleted[34] = true;
+                    break;
+                }
+
+                if (dialogueCompleted.ContainsKey(34)
+                    && !dialogueCompleted.ContainsKey(35))
+                {
+                    ShowDialogue(35);
+                    dialogueCompleted[35] = true;
+                    break;
+                }
+
+                if (dialogueCompleted.ContainsKey(35)
+                    && !dialogueCompleted.ContainsKey(36))
+                {
+                    ShowDialogue(36);
+                    dialogueCompleted[36] = true;
+                    break;
+                }
+
+                if (dialogueCompleted.ContainsKey(36)
+                    && !dialogueCompleted.ContainsKey(37))
+                {
+                    ShowDialogue(37);
+                    dialogueCompleted[37] = true;
+                    break;
+                }
+
+                if (dialogueCompleted.ContainsKey(37)
+                    && !dialogueCompleted.ContainsKey(38))
+                {
+                    ShowDialogue(38);
+                    dialogueCompleted[38] = true;
+                    break;
+                }
+
+                if (dialogueCompleted.ContainsKey(38)
+                    && !dialogueCompleted.ContainsKey(39))
+                {
+                    ShowDialogue(39);
+                    dialogueCompleted[39] = true;
+                    break;
+                }
+
+                if (dialogueCompleted.ContainsKey(39)
+                    && !dialogueCompleted.ContainsKey(40))
+                {
+                    ShowDialogue(40);
+                    dialogueCompleted[40] = true;
                     break;
                 }
 

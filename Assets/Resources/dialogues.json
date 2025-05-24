@@ -371,7 +371,7 @@
         },
         {
           "lineId": 1,
-          "lineText": "I've brought my investigative piece on hospital corruption. It's about families like mine who can't afford bribes for life-saving surgeries. Could you please read my article without reviewing it first? If you have any concerns, I am here to discuss them before you make your final decision. You know... it's somewhat personal.",
+          "lineText": "I've brought my investigative piece on hospital corruption. It's about families like mine who can't afford bribes for life-saving surgeries. Could you please just read my article without reviewing it first? I will step outside the room while you read, but know that I am here to discuss it before you make your final decision. You know... it's somewhat personal.",
           "hasOptions": true,
           "options": [
             {
@@ -386,7 +386,7 @@
         },
         {
           "lineId": 2,
-          "lineText": "Yeah, sorry. So I've brought my investigative piece on hospital corruption. It's about families like mine who can't afford bribes for life-saving surgeries. Could you please read my article without reviewing it first? If you have any concerns, I am here to discuss them before you make your final decision. You know... it's somewhat personal.",
+          "lineText": "Yeah, sorry. So I've brought my investigative piece on hospital corruption. It's about families like mine who can't afford bribes for life-saving surgeries. Could you please just read my article without reviewing it first? I will step outside the room while you read, but know that I am here to discuss it before you make your final decision. You know... it's somewhat personal.",
           "hasOptions": true,
           "options": [
             {
@@ -679,7 +679,7 @@
           {
             "optionId": 1,
             "nextLineId": 10,
-            "optionText": "I understand. I'll reject the article immediately."
+            "optionText": "I understand. In the future I'll reject such articles immediately."
           }
         ]
       },
@@ -696,7 +696,7 @@
           {
             "optionId": 1,
             "nextLineId": 10,
-            "optionText": "I understand. I'll make sure such articles don't see the light of day."
+            "optionText": "I understand. I'll make sure that in the future such articles don't see the light of day."
           }
         ]
       },
@@ -747,7 +747,7 @@
           {
             "optionId": 1,
             "nextLineId": 10,
-            "optionText": "I understand the implications. I'll always reject such articles."
+            "optionText": "I understand the implications. I'll always reject such articles in the future."
           }
         ]
       },
@@ -759,7 +759,7 @@
           {
             "optionId": 0,
             "nextLineId": 9,
-            "optionText": "I know everything and I'll approve the article despite your warnings!",
+            "optionText": "I know everything and I'll always approve such articles despite your warnings!",
             "conditionChange": "OfficerEnemy"
           },
           {
@@ -2035,7 +2035,7 @@
       "lines": [
         {
           "lineId": 0,
-          "lineText": "Is he in serious condition? Does he need surgery? We can help if there is anything you need!",
+          "lineText": "Oh my God... Is he in serious condition? Does he need surgery? Listen, if there's anything you need - money, help with anything - just say the word.",
           "hasOptions": true,
           "options": [
             {
@@ -2077,7 +2077,7 @@
       "lines": [
         {
           "lineId": 0,
-          "lineText": "No way! Hoffman?? Health Minister? He can't be involved in this!",
+          "lineText": "Wait, wait... Hoffman? The Health Minister Hoffman? No way! Margaret, are you absolutely sure about this? He can't be involved!",
           "hasOptions": true,
           "options": [
             {
@@ -2111,16 +2111,16 @@
       "lines": [
         {
           "lineId": 0,
-          "lineText": "Well, of course, he would say that! He is the father first of all! He must protect his son!",
+          "lineText": "That's... that's a serious accusation. Look, I get why he would defend his son - any father would. But blaming your father? That's crossing a line.",
           "hasOptions": true,
           "options": [
             {
               "optionId": 0,
-              "optionText": "Abraham, stop it! His son is a criminal!"
+              "optionText": "Abraham, his son is a criminal! Why do you protect him?"
             },
             {
               "optionId": 1,
-              "optionText": "That's true Margaret"
+              "optionText": "Exactly! It's completely unfair!"
             }
           ]
         }
@@ -2134,7 +2134,7 @@
         {
           "lineId": 0,
           "nextLineId": 1,
-          "lineText": "Why is he blaming my father then?? The only thing what Hoffman protects is his own ass! He is a coward! He is a liar! He is also a criminal!",
+          "lineText": "The only thing what Hoffman protects is his own ass! He is a coward! He is a liar! He is also a criminal!",
           "hasOptions": false
         },
         {
@@ -2144,7 +2144,7 @@
           "options": [
             {
               "optionId": 0,
-              "optionText": "We must write about it! But the laws..."
+              "optionText": "This is outrageous! Something must be done!"
             }
           ]
         }
@@ -2158,12 +2158,12 @@
         {
           "lineId": 0,
           "nextLineId": 1,
-          "lineText": "So this is how it is...",
+          "lineText": "So this is how it is... This is absolutely insane... They're making the victim pay? How is this even legal?",
           "hasOptions": false
         },
         {
           "lineId": 1,
-          "lineText": "I will write the article about it",
+          "lineText": "Margaret, this can't stand. People need to know what's really happening here. Someone has to expose this corruption.",
           "hasOptions": false
         }
       ]
@@ -2182,12 +2182,12 @@
         {
           "lineId": 1,
           "nextLineId": 2,
-          "lineText": "No",
+          "lineText": "But what about the laws... If we write about this, we will be in huge trouble. We will for sure be punished for this.",
           "hasOptions": false
         },
         {
           "lineId": 2,
-          "lineText": "Then for sure your program for students, that you wrote about, will be cancelled! And this is the best scenario! I will be the author of the article!",
+          "lineText": "And your program for students, that you wrote about, will be cancelled! And this is the best scenario! I can't set our whole team up! Then... In this case... I will be the author of the article! And if they ask, I will say I slipped it into the approved stack myself. So all the punishment will be on me, and no one else will suffer. This is the only correct way!",
           "hasOptions": false
         }
       ]
@@ -2199,14 +2199,162 @@
       "lines": [
         {
           "lineId": 0,
-          "lineText": "You can't write the article, I do not want you to be in jail! You are a woman, you have a role in society - be a mother. I do not want you to be in trouble!",
+          "lineText": "Margaret, no. I can't let you put yourself in danger like that. You could end up in prison, and... you have so much to live for. You are a woman after all, you have a role in society - be a mother. I do not want you to be in trouble!",
           "hasOptions": true,
           "options": [
             {
               "optionId": 0,
-              "optionText": "Stop the heroism! The only thing we need to do to make the article legal is to ask for approval of our Officer!"
+              "optionText": "There has to be another way. The only thing we need to do to make the article legal is to ask for approval of our Officer!"
             }
           ]
+        }
+      ]
+    },
+    {
+      "dialogueId": 33,
+      "dialogueName": "Abraham Margaret father7",
+      "characterId": 3,
+      "lines": [
+        {
+          "lineId": 0,
+          "lineText": "Yes, Editor! It is the best decision! We ask the Officer, I write the article and we publish it.",
+          "hasOptions": false
+        }
+      ]
+    },
+    {
+      "dialogueId": 34,
+      "dialogueName": "Margaret father7",
+      "characterId": 0,
+      "lines": [
+        {
+          "lineId": 0,
+          "lineText": "We all know what kind of person our Officer is. This plan is a failure, I can tell you that right away.",
+          "hasOptions": true,
+          "options": [
+            {
+              "optionId": 0,
+              "optionText": "I have some ideas how to make it work"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "dialogueId": 35,
+      "dialogueName": "Abraham Margaret father8",
+      "characterId": 3,
+      "lines": [
+        {
+          "lineId": 0,
+          "lineText": "What do you have in mind, Editor? Just don't do anything stupid!",
+          "hasOptions": true,
+          "options": [
+            {
+              "optionId": 0,
+              "optionText": "Don't worry, I will be careful. Just give me some time to think about it."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "dialogueId": 36,
+      "dialogueName": "Margaret father8",
+      "characterId": 0,
+      "lines": [
+        {
+          "lineId": 0,
+          "lineText": "Editor... Abraham... You are the best colleagues I could ever ask for. I am so grateful to you for your support!",
+          "hasOptions": true,
+          "options": [
+            {
+              "optionId": 0,
+              "optionText": "There is nothing to thank us for yet. I can't guarantee the success"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "dialogueId": 37,
+      "dialogueName": "Abraham Margaret father9",
+      "characterId": 3,
+      "lines": [
+        {
+          "lineId": 0,
+          "lineText": "If your plan does not work, Editor, then we will do it the way I suggested before. Margaret, do not even try to change my mind! Focus on taking care of your dad!",
+          "hasOptions": true,
+          "options": [
+            {
+              "optionId": 0,
+              "optionText": "Yeah, great! I will let you know when I have something!"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "dialogueId": 38,
+      "dialogueName": "Margaret father8",
+      "characterId": 0,
+      "lines": [
+        {
+          "lineId": 0,
+          "lineText": "Be careful please!! And thank you so much again! I will be waiting for your news!",
+          "hasOptions": false
+        }
+      ]
+    },
+    {
+      "dialogueId": 39,
+      "dialogueName": "Abraham Margaret father9",
+      "characterId": 3,
+      "lines": [
+        {
+          "lineId": 0,
+          "lineText": "Goodbye! Take care!",
+          "hasOptions": true,
+          "options": [
+            {
+              "optionId": 0,
+              "optionText": "Bye!"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "dialogueId": 40,
+      "dialogueName": "Thoughts",
+      "characterId": 7,
+      "lines": [
+        {
+          "lineId": 0,
+          "lineText": "Do you really have any ideas how to make it work? Or you just said that to calm your colleagues down?",
+          "hasOptions": true,
+          "options": [
+            {
+              "optionId": 0,
+              "nextLineId": 1,
+              "optionText": "Haha, it is a deadlock. I have no idea how to make it work."
+            },
+            {
+              "optionId": 1,
+              "nextLineId": 2,
+              "optionText": "I really do have some ideas, but I need to sleep on them."
+            }
+          ]
+        },
+        {
+          "lineId": 1,
+          "lineText": "Don't worry! Tomorrow something is sure to come to your mind!",
+          "hasOptions": false
+        },
+        {
+          "lineId": 2,
+          "lineText": "Good. You will have to make an important decision tomorrow.",
+          "hasOptions": false
         }
       ]
     }
