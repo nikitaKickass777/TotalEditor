@@ -2449,15 +2449,18 @@
         "options": [
           {
             "optionId": 0,
-            "optionText": "I'll write it myself - I won't ask others to take risks I won't take"
+            "optionText": "I'll write it myself - I won't ask others to take risks I won't take",
+            "conditionChange": "IWrite"
           },
           {
             "optionId": 1,
-            "optionText": "Abraham should write it - he suggested it himself"
+            "optionText": "Abraham should write it - he suggested it himself",
+            "conditionChange": "AbrahamWrite"
           },
           {
             "optionId": 2,
-            "optionText": "Margaret should write it - it's her father's story"
+            "optionText": "Margaret should write it - it's her father's story",
+            "conditionChange": "MargaretWrite"
           }
         ]
       },
@@ -2961,7 +2964,8 @@
         "options": [
           {
             "optionId": 0,
-            "optionText": "No"
+            "optionText": "No",
+            "nextLineId": 1
           }
         ]
       },
@@ -2975,7 +2979,7 @@
    {
     "dialogueId": 56,
     "dialogueName": "Tetiana comes to prison",
-    "characterId": 7,
+    "characterId": 2,
     "lines": [
       {
         "lineId": 0,
@@ -3011,7 +3015,7 @@
    {
     "dialogueId": 57,
     "dialogueName": "Bribe outcome prison mother not dies2",
-    "characterId": 6,
+    "characterId": 7,
     "lines": [
       {
         "lineId": 0,
@@ -3155,15 +3159,6 @@
       }
     ]
   },
-
-
-
-
-
-
-
-
-
 
 
 
@@ -3414,8 +3409,280 @@
         "hasOptions": false
       }
     ]
-  }
+  },
 
+
+
+
+
+
+   {
+    "dialogueId": 70,
+    "dialogueName": "Abraham write",
+    "characterId": 5,
+    "lines": [
+      {
+        "lineId": 0,
+        "lineText": "Look at this hero in a red cape! Let that scandalous article about the Health Minister Hoffman see the light. Fights for the truth! Well, I warned you about the consequences, Editor",
+        "hasOptions": false,
+        "nextLineId": 1
+      },
+      {
+        "lineId": 1,
+        "lineText": "You will get off with just a fine, but Abraham... I will make sure to put him behind bars for this. I will teach you all a lesson.",
+        "hasOptions": true,
+        "options": [
+          {
+            "optionId": 0,
+            "optionText": "You are a corrupt and cruel, Officer, and you know it."
+          },
+          {
+            "optionId": 1,
+            "optionText": "We are ready for the consequences, Officer. We will fight for the truth no matter what."
+          }
+        ]
+      }
+    ]
+  },
+     {
+    "dialogueId": 71,
+    "dialogueName": "Margaret write",
+    "characterId": 5,
+    "lines": [
+      {
+        "lineId": 0,
+        "lineText": "Look at this hero in a red cape! Let that scandalous article about the Health Minister Hoffman see the light. Fights for the truth! Well, I warned you about the consequences, Editor",
+        "hasOptions": false,
+        "nextLineId": 1
+      },
+      {
+        "lineId": 1,
+        "lineText": "You will get off with just a fine, but Margaret... I will make sure to put her behind bars for this. I will teach you all a lesson.",
+        "hasOptions": true,
+        "options": [
+          {
+            "optionId": 0,
+            "optionText": "You are a corrupt and cruel, Officer, and you know it."
+          },
+          {
+            "optionId": 1,
+            "optionText": "We are ready for the consequences, Officer. We will fight for the truth no matter what."
+          }
+        ]
+      }
+    ]
+  },
+     {
+    "dialogueId": 72,
+    "dialogueName": "I write",
+    "characterId": 5,
+    "lines": [
+      {
+        "lineId": 0,
+        "lineText": "Look at this hero in a red cape! The brave Editor wrote himself that scandalous article about the Health Minister Hoffman. Fights for the truth! Well, I warned you about the consequences, Editor",
+        "hasOptions": false,
+        "nextLineId": 1
+      },
+      {
+        "lineId": 1,
+        "lineText": "I will make sure to put you behind bars for this. I will teach you a lesson!",
+        "hasOptions": true,
+        "options": [
+          {
+            "optionId": 0,
+            "optionText": "You are a corrupt and cruel, Officer, and you know it."
+          },
+          {
+            "optionId": 1,
+            "optionText": "I am ready for the consequences, Officer. I will fight for the truth no matter what."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "dialogueId": 73,
+    "dialogueName": "Lev's escape proposal - After failed article you prison. You have enough money",
+    "characterId": 1,
+    "lines": [
+      {
+        "lineId": 0,
+        "nextLineId": 1,
+        "lineText": "Hello Editor! I will be straight. I heard what happened between you and the Officer. You've made a powerful enemy.",
+        "hasOptions": false
+      },
+      {
+        "lineId": 1,
+        "lineText": "They'll come for you soon. If you have any money left, we need to get you out of the country. Now. I have contacts that can help you flee quickly and safely.",
+        "hasOptions": true,
+        "options": [
+          {
+            "optionId": 0,
+            "optionText": "You are right. I need to leave this place. Let's do it",
+            "conditionChange": "Escape"
+          },
+          {
+            "optionId": 1,
+            "optionText": "No, I can't just run away. I have responsibilities here",
+            "nextLineId": 2
+          }
+        ]
+      },
+      {
+        "lineId": 2,
+        "lineText": "Editor, there are no responsibilities in prison. The government won't stop until you're silenced. You know too much, and they won't let you live freely.",
+        "hasOptions": true,
+        "options": [
+          {
+            "optionId": 0,
+            "optionText": "You are right. I need to leave this place. Let's do it",
+            "conditionChange": "Escape"
+          },
+          {
+            "optionId": 1,
+            "optionText": "Lev, thank you for your concern, but it is my decision. I stay here and fight for the truth"
+          }
+        ]
+      }
+    ]
+  },
+   {
+    "dialogueId": 74,
+    "dialogueName": "Lev's escape proposal - After failed article you not prison. You have enough money",
+    "characterId": 1,
+    "lines": [
+      {
+        "lineId": 0,
+        "nextLineId": 1,
+        "lineText": "Hello Editor! I will be straight. I heard what happened between you and the Officer. You've made a powerful enemy.",
+        "hasOptions": false
+      },
+      {
+        "lineId": 1,
+        "lineText": "They'll come for you soon. If you have any money left, we need to get you out of the country. Now. I have contacts that can help you flee quickly and safely.",
+        "hasOptions": true,
+        "options": [
+          {
+            "optionId": 0,
+            "optionText": "You are right. I need to leave this place. Let's do it",
+            "conditionChange": "Escape"
+          },
+          {
+            "optionId": 1,
+            "optionText": "No, I can't just run away. I have responsibilities here",
+            "nextLineId": 2
+          }
+        ]
+      },
+      {
+        "lineId": 2,
+        "lineText": "Editor, there are no responsibilities in the country that does not care for you. The government won't stop until you're silenced. They won't let you live freely.",
+        "hasOptions": true,
+        "options": [
+          {
+            "optionId": 0,
+            "optionText": "You are right. I need to leave this place. Let's do it",
+            "conditionChange": "Escape"
+          },
+          {
+            "optionId": 1,
+            "optionText": "Lev, thank you for your concern, but it is my decision. I stay here and fight for the truth"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "dialogueId": 75,
+    "dialogueName": "You abroad Teatiana helps",
+    "characterId": 6,
+    "lines": [
+      {
+        "lineId": 0,
+        "lineText": "Six months later, you're sitting in a café abroad, reading international newspapers. Lev was right - with your resources and his connections, you've managed to build something new. Freedom has its price, but you were able to pay it. Sometimes you wonder about those you left behind, but you know you made the only choice you could.",
+        "hasOptions": false,
+        "nextLineId": 1
+      },
+      {
+        "lineId": 1,
+        "lineText": "You posted the articles of Tetiana - her daughter got the surgery she needed, and now she is recovering well, your mum gets the medication she needs, as you send her money from aboad. Only Margaret's problem had a bad ending. The Officer kept his word, and everyone was punished as he promised. The article was published, people saw it, the Health Minister Hoffman was arrested, but a new Minister was appointed, and nothing changed. The country is still the same. But in real world you always have to make sacrifices, right, Editor?",
+        "hasOptions": false
+      }
+    ]
+  },
+  {
+    "dialogueId": 76,
+    "dialogueName": "You abroad Teatiana got no help",
+    "characterId": 6,
+    "lines": [
+      {
+        "lineId": 0,
+        "lineText": "Six months later, you're sitting in a café abroad, reading international newspapers. Lev was right - with your resources and his connections, you've managed to build something new. Freedom has its price, but you were able to pay it. Sometimes you wonder about those you left behind, but you know you made the only choice you could.",
+        "hasOptions": false,
+        "nextLineId": 1
+      },
+      {
+        "lineId": 1,
+        "lineText": "Your mum gets the medication she needs, as you send her money from aboad. However, Tetiana is suffering as you did not let her articles out - her daughter did not get the surgery she needed and died, and Margaret's problem had a bad ending. The Officer kept his word, and everyone was punished as he promised. The article was published, people saw it, the Health Minister Hoffman was arrested, but a new Minister was appointed, and nothing changed. The country is still the same. But in real world you always have to make sacrifices, right?",
+        "hasOptions": false
+      }
+    ]
+  },
+    {
+    "dialogueId": 77,
+    "dialogueName": "Narr if you stay no Tetiana",
+    "characterId": 6,
+    "lines": [
+      {
+        "lineId": 0,
+        "lineText": "So you stayed. The Officer kept his word, and everyone was punished as he promised. The article was published, people saw it, the Health Minister Hoffman was arrested, but a new Minister was appointed, and nothing changed. The country is still the same.",
+        "hasOptions": false,
+        "nextLineId": 1
+      },
+      {
+        "lineId": 1,
+        "lineText": "But you fought for the truth, Editor. Bravo! However, did you really win? Tetiana's daughter died as she did not get the surgery, because you did not post that articles of Tetiana. Also did not you forget about your family? Your mother died as you did not have enough money to get the needed medicine because of the fine. Now you work day and night just to afford food and rent. Was it worth it, Editor?",
+        "hasOptions": false
+      }
+    ]
+  },
+      {
+    "dialogueId": 78,
+    "dialogueName": "Narr if you stay with Tetiana",
+    "characterId": 7,
+    "lines": [
+      {
+        "lineId": 0,
+        "lineText": "So you stayed. The Officer kept his word, and everyone was punished as he promised. The article was published, people saw it, the Health Minister Hoffman was arrested, but a new Minister was appointed, and nothing changed. The country is still the same.",
+        "hasOptions": false,
+        "nextLineId": 1
+      },
+      {
+        "lineId": 1,
+        "lineText": "But you fought for the truth, Editor. Bravo! However, did not you forget about your family? Do you have enough money to help your mother?",
+        "hasOptions": true,
+        "options": [
+          {
+            "optionId": 0,
+            "optionText": "No..."
+          }
+        ]
+      }
+    ]
+  },
+
+{
+    "dialogueId": 79,
+    "dialogueName": "You in prison Tetiaano no help",
+    "characterId": 7,
+    "lines": [
+      {
+        "lineId": 0,
+        "lineText": "Now you are in prison. You helped Margaret. However, did you really win? Tetiana's daughter died as she did not get the surgery, because you did not post that articles of Tetiana. Also did not you forget about your family? Your mother died as you did not have enough money to get the needed medicine. Was it worth it, Editor?",
+        "hasOptions": false
+      }
+    ]
+  }
 
 
 
