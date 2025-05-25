@@ -2357,6 +2357,1069 @@
           "hasOptions": false
         }
       ]
-    }
+    },
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  {
+    "dialogueId": 41,
+    "dialogueName": "Internal thoughts - Bribe consideration",
+    "characterId": 7,
+    "lines": [
+      {
+        "lineId": 0,
+        "lineText": "What if I... what if I make the Officer an offer he can't refuse? So to speak, a tax for publishing the truth... Maybe I act unfair here, but do I have a choice?",
+        "hasOptions": true,
+        "options": [
+          {
+            "optionId": 0,
+            "optionText": "Yes, it's worth trying to negotiate with the Officer",
+            "nextLineId": 1
+          },
+          {
+            "optionId": 1,
+            "optionText": "No, I won't stoop to corruption. I'll find another way",
+            "nextLineId": 3
+
+          }
+        ]
+      },
+      {
+        "lineId": 1,
+        "nextLineId": 2,
+        "lineText": "Now the question is... how much should I offer?",
+        "hasOptions": false
+      },
+      {
+        "lineId": 2,
+        "lineText": "If I offer too little, he might get offended and reject. But if I offer too much, I'll drain my savings completely.",
+        "hasOptions": true,
+        "options": [
+          {
+            "optionId": 0,
+            "optionText": "Offer a substantial amount - show I'm serious",
+            "conditionChange": "BigBribe"
+          },
+          {
+            "optionId": 1,
+            "optionText": "Start with a modest sum - test the waters",
+            "conditionChange": "SmallBribe"
+          }
+        ]
+      },
+      {
+        "lineId": 3,
+        "lineText": "But now I need to decide - do we proceed with the article despite the risks?",
+        "hasOptions": true,
+        "options": [
+          {
+            "optionId": 0,
+            "nextLineId": 4,
+            "optionText": "Yes, we'll write the article and face the consequences"
+          },
+          {
+            "optionId": 1,
+            "nextLineId": 5,
+            "optionText": "Maybe it's better to abandon this story entirely"
+          }
+        ]
+      },
+      {
+        "lineId": 4,
+        "lineText": "If we're doing this, someone needs to take responsibility. The question is who.",
+        "hasOptions": true,
+        "options": [
+          {
+            "optionId": 0,
+            "optionText": "I'll write it myself - I won't ask others to take risks I won't take"
+          },
+          {
+            "optionId": 1,
+            "optionText": "Abraham should write it - he suggested it himself"
+          },
+          {
+            "optionId": 2,
+            "optionText": "Margaret should write it - it's her father's story"
+          }
+        ]
+      },
+      {
+        "lineId": 5,
+        "nextLineId": 6,
+        "lineText": "Maybe... maybe it's time to be pragmatic. Some battles can't be won.",
+        "hasOptions": false
+      },
+      {
+        "lineId": 6,
+        "lineText": "But if I abandon Margaret and Abraham now, I need to consider all my options.",
+        "hasOptions": true,
+        "options": [
+          {
+            "optionId": 0,
+            "optionText": "Turn them in to the Officer - secure my position",
+            "conditionChange": "TurnIn"
+          },
+          {
+            "optionId": 1,
+            "optionText": "Just refuse to help",
+            "conditionChange": "RefuseHelp"
+          }
+        ]
+      }
+    ]
+  },
+
+  {
+    "dialogueId": 42,
+    "dialogueName": "Officer come Bad Realtion",
+    "characterId": 5,
+    "lines": [
+      {
+        "lineId": 0,
+        "lineText": "Ah, Editor. Why did you call me? Want to get more problems?",
+        "hasOptions": false
+      }
+    ]
+  },
+  {
+    "dialogueId": 43,
+    "dialogueName": "Officer come Good Realtion",
+    "characterId": 5,
+    "lines": [
+      {
+        "lineId": 0,
+        "lineText": "Ah, Editor. Why did you call me?",
+        "hasOptions": false
+      }
+    ]
+  },
+  {
+    "dialogueId": 44,
+    "dialogueName": "Officer to explain",
+    "characterId": 7,
+    "lines": [
+      {
+        "lineId": 0,
+        "lineText": "You explained the whole situation with Margaret's father to the Officer. He listened carefully, but you can see he is not happy with this situation. You summed up that you want to write an article about this case, but you need his approval first. For the sake of our Motherland, we must tell the truth!",
+        "hasOptions": false
+      }
+    ]
+  },
+  
+  {
+    "dialogueId": 45,
+    "dialogueName": "Large bribe outcome Bad Realtion- Success",
+    "characterId": 5,
+    "lines": [
+      {
+        "lineId": 0,
+        "lineText": "Hhaha, Editor, of course you know, I will not allow you to publish this article. After all the problems you caused for me and yourself, you still dare to ask for my approval? You must be joking.",
+        "hasOptions": true,
+        "options": [
+          {
+            "optionId": 0,
+            "nextLineId": 1,
+            "optionText": "I am not asking it empty-handed, Officer. Please accept this envelope - I hope what's inside will change your mind and take care of all your troubles."
+          }
+        ]
+      },
+      {
+        "lineId": 1,
+        "lineText": "You think you can bribe me? You think I am that cheap? I am not some petty official who can be bought with a few bills",
+        "hasOptions": true,
+        "options": [
+          {
+            "optionId": 0,
+            "nextLineId": 2,
+            "optionText": "I am so sorry! Let's forget about what happened here",
+            "conditionChange": "NoMoney"
+          },
+          {
+            "optionId": 1,
+            "nextLineId": 5,
+            "optionText": "Your brother-in-law will for sure be promoted if the Health Minister Hoffman goes to prison. We can write that he helped us with the investigation.",
+            "conditionChange": "NoMoney"
+          }
+        ]
+      },
+      {
+        "lineId": 2,
+        "lineText": "Huh, look at you! Such a pitful face!",
+        "hasOptions": false,
+        "nextLineId": 3
+      },
+      {
+        "lineId": 3,
+        "lineText": "Give me the envelope. You are lucky - there is a benefit for me in this whole story. But if anyone finds out about our deal, you know trouble won't pass you by either.",
+        "hasOptions": false,
+        "nextLineId": 4
+      },
+      {
+        "lineId": 4,
+        "lineText": "Consider this matter... resolved. The article can proceed with proper 'editorial adjustments', of course.",
+        "hasOptions": false
+      },
+      {
+        "lineId": 5,
+        "lineText": "Such a smart move, Editor. Give me the envelope. I will make sure your article is published without any issues.",
+        "hasOptions": false,
+        "nextLineId": 6
+      },
+      {
+        "lineId": 6,
+        "lineText": "But remember, this is a one-time deal. Don't expect me to turn a blind eye next time.",
+        "hasOptions": false
+      }
+    ]
+  },
+  {
+    "dialogueId": 46,
+    "dialogueName": "Large bribe outcome Good Realtion- Success",
+    "characterId": 5,
+    "lines": [
+      {
+        "lineId": 0,
+        "lineText": "Hmm, Editor, of course you know, it is problematic to publish this article...",
+        "hasOptions": true,
+        "options": [
+          {
+            "optionId": 0,
+            "nextLineId": 1,
+            "optionText": "I am not asking it empty-handed, Officer. Please accept this envelope - I hope what's inside will take care of all your troubles.",
+            "conditionChange": "NoMoney"
+          }
+        ]
+      },
+      {
+        "lineId": 1,
+        "lineText": "Huh! It makes the decision much easier. I will allow you to publish the article, but make sure to write that my brother-in-law helped with the investigation and remember, this is a one-time deal.",
+        "hasOptions": true,
+        "options": [
+          {
+            "optionId": 0,
+            "optionText": "Of course! Thank you, Sir!",
+            "nextLineId": 2
+          }
+        ]
+      },
+      {
+        "lineId": 2,
+        "lineText": "It is a pleasure doing business with you! Bye!",
+        "hasOptions": true,
+        "options": [
+          {
+            "optionId": 0,
+            "optionText": "Goodbye!"
+          }
+        ]
+      }
+    ]
+  },
+
+
+
+    {
+    "dialogueId": 47,
+    "dialogueName": "Small bribe outcome Bad Realtion- Failure",
+    "characterId": 5,
+    "lines": [
+      {
+        "lineId": 0,
+        "lineText": "Hhaha, Editor, of course you know, I will not allow you to publish this article. After all the problems you caused for me and yourself, you still dare to ask for my approval? You must be joking.",
+        "hasOptions": true,
+        "options": [
+          {
+            "optionId": 0,
+            "nextLineId": 1,
+            "optionText": "I am not asking it empty-handed, Officer. Please accept this envelope - I hope what's inside will change your mind and take care of all your troubles."
+          }
+        ]
+      },
+      {
+        "lineId": 1,
+        "lineText": "You think you can bribe me? You think I am that cheap? I am not some petty official who can be bought with a few bills",
+        "hasOptions": true,
+        "options": [
+          {
+            "optionId": 0,
+            "nextLineId": 2,
+            "optionText": "I am so sorry! Let's forget about what happened here"
+          },
+          {
+            "optionId": 1,
+            "nextLineId": 5,
+            "optionText": "Your brother-in-law will for sure be promoted if the Health Minister Hoffman goes to prison. We can write that he helped us with the investigation."
+          },
+          {
+            "optionId": 2,
+            "nextLineId": 2,
+            "optionText": "I have more, but it is all what I can give you right now. Please!"
+          }
+        ]
+      },
+      {
+        "lineId": 2,
+        "lineText": "Huh, look at you! Such a pitful face!",
+        "hasOptions": false,
+        "nextLineId": 3
+      },
+      {
+        "lineId": 3,
+        "lineText": "I'll make sure to put you behind bars for this. You think you can bribe me and get away with it? You are a fool.",
+        "hasOptions": true,
+        "options": [
+          {
+            "optionId": 0,
+            "optionText": "You are no better, Officer. You are a corrupt and cruel, and you know it."
+          },
+          {
+            "optionId": 1,
+            "optionText": "Wait, please, wait! Officer!"
+          }
+        ]
+      },
+      {
+        "lineId": 5,
+        "lineText": "Such a smart move, Editor. But you know what? You are a pain in the ass",
+        "hasOptions": false,
+        "nextLineId": 3
+      }
+    ]
+  },
+  {
+    "dialogueId": 48,
+    "dialogueName": "Small bribe outcome Good Realtion - Success",
+    "characterId": 5,
+    "lines": [
+      {
+        "lineId": 0,
+        "lineText": "Hmm, Editor, of course you know, it is problematic to publish this article...",
+        "hasOptions": true,
+        "options": [
+          {
+            "optionId": 0,
+            "nextLineId": 1,
+            "optionText": "I am not asking it empty-handed, Officer. Please accept this envelope - I hope what's inside will take care of all your troubles."
+          }
+        ]
+      },
+      {
+        "lineId": 1,
+        "lineText": "Huh! You think, for such a small amount I will allow you to publish the article? You must be joking.",
+        "hasOptions": true,
+        "options": [
+          {
+            "optionId": 0,
+            "nextLineId": 2,
+            "optionText": "I am so sorry! But it is all I have right now. Please, Officer, I will do anything to help you with your troubles."
+          },
+          {
+            "optionId": 1,
+            "nextLineId": 4,
+            "optionText": "Your brother-in-law will for sure be promoted if the Health Minister Hoffman goes to prison. We can write that he helped us with the investigation."
+          }
+        ]
+      },
+       {
+        "lineId": 2,
+        "lineText": "Give me the envelope. You are lucky - there is a benefit for me in this whole story. But if anyone finds out about our deal, you know trouble won't pass you by either.",
+        "hasOptions": false,
+        "nextLineId": 3
+      },
+      {
+        "lineId": 3,
+        "lineText": "Consider this matter... resolved. The article can proceed with proper 'editorial adjustments', of course.",
+        "hasOptions": false
+      },
+      {
+        "lineId": 4,
+        "lineText": "Such a smart move, Editor. Give me the envelope. I will make sure your article is published without any issues.",
+        "hasOptions": false
+      }
+    ]
+  },
+
+
+  {
+    "dialogueId": 49,
+    "dialogueName": "Bribe outcome margaret thanks",
+    "characterId": 0,
+    "lines": [
+      {
+        "lineId": 0,
+        "lineText": "Hello, Editor! Thank you so much for your help! I heard that you managed to convince the Officer to publish the article about my father!",
+        "hasOptions": true,
+        "options": [
+          {
+            "optionId": 0,
+            "nextLineId": 1,
+            "optionText": "I am glad I could help you"
+          }
+        ]
+      },
+      {
+        "lineId": 1,
+        "lineText": "I am so happy that all of this is over! I can't believe it!",
+        "hasOptions": true,
+        "options": [
+          {
+            "optionId": 0,
+            "optionText": "I am happy for you too! How is your father?",
+            "nextLineId": 2
+          }
+        ]
+      },
+      {
+        "lineId": 2,
+        "lineText": "He is good. He is recovering now, and I am sure he will be fine. I am so grateful to you for your support!",
+        "hasOptions": true,
+        "options": [
+          {
+            "optionId": 0,
+            "optionText": "No problem, Margaret"
+          }
+        ]
+      }
+    ]
+  },
+
+ {
+    "dialogueId": 50,
+    "dialogueName": "Bribe outcome mother dies",
+    "characterId": 7,
+    "lines": [
+      {
+        "lineId": 0,
+        "lineText": "A hero in a red cape! You helped one of your colleagues, but forgot about your own family. Your mother is dead, Editor. You had no money left to help her. Well, you cannot even help yourself. You work day and night just to afford food and rent. Was it worth it, Editor?",
+        "hasOptions": true,
+        "options": [
+          {
+            "optionId": 0,
+            "optionText": "Yes! I do not regret anything! I did what I could!"
+          },
+          {
+            "optionId": 1,
+            "optionText": "No, it was a mistake."
+          },
+          {
+            "optionId": 2,
+            "optionText": "I was not able to act otherwise. It is all the stupid government! The stupid country!"
+          }
+        ]
+      }
+    ]
+  },
+
+ {
+    "dialogueId": 51,
+    "dialogueName": "Bribe outcome mother not dies",
+    "characterId": 7,
+    "lines": [
+      {
+        "lineId": 0,
+        "lineText": "A hero in a red cape! You helped your colleague, but did not you forget about your own family? Did you think about the medication your mom needs? Do you have enough money for it?",
+        "hasOptions": true,
+        "options": [
+          {
+            "optionId": 0,
+            "optionText": "No..."
+          }
+        ]
+      },
+      {
+        "lineId": 1,
+        "lineText": "Huh! Do you think the world is fair and you can just help people and everything will be fine? You are a fool, Editor. Now you have nothing left.",
+        "hasOptions": false
+      }
+    ]
+  },
+
+
+
+   {
+    "dialogueId": 52,
+    "dialogueName": "Tetiana child alive",
+    "characterId": 2,
+    "lines": [
+      {
+        "lineId": 0,
+        "lineText": "Editor, you won't believe it!!! My daughter finally had the surgery, and the doctors say she is recovering well! The prognosis is very positive. I can't thank you enough for your help! That you published my articles! They did help!",
+        "hasOptions": true,
+        "options": [
+          {
+            "optionId": 0,
+            "optionText": "Tetiana, I am glad",
+            "nextLineId": 1
+          }
+        ]
+      },
+      {
+        "lineId": 1,
+        "lineText": "Is everything ok, Editor? You look a bit... sad",
+        "hasOptions": true,
+        "options": [
+          {
+            "optionId": 0,
+            "optionText": "Now I have problems with my own family. My mother is sick, and I do not have enough money to help her.",
+            "nextLineId": 2
+          }
+        ]
+      },
+      {
+        "lineId": 2,
+        "lineText": "Oh... now it is my time to thank you! Please, accept my help. If this amount is not enough, I have connections in the hospital now after all my articles, I can ask them to examine your mum for free",
+        "hasOptions": false
+      }
+    ]
+  },
+   {
+    "dialogueId": 53,
+    "dialogueName": "Bribe outcome mother not dies2",
+    "characterId": 6,
+    "lines": [
+      {
+        "lineId": 0,
+        "lineText": "Have a look! You are right, Editor. The world has not completely rotted after all. You got back what you had given to others. Kindness",
+        "hasOptions": false
+      }
+    ]
+  },
+
+  {
+    "dialogueId": 54,
+    "dialogueName": "Lev's escape proposal - After failed bribe. You have enough money",
+    "characterId": 1,
+    "lines": [
+      {
+        "lineId": 0,
+        "nextLineId": 1,
+        "lineText": "Hello Editor! I will be straight. I heard what happened between you and the Officer. You've made a powerful enemy.",
+        "hasOptions": false
+      },
+      {
+        "lineId": 1,
+        "lineText": "They'll come for you soon. If you have any money left, we need to get you out of the country. Now. I have contacts that can help you flee quickly and safely.",
+        "hasOptions": true,
+        "options": [
+          {
+            "optionId": 0,
+            "optionText": "You are right. I need to leave this place. Let's do it",
+            "conditionChange": "Escape"
+          },
+          {
+            "optionId": 1,
+            "optionText": "No, I can't just run away. I have responsibilities here",
+            "nextLineId": 2
+          }
+        ]
+      },
+      {
+        "lineId": 2,
+        "lineText": "Editor, there are no responsibilities in prison. The government won't stop until you're silenced. You know too much, and they won't let you live freely.",
+        "hasOptions": true,
+        "options": [
+          {
+            "optionId": 0,
+            "optionText": "You are right. I need to leave this place. Let's do it",
+            "conditionChange": "Escape"
+          },
+          {
+            "optionId": 1,
+            "optionText": "Lev, thank you for your concern, but it is my decision. I stay here and fight for the truth"
+          }
+        ]
+      }
+    ]
+  },
+ {
+    "dialogueId": 55,
+    "dialogueName": "You stays Teatiana helps",
+    "characterId": 7,
+    "lines": [
+      {
+        "lineId": 0,
+        "lineText": "A hero in a red cape! Fights for the truth! You help everyone, but did not you forget about yourself, your own family? You are in prison now. And did you think about the medication your mom needs? Do you have enough money for it?",
+        "hasOptions": true,
+        "options": [
+          {
+            "optionId": 0,
+            "optionText": "No"
+          }
+        ]
+      },
+      {
+        "lineId": 1,
+        "lineText": "Huh! Do you think the world is fair and you can just help people and everything will be fine? You are a fool, Editor. Now you have nothing left.",
+        "hasOptions": false
+      }
+    ]
+  },
+   {
+    "dialogueId": 56,
+    "dialogueName": "Tetiana comes to prison",
+    "characterId": 7,
+    "lines": [
+      {
+        "lineId": 0,
+        "lineText": "Editor, I am so sorry about you situation. But I have great news, you won't believe it!!! My daughter finally had the surgery, and the doctors say she is recovering well! The prognosis is very positive. I can't thank you enough for your help! That you published my articles! They did help!",
+        "hasOptions": true,
+        "options": [
+          {
+            "optionId": 0,
+            "optionText": "Tetiana, I am glad",
+            "nextLineId": 1
+          }
+        ]
+      },
+      {
+        "lineId": 1,
+        "lineText": "Is everything ok, Editor? You look even more sad than before",
+        "hasOptions": true,
+        "options": [
+          {
+            "optionId": 0,
+            "optionText": "I have problems with my own family. My mother is sick, and I do not have enough money to help her.",
+            "nextLineId": 2
+          }
+        ]
+      },
+      {
+        "lineId": 2,
+        "lineText": "Oh... now it is my time to thank you! Please, accept my help. If this amount is not enough, I have connections in the hospital now after all my articles, I can ask them to examine your mum for free",
+        "hasOptions": false
+      }
+    ]
+  },
+   {
+    "dialogueId": 57,
+    "dialogueName": "Bribe outcome prison mother not dies2",
+    "characterId": 6,
+    "lines": [
+      {
+        "lineId": 0,
+        "lineText": "Have a look! You are right, Editor. The world has not completely rotted after all. You got back what you had given to others. Kindness. But was it worth it after all?",
+        "hasOptions": true,
+        "options": [
+          {
+            "optionId": 0,
+            "optionText": "Yes, I do not regret anything!"
+          },
+          {
+            "optionId": 1,
+            "optionText": "No, it was a mistake."
+          },
+          {
+            "optionId": 2,
+            "optionText": "I was not able to act otherwise. It is all the stupid government! The stupid country!"
+          }
+        ]
+      }
+    ]
+  },
+
+ {
+    "dialogueId": 58,
+    "dialogueName": "You abroad Teatiana helps",
+    "characterId": 7,
+    "lines": [
+      {
+        "lineId": 0,
+        "lineText": "Six months later, you're sitting in a café abroad, reading international newspapers. Lev was right - with your resources and his connections, you've managed to build something new. Freedom has its price, but you were able to pay it. Sometimes you wonder about those you left behind, but you know you made the only choice you could.",
+        "hasOptions": false,
+        "nextLineId": 1
+      },
+      {
+        "lineId": 1,
+        "lineText": "You posted the articles of Tetiana - her daughter got the surgery she needed, and now she is recovering well, Margaret's problem was also solved, your mum gets the medication she needs, as you send her money from aboad. Happy End, right, Editor? But do you always have them in real world?",
+        "hasOptions": false
+      }
+    ]
+  },
+
+    {
+    "dialogueId": 59,
+    "dialogueName": "Lev's escape proposal - After failed bribe. You have not enough money",
+    "characterId": 1,
+    "lines": [
+      {
+        "lineId": 0,
+        "nextLineId": 1,
+        "lineText": "Hello Editor! I will be straight. I heard what happened between you and the Officer. You've made a powerful enemy.",
+        "hasOptions": false
+      },
+      {
+        "lineId": 1,
+        "lineText": "They'll come for you soon. If you have any money left, we need to get you out of the country. Now. I have contacts that can help you flee quickly and safely.",
+        "hasOptions": true,
+        "options": [
+          {
+            "optionId": 0,
+            "optionText": "Sorry Lev, I can't run away. I don't have any money",
+            "nextLineId": 2
+          }
+        ]
+      },
+      {
+        "lineId": 2,
+        "lineText": "I see... Editor, I am sorry that I can't help you. You are a very good person. This country... It just kills all good people",
+        "hasOptions": true,
+        "options": [
+          {
+            "optionId": 0,
+            "optionText": "Do not worry Lev and thank you for your support!"
+          }
+        ]
+      }
+    ]
+  },
+
+{
+    "dialogueId": 60,
+    "dialogueName": "Lev's escape proposal - After succeed bribe. You have enough money",
+    "characterId": 1,
+    "lines": [
+      {
+        "lineId": 0,
+        "nextLineId": 1,
+        "lineText": "Hello Editor! I will be straight. I heard what happened between you and the Officer. And I am sure you did not want to solve everything that way",
+        "hasOptions": false
+      },
+      {
+        "lineId": 1,
+        "lineText": "If you have any money left and if you want, I can get you out of the country. I have contacts that can help you flee quickly and safely. You are a good person, Editor. You worked hard to help others, but now you need to think about yourself. This country does not deserve you.",
+        "hasOptions": true,
+        "options": [
+          {
+            "optionId": 0,
+            "optionText": "You are right. I need to leave this place. Let's do it",
+            "conditionChange": "Escape"
+          },
+          {
+            "optionId": 1,
+            "optionText": "No, I can't just run away. I have responsibilities here",
+            "nextLineId": 2
+          }
+        ]
+      },
+      {
+        "lineId": 2,
+        "lineText": "Editor, there are no responsibilities in this rotten country. The government won't stop until you're silenced. They won't let you live freely.",
+        "hasOptions": true,
+        "options": [
+          {
+            "optionId": 0,
+            "optionText": "You are right. I need to leave this place. Let's do it",
+            "conditionChange": "Escape"
+          },
+          {
+            "optionId": 1,
+            "optionText": "Lev, thank you for your concern, but it is my decision. I stay here and fight for the truth"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "dialogueId": 61,
+    "dialogueName": "You abroad Teatiana got no help",
+    "characterId": 7,
+    "lines": [
+      {
+        "lineId": 0,
+        "lineText": "Six months later, you're sitting in a café abroad, reading international newspapers. Lev was right - with your resources and his connections, you've managed to build something new. Freedom has its price, but you were able to pay it. Sometimes you wonder about those you left behind, but you know you made the only choice you could.",
+        "hasOptions": false,
+        "nextLineId": 1
+      },
+      {
+        "lineId": 1,
+        "lineText": "Margaret's problem was solved, your mum gets the medication she needs, as you send her money from aboad. Happy End, isn't it, Editor? Only Tetiana is suffering as you did not let her articles out - her daughter did not get the surgery she needed and died. But in real world you always have to make sacrifices, right?",
+        "hasOptions": false
+      }
+    ]
+  },
+
+
+
+
+
+
+
+
+
+
+
+
+  {
+    "dialogueId": 62,
+    "dialogueName": "Officer turn in",
+    "characterId": 5,
+    "lines": [
+      {
+        "lineId": 0,
+        "lineText": "Ah, Editor. Why did you call me?",
+        "hasOptions": true,
+        "options": [
+          {
+            "optionId": 0,
+            "nextLineId": 1,
+            "optionText": "I want to tell you something about my colleagues, Margaret and Abraham. They are planning to write an article about the Health Minister Hoffman."
+          }
+        ]
+      },
+      {
+        "lineId": 1,
+        "lineText": "And? What is wrong?",
+        "hasOptions": true,
+        "options": [
+          {
+            "optionId": 0,
+            "nextLineId": 2,
+            "optionText": "It is a scandalous article, Officer. They are going to write that the Minister is involved in corruption and bribery"
+          }
+        ]
+      },
+      {
+        "lineId": 2,
+        "lineText": "I did not expect that from Margaret and especially Abraham. I will give them a fine. Just do not publish the articles and that is it",
+        "hasOptions": true,
+        "options": [
+          {
+            "optionId": 0,
+            "nextLineId": 3,
+            "optionText": "The problem is that they want to slip the article into the approved stack"
+          }
+        ]
+      },
+      {
+        "lineId": 3,
+        "lineText": "Hm... I see, it is getting more serious now... I will have to take some measures. What you need to do is to let them write the article, it will be our evidence. But you know, Editor, you did a good thing by telling me about this. I will make sure you are rewarded for your honesty.",
+        "hasOptions": true,
+        "options": [
+          {
+            "optionId": 0,
+            "optionText": "Yes, Sir! I will do everything you say!"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "dialogueId": 63,
+    "dialogueName": "Margaret turn in",
+    "characterId": 0,
+    "lines": [
+      {
+        "lineId": 0,
+        "lineText": "Hello, Editor! So how is it going?",
+        "hasOptions": true,
+        "options": [
+          {
+            "optionId": 0,
+            "nextLineId": 1,
+            "optionText": "Sorry, Margaret, my plan did not work out. I will just tell Abraham to write the article"
+          }
+        ]
+      },
+      {
+        "lineId": 1,
+        "lineText": "Oh... Well... It is the only way, I guess. My family does not have enough money to pay the fine, so...",
+        "hasOptions": true,
+        "options": [
+          {
+            "optionId": 0,
+            "optionText": "Do not worry about it"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "dialogueId": 64,
+    "dialogueName": "Abraham turn in",
+    "characterId": 3,
+    "lines": [
+      {
+        "lineId": 0,
+        "lineText": "Hello, Editor! You called me to discuss you plan?",
+        "hasOptions": true,
+        "options": [
+          {
+            "optionId": 0,
+            "nextLineId": 1,
+            "optionText": "My plan did not work out. Let's stick to yours"
+          }
+        ]
+      },
+      {
+        "lineId": 1,
+        "lineText": "No problem, Editor. I will write the article myself. I am sure it will be a great one! And you tried your best, I know. So do not worry about it.",
+        "hasOptions": true,
+        "options": [
+          {
+            "optionId": 0,
+            "optionText": "Thank you, Abraham!"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "dialogueId": 65,
+    "dialogueName": "Turn in final no Tetiana",
+    "characterId": 6,
+    "lines": [
+      {
+        "lineId": 0,
+        "lineText": "The Editor without their reporters: Margaret and Abraham are in prison now, Tetiana is suffering as you did not let her articles out - her daughter did not get the surgery she needed and died. But in real world you always have to make sacrifices, right?",
+        "nextLineId": 1,
+        "hasOptions": false
+      },
+      {
+        "lineId": 1,
+        "lineText": "The Editor who turned in their colleagues. The Editor who chose to save themselves instead of helping others, the Editor who got promoted for it. Was it the right choice? You will never know",
+        "hasOptions": false
+      }
+    ]
+  },
+    {
+    "dialogueId": 66,
+    "dialogueName": "Turn in final no Tetiana",
+    "characterId": 6,
+    "lines": [
+      {
+        "lineId": 0,
+        "lineText": "So what do we have at the end, Editor? You posted the articles of Tetiana - her daughter got the surgery she needed, and now she is recovering well. However, Margaret and Abraham are in prison now. But in real world you always have to make sacrifices, right?",
+        "nextLineId": 1,
+        "hasOptions": false
+      },
+      {
+        "lineId": 1,
+        "lineText": "The Editor who turned in their colleagues. The Editor who chose to save themselves instead of helping others, the Editor who got promoted for it. Was it the right choice? You will never know",
+        "hasOptions": false
+      }
+    ]
+  },
+
+   {
+    "dialogueId": 67,
+    "dialogueName": "Abraham refuse",
+    "characterId": 3,
+    "lines": [
+      {
+        "lineId": 0,
+        "lineText": "Hello, Editor! You called me to discuss you plan?",
+        "hasOptions": true,
+        "options": [
+          {
+            "optionId": 0,
+            "nextLineId": 1,
+            "optionText": "I've thought it all through - we should not do anything."
+          }
+        ]
+      },
+      {
+        "lineId": 1,
+        "lineText": "What?! Editor, what have influenced you? I thought we were on the same page! We need to write this article, it is our duty as journalists!",
+        "hasOptions": true,
+        "options": [
+          {
+            "optionId": 0,
+            "optionText": "I will not help, I will not let the article out. Period.",
+            "nextLineId": 2
+          }
+        ]
+      },
+      {
+        "lineId": 2,
+        "lineText": "But what about the truth? What about Margaret and Margaret's father? They need our help! We cannot just sit and do nothing!",
+        "hasOptions": true,
+        "options": [
+          {
+            "optionId": 0,
+            "optionText": "Abraham, I am sorry. But it is my decision. I will not help you with this article.",
+            "nextLineId": 3
+          }
+        ]
+      },
+      {
+        "lineId": 3,
+        "lineText": "I see... I am... disappointed, Editor. I thought you were better than that. But if you do not want to help, I will not force you. Good luck!",
+        "hasOptions": false
+      }
+    ]
+  },
+
+  {
+    "dialogueId": 68,
+    "dialogueName": "Company bankruptcy Tetiana positiv",
+    "characterId": 6,
+    "lines": [
+      {
+        "lineId": 0,
+        "nextLineId": 1,
+        "lineText": "Within a month, both Abraham and Margaret had resigned. Other staff members followed suit. Only Tetiana, whom you helped: published the articles — and thanks to that, her daughter got the surgery and started to recover — stayed until the very end.",
+        "hasOptions": false
+      },
+      {
+        "lineId": 1,
+        "nextLineId": 2,
+        "lineText": "But without your core team, the publication couldn't maintain its standards or readership. Advertisers pulled out, subscribers cancelled.",
+        "hasOptions": false
+      },
+      {
+        "lineId": 2,
+        "lineText": "Six months later, you're closing the doors for the last time, the newspaper went bankrupt. Your mother died as you could not afford medicine for her. The price of principles, you think bitterly. But was it the right decision, Editor?",
+        "hasOptions": false
+      }
+    ]
+  },
+  {
+    "dialogueId": 69,
+    "dialogueName": "Company bankruptcy Tetiana neg",
+    "characterId": 6,
+    "lines": [
+      {
+        "lineId": 0,
+        "nextLineId": 1,
+        "lineText": "Within a month, both Abraham and Margaret had resigned. Other staff members, including Tetiana, whom you also did not help as you did not post her articles and her daughter died, followed suit.",
+        "hasOptions": false
+      },
+      {
+        "lineId": 1,
+        "nextLineId": 2,
+        "lineText": "Without your core team, the publication couldn't maintain its standards or readership. Advertisers pulled out, subscribers cancelled.",
+        "hasOptions": false
+      },
+      {
+        "lineId": 2,
+        "lineText": "Six months later, you're closing the doors for the last time, the newspaper went bankrupt. Your mother died as you could not afford medicine for her. The price of principles, you think bitterly. But was it the right decision, Editor?",
+        "hasOptions": false
+      }
+    ]
+  }
+
+
+
+
+
+ 
   ]
 }
