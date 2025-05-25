@@ -2665,7 +2665,7 @@
           },
           {
             "optionId": 1,
-            "nextLineId": 5,
+            "nextLineId": 4,
             "optionText": "Your brother-in-law will for sure be promoted if the Health Minister Hoffman goes to prison. We can write that he helped us with the investigation."
           },
           {
@@ -2697,7 +2697,7 @@
         ]
       },
       {
-        "lineId": 5,
+        "lineId": 4,
         "lineText": "Such a smart move, Editor. But you know what? You are a pain in the ass",
         "hasOptions": false,
         "nextLineId": 3
