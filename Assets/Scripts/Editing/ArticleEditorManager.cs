@@ -134,13 +134,15 @@ public class ArticleEditorManager : MonoBehaviour
         decisionCorrect = true;
         Debug.Log("Player made a correct decision based on at least one valid reason.");
         NotificationManager.instance.AddToQueue(
-            "Correct Descision! + 10$");
+            "Correct Descision! + 20$");
     }
     // 2️⃣ Or if no rejection reasons existed, and player accepted
     else if (!hasImportantRejection && isRejected == false)
     {
         decisionCorrect = true;
         Debug.Log("Player correctly accepted (no prohibitions were applicable).");
+        NotificationManager.instance.AddToQueue(
+            "No prohibitions were applicable, you accepted correctly! + 10$");
         
     }
 
@@ -154,6 +156,19 @@ public class ArticleEditorManager : MonoBehaviour
         NotificationManager.instance.AddToQueue(
             "Incorrect descision! ");
         Debug.Log("❌ Player penalized for incorrect decision.");
+        // If player made an incorrect decision, they lose money
+        if (hasImportantRejection && isRejected == false)
+        {
+            NotificationManager.instance.AddToQueue(
+                "You should have rejected this article! -10$");
+            Debug.Log("❌ Player should have rejected the article.");
+        }
+        else if (hasImportantRecommendation && isRejected)
+        {
+            NotificationManager.instance.AddToQueue(
+                "You should have accepted this article! -10$");
+            Debug.Log("❌ Player should have accepted the article.");
+        }
         GameManager.instance.money -= 10; // optional penalty
     }
 
@@ -163,6 +178,7 @@ public class ArticleEditorManager : MonoBehaviour
         NotificationManager.instance.AddToQueue(
             "Found all the applicable laws! Good work! + 20$");
         Debug.Log("🏆 Bonus! Player found ALL important parts.");
+        NotificationManager.instance.AddToQueue("You found all the important parts! + 50$");
         GameManager.instance.money += 50; // bonus reward
     }
     //Set edited and isApproved

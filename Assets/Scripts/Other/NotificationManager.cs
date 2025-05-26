@@ -11,54 +11,90 @@ public class NotificationManager : MonoBehaviour
     public GameObject window;
     private Animator popupAnimator;
 
-    private Queue<string> popupQueue; //make it different type for more detailed popups, you can add different types, titles, descriptions etc
+    private Queue<NotificationData> popupQueue;
     private Coroutine queueChecker;
-    
+
     public static NotificationManager instance;
-     void Awake() {
-        if (instance == null) {
+
+    void Awake()
+    {
+        if (instance == null)
+        {
             instance = this;
             DontDestroyOnLoad(gameObject);
-        } else {
+        }
+        else
+        {
             Destroy(gameObject);
         }
     }
 
-    private void Start() {
+    private void Start()
+    {
         popupAnimator = window.GetComponent<Animator>();
         window.SetActive(false);
-        popupQueue = new Queue<string>();
+        popupQueue = new Queue<NotificationData>();
     }
 
-    public void AddToQueue(string text) {//parameter the same type as queue
-        popupQueue.Enqueue(text);
+    public void AddToQueue(string text, float duration = 4.5f)
+    {
+        popupQueue.Enqueue(new NotificationData(text, duration));
         if (queueChecker == null)
             queueChecker = StartCoroutine(CheckQueue());
     }
 
-    private void ShowPopup(string text) { //parameter the same type as queue
+
+    private void ShowPopup(string text)
+    {
+        //parameter the same type as queue
         window.SetActive(true);
-        if(SceneManager.GetActiveScene().name != "Editing") window.SetActive(false);
+        if (SceneManager.GetActiveScene().name != "Editing") window.SetActive(false);
 
         popupText.text = text;
         popupAnimator.Play("NotificationAnimation");
     }
 
-    private IEnumerator CheckQueue() {
-        do {
-            ShowPopup(popupQueue.Dequeue());
-            do {
-                if (SceneManager.GetActiveScene().name != "Editing")
-                {
-                    window.SetActive(false);
-                    //popupAnimator.StopPlayback();
-                }
-                yield return null;
-            } while (!popupAnimator.GetCurrentAnimatorStateInfo(0).IsTag("Idle"));
+    private IEnumerator CheckQueue()
+    {
+        do
+        {
+            NotificationData data = popupQueue.Dequeue();
+            ShowPopup(data.message);
 
+            popupAnimator.speed = 1f;
+            popupAnimator.Play("NotificationAnimation", 0, 0f);
+
+            // Wait for the duration of the animation (fixed at 4.5s)
+            float animationDuration = 4.5f;
+            float idleTime = Mathf.Max(0, data.duration - animationDuration);
+
+            // Wait during fixed animation
+            yield return new WaitForSeconds(3.0f);
+            // If player wants longer duration, we just wait here
+            if (idleTime > 0)
+            {
+                popupAnimator.speed = 0.0f; // Pause the animation
+                yield return new WaitForSeconds(idleTime);
+                popupAnimator.speed = 1.0f; // Resume the animation
+            }
+
+            yield return new WaitForSeconds(1.5f);
         } while (popupQueue.Count > 0);
+
         window.SetActive(false);
         queueChecker = null;
     }
 
+
+    private struct NotificationData
+    {
+        public string message;
+        public float duration;
+
+        public NotificationData(string message, float duration)
+        {
+            this.message = message;
+            this.duration = duration;
+        }
+    }
 }
