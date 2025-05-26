@@ -19,9 +19,12 @@ public class EditingState : MonoBehaviour
         if (instance == null)
         {
             NotificationManager.instance.AddToQueue(
-                "Hold SHIFT and move with ARROWS to mark text.");
+                "Hold SHIFT and move with ARROWS to mark text.",5);
             NotificationManager.instance.AddToQueue(
-                "Then press ENTER to select. Choose law and submit the article");
+                "Then press ENTER to select. Choose law and submit the article", 10);
+            NotificationManager.instance.AddToQueue(
+                "You can also use CTRL + ARROWS to move the cursor faster.", 15);
+            
             instance = this;
         }
         else if(instance != this)

@@ -54,6 +54,14 @@ public class EditingField : MonoBehaviour
             selectionStart = EditingState.instance.selectionStart;
             selectionEnd = EditingState.instance.selectionEnd;
             markedSelections = EditingState.instance.markedSelections;
+            if (markedSelections.Count != 0)
+            {
+                if (markedSelections[markedSelections.Count - 1].lawId == -1) // show input field if player left while selecting
+                {
+                    OnTextSelected?.Invoke(markedSelections[markedSelections.Count - 1].text);
+                }
+            }
+            
             lawInputFieldActive = EditingState.instance.lawInputFieldActive;
             originalText = currentArticle.text;
             title = currentArticle.title;
@@ -238,7 +246,7 @@ public class EditingField : MonoBehaviour
         foreach (var mark in markedSelections)
         {
             string color;
-            if(mark.lawId == -1) color = "yellow"; 
+            if (mark.lawId == -1) color = "yellow";
             else if (GameManager.instance.lawList.laws[mark.lawId].isProhibition) color = "red";
             else color = "green";
             inserts.Add((mark.startIndex, $"<color={color}>"));
