@@ -16,14 +16,19 @@ public class DialogueManager : MonoBehaviour
 
     public GameObject DialogueTemplate;
     public GameObject NarratorDialogueTemplate;
+    public GameObject NarratorOptionsDialogueTemplate;
     public TextMeshProUGUI selectedTMP;
     public TextMeshProUGUI narratorDialogueTMP;
+    
+    public TextMeshProUGUI narratorOptionsDialogueTMP;
     public TextMeshProUGUI dialogueTMP;
 
     public Sprite characterSprite;
     public Sprite characterSpriteTalk;
     public SpriteRenderer characterSpriteRenderer;
+    public Button[] selectedOptionButtons;
     public Button[] optionButtons;
+    public Button[] narratorOptionButtons;
 
     public int currentDialogueIndex;
     public int currentLineIndex;
@@ -128,9 +133,20 @@ public class DialogueManager : MonoBehaviour
         }
         else
         {
-           DialogueTemplate.SetActive(true); // this thing makes dialogue box appear 
-           selectedTMP = dialogueTMP;
-           DialogueTemplate.GetComponentInChildren<TextMeshProUGUI>().text = character.name;
+            if (character.id == 7)
+            {
+                NarratorOptionsDialogueTemplate.SetActive(true);
+                selectedTMP = narratorOptionsDialogueTMP;
+                selectedOptionButtons = narratorOptionButtons;
+            }
+            else
+            {
+                DialogueTemplate.SetActive(true); // this thing makes dialogue box appear 
+                selectedTMP = dialogueTMP;
+                DialogueTemplate.GetComponentInChildren<TextMeshProUGUI>().text = character.name;
+                selectedOptionButtons = optionButtons;
+            }
+
         }
         characterSprite = character.portrait;
         characterSpriteTalk = character.portraitTalking;
@@ -220,29 +236,29 @@ public class DialogueManager : MonoBehaviour
 
     private void ShowOptions(DialogueLine line)
     {
-        for (int i = 0; i < optionButtons.Length; i++)
+        for (int i = 0; i < selectedOptionButtons.Length; i++)
         {
             if (i < line.options.Count)
             {
                 Debug.Log("Showing option " + i);
-                optionButtons[i].gameObject.SetActive(true);
-                optionButtons[i].GetComponentInChildren<TextMeshProUGUI>().text = line.options[i].optionText;
+                selectedOptionButtons[i].gameObject.SetActive(true);
+                selectedOptionButtons[i].GetComponentInChildren<TextMeshProUGUI>().text = line.options[i].optionText;
 
                 // Capture the correct index
                 int capturedIndex = i;
-                optionButtons[i].onClick.RemoveAllListeners();
-                optionButtons[i].onClick.AddListener(() => OnOptionSelected(capturedIndex));
+                selectedOptionButtons[i].onClick.RemoveAllListeners();
+                selectedOptionButtons[i].onClick.AddListener(() => OnOptionSelected(capturedIndex));
             }
             else
             {
-                optionButtons[i].gameObject.SetActive(false);
+                selectedOptionButtons[i].gameObject.SetActive(false);
             }
         }
     }
 
     private void HideOptions()
     {
-        foreach (Button button in optionButtons)
+        foreach (Button button in selectedOptionButtons)
         {
             button.gameObject.SetActive(false);
         }
@@ -253,6 +269,7 @@ public class DialogueManager : MonoBehaviour
         Time.timeScale = 1;
         DialogueTemplate.gameObject.SetActive(false);
         NarratorDialogueTemplate.gameObject.SetActive(false);
+        NarratorOptionsDialogueTemplate.gameObject.SetActive(false);
         StartCoroutine(WaitBeforeClosingDialogue());
     }
 
@@ -663,6 +680,628 @@ public class DialogueManager : MonoBehaviour
                     dialogueCompleted[32] = true;
                     break;
                 }
+
+                if (dialogueCompleted.ContainsKey(32)
+                    && !dialogueCompleted.ContainsKey(33))
+                {
+                    ShowDialogue(33);
+                    dialogueCompleted[33] = true;
+                    break;
+                }
+
+                if (dialogueCompleted.ContainsKey(33)
+                    && !dialogueCompleted.ContainsKey(34))
+                {
+                    ShowDialogue(34);
+                    dialogueCompleted[34] = true;
+                    break;
+                }
+
+                if (dialogueCompleted.ContainsKey(34)
+                    && !dialogueCompleted.ContainsKey(35))
+                {
+                    ShowDialogue(35);
+                    dialogueCompleted[35] = true;
+                    break;
+                }
+
+                if (dialogueCompleted.ContainsKey(35)
+                    && !dialogueCompleted.ContainsKey(36))
+                {
+                    ShowDialogue(36);
+                    dialogueCompleted[36] = true;
+                    break;
+                }
+
+                if (dialogueCompleted.ContainsKey(36)
+                    && !dialogueCompleted.ContainsKey(37))
+                {
+                    ShowDialogue(37);
+                    dialogueCompleted[37] = true;
+                    break;
+                }
+
+                if (dialogueCompleted.ContainsKey(37)
+                    && !dialogueCompleted.ContainsKey(38))
+                {
+                    ShowDialogue(38);
+                    dialogueCompleted[38] = true;
+                    break;
+                }
+
+                if (dialogueCompleted.ContainsKey(38)
+                    && !dialogueCompleted.ContainsKey(39))
+                {
+                    ShowDialogue(39);
+                    dialogueCompleted[39] = true;
+                    break;
+                }
+
+                if (dialogueCompleted.ContainsKey(39)
+                    && !dialogueCompleted.ContainsKey(40))
+                {
+                    ShowDialogue(40);
+                    dialogueCompleted[40] = true;
+                    break;
+                }
+
+                if (dialogueCompleted.ContainsKey(40))
+                {
+                    EndOfDayScreen.instance.ShowEndOfTheDay();
+                }
+
+                break;
+
+            case 4:
+                // DAY 4 
+                if (dialogueCompleted.ContainsKey(40)
+                    && !dialogueCompleted.ContainsKey(41))
+                {
+                    ShowDialogue(41);
+                    dialogueCompleted[41] = true;
+                    break;
+                }
+
+                if (dialogueCompleted.ContainsKey(41)
+                    && !choicesDictionary.ContainsKey("TurnIn")
+                    && !choicesDictionary.ContainsKey("RefuseHelp")
+                    && !choicesDictionary.ContainsKey("IWrite")
+                    && !choicesDictionary.ContainsKey("AbrahamWrite")
+                    && !choicesDictionary.ContainsKey("MargaretWrite")
+                    && !dialogueCompleted.ContainsKey(42)
+                    && !dialogueCompleted.ContainsKey(43)
+                    && ((GameManager.instance.articleList.articles[5].isApproved == true
+                    && GameManager.instance.articleList.articles[16].isApproved == true)
+                    || (GameManager.instance.articleList.articles[5].isApproved == false
+                    && GameManager.instance.articleList.articles[16].isApproved == true)
+                    || (GameManager.instance.articleList.articles[5].isApproved == true
+                    && GameManager.instance.articleList.articles[16].isApproved == false)))
+                {
+                    ShowDialogue(42);
+                    dialogueCompleted[42] = true;
+                    break;
+                }
+
+                if (dialogueCompleted.ContainsKey(41)
+                    && !choicesDictionary.ContainsKey("TurnIn")
+                    && !choicesDictionary.ContainsKey("RefuseHelp")
+                    && !choicesDictionary.ContainsKey("IWrite")
+                    && !choicesDictionary.ContainsKey("AbrahamWrite")
+                    && !choicesDictionary.ContainsKey("MargaretWrite")
+                    && !dialogueCompleted.ContainsKey(42)
+                    && !dialogueCompleted.ContainsKey(43)
+                    && ((GameManager.instance.articleList.articles[5].isApproved == false
+                    && GameManager.instance.articleList.articles[16].isApproved == false)))
+                {
+                    ShowDialogue(43);
+                    dialogueCompleted[43] = true;
+                    break;
+                }
+
+                if ((dialogueCompleted.ContainsKey(42)
+                    || dialogueCompleted.ContainsKey(43))
+                    && !dialogueCompleted.ContainsKey(44))
+                {
+                    ShowDialogue(44);
+                    dialogueCompleted[44] = true;
+                    break;
+                }
+                
+                if (dialogueCompleted.ContainsKey(44)
+                    && !dialogueCompleted.ContainsKey(45)
+                    && ((GameManager.instance.articleList.articles[5].isApproved == true
+                    && GameManager.instance.articleList.articles[16].isApproved == true)
+                    || (GameManager.instance.articleList.articles[5].isApproved == false
+                    && GameManager.instance.articleList.articles[16].isApproved == true)
+                    || (GameManager.instance.articleList.articles[5].isApproved == true
+                    && GameManager.instance.articleList.articles[16].isApproved == false))
+                    && choicesDictionary.ContainsKey("BigBribe"))
+                {
+                    ShowDialogue(45);
+                    dialogueCompleted[45] = true;
+                    break;
+                }
+
+                if (dialogueCompleted.ContainsKey(44)
+                    && !dialogueCompleted.ContainsKey(46)
+                    && ((GameManager.instance.articleList.articles[5].isApproved == false
+                    && GameManager.instance.articleList.articles[16].isApproved == false))
+                    && choicesDictionary.ContainsKey("BigBribe"))
+                {
+                    ShowDialogue(46);
+                    dialogueCompleted[46] = true;
+                    break;
+                }
+
+                if (dialogueCompleted.ContainsKey(44)
+                    && !dialogueCompleted.ContainsKey(47)
+                    && ((GameManager.instance.articleList.articles[5].isApproved == true
+                    && GameManager.instance.articleList.articles[16].isApproved == true)
+                    || (GameManager.instance.articleList.articles[5].isApproved == false
+                    && GameManager.instance.articleList.articles[16].isApproved == true)
+                    || (GameManager.instance.articleList.articles[5].isApproved == true
+                    && GameManager.instance.articleList.articles[16].isApproved == false))
+                    && choicesDictionary.ContainsKey("SmallBribe"))
+                {
+                    ShowDialogue(47);
+                    dialogueCompleted[47] = true;
+                    break;
+                }
+
+                if (dialogueCompleted.ContainsKey(44)
+                    && !dialogueCompleted.ContainsKey(48)
+                    && ((GameManager.instance.articleList.articles[5].isApproved == false
+                    && GameManager.instance.articleList.articles[16].isApproved == false))
+                    && choicesDictionary.ContainsKey("SmallBribe"))
+                {
+                    ShowDialogue(48);
+                    dialogueCompleted[48] = true;
+                    break;
+                }
+
+                if (!dialogueCompleted.ContainsKey(59)
+                    && dialogueCompleted.ContainsKey(47))
+                {
+                    ShowDialogue(59);
+                    dialogueCompleted[59] = true;
+                    break;
+                }
+
+                if (!dialogueCompleted.ContainsKey(55)
+                    && dialogueCompleted.ContainsKey(59))
+                {
+                    ShowDialogue(55);
+                    dialogueCompleted[55] = true;
+                    break;
+                }
+
+                if (!dialogueCompleted.ContainsKey(56)
+                    && dialogueCompleted.ContainsKey(55)
+                    && (GameManager.instance.articleList.articles[5].isApproved == true
+                    || GameManager.instance.articleList.articles[16].isApproved == true))
+                {
+                    ShowDialogue(56);
+                    dialogueCompleted[56] = true;
+                    break;
+                }
+         
+                if (!dialogueCompleted.ContainsKey(57)
+                    && dialogueCompleted.ContainsKey(56)
+                    && (GameManager.instance.articleList.articles[5].isApproved == true
+                    || GameManager.instance.articleList.articles[16].isApproved == true))
+                {
+                    ShowDialogue(57);
+                    dialogueCompleted[57] = true;
+                    break;
+                }
+
+                if (!dialogueCompleted.ContainsKey(49)
+                    && (dialogueCompleted.ContainsKey(48)
+                    || dialogueCompleted.ContainsKey(45)
+                    || dialogueCompleted.ContainsKey(46)))
+                {
+                    ShowDialogue(49);
+                    dialogueCompleted[49] = true;
+                    break;
+                }
+
+                if (!dialogueCompleted.ContainsKey(60)
+                    && dialogueCompleted.ContainsKey(49)
+                    && dialogueCompleted.ContainsKey(48))
+                {
+                    ShowDialogue(60);
+                    dialogueCompleted[60] = true;
+                    break;
+                }
+
+                if (!dialogueCompleted.ContainsKey(58)
+                    && dialogueCompleted.ContainsKey(60)
+                    && dialogueCompleted.ContainsKey(48)
+                    && choicesDictionary.ContainsKey("Escape")
+                    && (GameManager.instance.articleList.articles[5].isApproved == true
+                    || GameManager.instance.articleList.articles[16].isApproved == true))
+                {
+                    ShowDialogue(58);
+                    dialogueCompleted[58] = true;
+                    break;
+                }
+
+                if (!dialogueCompleted.ContainsKey(61)
+                    && dialogueCompleted.ContainsKey(60)
+                    && dialogueCompleted.ContainsKey(48)
+                    && choicesDictionary.ContainsKey("Escape")
+                    && (GameManager.instance.articleList.articles[5].isApproved == false
+                    && GameManager.instance.articleList.articles[16].isApproved == false))
+                {
+                    ShowDialogue(61);
+                    dialogueCompleted[61] = true;
+                    break;
+                }
+
+
+
+
+
+
+
+                if (!dialogueCompleted.ContainsKey(50)
+                    && dialogueCompleted.ContainsKey(49)
+                    && (dialogueCompleted.ContainsKey(45)
+                    || dialogueCompleted.ContainsKey(46))
+                    && (GameManager.instance.articleList.articles[5].isApproved == false
+                    && GameManager.instance.articleList.articles[16].isApproved == false))
+                {
+                    ShowDialogue(50);
+                    dialogueCompleted[50] = true;
+                    break;
+                }
+
+                if (!dialogueCompleted.ContainsKey(51)
+                    && dialogueCompleted.ContainsKey(49)
+                    && (dialogueCompleted.ContainsKey(45)
+                    || dialogueCompleted.ContainsKey(46))
+                    && (GameManager.instance.articleList.articles[5].isApproved == true
+                    || GameManager.instance.articleList.articles[16].isApproved == true))
+                {
+                    ShowDialogue(51);
+                    dialogueCompleted[51] = true;
+                    break;
+                }
+
+                if (!dialogueCompleted.ContainsKey(52)
+                    && dialogueCompleted.ContainsKey(51)
+                    && (dialogueCompleted.ContainsKey(45)
+                    || dialogueCompleted.ContainsKey(46))
+                    && (GameManager.instance.articleList.articles[5].isApproved == true
+                    || GameManager.instance.articleList.articles[16].isApproved == true))
+                {
+                    ShowDialogue(52);
+                    dialogueCompleted[52] = true;
+                    break;
+                }
+
+                if (!dialogueCompleted.ContainsKey(53)
+                    && dialogueCompleted.ContainsKey(52)
+                    && (dialogueCompleted.ContainsKey(45)
+                    || dialogueCompleted.ContainsKey(46))
+                    && (GameManager.instance.articleList.articles[5].isApproved == true
+                    || GameManager.instance.articleList.articles[16].isApproved == true))
+                {
+                    ShowDialogue(53);
+                    dialogueCompleted[53] = true;
+                    break;
+                }
+
+
+
+
+                if (dialogueCompleted.ContainsKey(41)
+                    && !dialogueCompleted.ContainsKey(62)
+                    && choicesDictionary.ContainsKey("TurnIn")
+                    && !choicesDictionary.ContainsKey("RefuseHelp")
+                    && !choicesDictionary.ContainsKey("IWrite")
+                    && !choicesDictionary.ContainsKey("AbrahamWrite")
+                    && !choicesDictionary.ContainsKey("MargaretWrite"))
+                {
+                    ShowDialogue(62);
+                    dialogueCompleted[62] = true;
+                    break;
+                }
+
+                if (dialogueCompleted.ContainsKey(62)
+                    && !dialogueCompleted.ContainsKey(63)
+                    && choicesDictionary.ContainsKey("TurnIn")
+                    && !choicesDictionary.ContainsKey("RefuseHelp")
+                    && !choicesDictionary.ContainsKey("IWrite")
+                    && !choicesDictionary.ContainsKey("AbrahamWrite")
+                    && !choicesDictionary.ContainsKey("MargaretWrite"))
+                {
+                    ShowDialogue(63);
+                    dialogueCompleted[63] = true;
+                    break;
+                }
+
+                if (dialogueCompleted.ContainsKey(63)
+                    && !dialogueCompleted.ContainsKey(64)
+                    && choicesDictionary.ContainsKey("TurnIn")
+                    && !choicesDictionary.ContainsKey("RefuseHelp")
+                    && !choicesDictionary.ContainsKey("IWrite")
+                    && !choicesDictionary.ContainsKey("AbrahamWrite")
+                    && !choicesDictionary.ContainsKey("MargaretWrite"))
+                {
+                    ShowDialogue(64);
+                    dialogueCompleted[64] = true;
+                    break;
+                }
+
+                if (dialogueCompleted.ContainsKey(64)
+                    && !dialogueCompleted.ContainsKey(65)
+                    && choicesDictionary.ContainsKey("TurnIn")
+                    && !choicesDictionary.ContainsKey("RefuseHelp")
+                    && !choicesDictionary.ContainsKey("IWrite")
+                    && !choicesDictionary.ContainsKey("AbrahamWrite")
+                    && !choicesDictionary.ContainsKey("MargaretWrite")
+                    && (GameManager.instance.articleList.articles[5].isApproved == false
+                    && GameManager.instance.articleList.articles[16].isApproved == false))
+                {
+                    ShowDialogue(65);
+                    dialogueCompleted[65] = true;
+                    break;
+                }
+
+                if (dialogueCompleted.ContainsKey(64)
+                    && !dialogueCompleted.ContainsKey(66)
+                    && choicesDictionary.ContainsKey("TurnIn")
+                    && !choicesDictionary.ContainsKey("RefuseHelp")
+                    && !choicesDictionary.ContainsKey("IWrite")
+                    && !choicesDictionary.ContainsKey("AbrahamWrite")
+                    && !choicesDictionary.ContainsKey("MargaretWrite")
+                    && (GameManager.instance.articleList.articles[5].isApproved == true
+                    || GameManager.instance.articleList.articles[16].isApproved == true))
+                {
+                    ShowDialogue(66);
+                    dialogueCompleted[66] = true;
+                    break;
+                }
+
+
+
+
+                if (dialogueCompleted.ContainsKey(41)
+                    && !dialogueCompleted.ContainsKey(67)
+                    && !choicesDictionary.ContainsKey("TurnIn")
+                    && choicesDictionary.ContainsKey("RefuseHelp")
+                    && !choicesDictionary.ContainsKey("IWrite")
+                    && !choicesDictionary.ContainsKey("AbrahamWrite")
+                    && !choicesDictionary.ContainsKey("MargaretWrite"))
+                {
+                    ShowDialogue(67);
+                    dialogueCompleted[67] = true;
+                    break;
+                }
+
+                if (dialogueCompleted.ContainsKey(67)
+                    && !dialogueCompleted.ContainsKey(68)
+                    && !choicesDictionary.ContainsKey("TurnIn")
+                    && choicesDictionary.ContainsKey("RefuseHelp")
+                    && !choicesDictionary.ContainsKey("IWrite")
+                    && !choicesDictionary.ContainsKey("AbrahamWrite")
+                    && !choicesDictionary.ContainsKey("MargaretWrite")
+                    && (GameManager.instance.articleList.articles[5].isApproved == true
+                    || GameManager.instance.articleList.articles[16].isApproved == true))
+                {
+                    ShowDialogue(68);
+                    dialogueCompleted[68] = true;
+                    break;
+                }
+
+                if (dialogueCompleted.ContainsKey(67)
+                    && !dialogueCompleted.ContainsKey(69)
+                    && !dialogueCompleted.ContainsKey(68)
+                    && !choicesDictionary.ContainsKey("TurnIn")
+                    && choicesDictionary.ContainsKey("RefuseHelp")
+                    && !choicesDictionary.ContainsKey("IWrite")
+                    && !choicesDictionary.ContainsKey("AbrahamWrite")
+                    && !choicesDictionary.ContainsKey("MargaretWrite")
+                    && (GameManager.instance.articleList.articles[5].isApproved == false
+                    && GameManager.instance.articleList.articles[16].isApproved == false))
+                {
+                    ShowDialogue(69);
+                    dialogueCompleted[69] = true;
+                    break;
+                }
+
+
+
+
+                if (dialogueCompleted.ContainsKey(41)
+                    && !dialogueCompleted.ContainsKey(70)
+                    && !choicesDictionary.ContainsKey("TurnIn")
+                    && !choicesDictionary.ContainsKey("RefuseHelp")
+                    && !choicesDictionary.ContainsKey("IWrite")
+                    && choicesDictionary.ContainsKey("AbrahamWrite")
+                    && !choicesDictionary.ContainsKey("MargaretWrite"))
+                {
+                    ShowDialogue(70);
+                    dialogueCompleted[70] = true;
+                    break;
+                }
+                if (dialogueCompleted.ContainsKey(70)
+                    && !dialogueCompleted.ContainsKey(74)
+                    && !choicesDictionary.ContainsKey("TurnIn")
+                    && !choicesDictionary.ContainsKey("RefuseHelp")
+                    && !choicesDictionary.ContainsKey("IWrite")
+                    && choicesDictionary.ContainsKey("AbrahamWrite")
+                    && !choicesDictionary.ContainsKey("MargaretWrite"))
+                {
+                    ShowDialogue(74);
+                    dialogueCompleted[74] = true;
+                    break;
+                }
+
+                if (dialogueCompleted.ContainsKey(41)
+                    && !dialogueCompleted.ContainsKey(71)
+                    && !choicesDictionary.ContainsKey("TurnIn")
+                    && !choicesDictionary.ContainsKey("RefuseHelp")
+                    && !choicesDictionary.ContainsKey("IWrite")
+                    && !choicesDictionary.ContainsKey("AbrahamWrite")
+                    && choicesDictionary.ContainsKey("MargaretWrite"))
+                {
+                    ShowDialogue(71);
+                    dialogueCompleted[71] = true;
+                    break;
+                }
+                if (dialogueCompleted.ContainsKey(71)
+                    && !dialogueCompleted.ContainsKey(74)
+                    && !choicesDictionary.ContainsKey("TurnIn")
+                    && !choicesDictionary.ContainsKey("RefuseHelp")
+                    && !choicesDictionary.ContainsKey("IWrite")
+                    && !choicesDictionary.ContainsKey("AbrahamWrite")
+                    && choicesDictionary.ContainsKey("MargaretWrite"))
+                {
+                    ShowDialogue(74);
+                    dialogueCompleted[74] = true;
+                    break;
+                }
+
+
+
+                if (dialogueCompleted.ContainsKey(41)
+                    && !dialogueCompleted.ContainsKey(72)
+                    && !choicesDictionary.ContainsKey("TurnIn")
+                    && !choicesDictionary.ContainsKey("RefuseHelp")
+                    && choicesDictionary.ContainsKey("IWrite")
+                    && !choicesDictionary.ContainsKey("AbrahamWrite")
+                    && !choicesDictionary.ContainsKey("MargaretWrite"))
+                {
+                    ShowDialogue(72);
+                    dialogueCompleted[72] = true;
+                    break;
+                }
+                if (dialogueCompleted.ContainsKey(72)
+                    && !dialogueCompleted.ContainsKey(73)
+                    && !choicesDictionary.ContainsKey("TurnIn")
+                    && !choicesDictionary.ContainsKey("RefuseHelp")
+                    && choicesDictionary.ContainsKey("IWrite")
+                    && !choicesDictionary.ContainsKey("AbrahamWrite")
+                    && !choicesDictionary.ContainsKey("MargaretWrite"))
+                {
+                    ShowDialogue(73);
+                    dialogueCompleted[73] = true;
+                    break;
+                }
+
+                if ((dialogueCompleted.ContainsKey(70)
+                    || dialogueCompleted.ContainsKey(71)
+                    || dialogueCompleted.ContainsKey(72))
+                    && !dialogueCompleted.ContainsKey(75)
+                    && choicesDictionary.ContainsKey("Escape")
+                    && (GameManager.instance.articleList.articles[5].isApproved == true
+                    || GameManager.instance.articleList.articles[16].isApproved == true))
+                {
+                    ShowDialogue(75);
+                    dialogueCompleted[75] = true;
+                    break;
+                }
+
+                if ((dialogueCompleted.ContainsKey(70)
+                    || dialogueCompleted.ContainsKey(71)
+                    || dialogueCompleted.ContainsKey(72))
+                    && !dialogueCompleted.ContainsKey(75)
+                    && !dialogueCompleted.ContainsKey(76)
+                    && choicesDictionary.ContainsKey("Escape")
+                    && (GameManager.instance.articleList.articles[5].isApproved == false
+                    && GameManager.instance.articleList.articles[16].isApproved == false))
+                {
+                    ShowDialogue(76);
+                    dialogueCompleted[76] = true;
+                    break;
+                }
+
+                if ((dialogueCompleted.ContainsKey(70)
+                    || dialogueCompleted.ContainsKey(71))
+                    && dialogueCompleted.ContainsKey(74)
+                    && !dialogueCompleted.ContainsKey(72)
+                    && !dialogueCompleted.ContainsKey(77)
+                    && !choicesDictionary.ContainsKey("Escape")
+                    && (GameManager.instance.articleList.articles[5].isApproved == false
+                    && GameManager.instance.articleList.articles[16].isApproved == false))
+                {
+                    ShowDialogue(77);
+                    dialogueCompleted[77] = true;
+                    break;
+                }
+
+                if (dialogueCompleted.ContainsKey(72)
+                    && !dialogueCompleted.ContainsKey(55)
+                    && !choicesDictionary.ContainsKey("Escape")
+                    && (GameManager.instance.articleList.articles[5].isApproved == true
+                    || GameManager.instance.articleList.articles[16].isApproved == true))
+                {
+                    ShowDialogue(55);
+                    dialogueCompleted[55] = true;
+                    break;
+                }
+
+                if (dialogueCompleted.ContainsKey(72)
+                    && !dialogueCompleted.ContainsKey(79)
+                    && !choicesDictionary.ContainsKey("Escape")
+                    && (GameManager.instance.articleList.articles[5].isApproved == false
+                    && GameManager.instance.articleList.articles[16].isApproved == false))
+                {
+                    ShowDialogue(79);
+                    dialogueCompleted[79] = true;
+                    break;
+                }
+
+                if ((dialogueCompleted.ContainsKey(70)
+                    || dialogueCompleted.ContainsKey(71))
+                    && dialogueCompleted.ContainsKey(74)
+                    && !dialogueCompleted.ContainsKey(72)
+                    && !dialogueCompleted.ContainsKey(78)
+                    && !choicesDictionary.ContainsKey("Escape")
+                    && (GameManager.instance.articleList.articles[5].isApproved == true
+                    || GameManager.instance.articleList.articles[16].isApproved == true))
+                {
+                    ShowDialogue(78);
+                    dialogueCompleted[78] = true;
+                    break;
+                }
+
+                if (dialogueCompleted.ContainsKey(78)
+                    && !dialogueCompleted.ContainsKey(52)
+                    && !choicesDictionary.ContainsKey("Escape")
+                    && (GameManager.instance.articleList.articles[5].isApproved == true
+                    || GameManager.instance.articleList.articles[16].isApproved == true))
+                {
+                    ShowDialogue(52);
+                    dialogueCompleted[52] = true;
+                    break;
+                }
+
+                if (dialogueCompleted.ContainsKey(78)
+                    && dialogueCompleted.ContainsKey(52)
+                    && !dialogueCompleted.ContainsKey(53)
+                    && !choicesDictionary.ContainsKey("Escape")
+                    && (GameManager.instance.articleList.articles[5].isApproved == true
+                    || GameManager.instance.articleList.articles[16].isApproved == true))
+                {
+                    ShowDialogue(53);
+                    dialogueCompleted[53] = true;
+                    break;
+                }
+
+
+
+
+
+
+
+
+
+
+
+
 
                 // if (GameManager.instance.time > 10
                 //     && !choicesDictionary.ContainsKey("testComeLater")

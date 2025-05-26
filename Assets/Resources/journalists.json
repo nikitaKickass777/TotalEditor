@@ -41,6 +41,12 @@
     "name": "Narrator",
     "relationship": 50.0,
     "reprimands": 3
+  },
+  {
+    "id": 7,
+    "name": "NarratorOptions",
+    "relationship": 50.0,
+    "reprimands": 3
   }
  ]
 }
