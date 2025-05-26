@@ -36,6 +36,7 @@ public class DialogueManager : MonoBehaviour
     public Dictionary<string, bool> choicesDictionary;
     public Dictionary<int, bool> dialogueCompleted;
     public bool isDialogueOpen;
+    public bool showArticle;
 
     public float textSpeed = 0.05f;
     private Coroutine typeCoroutine;
@@ -759,6 +760,25 @@ public class DialogueManager : MonoBehaviour
                 {
                     ShowDialogue(41);
                     dialogueCompleted[41] = true;
+                    showArticle = false;
+                    break;
+                }
+                if (dialogueCompleted.ContainsKey(41)
+                    && !showArticle)
+                {
+                    if (choicesDictionary.ContainsKey("IWrite"))
+                    {
+                        GameManager.instance.uneditedArticles.Add(GameManager.instance.articleList.articles[21]);
+                    }
+                    if (choicesDictionary.ContainsKey("AbrahamWrite"))
+                    {
+                        GameManager.instance.uneditedArticles.Add(GameManager.instance.articleList.articles[22]);
+                    }
+                    if (choicesDictionary.ContainsKey("MargaretWrite"))
+                    {
+                        GameManager.instance.uneditedArticles.Add(GameManager.instance.articleList.articles[23]);
+                    }
+                    showArticle = true;
                     break;
                 }
 
@@ -819,6 +839,7 @@ public class DialogueManager : MonoBehaviour
                 {
                     ShowDialogue(45);
                     dialogueCompleted[45] = true;
+                    GameManager.instance.uneditedArticles.Add(GameManager.instance.articleList.articles[18]);
                     break;
                 }
 
@@ -830,6 +851,7 @@ public class DialogueManager : MonoBehaviour
                 {
                     ShowDialogue(46);
                     dialogueCompleted[46] = true;
+                    GameManager.instance.uneditedArticles.Add(GameManager.instance.articleList.articles[18]);
                     break;
                 }
 
@@ -856,6 +878,7 @@ public class DialogueManager : MonoBehaviour
                 {
                     ShowDialogue(48);
                     dialogueCompleted[48] = true;
+                    GameManager.instance.uneditedArticles.Add(GameManager.instance.articleList.articles[18]);
                     break;
                 }
 
@@ -867,11 +890,11 @@ public class DialogueManager : MonoBehaviour
                     break;
                 }
 
-                if (!dialogueCompleted.ContainsKey(55)
+                if (!dialogueCompleted.ContainsKey(80)
                     && dialogueCompleted.ContainsKey(59))
                 {
-                    ShowDialogue(55);
-                    dialogueCompleted[55] = true;
+                    ShowDialogue(80);
+                    dialogueCompleted[80] = true;
                     break;
                 }
 
@@ -898,7 +921,8 @@ public class DialogueManager : MonoBehaviour
                 if (!dialogueCompleted.ContainsKey(49)
                     && (dialogueCompleted.ContainsKey(48)
                     || dialogueCompleted.ContainsKey(45)
-                    || dialogueCompleted.ContainsKey(46)))
+                    || dialogueCompleted.ContainsKey(46))
+                    && GameManager.instance.articleList.articles[18].isEdited == true)
                 {
                     ShowDialogue(49);
                     dialogueCompleted[49] = true;
@@ -923,6 +947,55 @@ public class DialogueManager : MonoBehaviour
                 {
                     ShowDialogue(58);
                     dialogueCompleted[58] = true;
+                    break;
+                }
+
+                if (!dialogueCompleted.ContainsKey(51)
+                    && dialogueCompleted.ContainsKey(60)
+                    && dialogueCompleted.ContainsKey(48)
+                    && !choicesDictionary.ContainsKey("Escape")
+                    && (GameManager.instance.articleList.articles[5].isApproved == false
+                    && GameManager.instance.articleList.articles[16].isApproved == false))
+                {
+                    ShowDialogue(51);
+                    dialogueCompleted[51] = true;
+                    break;
+                }
+
+                if (!dialogueCompleted.ContainsKey(51)
+                    && dialogueCompleted.ContainsKey(60)
+                    && dialogueCompleted.ContainsKey(48)
+                    && !choicesDictionary.ContainsKey("Escape")
+                    && (GameManager.instance.articleList.articles[5].isApproved == true
+                    || GameManager.instance.articleList.articles[16].isApproved == true))
+                {
+                    ShowDialogue(51);
+                    dialogueCompleted[51] = true;
+                    break;
+                }
+                if (!dialogueCompleted.ContainsKey(52)
+                    && dialogueCompleted.ContainsKey(60)
+                    && dialogueCompleted.ContainsKey(51)
+                    && dialogueCompleted.ContainsKey(48)
+                    && !choicesDictionary.ContainsKey("Escape")
+                    && (GameManager.instance.articleList.articles[5].isApproved == true
+                    || GameManager.instance.articleList.articles[16].isApproved == true))
+                {
+                    ShowDialogue(52);
+                    dialogueCompleted[52] = true;
+                    break;
+                }
+                if (!dialogueCompleted.ContainsKey(53)
+                    && dialogueCompleted.ContainsKey(60)
+                    && dialogueCompleted.ContainsKey(51)
+                    && dialogueCompleted.ContainsKey(52)
+                    && dialogueCompleted.ContainsKey(48)
+                    && !choicesDictionary.ContainsKey("Escape")
+                    && (GameManager.instance.articleList.articles[5].isApproved == true
+                    || GameManager.instance.articleList.articles[16].isApproved == true))
+                {
+                    ShowDialogue(53);
+                    dialogueCompleted[53] = true;
                     break;
                 }
 
@@ -1031,6 +1104,7 @@ public class DialogueManager : MonoBehaviour
                 {
                     ShowDialogue(64);
                     dialogueCompleted[64] = true;
+                    GameManager.instance.uneditedArticles.Add(GameManager.instance.articleList.articles[22]);
                     break;
                 }
 
@@ -1042,7 +1116,8 @@ public class DialogueManager : MonoBehaviour
                     && !choicesDictionary.ContainsKey("AbrahamWrite")
                     && !choicesDictionary.ContainsKey("MargaretWrite")
                     && (GameManager.instance.articleList.articles[5].isApproved == false
-                    && GameManager.instance.articleList.articles[16].isApproved == false))
+                    && GameManager.instance.articleList.articles[16].isApproved == false)
+                    && GameManager.instance.articleList.articles[22].isEdited == true)
                 {
                     ShowDialogue(65);
                     dialogueCompleted[65] = true;
@@ -1057,7 +1132,8 @@ public class DialogueManager : MonoBehaviour
                     && !choicesDictionary.ContainsKey("AbrahamWrite")
                     && !choicesDictionary.ContainsKey("MargaretWrite")
                     && (GameManager.instance.articleList.articles[5].isApproved == true
-                    || GameManager.instance.articleList.articles[16].isApproved == true))
+                    || GameManager.instance.articleList.articles[16].isApproved == true)
+                    && GameManager.instance.articleList.articles[22].isEdited == true)
                 {
                     ShowDialogue(66);
                     dialogueCompleted[66] = true;
@@ -1120,7 +1196,8 @@ public class DialogueManager : MonoBehaviour
                     && !choicesDictionary.ContainsKey("RefuseHelp")
                     && !choicesDictionary.ContainsKey("IWrite")
                     && choicesDictionary.ContainsKey("AbrahamWrite")
-                    && !choicesDictionary.ContainsKey("MargaretWrite"))
+                    && !choicesDictionary.ContainsKey("MargaretWrite")
+                    && GameManager.instance.articleList.articles[22].isEdited == true)
                 {
                     ShowDialogue(70);
                     dialogueCompleted[70] = true;
@@ -1145,7 +1222,8 @@ public class DialogueManager : MonoBehaviour
                     && !choicesDictionary.ContainsKey("RefuseHelp")
                     && !choicesDictionary.ContainsKey("IWrite")
                     && !choicesDictionary.ContainsKey("AbrahamWrite")
-                    && choicesDictionary.ContainsKey("MargaretWrite"))
+                    && choicesDictionary.ContainsKey("MargaretWrite")
+                    && GameManager.instance.articleList.articles[23].isEdited == true)
                 {
                     ShowDialogue(71);
                     dialogueCompleted[71] = true;
@@ -1172,7 +1250,8 @@ public class DialogueManager : MonoBehaviour
                     && !choicesDictionary.ContainsKey("RefuseHelp")
                     && choicesDictionary.ContainsKey("IWrite")
                     && !choicesDictionary.ContainsKey("AbrahamWrite")
-                    && !choicesDictionary.ContainsKey("MargaretWrite"))
+                    && !choicesDictionary.ContainsKey("MargaretWrite")
+                    && GameManager.instance.articleList.articles[21].isEdited == true)
                 {
                     ShowDialogue(72);
                     dialogueCompleted[72] = true;
@@ -1184,16 +1263,16 @@ public class DialogueManager : MonoBehaviour
                     && !choicesDictionary.ContainsKey("RefuseHelp")
                     && choicesDictionary.ContainsKey("IWrite")
                     && !choicesDictionary.ContainsKey("AbrahamWrite")
-                    && !choicesDictionary.ContainsKey("MargaretWrite"))
+                    && !choicesDictionary.ContainsKey("MargaretWrite")
+                    && GameManager.instance.articleList.articles[21].isEdited == true)
                 {
                     ShowDialogue(73);
                     dialogueCompleted[73] = true;
+
                     break;
                 }
 
-                if ((dialogueCompleted.ContainsKey(70)
-                    || dialogueCompleted.ContainsKey(71)
-                    || dialogueCompleted.ContainsKey(72))
+                if (dialogueCompleted.ContainsKey(71)
                     && !dialogueCompleted.ContainsKey(75)
                     && choicesDictionary.ContainsKey("Escape")
                     && (GameManager.instance.articleList.articles[5].isApproved == true
@@ -1204,9 +1283,29 @@ public class DialogueManager : MonoBehaviour
                     break;
                 }
 
-                if ((dialogueCompleted.ContainsKey(70)
-                    || dialogueCompleted.ContainsKey(71)
-                    || dialogueCompleted.ContainsKey(72))
+                if (dialogueCompleted.ContainsKey(70)
+                    && !dialogueCompleted.ContainsKey(81)
+                    && choicesDictionary.ContainsKey("Escape")
+                    && (GameManager.instance.articleList.articles[5].isApproved == true
+                    || GameManager.instance.articleList.articles[16].isApproved == true))
+                {
+                    ShowDialogue(81);
+                    dialogueCompleted[81] = true;
+                    break;
+                }
+
+                if (dialogueCompleted.ContainsKey(72)
+                    && !dialogueCompleted.ContainsKey(82)
+                    && choicesDictionary.ContainsKey("Escape")
+                    && (GameManager.instance.articleList.articles[5].isApproved == true
+                    || GameManager.instance.articleList.articles[16].isApproved == true))
+                {
+                    ShowDialogue(82);
+                    dialogueCompleted[82] = true;
+                    break;
+                }
+
+                if (dialogueCompleted.ContainsKey(70)
                     && !dialogueCompleted.ContainsKey(75)
                     && !dialogueCompleted.ContainsKey(76)
                     && choicesDictionary.ContainsKey("Escape")
@@ -1215,6 +1314,30 @@ public class DialogueManager : MonoBehaviour
                 {
                     ShowDialogue(76);
                     dialogueCompleted[76] = true;
+                    break;
+                }
+
+                if (dialogueCompleted.ContainsKey(71)
+                    && !dialogueCompleted.ContainsKey(75)
+                    && !dialogueCompleted.ContainsKey(83)
+                    && choicesDictionary.ContainsKey("Escape")
+                    && (GameManager.instance.articleList.articles[5].isApproved == false
+                    && GameManager.instance.articleList.articles[16].isApproved == false))
+                {
+                    ShowDialogue(83);
+                    dialogueCompleted[83] = true;
+                    break;
+                }
+
+                if (dialogueCompleted.ContainsKey(72)
+                    && !dialogueCompleted.ContainsKey(75)
+                    && !dialogueCompleted.ContainsKey(84)
+                    && choicesDictionary.ContainsKey("Escape")
+                    && (GameManager.instance.articleList.articles[5].isApproved == false
+                    && GameManager.instance.articleList.articles[16].isApproved == false))
+                {
+                    ShowDialogue(84);
+                    dialogueCompleted[84] = true;
                     break;
                 }
 
