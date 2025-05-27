@@ -67,18 +67,6 @@ public class DialogueManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            if (DialogueTemplate.activeSelf || NarratorDialogueTemplate.activeSelf)
-            {
-                EndDialogue();
-            }
-            else
-            {
-                ShowDialogue(0);
-            }
-        }
-
         if (Input.GetMouseButtonDown(0) && isDialogueOpen)
         {
             if (typeCoroutine != null)

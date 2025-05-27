@@ -70,8 +70,14 @@ public class GameManager : MonoBehaviour
            gameLogic();
            time += Time.deltaTime;
        }
-       if(Input.GetKeyDown(KeyCode.S)) PersistenceManager.instance.SaveData();
-       if(Input.GetKeyDown(KeyCode.L)) PersistenceManager.instance.LoadData();
+
+       if ((Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl)) && Input.GetKeyDown(KeyCode.S))
+       {
+           PersistenceManager.instance.SaveData();
+           NotificationManager.instance.AddToQueue("Manual save completed.");
+       }
+
+       
       
    }
     public void changeMoney(int amount)
