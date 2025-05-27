@@ -14,127 +14,51 @@
         },
         {
           "lineId": 1,
-          "lineText": "Now, see this little book?",
+          "lineText": "You’ll be doing a G R E A T service! A true citizen, with a capital 'C'! Now, here’s your work machine — a typewriter! Never seen such one before? Ahem! Well, well, this is a brand-new mo-deeel! Our inventors aren’t just sitting on their behinds, you know. You slide in a news article, highlight a sentence, and mark under which law the piece passes—or, if the author is up to some mischief, you flag it accordingly. And these two piles? One for approved articles, one for rejected ones.",	
+          "hasOptions": false,
+          "nextLineId": 2,
+          "options": []
+        },
+        {
+          "lineId": 2,
+          "lineText": "What’s that look for? Hard to grasp?",	
           "hasOptions": true,
           "options": [
             {
               "optionId": 0,
-              "nextLineId": 2,
-              "optionText": "No, where is it?"
+              "nextLineId": 3,
+              "optionText": "No, everything is clear!"
             },
             {
               "optionId": 1,
               "nextLineId": 4,
-              "optionText": "Yes, Sir!"
+              "optionText": "Yes, too much information at once!"
             }
           ]
         },
         {
-          "lineId": 2,
-          "lineText": "Open your eyes kid! You are not as old as me. It's right in front of the lamp.",
-          "hasOptions": false,
-          "nextLineId": 3,
-          "options": []
-        },
-        {
           "lineId": 3,
-          "lineText": "This book is a fine little thing! Holds the fate of our great nation!",
+          "lineText": "Students nowadays are so quick-thinking. Good job!! But if you need any help, just call your mentors - Daria or Nikita",	
           "hasOptions": false,
           "nextLineId": 5,
           "options": []
         },
         {
           "lineId": 4,
-          "lineText": "A fine little thing! Holds the fate of our great nation!",
+          "lineText": "Sigh... A student!! Just call your mentors - Daria or Nikita - if you need help",	
           "hasOptions": false,
-          "nextLineId": 7,
+          "nextLineId": 5,
           "options": []
         },
         {
           "lineId": 5,
-          "lineText": "You stamp those who write the wrong kind of stuff — you know, the kind that soils the honor of our country. Mmnh... Such folks must be dealt with immediately! Three stamps, a ring on this telephone right here—and poof! The troublemaker is exactly where they need to be, and the necessary measures are taken.",
+          "lineText": "All the necessary laws are posted on the board, it is on your left — use them anytime. A handy little cheat sheet.",	
           "hasOptions": false,
           "nextLineId": 6,
           "options": []
         },
         {
           "lineId": 6,
-          "lineText": "Do not say me that you don't see the phone!! It is to the right of the lamp!",	
-          "hasOptions": false,
-          "nextLineId": 9,
-          "options": []
-        },
-        {
-          "lineId": 7,
-          "lineText": "You stamp those who write the wrong kind of stuff — you know, the kind that soils the honor of our country. Mmnh... Such folks must be dealt with immediately! Three stamps, a ring on this telephone right here—and poof! The troublemaker is exactly where they need to be, and the necessary measures are taken.",
-          "hasOptions": true,
-          "options": [            
-            {
-              "optionId": 0,
-              "nextLineId": 8,
-              "optionText": "Sorry to interrupt you, sir, but I can't find the phone..."
-            },
-            {
-              "optionId": 1,
-              "nextLineId": 9,
-              "optionText": "Sounds like a good working system!"
-            }
-        ]
-        },
-        {
-          "lineId": 8,
-          "lineText": "Open your eyes, kiddo! It is to the right of the lamp!",	
-          "hasOptions": false,
-          "nextLineId": 9,
-          "options": []
-        },
-        {
-          "lineId": 9,
-          "lineText": "You’ll be doing a G R E A T service! A true citizen, with a capital 'C'! Now, here’s your work machine — a typewriter! Never seen such one before? Ahem! Well, well, this is a brand-new mo-deeel! Our inventors aren’t just sitting on their behinds, you know. You slide in a news article, highlight a sentence, and mark under which law the piece passes—or, if the author is up to some mischief, you flag it accordingly. And these two piles? One for approved articles, one for rejected ones.",	
-          "hasOptions": false,
-          "nextLineId": 10,
-          "options": []
-        },
-        {
-          "lineId": 10,
-          "lineText": "What’s that look for? Hard to grasp?",	
-          "hasOptions": true,
-          "options": [
-            {
-              "optionId": 0,
-              "nextLineId": 11,
-              "optionText": "No, everything is clear!"
-            },
-            {
-              "optionId": 1,
-              "nextLineId": 12,
-              "optionText": "Yes, too much information at once!"
-            }
-          ]
-        },
-        {
-          "lineId": 11,
-          "lineText": "Students nowadays are so quick-thinking. Good job!! But if you need any help, just call your mentors - Daria or Nikita",	
-          "hasOptions": false,
-          "nextLineId": 13,
-          "options": []
-        },
-        {
-          "lineId": 12,
-          "lineText": "Sigh... A student!! Just call your mentors - Daria or Nikita - if you need help",	
-          "hasOptions": false,
-          "nextLineId": 13,
-          "options": []
-        },
-        {
-          "lineId": 13,
-          "lineText": "All the necessary laws are posted on the board, it is on your left — use them anytime. A handy little cheat sheet.",	
-          "hasOptions": false,
-          "nextLineId": 14,
-          "options": []
-        },
-        {
-          "lineId": 14,
           "lineText": "Ahhh, to be your age again! Just don’t slack off, you hear me? Try dodging work, and I’ll have something for you!",	
           "hasOptions": false,
           "options": []
@@ -218,7 +142,7 @@
         },
         {
           "lineId": 2,
-          "lineText": "You see, everyone makes mistakes. Even I, sometimes. Well... You have four journalists under your supervision. Writers can be... unpredictable. Sometimes they put things in print that they really shouldn't. If you notice a journalist’s articles getting worse and worse, mark it in your journal and give me a call. No need to worry — we’ll simply have a little chat with them, discuss why they’re writing the way they are. Different circumstances, you surely understand.",
+          "lineText": "You see, everyone makes mistakes. Even I, sometimes. Well... You have four journalists under your supervision. Writers can be... unpredictable. Sometimes they put things in print that they really shouldn't. If you notice a journalist’s articles getting worse and worse, just let me know. No need to worry — we’ll simply have a little chat with them, discuss why they’re writing the way they are. Different circumstances, you surely understand.",
           "hasOptions": true,
           "options": [
             {
@@ -288,7 +212,7 @@
       "lines": [
         {
           "lineId": 0,
-          "lineText": "Click on the board of laws on your left to check out the laws and recommendations.\nThen click on the typewriter to start working. Check your first article.\nYou can approve or reject the article using APPROVE or REJECT button. You get a higher reward if you select the whole sentence that corresponds fully or partly to a law or recommendation. To do so, navigate to the sentence using ARROWS on the keyboard and select it using SHIFT + RIGHT ARROW buttons. Press ENTER to submit it. Then a text field will appear where you should enter the number of the law or recommendation you selected. You can close the typewriter by clicking ESC at any time to check out the board of laws and recommendations. When you entered the number of law or recommendation, press ENTER again and then press APPROVE or REJECT button.",
+          "lineText": "Click on the board of laws on your left to check out the laws and recommendations.\nThen click on the typewriter to start working. Check your first article.\nYou can approve or reject the article using APPROVE or REJECT button. You get a higher reward if you select the whole sentence that corresponds fully or partly to a law or recommendation. There might be several sentences that you should select. To select a sentence, navigate to it using ARROWS on the keyboard and select it using SHIFT + RIGHT ARROW buttons. Press ENTER to submit it. Then a text field will appear where you should enter the number of the law or recommendation you selected. You can close the typewriter by clicking ESC at any time to check out the board of laws and recommendations. When you entered the number of law or recommendation, press ENTER again and then press APPROVE or REJECT button.",
           "hasOptions": false
         }
       ]
@@ -2811,7 +2735,7 @@
     "lines": [
       {
         "lineId": 0,
-        "lineText": "A hero in a red cape! You helped one of your colleagues, but forgot about your own family. Your mother is dead, Editor. You had no money left to help her. Well, you cannot even help yourself. You work day and night just to afford food and rent. Was it worth it, Editor?",
+        "lineText": "A hero in a red cape! You helped one of your colleagues, but Tetiana is suffering as you did not let her articles out - her daughter did not get the surgery she needed and died. You also forgot about your own family. Your mother is dead, Editor. You had no money left to help her. Well, you cannot even help yourself. You work day and night just to afford food and rent. Was it worth it, Editor?",
         "hasOptions": true,
         "options": [
           {
@@ -2843,7 +2767,8 @@
         "options": [
           {
             "optionId": 0,
-            "optionText": "No..."
+            "optionText": "No...",
+            "nextLineId": 1
           }
         ]
       },
@@ -2959,7 +2884,7 @@
     "lines": [
       {
         "lineId": 0,
-        "lineText": "A hero in a red cape! Fights for the truth! You help everyone, but did not you forget about yourself, your own family? You are in prison now. And did you think about the medication your mom needs? Do you have enough money for it?",
+        "lineText": "A hero in a red cape! Fights for the truth! You help everyone, but did not you forget about yourself, your own family? The article was published, people saw it, the Health Minister Hoffman was arrested, but a new Minister was appointed, and nothing changed. The country is still the same. You are in prison now. And did you think about the medication your mom needs? Do you have enough money for it?",
         "hasOptions": true,
         "options": [
           {
@@ -3594,7 +3519,7 @@
   },
   {
     "dialogueId": 75,
-    "dialogueName": "You abroad Teatiana helps",
+    "dialogueName": "You abroad Teatiana helps margaret punished",
     "characterId": 6,
     "lines": [
       {
@@ -3605,14 +3530,14 @@
       },
       {
         "lineId": 1,
-        "lineText": "You posted the articles of Tetiana - her daughter got the surgery she needed, and now she is recovering well, your mum gets the medication she needs, as you send her money from aboad. Only Margaret's problem had a bad ending. The Officer kept his word, and everyone was punished as he promised. The article was published, people saw it, the Health Minister Hoffman was arrested, but a new Minister was appointed, and nothing changed. The country is still the same. But in real world you always have to make sacrifices, right, Editor?",
+        "lineText": "You posted the articles of Tetiana - her daughter got the surgery she needed, and now she is recovering well, your mum gets the medication she needs, as you send her money from aboad. Only Margaret's problem had a bad ending. The Officer kept his word, and she was punished as he promised. The article was published, people saw it, the Health Minister Hoffman was arrested, but a new Minister was appointed, and nothing changed. The country is still the same. But in real world you always have to make sacrifices, right, Editor?",
         "hasOptions": false
       }
     ]
   },
   {
     "dialogueId": 76,
-    "dialogueName": "You abroad Teatiana got no help",
+    "dialogueName": "You abroad Teatiana got no help abraham was punished",
     "characterId": 6,
     "lines": [
       {
@@ -3623,7 +3548,7 @@
       },
       {
         "lineId": 1,
-        "lineText": "Your mum gets the medication she needs, as you send her money from aboad. However, Tetiana is suffering as you did not let her articles out - her daughter did not get the surgery she needed and died, and Margaret's problem had a bad ending. The Officer kept his word, and everyone was punished as he promised. The article was published, people saw it, the Health Minister Hoffman was arrested, but a new Minister was appointed, and nothing changed. The country is still the same. But in real world you always have to make sacrifices, right?",
+        "lineText": "Your mum gets the medication she needs, as you send her money from aboad. However, Tetiana is suffering as you did not let her articles out - her daughter did not get the surgery she needed and died, and Margaret's problem had a bad ending. The Officer kept his word, and Abraham was punished as he promised. The article was published, people saw it, the Health Minister Hoffman was arrested, but a new Minister was appointed, and nothing changed. The country is still the same. But in real world you always have to make sacrifices, right?",
         "hasOptions": false
       }
     ]
@@ -3679,6 +3604,102 @@
       {
         "lineId": 0,
         "lineText": "Now you are in prison. You helped Margaret. However, did you really win? Tetiana's daughter died as she did not get the surgery, because you did not post that articles of Tetiana. Also did not you forget about your family? Your mother died as you did not have enough money to get the needed medicine. Was it worth it, Editor?",
+        "hasOptions": false
+      }
+    ]
+  },
+  {
+    "dialogueId": 80,
+    "dialogueName": "You stays Teatiana helps",
+    "characterId": 7,
+    "lines": [
+      {
+        "lineId": 0,
+        "lineText": "A hero in a red cape! Fights for the truth! You help everyone, but did not you forget about yourself, your own family? You are in prison now. And did you think about the medication your mom needs? Do you have enough money for it?",
+        "hasOptions": true,
+        "options": [
+          {
+            "optionId": 0,
+            "optionText": "No",
+            "nextLineId": 1
+          }
+        ]
+      },
+      {
+        "lineId": 1,
+        "lineText": "Huh! Do you think the world is fair and you can just help people and everything will be fine? You are a fool, Editor. Now you have nothing left.",
+        "hasOptions": false
+      }
+    ]
+  },
+    {
+    "dialogueId": 81,
+    "dialogueName": "You abroad Teatiana helps abraham punished",
+    "characterId": 6,
+    "lines": [
+      {
+        "lineId": 0,
+        "lineText": "Six months later, you're sitting in a café abroad, reading international newspapers. Lev was right - with your resources and his connections, you've managed to build something new. Freedom has its price, but you were able to pay it. Sometimes you wonder about those you left behind, but you know you made the only choice you could.",
+        "hasOptions": false,
+        "nextLineId": 1
+      },
+      {
+        "lineId": 1,
+        "lineText": "You posted the articles of Tetiana - her daughter got the surgery she needed, and now she is recovering well, your mum gets the medication she needs, as you send her money from aboad. Only Margaret's problem had a bad ending. The Officer kept his word, and Abraham was punished as he promised. The article was published, people saw it, the Health Minister Hoffman was arrested, but a new Minister was appointed, and nothing changed. The country is still the same. But in real world you always have to make sacrifices, right, Editor?",
+        "hasOptions": false
+      }
+    ]
+  },
+    {
+    "dialogueId": 82,
+    "dialogueName": "You abroad Teatiana helps you punished",
+    "characterId": 6,
+    "lines": [
+      {
+        "lineId": 0,
+        "lineText": "Six months later, you're sitting in a café abroad, reading international newspapers. Lev was right - with your resources and his connections, you've managed to build something new. Freedom has its price, but you were able to pay it. Sometimes you wonder about those you left behind, but you know you made the only choice you could.",
+        "hasOptions": false,
+        "nextLineId": 1
+      },
+      {
+        "lineId": 1,
+        "lineText": "You posted the articles of Tetiana - her daughter got the surgery she needed, and now she is recovering well, your mum gets the medication she needs, as you send her money from aboad. Only Margaret's problem had a not perfect ending - the article was published, people saw it, the Health Minister Hoffman was arrested, but a new Minister was appointed, and nothing changed. Well, at least no one was punished. The country is still the same. But in real world you always have to make sacrifices, right, Editor?",
+        "hasOptions": false
+      }
+    ]
+  },
+    {
+    "dialogueId": 83,
+    "dialogueName": "You abroad Teatiana got no help margaret was punished",
+    "characterId": 6,
+    "lines": [
+      {
+        "lineId": 0,
+        "lineText": "Six months later, you're sitting in a café abroad, reading international newspapers. Lev was right - with your resources and his connections, you've managed to build something new. Freedom has its price, but you were able to pay it. Sometimes you wonder about those you left behind, but you know you made the only choice you could.",
+        "hasOptions": false,
+        "nextLineId": 1
+      },
+      {
+        "lineId": 1,
+        "lineText": "Your mum gets the medication she needs, as you send her money from aboad. However, Tetiana is suffering as you did not let her articles out - her daughter did not get the surgery she needed and died, and Margaret's problem had a bad ending. The Officer kept his word, and she was punished as he promised. The article was published, people saw it, the Health Minister Hoffman was arrested, but a new Minister was appointed, and nothing changed. The country is still the same. But in real world you always have to make sacrifices, right?",
+        "hasOptions": false
+      }
+    ]
+  },
+    {
+    "dialogueId": 84,
+    "dialogueName": "You abroad Teatiana got no help abraham was punished",
+    "characterId": 6,
+    "lines": [
+      {
+        "lineId": 0,
+        "lineText": "Six months later, you're sitting in a café abroad, reading international newspapers. Lev was right - with your resources and his connections, you've managed to build something new. Freedom has its price, but you were able to pay it. Sometimes you wonder about those you left behind, but you know you made the only choice you could.",
+        "hasOptions": false,
+        "nextLineId": 1
+      },
+      {
+        "lineId": 1,
+        "lineText": "Your mum gets the medication she needs, as you send her money from aboad. However, Tetiana is suffering as you did not let her articles out - her daughter did not get the surgery she needed and died, and Margaret's problem had not a perfect ending - no one was punished, yes, the article was published, people saw it, the Health Minister Hoffman was arrested, but a new Minister was appointed, and nothing changed. The country is still the same. But in real world you always have to make sacrifices, right?",
         "hasOptions": false
       }
     ]
