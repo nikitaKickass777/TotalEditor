@@ -311,6 +311,7 @@ public class DialogueManager : MonoBehaviour
                     dialogueCompleted[0] = true;
                     GameManager.instance.uneditedArticles.Add(GameManager.instance.articleList.articles[0]);
                     GameManager.instance.uneditedArticles.Add(GameManager.instance.articleList.articles[1]);
+                    NotificationManager.instance.AddToQueue("You have new articles to edit");
                     break;
                 }
 
@@ -410,6 +411,7 @@ public class DialogueManager : MonoBehaviour
                     GameManager.instance.uneditedArticles.Add(GameManager.instance.articleList.articles[5]);
                     GameManager.instance.lawList.laws[2].isActive = true;
                     GameManager.instance.lawList.laws[3].isActive = true;
+                    NotificationManager.instance.AddToQueue("Check out the law board");
                     timeLeftDialogue = Time.time;
                     EditingState.instance.approveButtonActive = false;
                     EditingState.instance.rejectButtonActive = false;
@@ -550,6 +552,7 @@ public class DialogueManager : MonoBehaviour
                     dialogueCompleted[17] = true;
 
                     GameManager.instance.lawList.laws[4].isActive = true;
+                    NotificationManager.instance.AddToQueue("Check out the law board");
                     GameManager.instance.uneditedArticles.Add(GameManager.instance.articleList.articles[13]);
                     GameManager.instance.uneditedArticles.Add(GameManager.instance.articleList.articles[14]);
                     GameManager.instance.uneditedArticles.Add(GameManager.instance.articleList.articles[15]);

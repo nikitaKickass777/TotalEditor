@@ -384,6 +384,7 @@ public class EditingField : MonoBehaviour
         GameManager.instance.uneditedArticles.Remove(currentArticle);
         Debug.Log("Article approved.");
         OnArticleSubmitted?.Invoke(currentArticle, markedSelections, false);
+        resetButton.SetActive(false);
     }
 
     public void RejectArticle()
@@ -393,6 +394,7 @@ public class EditingField : MonoBehaviour
         GameManager.instance.uneditedArticles.Remove(currentArticle);
         Debug.Log("Article rejected.");
         OnArticleSubmitted?.Invoke(currentArticle, markedSelections, true);
+        resetButton.SetActive(false);
     }
     public void ResetArticle()
     {

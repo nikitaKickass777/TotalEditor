@@ -41,7 +41,7 @@ public class EndGameManager : MonoBehaviour
         }
         GameObject answerPanerl = GameObject.Find("AnswerPanel");
         answerPanerl.transform.position = answerPanerl.transform.position + new Vector3(-300, 0, 0);
-
+        GameObject.Find("laptop").SetActive(false);
         if (spriteRenderer == null)
         {
             Debug.LogError("SpriteRenderer component not found on backgroundSpriteObj.");

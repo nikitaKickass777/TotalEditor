@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine.SceneManagement;
 
 public class NotificationManager : MonoBehaviour
@@ -9,9 +10,11 @@ public class NotificationManager : MonoBehaviour
     public TMP_Text popupText;
 
     public GameObject window;
+    [SerializeField]
     private Animator popupAnimator;
-
-    private Queue<NotificationData> popupQueue;
+    [SerializeField]
+    private Queue<NotificationData> popupQueue; 
+    [SerializeField]
     private Coroutine queueChecker;
 
     public static NotificationManager instance;
@@ -21,6 +24,7 @@ public class NotificationManager : MonoBehaviour
         if (instance == null)
         {
             instance = this;
+            SceneNavigator.OnSceneChange += HandleSceneChange;
             DontDestroyOnLoad(gameObject);
         }
         else
@@ -46,9 +50,9 @@ public class NotificationManager : MonoBehaviour
 
     private void ShowPopup(string text)
     {
+        Debug.Log(text);
         //parameter the same type as queue
         window.SetActive(true);
-        if (SceneManager.GetActiveScene().name != "Editing") window.SetActive(false);
 
         popupText.text = text;
         popupAnimator.Play("NotificationAnimation");
@@ -85,7 +89,23 @@ public class NotificationManager : MonoBehaviour
         queueChecker = null;
     }
 
-
+    private void HandleSceneChange(string sceneName)
+    {
+        Debug.Log("Destroyed notifications in queue: " + popupQueue.Count);
+        popupAnimator.StopPlayback();
+        popupQueue.Clear();
+        window.SetActive(false);
+    }
+    private void OnDestroy()
+    {
+        if (queueChecker != null)
+        {
+            StopCoroutine(queueChecker);
+            queueChecker = null;
+        }
+        SceneNavigator.OnSceneChange -= HandleSceneChange;
+    }
+    
     private struct NotificationData
     {
         public string message;
