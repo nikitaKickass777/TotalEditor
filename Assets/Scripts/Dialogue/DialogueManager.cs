@@ -577,7 +577,7 @@ public class DialogueManager : MonoBehaviour
                 {
                     ShowDialogue(18);
                     dialogueCompleted[18] = true;
-                    
+
                     GameManager.instance.lawList.laws[4].isActive = true;
                     NotificationManager.instance.AddToQueue("Check out the law board");
                     GameManager.instance.uneditedArticles.Add(GameManager.instance.articleList.articles[13]);
@@ -929,6 +929,25 @@ public class DialogueManager : MonoBehaviour
                     ShowDialogue(80);
                     dialogueCompleted[80] = true;
                     EndGameManager.instance.EndGame("prison");
+                    break;
+                }
+
+                if (dialogueCompleted.ContainsKey(80)
+                    && !dialogueCompleted.ContainsKey(56)
+                    && (GameManager.instance.articleList.articles[5].isApproved == true
+                    || GameManager.instance.articleList.articles[16].isApproved == true))
+                {
+                    ShowDialogue(56);
+                    dialogueCompleted[56] = true;
+                    break;
+                }
+
+                if (dialogueCompleted.ContainsKey(80)
+                    && dialogueCompleted.ContainsKey(56)
+                    && !dialogueCompleted.ContainsKey(57))
+                {
+                    ShowDialogue(57);
+                    dialogueCompleted[57] = true;
                     break;
                 }
 
