@@ -106,20 +106,8 @@ public class EditingField : MonoBehaviour
 
     void Update()
     {
-        //Handle Field Select/Deselect
-        if (Input.GetMouseButtonDown(0))
-        {
-            if (IsPointerOverText())
-            {
-                fieldSelected = true;
-            }
-            else
-            {
-                fieldSelected = false;
-            }
-        }
 
-
+        fieldSelected = true;
         if (fieldSelected)
         {
             UpdateCursorDisplay();
@@ -253,8 +241,9 @@ public class EditingField : MonoBehaviour
         {
             string color;
             if (mark.lawId == -1) color = "yellow";
-            else if (GameManager.instance.lawList.laws[mark.lawId].isProhibition) color = "red";
-            else color = "green";
+            else if (GameManager.instance.lawList.laws.Count-1 < mark.lawId || mark.lawId < 0) color = "grey"; // Invalid law ID
+            else if (!GameManager.instance.lawList.laws[mark.lawId].isProhibition) color = "#2b8a31";
+            else color = "#e53e34";
             inserts.Add((mark.startIndex, $"<color={color}>"));
             inserts.Add((mark.endIndex, "</color>"));
         }

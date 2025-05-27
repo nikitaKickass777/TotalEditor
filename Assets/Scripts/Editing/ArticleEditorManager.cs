@@ -13,7 +13,6 @@ public class ArticleEditorManager : MonoBehaviour
 
     private void Start()
     {
-        //EditingField.OnTextSelected += HandleTextSelected;
         
         EditingField.OnArticleSubmitted += HandleArticleSubmitted;
     }
@@ -62,7 +61,9 @@ public class ArticleEditorManager : MonoBehaviour
     bool hasRejectReason = false;
     bool hasAcceptReason = false;
     bool[] importantPartMatched = new bool[article.importantParts.Length]; // Track if each important part was matched
-
+    int partsMatchedCount = 0;
+    int moneyReward = 0; 
+    string notificationText = "";
     // Evaluate selected pairs
     for (int i = 0; i < selectedText.Count; i++)
     {
@@ -70,7 +71,7 @@ public class ArticleEditorManager : MonoBehaviour
         for (int j = 0; j < article.importantParts.Length; j++)
         {
             Article.ImportantPart part = article.importantParts[j];
-            if (part.text == selectedText[i])
+            if (part.text.Trim() == selectedText[i])
             {
                 foreach (int lawId in part.lawIds)
                 {
@@ -90,7 +91,6 @@ public class ArticleEditorManager : MonoBehaviour
                                 hasAcceptReason = true;
 
                             foundMatch = true;
-                            GameManager.instance.money += 10; // base reward for finding a valid reason
                         }
                         else
                         {
@@ -129,67 +129,83 @@ public class ArticleEditorManager : MonoBehaviour
     // 1️⃣ Decision correct if:
     // → player found at least one valid rejection reason AND rejected
     // → OR player found at least one valid acceptance reason AND accepted
-    if ((hasRejectReason && isRejected) || (hasAcceptReason && !isRejected))
+    if (hasRejectReason && isRejected)
     {
         decisionCorrect = true;
         Debug.Log("Player made a correct decision based on at least one valid reason.");
-        NotificationManager.instance.AddToQueue(
-            "Correct Descision! + 20$");
+        notificationText = "CORRECTLY REJECTED \nArticle violates prohibition  \n<color=#2b8a31> + 10$ </color>";
     }
+    else if (hasAcceptReason && !isRejected)
+    {
+        decisionCorrect = true;
+        Debug.Log("Player made a correct decision based on at least one valid reason.");
+        notificationText = "CORRECTLY ACCEPTED \nArticle fulfills recommendation  \n<color=#2b8a31> + 10$ </color>";
+    }
+    
     // 2️⃣ Or if no rejection reasons existed, and player accepted
     else if (!hasImportantRejection && isRejected == false)
     {
         decisionCorrect = true;
         Debug.Log("Player correctly accepted (no prohibitions were applicable).");
-        NotificationManager.instance.AddToQueue(
-            "No prohibitions were applicable, you accepted correctly! + 10$");
+        notificationText = "CORRECTLY ACCEPTED \nNo prohibitions applicable  \n<color=#2b8a31> + 10$ </color>";
         
     }
 
     if (decisionCorrect)
     {
-        Debug.Log("✅ Player rewarded for correct decision.");
-        GameManager.instance.money += 20; // base decision reward
+        moneyReward += 10;
     }
     else
     {
-        NotificationManager.instance.AddToQueue(
-            "Incorrect descision! ");
-        Debug.Log("❌ Player penalized for incorrect decision.");
+        Debug.Log("Player made an incorrect decision based on the selected text and laws.");
         // If player made an incorrect decision, they lose money
         if (hasImportantRejection && isRejected == false)
         {
-            NotificationManager.instance.AddToQueue(
-                "You should have rejected this article! -10$");
-            Debug.Log("❌ Player should have rejected the article.");
+            notificationText = "INCORRECTLY ACCEPTED \nArticle violates prohibition  \n<color=#8a2b2b> - 10$ </color>";
+            
         }
         else if (hasImportantRecommendation && isRejected)
         {
-            NotificationManager.instance.AddToQueue(
-                "You should have accepted this article! -10$");
-            Debug.Log("❌ Player should have accepted the article.");
+            notificationText = "INCORRECTLY REJECTED \nArticle doesnt violate any laws  \n<color=#8a2b2b> - 10$ </color>";
+           
         }
-        GameManager.instance.money -= 10; // optional penalty
+        else if (!hasImportantRejection && isRejected)
+        {
+            notificationText = "INCORRECTLY REJECTED \nNo prohibitions applicable  \n<color=#8a2b2b> - 10$ </color>";
+            
+        }
+        else if (hasImportantRejection && isRejected)
+        {
+            notificationText = "REJECTION WITHOUT REASON \nNo adequate rejection reason provided  \n<color=#8a2b2b> - 10$ </color>";
+        }
+        else
+        {
+            notificationText = "INCORRECT DECISION \nNo valid reasons found  \n<color=#8a2b2b> - 10$ </color>";
+        }
+        moneyReward -= 10;
     }
 
-    // BONUS if player found ALL important parts when there was more than one
-    if (allImportantPartsFound && article.importantParts.Length > 1)
+    foreach (bool match in importantPartMatched)
     {
-        NotificationManager.instance.AddToQueue(
-            "Found all the applicable laws! Good work! + 20$");
-        Debug.Log("🏆 Bonus! Player found ALL important parts.");
-        NotificationManager.instance.AddToQueue("You found all the important parts! + 50$");
-        GameManager.instance.money += 50; // bonus reward
+        if(match) partsMatchedCount++;
+        
+    }
+    if (partsMatchedCount > 1)
+    {
+        if(decisionCorrect) notificationText+="\n BONUS for "+ partsMatchedCount + " correctly assigned laws + <color=#2b8a31>"+ (partsMatchedCount-1)*5 + "$ <color=#8a2b2b>";
+       moneyReward += (partsMatchedCount - 1) * 5; // bonus for multiple correct matches
     }
     //Set edited and isApproved
     GameManager.instance.articleList.articles[article.id].isApproved = !isRejected;
     GameManager.instance.articleList.articles[article.id].isEdited = true;
+    GameManager.instance.money += moneyReward;
+    NotificationManager.instance.AddToQueue(notificationText);
     SelectNextArticle();
 }
 
     private void OnDestroy()
     {
-        //EditingField.OnTextSelected -= HandleTextSelected;
+        
         
         EditingField.OnArticleSubmitted -= HandleArticleSubmitted;
     }

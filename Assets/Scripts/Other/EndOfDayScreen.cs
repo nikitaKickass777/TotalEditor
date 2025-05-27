@@ -49,7 +49,7 @@ public class EndOfDayScreen : MonoBehaviour
                 titleTMP.text = "Some time has passed \n";
                 bodyTMP.text = "You have completed the first day. \n" +
                                "It was tiring, but satisfying. \n" +
-                               "You have earned <color=green> " + moneyEarned + "</color> money.\n"
+                               "You have earned <color=#2b8a31> " + moneyEarned + "</color> money.\n"
                                + "Expenditures: \n" +
                                "You have paid for food, rent, and other expenses. -15$\n" +
                                "Bought medicine for mother. -5$\n";

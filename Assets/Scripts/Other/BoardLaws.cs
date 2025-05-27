@@ -41,8 +41,8 @@ public class BoardLaws : MonoBehaviour
                 if (j < lawsPerPaper && i * lawsPerPaper + j < activeLaws.Count)
                 {
                     tmpTexts[j].text = activeLaws[i * lawsPerPaper + j].text; // Set the text of the law paper
-                    if(activeLaws[i * lawsPerPaper + j].isProhibition) tmpTexts[j].color = Color.red;
-                    else tmpTexts[j].color = Color.green;
+                    if(activeLaws[i * lawsPerPaper + j].isProhibition) tmpTexts[j].color = new Color(229f/255f, 62f/255f, 52f/255f);
+                    else tmpTexts[j].color = new Color(43f/255f, 138f/255f, 49f/255f ); // Set the color of the text based on the law type
                 }
                 else
                 {
