@@ -60,6 +60,7 @@ public class SceneNavigator : MonoBehaviour
 
     private string getPreviousScene()
     {
+        OnSceneChange?.Invoke(currentSceneName);
         switch (currentSceneName)
         {
             case "MainMenu":
@@ -80,9 +81,6 @@ public class SceneNavigator : MonoBehaviour
             case "Reprimands":
                 return "Office";
             case "Editing":
-            {
-                OnSceneChange?.Invoke("Editing");
-            }
                 return "Office";
             case "DialogueSystem":
                 return "Office";

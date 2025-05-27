@@ -14,6 +14,6 @@ public class DisplayMoney : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        moneyText.text = "Money: " + GameManager.instance.money + " $";
+        if(!EndGameManager.instance.isGameEnded) moneyText.text = "Money: " + GameManager.instance.money + " $";
     }
 }

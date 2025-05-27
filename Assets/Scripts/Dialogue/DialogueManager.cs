@@ -333,8 +333,10 @@ public class DialogueManager : MonoBehaviour
                 if (!dialogueCompleted.ContainsKey(3)
                     && dialogueCompleted.ContainsKey(2))
                 {
+                    
                     ShowDialogue(3);
                     dialogueCompleted[3] = true;
+                   // EndGameManager.instance.EndGame("street"); // IMPORTANT: call AFTER ShowDialogue()
                     break;
                 }
 
@@ -1417,41 +1419,7 @@ public class DialogueManager : MonoBehaviour
                     dialogueCompleted[53] = true;
                     break;
                 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-                // if (GameManager.instance.time > 10
-                //     && !choicesDictionary.ContainsKey("testComeLater")
-                //     && !isDialogueOpen
-                //     && SceneManager.GetActiveScene().name == "Office"
-                //     && !dialogueCompleted.ContainsKey(1))
-                // {
-                //     ShowDialogue(1);
-                //     dialogueCompleted[1] = true;
-                // }
-
-
-                // if(GameManager.instance.time > 20
-                //    && choicesDictionary.ContainsKey("testComeLater")
-                //    && !isDialogueOpen
-                //    && SceneManager.GetActiveScene().name == "Office"
-                //    && !dialogueCompleted.ContainsKey(2))
-                // {
-                //     ShowDialogue(2);
-                //     dialogueCompleted[2] = true;
-                // }
-
-
+                
                 break;
 
             default:

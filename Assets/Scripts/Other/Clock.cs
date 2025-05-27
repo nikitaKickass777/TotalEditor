@@ -6,8 +6,8 @@ public class Clock : MonoBehaviour
 {
     public Transform clockHandTransform;
     private float time;
-    [SerializeField] private float speed = 1f;
-    private float endTime = 9f;
+    [SerializeField] private float speed = 0.02f;
+    private float endTime = 450f;
     private bool hasShownEndOfDay = false;
     internal static object instance;
 

@@ -13,6 +13,7 @@ public class EditingState : MonoBehaviour
     public bool lawInputFieldActive;
     public bool approveButtonActive;
     public bool rejectButtonActive;
+    public bool resetButtonActive;
     public static EditingState instance;
 
     private void Awake()
@@ -28,6 +29,7 @@ public class EditingState : MonoBehaviour
             instance = this;
             rejectButtonActive = true;
             approveButtonActive = true;
+            resetButtonActive = false;
         }
         else if(instance != this)
         {

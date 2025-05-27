@@ -33,6 +33,7 @@ public class EditingField : MonoBehaviour
 
     public GameObject approveButton;
     public GameObject rejectButton;
+    public GameObject resetButton;
 
     public delegate void FieldSelectedDelegate(String text);
 
@@ -51,6 +52,7 @@ public class EditingField : MonoBehaviour
         SceneNavigator.OnSceneChange += HandleSceneChange;
         approveButton.SetActive(EditingState.instance.approveButtonActive);
         rejectButton.SetActive(EditingState.instance.rejectButtonActive);
+        resetButton.SetActive(EditingState.instance.resetButtonActive);
         if (EditingState.instance.currentArticle.text.Length != 0)
         {
             currentArticle = EditingState.instance.currentArticle;
@@ -307,6 +309,7 @@ public class EditingField : MonoBehaviour
         lawInputFieldActive = true;
         selectionStart = -1;
         selectionEnd = -1;
+        resetButton.SetActive(true);
 
         UpdateCursorDisplay();
     }
@@ -361,13 +364,17 @@ public class EditingField : MonoBehaviour
 
     private void HandleSceneChange(string sceneName)
     {
-        EditingState.instance.currentArticle = currentArticle;
-        EditingState.instance.cursorIndex = cursorIndex;
-        EditingState.instance.selectionStart = selectionStart;
-        EditingState.instance.selectionEnd = selectionEnd;
-        EditingState.instance.markedSelections = new List<MarkedSelection>(markedSelections);
-        EditingState.instance.lawInputFieldActive = lawInputFieldActive;
-        Debug.Log("Editor state saved");
+        if (sceneName == "Editing")
+        {
+            EditingState.instance.currentArticle = currentArticle;
+            EditingState.instance.cursorIndex = cursorIndex;
+            EditingState.instance.selectionStart = selectionStart;
+            EditingState.instance.selectionEnd = selectionEnd;
+            EditingState.instance.markedSelections = new List<MarkedSelection>(markedSelections);
+            EditingState.instance.lawInputFieldActive = lawInputFieldActive;
+            EditingState.instance.resetButtonActive = resetButton.activeSelf;
+            Debug.Log("Editor state saved");
+        }
     }
 
     public void ApproveArticle()
@@ -386,6 +393,19 @@ public class EditingField : MonoBehaviour
         GameManager.instance.uneditedArticles.Remove(currentArticle);
         Debug.Log("Article rejected.");
         OnArticleSubmitted?.Invoke(currentArticle, markedSelections, true);
+    }
+    public void ResetArticle()
+    {
+        currentArticle.text = originalText;
+        currentArticle.title = title;
+        markedSelections.Clear();
+        cursorIndex = 0;
+        selectionStart = -1;
+        selectionEnd = -1;
+        lawInputFieldActive = false;
+        resetButton.SetActive(false);
+        UpdateCursorDisplay();
+        Debug.Log("Article reset to original state.");
     }
 
     private void OnDestroy()
