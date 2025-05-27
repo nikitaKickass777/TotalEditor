@@ -2320,7 +2320,7 @@
           },
           {
             "optionId": 1,
-            "optionText": "No, I won't stoop to corruption. I'll find another way",
+            "optionText": "No, I won't stoop to bribery. I'll find another way",
             "nextLineId": 3
 
           }
@@ -2339,12 +2339,12 @@
         "options": [
           {
             "optionId": 0,
-            "optionText": "Offer a substantial amount - show I'm serious",
+            "optionText": "Offer a substantial amount - show I'm serious \n (100 $)",
             "conditionChange": "BigBribe"
           },
           {
             "optionId": 1,
-            "optionText": "Start with a modest sum - test the waters",
+            "optionText": "Start with a modest sum - test the waters \n (50 $)",
             "conditionChange": "SmallBribe"
           }
         ]
@@ -3703,7 +3703,25 @@
         "hasOptions": false
       }
     ]
-  }
+  }, 
+    {
+      "dialogueId": 85,
+      "dialogueName": "Game end",
+      "characterId": 6,
+      "lines": [
+        {
+          "lineId": 0,
+          "lineText": "The game has ended. We hope you enjoyed the experience. Please call Nikita or Daria to discuss your feedback.",
+          "hasOptions": false,
+          "nextLineId": 1
+        },
+        {
+          "lineId": 1,
+          "lineText": "Thank you for playing!",
+          "hasOptions": false
+        }
+      ]
+    }
 
 
 

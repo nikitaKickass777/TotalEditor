@@ -40,45 +40,73 @@ public class EndOfDayScreen : MonoBehaviour
         Time.timeScale = 0f;
     }
     public void EndTheDay()
+{
+    int moneyEarned = GameManager.instance.money - startOfTheDayMoney;
+    int expenses = 0;
+    int baseCost = 0;
+    int motherCost = 0;
+    string flavorText = "";
+    string loanText = "";
+    string title = "";
+    int day = GameManager.instance.day;
+
+    switch (day)
     {
-        
-        int moneyEarned = GameManager.instance.money - startOfTheDayMoney;
-        switch (GameManager.instance.day)
-        {
-            case 1:
-                titleTMP.text = "Some time has passed \n";
-                bodyTMP.text = "You have completed the first day. \n" +
-                               "It was tiring, but satisfying. \n" +
-                               "You have earned <color=#2b8a31> " + moneyEarned + "</color> money.\n"
-                               + "Expenditures: \n" +
-                               "You have paid for food, rent, and other expenses. -15$\n" +
-                               "Bought medicine for mother. -5$\n";
-                GameManager.instance.money -= 20;
-                if(GameManager.instance.money < 0)
-                {
-                    bodyTMP.text += "You loaned missing money from your close friend. You will have to pay it back later.\n";
-                    GameManager.instance.money = 0;
-                }
-                bodyTMP.text +=  "You have " + (GameManager.instance.money) + " money left.\n";
-                break;
-            case 2:
-                titleTMP.text = "End of Day 2 \n";
-                bodyTMP.text = "You have survived the second day. \n" +
-                                "Keep up the good work!";
-                break;
-            case 3:
-                titleTMP.text = "End of Day 3";
-                bodyTMP.text = "You have made it to the third day. \n" +
-                                "Things are getting tougher!";
-                break;
-            default:
-                titleTMP.text = "End of Day " + GameManager.instance.day;
-                bodyTMP.text = "You have reached a new milestone!";
-                break;
-        }
-        
-        startOfTheDayMoney = GameManager.instance.money;
+        case 1:
+            title = "Some time has passed";
+            flavorText = "You have completed the first day.\nIt was tiring, but you managed to get into the workflow.";
+            baseCost = 15;
+            motherCost = 5;
+            break;
+        case 2:
+            title = "End of Day 2";
+            flavorText = "You have worked some more.\nCant stop thinking about Tetianas situation...";
+            baseCost = 20;
+            motherCost = 10;
+            break;
+        case 3:
+            title = "End of Day 3";
+            flavorText = "This day was a complete shock, poor Margaret.\nTomorrow you will have to make a hard decision.";
+            baseCost = 25;
+            motherCost = 10;
+            break;
+        default:
+            title = $"End of Day {day}";
+            flavorText = "You have reached a new milestone!";
+            baseCost = 25;
+            motherCost = 10;
+            break;
     }
+
+    expenses = baseCost + motherCost;
+    int finalMoney = GameManager.instance.money - expenses;
+
+    titleTMP.text = title;
+    bodyTMP.text =
+        $"{flavorText}\n\n" +
+        $"<b>Financial Summary:</b>\n" +
+        $"Start of the day: <color=#2b8a31>{startOfTheDayMoney}$</color>\n" +
+        $"Earned today: <color=#2b8a31>{moneyEarned}$</color>\n" +
+        $"<color=#a83232>Expenditures:</color>\n" +
+        $" - Food, rent, and utilities: <color=#a83232>-{baseCost}$</color>\n" +
+        $" - Medicine for your sick mother: <color=#a83232>-{motherCost}$</color>\n";
+
+    if (finalMoney < 0)
+    {
+        loanText = "You didn't have enough money.\nYou borrowed the rest from your friend.\nYou will have to pay it back later.\n";
+        GameManager.instance.money = 0;
+    }
+    else
+    {
+        GameManager.instance.money = finalMoney;
+    }
+
+    bodyTMP.text += $"\n{loanText}" +
+                    $"Money left: <color=#2b8a31>{GameManager.instance.money}$</color>\n";
+
+    startOfTheDayMoney = GameManager.instance.money;
+}
+
 
     public void HideEndOfTheDay()
     {

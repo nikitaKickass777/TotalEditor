@@ -97,7 +97,7 @@
   {
     "id": 5,
     "title": "The Cost of Survival",
-    "text": "By Tetiana Moroz\nAt the central municipal hospital, a silent crisis unfolds, where access to medical care is determined not by need but by one's ability to pay. Maria Kovalenko, a 42-year-old single mother, is just one example of many. Her son requires a complex surgery costing 75,000 coins — more than three years of her salary. When she approached the hospital administrators for help, she was told the surgery was “technically impossible”.\nAn investigation by journalists has uncovered a disturbing trend. Of 237 complex surgeries scheduled over the last six months, 62% were performed on patients who could provide “additional financial support” — a euphemism for bribes. A medical professional, who spoke anonymously, confirmed the existence of this system, stating, “Some treatments are simply... impractical for certain patients.”\nDespite the evidence, local police have failed to take action, leaving the corrupt practices unchecked and further burdening the most vulnerable in society.",
+    "text": "By Tetiana Moroz\nAt the central municipal hospital, a silent crisis unfolds, where access to medical care is determined not by need but by one's ability to pay. Maria Kovalenko, a 42-year-old single mother, is just one example of many. Her son requires a complex surgery costing 7,500 coins — more than three years of her salary. When she approached the hospital administrators for help, she was told the surgery was “technically impossible”.\nAn investigation by journalists has uncovered a disturbing trend. Of 237 complex surgeries scheduled over the last six months, 62% were performed on patients who could provide “additional financial support” — a euphemism for bribes. A medical professional, who spoke anonymously, confirmed the existence of this system, stating, “Some treatments are simply... impractical for certain patients.”\nDespite the evidence, local police have failed to take action, leaving the corrupt practices unchecked and further burdening the most vulnerable in society.",
     "journalistId": 2,
     "importantParts": [
       {
@@ -290,7 +290,7 @@
   {
     "id": 16,
     "title": "Medicine Shortages",
-    "text": "By Tetiana Moroz\nCritical medications are increasingly unavailable in state pharmacies, forcing desperate patients to turn to underground networks.\n“My father needs insulin to survive,” says Alexander from Liefgrad. “The state pharmacy hasn't had any for two months. I buy it from a dealer who gets it from across the border. I pay 2,800 coins for what should cost 320.”\nA six-month investigation tracked 14 essential medications officially listed as “in stock” at state facilities. In reality, 11 were consistently unavailable, despite Ministry of Health records showing regular deliveries.\nFormer pharmacy technician Iryna M. revealed a systematic scheme: “Deliveries arrive, but medications are immediately diverted to private sellers connected to hospital administrators.”\nWhen presented with this evidence, Ministry officials promised an internal review.",
+    "text": "By Tetiana Moroz\nCritical medications are increasingly unavailable in state pharmacies, forcing desperate patients to turn to underground networks.\n“My father needs insulin to survive,” says Alexander from Liefgrad. “The state pharmacy hasn't had any for two months. I buy it from a dealer who gets it from across the border. I pay 280 coins for what should cost 320.”\nA six-month investigation tracked 14 essential medications officially listed as “in stock” at state facilities. In reality, 11 were consistently unavailable, despite Ministry of Health records showing regular deliveries.\nFormer pharmacy technician Iryna M. revealed a systematic scheme: “Deliveries arrive, but medications are immediately diverted to private sellers connected to hospital administrators.”\nWhen presented with this evidence, Ministry officials promised an internal review.",
     "journalistId": 2,
     "importantParts": [
       {
@@ -299,7 +299,7 @@
         "lawIds": [2]
       },
       {
-        "text": "“The state pharmacy hasn't had any for two months. I buy it from a dealer who gets it from across the border. I pay 2,800 coins for what should cost 320.”",
+        "text": "“The state pharmacy hasn't had any for two months. I buy it from a dealer who gets it from across the border. I pay 280 coins for what should cost 32.”",
         "tolerance": 3,
         "lawIds": [0, 2]
       },

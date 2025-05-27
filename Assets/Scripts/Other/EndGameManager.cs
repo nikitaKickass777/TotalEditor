@@ -25,7 +25,7 @@ public class EndGameManager : MonoBehaviour
         DontDestroyOnLoad(this);
     }
 
-    public void EndGame(string ending)
+    public void EndGame(string ending = "")
     {
         isGameEnded = true;
         Debug.Log(ending);
@@ -69,7 +69,7 @@ public class EndGameManager : MonoBehaviour
                 break;
 
             default:
-                spriteRenderer.sprite = Resources.Load<Sprite>("Endings/cafe");
+                backgroundSpriteObj.SetActive(false);
                 break;
         }
     }
