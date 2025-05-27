@@ -1901,7 +1901,7 @@
     {
       "dialogueId": 21,
       "dialogueName": "Margaret father",
-      "characterId": 0,
+      "characterId": 10,
       "lines": [
         {
           "lineId": 0,
@@ -1925,7 +1925,7 @@
     {
       "dialogueId": 23,
       "dialogueName": "Margaret father2",
-      "characterId": 0,
+      "characterId": 10,
       "lines": [
         {
           "lineId": 0,
@@ -1973,7 +1973,7 @@
     {
       "dialogueId": 25,
       "dialogueName": "Margaret father3",
-      "characterId": 0,
+      "characterId": 10,
       "lines": [
         {
           "lineId": 0,
@@ -2019,7 +2019,7 @@
     {
       "dialogueId": 27,
       "dialogueName": "Margaret father4",
-      "characterId": 0,
+      "characterId": 10,
       "lines": [
         {
           "lineId": 0,
@@ -2053,7 +2053,7 @@
     {
       "dialogueId": 29,
       "dialogueName": "Margaret father5",
-      "characterId": 0,
+      "characterId": 10,
       "lines": [
         {
           "lineId": 0,
@@ -2095,7 +2095,7 @@
     {
       "dialogueId": 31,
       "dialogueName": "Margaret father6",
-      "characterId": 0,
+      "characterId": 10,
       "lines": [
         {
           "lineId": 0,
@@ -2149,7 +2149,7 @@
     {
       "dialogueId": 34,
       "dialogueName": "Margaret father7",
-      "characterId": 0,
+      "characterId": 10,
       "lines": [
         {
           "lineId": 0,
@@ -2185,7 +2185,7 @@
     {
       "dialogueId": 36,
       "dialogueName": "Margaret father8",
-      "characterId": 0,
+      "characterId": 10,
       "lines": [
         {
           "lineId": 0,
@@ -2221,7 +2221,7 @@
     {
       "dialogueId": 38,
       "dialogueName": "Margaret father8",
-      "characterId": 0,
+      "characterId": 10,
       "lines": [
         {
           "lineId": 0,
@@ -2785,7 +2785,7 @@
    {
     "dialogueId": 52,
     "dialogueName": "Tetiana child alive",
-    "characterId": 2,
+    "characterId": 9,
     "lines": [
       {
         "lineId": 0,
@@ -2904,7 +2904,7 @@
    {
     "dialogueId": 56,
     "dialogueName": "Tetiana comes to prison",
-    "characterId": 2,
+    "characterId": 8,
     "lines": [
       {
         "lineId": 0,
