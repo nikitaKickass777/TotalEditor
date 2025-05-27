@@ -337,7 +337,7 @@ public class DialogueManager : MonoBehaviour
                     
                     ShowDialogue(3);
                     dialogueCompleted[3] = true;
-                   // EndGameManager.instance.EndGame("street"); // IMPORTANT: call AFTER ShowDialogue()
+                  //  EndGameManager.instance.EndGame("street"); // IMPORTANT: call AFTER ShowDialogue()
                     break;
                 }
 
@@ -925,9 +925,10 @@ public class DialogueManager : MonoBehaviour
                 if (!dialogueCompleted.ContainsKey(80)
                     && dialogueCompleted.ContainsKey(59))
                 {
-                    EndGameManager.instance.EndGame("prison");
+                    
                     ShowDialogue(80);
                     dialogueCompleted[80] = true;
+                    EndGameManager.instance.EndGame("prison");
                     break;
                 }
 
@@ -978,9 +979,10 @@ public class DialogueManager : MonoBehaviour
                     && (GameManager.instance.articleList.articles[5].isApproved == true
                     || GameManager.instance.articleList.articles[16].isApproved == true))
                 {
-                    EndGameManager.instance.EndGame("cafe");
+                    
                     ShowDialogue(58);
                     dialogueCompleted[58] = true;
+                    EndGameManager.instance.EndGame("cafe");
                     break;
                 }
 
@@ -1040,9 +1042,10 @@ public class DialogueManager : MonoBehaviour
                     && (GameManager.instance.articleList.articles[5].isApproved == false
                     && GameManager.instance.articleList.articles[16].isApproved == false))
                 {
-                    EndGameManager.instance.EndGame("cafe");
+                    
                     ShowDialogue(61);
                     dialogueCompleted[61] = true;
+                    EndGameManager.instance.EndGame("cafe");
                     break;
                 }
 
@@ -1203,9 +1206,10 @@ public class DialogueManager : MonoBehaviour
                     && (GameManager.instance.articleList.articles[5].isApproved == true
                     || GameManager.instance.articleList.articles[16].isApproved == true))
                 {
-                    EndGameManager.instance.EndGame("street");
+                    
                     ShowDialogue(68);
                     dialogueCompleted[68] = true;
+                    EndGameManager.instance.EndGame("street");
                     break;
                 }
 
@@ -1220,9 +1224,10 @@ public class DialogueManager : MonoBehaviour
                     && (GameManager.instance.articleList.articles[5].isApproved == false
                     && GameManager.instance.articleList.articles[16].isApproved == false))
                 {
-                    EndGameManager.instance.EndGame("street");
+                    
                     ShowDialogue(69);
                     dialogueCompleted[69] = true;
+                    EndGameManager.instance.EndGame("street");
                     break;
                 }
 
@@ -1317,9 +1322,10 @@ public class DialogueManager : MonoBehaviour
                     && (GameManager.instance.articleList.articles[5].isApproved == true
                     || GameManager.instance.articleList.articles[16].isApproved == true))
                 {
-                    EndGameManager.instance.EndGame("cafe");
+                    
                     ShowDialogue(75);
                     dialogueCompleted[75] = true;
+                    EndGameManager.instance.EndGame("cafe");
                     break;
                 }
 
@@ -1329,9 +1335,10 @@ public class DialogueManager : MonoBehaviour
                     && (GameManager.instance.articleList.articles[5].isApproved == true
                     || GameManager.instance.articleList.articles[16].isApproved == true))
                 {
-                    EndGameManager.instance.EndGame("cafe");
+                    
                     ShowDialogue(81);
                     dialogueCompleted[81] = true;
+                    EndGameManager.instance.EndGame("cafe");
                     break;
                 }
 
@@ -1341,9 +1348,10 @@ public class DialogueManager : MonoBehaviour
                     && (GameManager.instance.articleList.articles[5].isApproved == true
                     || GameManager.instance.articleList.articles[16].isApproved == true))
                 {
-                    EndGameManager.instance.EndGame("cafe");
+                    
                     ShowDialogue(82);
                     dialogueCompleted[82] = true;
+                    EndGameManager.instance.EndGame("cafe");
                     break;
                 }
 
@@ -1354,9 +1362,10 @@ public class DialogueManager : MonoBehaviour
                     && (GameManager.instance.articleList.articles[5].isApproved == false
                     && GameManager.instance.articleList.articles[16].isApproved == false))
                 {
-                    EndGameManager.instance.EndGame("cafe");
+                    
                     ShowDialogue(76);
                     dialogueCompleted[76] = true;
+                    EndGameManager.instance.EndGame("cafe");
                     break;
                 }
 
@@ -1367,9 +1376,10 @@ public class DialogueManager : MonoBehaviour
                     && (GameManager.instance.articleList.articles[5].isApproved == false
                     && GameManager.instance.articleList.articles[16].isApproved == false))
                 {
-                    EndGameManager.instance.EndGame("cafe");
+                    
                     ShowDialogue(83);
                     dialogueCompleted[83] = true;
+                    EndGameManager.instance.EndGame("cafe");
                     break;
                 }
 
@@ -1380,9 +1390,10 @@ public class DialogueManager : MonoBehaviour
                     && (GameManager.instance.articleList.articles[5].isApproved == false
                     && GameManager.instance.articleList.articles[16].isApproved == false))
                 {
-                    EndGameManager.instance.EndGame("cafe");
+                    
                     ShowDialogue(84);
                     dialogueCompleted[84] = true;
+                    EndGameManager.instance.EndGame("cafe");
                     break;
                 }
 
@@ -1406,9 +1417,10 @@ public class DialogueManager : MonoBehaviour
                     && (GameManager.instance.articleList.articles[5].isApproved == true
                     || GameManager.instance.articleList.articles[16].isApproved == true))
                 {
-                    EndGameManager.instance.EndGame("prison");
+                    
                     ShowDialogue(55);
                     dialogueCompleted[55] = true;
+                    EndGameManager.instance.EndGame("prison");
                     break;
                 }
 
@@ -1418,9 +1430,10 @@ public class DialogueManager : MonoBehaviour
                     && (GameManager.instance.articleList.articles[5].isApproved == false
                     && GameManager.instance.articleList.articles[16].isApproved == false))
                 {
-                    EndGameManager.instance.EndGame("prison");
+                    
                     ShowDialogue(79);
                     dialogueCompleted[79] = true;
+                    EndGameManager.instance.EndGame("prison");
                     break;
                 }
 
@@ -1448,7 +1461,7 @@ public class DialogueManager : MonoBehaviour
                     dialogueCompleted[52] = true;
                     break;
                 }
-
+                
                 if (dialogueCompleted.ContainsKey(78)
                     && dialogueCompleted.ContainsKey(52)
                     && !dialogueCompleted.ContainsKey(53)

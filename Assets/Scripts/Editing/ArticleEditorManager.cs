@@ -51,6 +51,12 @@ public class ArticleEditorManager : MonoBehaviour
     
     private void HandleArticleSubmitted(Article article, List<MarkedSelection> markedSelections, bool isRejected)
 {
+    if(article.text == "")
+    {
+        Debug.LogWarning("Article text is empty. Cannot submit.");
+        NotificationManager.instance.AddToQueue("No more articles to edit. \n Check out the office");
+        return;
+    }
     List<string> selectedText = markedSelections.Select(m => m.text).ToList();
     List<int> selectedLaws = markedSelections.Select(m => m.lawId).ToList();
     

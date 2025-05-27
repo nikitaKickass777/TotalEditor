@@ -32,10 +32,20 @@ public class EndGameManager : MonoBehaviour
         backgroundSpriteObj.SetActive(true);
         SpriteRenderer spriteRenderer = backgroundSpriteObj.GetComponent<SpriteRenderer>();
         GameObject portrait = GameObject.Find("Portrait");
-        portrait.transform.localScale = new Vector3(1f, 1f, 1f);
-        portrait.transform.position = portrait.transform.position + new Vector3(0, 0, 0);
+        if (portrait != null)
+        {
+            portrait.transform.localScale = new Vector3(1f, 1f, 1f);
+            portrait.transform.position = portrait.transform.position + new Vector3(0, 0, 0);
+            
+            
+        }
         GameObject answerPanerl = GameObject.Find("AnswerPanel");
-        answerPanerl.transform.position = answerPanerl.transform.position + new Vector3(-300, 0, 0);
+        if (answerPanerl != null)
+        {
+            answerPanerl.transform.position = answerPanerl.transform.position + new Vector3(-300, 0, 0);
+            
+        }
+        
         GameObject.Find("laptop").SetActive(false);
         if (spriteRenderer == null)
         {
