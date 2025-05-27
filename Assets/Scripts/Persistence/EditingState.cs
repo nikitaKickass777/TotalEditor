@@ -26,6 +26,8 @@ public class EditingState : MonoBehaviour
                 "Then press ENTER to select. Choose law and submit the article");
             
             instance = this;
+            rejectButtonActive = true;
+            approveButtonActive = true;
         }
         else if(instance != this)
         {
@@ -33,4 +35,5 @@ public class EditingState : MonoBehaviour
         }
         DontDestroyOnLoad(this);
     }
+    
 }

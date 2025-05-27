@@ -75,8 +75,6 @@ public class EditingField : MonoBehaviour
         }
         else
         {
-            approveButton.SetActive(true);
-            rejectButton.SetActive(true);
             ArticleEditorManager.SelectNextArticle();
         }
 
@@ -369,8 +367,6 @@ public class EditingField : MonoBehaviour
         EditingState.instance.selectionEnd = selectionEnd;
         EditingState.instance.markedSelections = new List<MarkedSelection>(markedSelections);
         EditingState.instance.lawInputFieldActive = lawInputFieldActive;
-        EditingState.instance.approveButtonActive = approveButton.activeSelf;
-        EditingState.instance.rejectButtonActive = rejectButton.activeSelf;
         Debug.Log("Editor state saved");
     }
 

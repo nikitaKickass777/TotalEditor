@@ -409,6 +409,8 @@ public class DialogueManager : MonoBehaviour
                     GameManager.instance.lawList.laws[2].isActive = true;
                     GameManager.instance.lawList.laws[3].isActive = true;
                     timeLeftDialogue = Time.time;
+                    EditingState.instance.approveButtonActive = false;
+                    EditingState.instance.rejectButtonActive = false;
                     break;
                 }
 
@@ -422,7 +424,8 @@ public class DialogueManager : MonoBehaviour
                 {
                     ShowDialogue(10);
                     dialogueCompleted[10] = true;
-
+                    EditingState.instance.approveButtonActive = true;
+                    EditingState.instance.rejectButtonActive = true;
                     GameManager.instance.uneditedArticles.Add(GameManager.instance.articleList.articles[6]);
                     GameManager.instance.uneditedArticles.Add(GameManager.instance.articleList.articles[7]);
                     GameManager.instance.uneditedArticles.Add(GameManager.instance.articleList.articles[8]);
