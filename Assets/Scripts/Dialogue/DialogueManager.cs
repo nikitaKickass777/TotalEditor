@@ -281,6 +281,7 @@ public class DialogueManager : MonoBehaviour
 
     private void ApplyOptionEffects(DialogueOption option)
     {
+        option.isSelected = true;
         if (option.conditionChange != null)
         {
             choicesDictionary[option.conditionChange] = true;

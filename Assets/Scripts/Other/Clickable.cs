@@ -51,7 +51,8 @@ public class Clickable : MonoBehaviour
             GameManager.instance.isEndOfTheDayOpen ||
             Menu.isPaused ||
             EndOfDayScreen.instance.isOpen ||
-            SceneNavigator.instance.isPopupOpen) return true;
+            SceneNavigator.instance.isPopupOpen ||
+            EndGameManager.instance.isGameEnded) return true;
         return false;
     }
 

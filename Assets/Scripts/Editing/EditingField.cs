@@ -31,6 +31,8 @@ public class EditingField : MonoBehaviour
     private KeyCode lastKeyPressed;
     private bool fieldSelected = false;
 
+    public GameObject approveButton;
+    public GameObject rejectButton;
 
     public delegate void FieldSelectedDelegate(String text);
 
@@ -47,6 +49,8 @@ public class EditingField : MonoBehaviour
         ArticleEditorManager.OnArticleSelected += HandleArticleSelected;
         LawInputController.OnLawSubmitted += HandleLawSubmitted;
         SceneNavigator.OnSceneChange += HandleSceneChange;
+        approveButton.SetActive(EditingState.instance.approveButtonActive);
+        rejectButton.SetActive(EditingState.instance.rejectButtonActive);
         if (EditingState.instance.currentArticle.text.Length != 0)
         {
             currentArticle = EditingState.instance.currentArticle;
@@ -71,6 +75,8 @@ public class EditingField : MonoBehaviour
         }
         else
         {
+            approveButton.SetActive(true);
+            rejectButton.SetActive(true);
             ArticleEditorManager.SelectNextArticle();
         }
 
@@ -363,7 +369,8 @@ public class EditingField : MonoBehaviour
         EditingState.instance.selectionEnd = selectionEnd;
         EditingState.instance.markedSelections = new List<MarkedSelection>(markedSelections);
         EditingState.instance.lawInputFieldActive = lawInputFieldActive;
-
+        EditingState.instance.approveButtonActive = approveButton.activeSelf;
+        EditingState.instance.rejectButtonActive = rejectButton.activeSelf;
         Debug.Log("Editor state saved");
     }
 

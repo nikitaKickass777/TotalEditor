@@ -11,6 +11,8 @@ public class EditingState : MonoBehaviour
     public int selectionEnd;
     [SerializeField] public List<MarkedSelection> markedSelections = new List<MarkedSelection>();
     public bool lawInputFieldActive;
+    public bool approveButtonActive;
+    public bool rejectButtonActive;
     public static EditingState instance;
 
     private void Awake()
@@ -19,11 +21,9 @@ public class EditingState : MonoBehaviour
         if (instance == null)
         {
             NotificationManager.instance.AddToQueue(
-                "Hold SHIFT and move with ARROWS to mark text.",5);
+                "Hold SHIFT and move with ARROWS to mark text.");
             NotificationManager.instance.AddToQueue(
-                "Then press ENTER to select. Choose law and submit the article", 10);
-            NotificationManager.instance.AddToQueue(
-                "You can also use CTRL + ARROWS to move the cursor faster.", 15);
+                "Then press ENTER to select. Choose law and submit the article");
             
             instance = this;
         }

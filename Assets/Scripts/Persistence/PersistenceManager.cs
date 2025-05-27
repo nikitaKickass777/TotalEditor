@@ -39,6 +39,8 @@ public class PersistenceManager : MonoBehaviour
             musicVolume = AudioManager.instance.musicVolume
         });
 
+        // Save dialogue list
+        SaveToFile("dialogue_save.json", DialogueManager.instance.dialogueList);
         // Save law list
         SaveToFile("law_save.json", GameManager.instance.lawList);
 
@@ -79,6 +81,9 @@ public class PersistenceManager : MonoBehaviour
             AudioManager.instance.musicVolume = config.musicVolume;
         }
 
+        // Load dialogue list
+        var dialogueList = LoadFromFile<DialogueList>("dialogue_save.json");
+        if(dialogueList != null) DialogueManager.instance.dialogueList = dialogueList;
         // Load law list
         var lawList = LoadFromFile<LawList>("law_save.json");
         if (lawList != null) GameManager.instance.lawList = lawList;

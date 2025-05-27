@@ -793,9 +793,10 @@ MonoBehaviour:
   selectionStart: -1
   selectionEnd: -1
   isSelecting: 0
-  selectedTexts: []
-  selectedLawIds: 
+  markedSelections: []
   lawInputFieldActive: 0
+  approveButton: {fileID: 1935269136}
+  rejectButton: {fileID: 1764267023}
 --- !u!1 &737122171
 GameObject:
   m_ObjectHideFlags: 0
@@ -1245,9 +1246,10 @@ MonoBehaviour:
   cursorIndex: 0
   selectionStart: 0
   selectionEnd: 0
-  selectedTexts: []
-  selectedLawIds: 
+  markedSelections: []
   lawInputFieldActive: 0
+  approveButtonActive: 0
+  rejectButtonActive: 0
 --- !u!4 &1299821618
 Transform:
   m_ObjectHideFlags: 0

@@ -31,5 +31,6 @@ public class DialogueOption
     public int nextLineId = -1;
     public string optionText;
     public string conditionChange;
-    
+    public bool isSelected;
+
 }
