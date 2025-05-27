@@ -47,6 +47,24 @@
     "name": "NarratorOptions",
     "relationship": 50.0,
     "reprimands": 3
+  },
+  {
+    "id": 8,
+    "name": "Tetiana",
+    "relationship": 50.0,
+    "reprimands": 3
+  },
+  {
+    "id": 9,
+    "name": "Tetiana",
+    "relationship": 50.0,
+    "reprimands": 3
+  },
+  {
+    "id": 10,
+    "name": "Margaret",
+    "relationship": 50.0,
+    "reprimands": 3
   }
- ]
+]
 }

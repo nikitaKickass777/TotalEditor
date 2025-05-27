@@ -6,14 +6,22 @@ using TMPro;
 public class DisplayMoney : MonoBehaviour
 {
     public TextMeshProUGUI moneyText;
-    void Start()
+    public static DisplayMoney instance;
+    private void Awake()
     {
-        
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
-
     // Update is called once per frame
     void Update()
     {
-        if(!EndGameManager.instance.isGameEnded) moneyText.text = "Money: " + GameManager.instance.money + " $";
+        if(!EndGameManager.instance.isGameEnded) moneyText.text = "Money: <color=green>" + GameManager.instance.money + " $ </color>";
     }
 }

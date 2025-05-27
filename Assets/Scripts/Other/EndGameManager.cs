@@ -32,13 +32,8 @@ public class EndGameManager : MonoBehaviour
         backgroundSpriteObj.SetActive(true);
         SpriteRenderer spriteRenderer = backgroundSpriteObj.GetComponent<SpriteRenderer>();
         GameObject portrait = GameObject.Find("Portrait");
-        if (portrait != null)
-        {
-            DialogueManager.instance.characterSprite = Resources.Load<Sprite>("Portraits/TetianaCut");
-            DialogueManager.instance.characterSpriteTalk = Resources.Load<Sprite>("Portraits/TetianaCut_talks");
-            portrait.transform.localScale = new Vector3(2.5f, 2.5f, 3f);
-            portrait.transform.position = portrait.transform.position + new Vector3(-2, 0, 0);
-        }
+        portrait.transform.localScale = new Vector3(1f, 1f, 1f);
+        portrait.transform.position = portrait.transform.position + new Vector3(0, 0, 0);
         GameObject answerPanerl = GameObject.Find("AnswerPanel");
         answerPanerl.transform.position = answerPanerl.transform.position + new Vector3(-300, 0, 0);
         GameObject.Find("laptop").SetActive(false);

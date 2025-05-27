@@ -148,6 +148,23 @@ public class GameManager : MonoBehaviour
             journalist.portrait = Resources.Load<Sprite>("Portraits/" + journalist.name);
             journalist.portraitTalking = Resources.Load<Sprite>("Portraits/" + journalist.name + "_talks");
             journalist.portraitDoor = Resources.Load<Sprite>("Portraits/" + journalist.name + "_door");
+            if (journalist.id == 8)
+            {
+                journalist.portrait = Resources.Load<Sprite>("Portraits/full_tetiana");
+                journalist.portraitTalking = Resources.Load<Sprite>("Portraits/full_tetiana_talks");
+            }
+
+            if (journalist.id == 9)
+            {
+                journalist.portrait = Resources.Load<Sprite>("Portraits/happy_tetiana");
+                journalist.portraitTalking = Resources.Load<Sprite>("Portraits/happy_tetiana_talks");
+                
+            }
+            if (journalist.id == 10)
+            {
+                journalist.portrait = Resources.Load<Sprite>("Portraits/sad_margaret");
+                journalist.portraitTalking = Resources.Load<Sprite>("Portraits/sad_margaret_talks");
+            }
         }
     }
 
