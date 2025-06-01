@@ -117,7 +117,7 @@ public class EditingField : MonoBehaviour
             if (Input.GetKeyUp(KeyCode.LeftShift) || Input.GetKeyUp(KeyCode.RightShift))
                 isSelecting = false;
 
-            if (Input.GetKeyDown(KeyCode.Return) && selectionStart != -1 && selectionEnd != -1)
+            if (Input.GetKeyDown(KeyCode.LeftAlt)||Input.GetKeyDown(KeyCode.RightAlt)||Input.GetKeyDown(KeyCode.AltGr)  && selectionStart != -1 && selectionEnd != -1)
             {
                 SaveMarkedText();
             }
@@ -207,7 +207,7 @@ public class EditingField : MonoBehaviour
             // Update cursorIndex if a character was found
             if (closestCharIndex != -1)
             {
-                cursorIndex = closestCharIndex;
+				cursorIndex = (direction > 0) ? Mathf.Max(0, closestCharIndex - 1) : closestCharIndex;
             }
         }
 
@@ -301,6 +301,7 @@ public class EditingField : MonoBehaviour
         resetButton.SetActive(true);
 
         UpdateCursorDisplay();
+        AudioManager.instance.PlayClip(AudioManager.instance.markedSelection);
     }
 
     private bool IsPointerOverText()
@@ -329,7 +330,8 @@ public class EditingField : MonoBehaviour
         {
             markedSelections.Clear();
         }
-
+        AudioManager.instance.PlayClip(AudioManager.instance.articleLoadedClick);
+        AudioManager.instance.PlayClip(AudioManager.instance.articleLoadedPaper);
         return article;
     }
 
@@ -374,6 +376,7 @@ public class EditingField : MonoBehaviour
         Debug.Log("Article approved.");
         OnArticleSubmitted?.Invoke(currentArticle, markedSelections, false);
         resetButton.SetActive(false);
+        AudioManager.instance.PlayClip(AudioManager.instance.acceptRejectReset);
     }
 
     public void RejectArticle()
@@ -384,6 +387,7 @@ public class EditingField : MonoBehaviour
         Debug.Log("Article rejected.");
         OnArticleSubmitted?.Invoke(currentArticle, markedSelections, true);
         resetButton.SetActive(false);
+        AudioManager.instance.PlayClip(AudioManager.instance.acceptRejectReset);
     }
     public void ResetArticle()
     {
@@ -397,6 +401,7 @@ public class EditingField : MonoBehaviour
         resetButton.SetActive(false);
         UpdateCursorDisplay();
         Debug.Log("Article reset to original state.");
+        AudioManager.instance.PlayClip(AudioManager.instance.acceptRejectReset);
     }
 
     private void OnDestroy()

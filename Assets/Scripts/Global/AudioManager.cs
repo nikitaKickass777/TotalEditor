@@ -7,6 +7,14 @@ public class AudioManager : MonoBehaviour
     public static AudioManager instance;
     public AudioSource audioSource;
     public AudioClip buttonClick;
+    public AudioClip acceptRejectReset;
+    public AudioClip footsteps;
+    public AudioClip clockTick;
+    public AudioClip markedSelection;
+    public AudioClip articleLoadedClick;
+    public AudioClip articleLoadedPaper;
+    public AudioClip hummingNoise;
+    public AudioClip backgroundMusic;
     public AudioClip[] typingSounds;
     public int soundVolume = 100;
     public int musicVolume = 100;
@@ -36,6 +44,7 @@ public class AudioManager : MonoBehaviour
     public void PlayRandomTypingSound()
     {
         AudioClip clip = typingSounds[Random.Range(0, typingSounds.Length)];
+        audioSource.volume = ((float)soundVolume) / 100f * 0.5f;
         audioSource.PlayOneShot(clip);
     }
     //Can use this to randomize pitch and volume of sound effects

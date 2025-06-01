@@ -39,12 +39,6 @@ public class EndGameManager : MonoBehaviour
             
             
         }
-        GameObject answerPanerl = GameObject.Find("AnswerPanel");
-        if (answerPanerl != null)
-        {
-            answerPanerl.transform.position = answerPanerl.transform.position + new Vector3(-300, 0, 0);
-            
-        }
         
         GameObject.Find("laptop").SetActive(false);
         if (spriteRenderer == null)

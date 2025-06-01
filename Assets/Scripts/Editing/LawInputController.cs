@@ -10,7 +10,7 @@ public class LawInputController : MonoBehaviour
     
     public delegate void LawSubmitted(string selectedText, int lawId);
     public static event LawSubmitted OnLawSubmitted; // event to notify (selectedText, lawId)
-
+    
     private void Start()
     {
         EditingField.OnTextSelected += HandleTextSelected;
@@ -21,6 +21,13 @@ public class LawInputController : MonoBehaviour
         lawInputField.gameObject.SetActive(false); // start hidden
 
         lawInputField.onSubmit.AddListener(SubmitLaw);
+    }
+    private void Update()
+    {
+        if (Input.anyKeyDown && !Input.GetKeyDown(KeyCode.Escape) && !Input.GetKeyDown(KeyCode.Space) && !Input.GetKeyDown(KeyCode.Return))
+        {
+            AudioManager.instance.PlayRandomTypingSound();
+        }
     }
 
     private void HandleTextSelected(string text)
