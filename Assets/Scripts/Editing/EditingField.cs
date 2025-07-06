@@ -24,6 +24,11 @@ public class EditingField : MonoBehaviour
     [SerializeField] private List<MarkedSelection> markedSelections = new List<MarkedSelection>();
     [SerializeField] private bool lawInputFieldActive = false;
 
+    // Start the highlight animation instead:
+    const float ANIMATION_INTERVAL = 0.03f; // seconds per expansion step
+    const string HIGHLIGHT_COLOR = "#FFFF00"; // yellow
+
+
     private float repeatDelay = 0.4f; // Delay before repeat starts
     private float repeatRate = 0.08f; // Speed of continuous movement
     private float keyHoldTimer = 0f;
@@ -62,12 +67,13 @@ public class EditingField : MonoBehaviour
             markedSelections = EditingState.instance.markedSelections;
             if (markedSelections.Count != 0)
             {
-                if (markedSelections[markedSelections.Count - 1].lawId == -1) // show input field if player left while selecting
+                if (markedSelections[markedSelections.Count - 1].lawId ==
+                    -1) // show input field if player left while selecting
                 {
                     OnTextSelected?.Invoke(markedSelections[markedSelections.Count - 1].text);
                 }
             }
-            
+
             lawInputFieldActive = EditingState.instance.lawInputFieldActive;
             originalText = currentArticle.text;
             title = currentArticle.title;
@@ -106,18 +112,23 @@ public class EditingField : MonoBehaviour
 
     void Update()
     {
-
         fieldSelected = true;
+        if (Input.GetMouseButtonDown(0) && IsPointerOverText() && !lawInputFieldActive)
+        {
+            TrySelectSentenceAtMousePosition();
+        }
+
         if (fieldSelected)
         {
-            UpdateCursorDisplay();
+            //UpdateCursorDisplay();
             if (Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.RightShift))
                 isSelecting = true;
 
             if (Input.GetKeyUp(KeyCode.LeftShift) || Input.GetKeyUp(KeyCode.RightShift))
                 isSelecting = false;
 
-            if (Input.GetKeyDown(KeyCode.LeftAlt)||Input.GetKeyDown(KeyCode.RightAlt)||Input.GetKeyDown(KeyCode.AltGr)  && selectionStart != -1 && selectionEnd != -1)
+            if (Input.GetKeyDown(KeyCode.LeftAlt) || Input.GetKeyDown(KeyCode.RightAlt) ||
+                Input.GetKeyDown(KeyCode.AltGr) && selectionStart != -1 && selectionEnd != -1)
             {
                 SaveMarkedText();
             }
@@ -132,6 +143,130 @@ public class EditingField : MonoBehaviour
             textDisplay.text = originalText; // Reset to original text when not selected
         }
     }
+
+    void TrySelectSentenceAtMousePosition()
+    {
+        Vector3 mousePos = Input.mousePosition;
+
+        // Important: Camera needed for world-based canvases; null for Screen Space - Overlay
+        Camera cam = null;
+
+        // Get nearest character index to the mouse click
+        int charIndex = TMP_TextUtilities.FindNearestCharacter(textDisplay, mousePos, cam, true);
+
+        if (charIndex < 0 || charIndex >= originalText.Length || !IsPointerOverText())
+        {
+            Debug.LogWarning("Click outside valid text area.");
+            return;
+        }
+
+        // Work on originalText to avoid tag interference
+        int start = charIndex;
+        int end = charIndex;
+
+        // Expand left
+        while (start > 0 && originalText[start - 1] != '.')
+        {
+            start--;
+        }
+
+        // Expand right
+        while (end < originalText.Length && originalText[end] != '.')
+        {
+            end++;
+        }
+
+        // Include the '.' at the end if it exists
+        if (end < originalText.Length && originalText[end] == '.')
+        {
+            end++;
+        }
+
+        // Sanity check
+        if (start >= end)
+        {
+            Debug.LogWarning("Invalid sentence range.");
+            return;
+        }
+
+        // Avoid overlapping with existing markings
+        foreach (var existing in markedSelections)
+        {
+            if (existing.Overlaps(new MarkedSelection("", -1, start, end)))
+            {
+                Debug.LogWarning("Cannot auto-select overlapping sentence.");
+                return;
+            }
+        }
+
+        string selectedText = originalText.Substring(start, end - start);
+        Debug.Log($"Auto-selected sentence: {selectedText}");
+
+        // Mark it
+        StartCoroutine(AnimateSentenceHighlight(start, end, HIGHLIGHT_COLOR, ANIMATION_INTERVAL));
+        AudioManager.instance.PlayClip(AudioManager.instance.markedSelection);
+        /*
+        markedSelections.Add(new MarkedSelection(selectedText, -1, start, end));
+        OnTextSelected?.Invoke(selectedText);
+        lawInputFieldActive = true;
+        resetButton.SetActive(true);
+
+        UpdateCursorDisplay();
+        AudioManager.instance.PlayClip(AudioManager.instance.markedSelection);
+         */
+    }
+
+    private IEnumerator AnimateSentenceHighlight(int start, int end, string colorHex, float interval)
+    {
+        // 1) Find the initial center of the sentence
+        int left = start + (end - start) / 2;
+        int right = left;
+
+        // 2) While we haven't covered [start, end)
+        while (left > start || right < end)
+        {
+            // Expand both sides
+            if (left > start) left--;
+            if (right < end) right++;
+
+            // Rebuild the display text with just this animated highlight
+            // (ignoring other markedSelections for the moment)
+            textDisplay.text = BuildAnimatedText(originalText, left, right, colorHex);
+
+            yield return new WaitForSeconds(interval);
+        }
+
+        // 3) Final full‐sentence marking in your data model
+        string selectedText = originalText.Substring(start, end - start);
+        markedSelections.Add(new MarkedSelection(selectedText, -1, start, end));
+
+        // Fire your event & re‐enable law input
+        OnTextSelected?.Invoke(selectedText);
+        lawInputFieldActive = true;
+        resetButton.SetActive(true);
+
+        // Re‐draw everything (including other previous markings)
+        UpdateCursorDisplay();
+    }
+
+    private string BuildAnimatedText(string raw, int highlightStart, int highlightEnd, string colorHex)
+    {
+        // Prepare our two tags
+        string openTag = $"<color={colorHex}>";
+        string closeTag = "</color>";
+
+        // Build it in one pass, inserting openTag at highlightStart, closeTag at highlightEnd
+        var sb = new System.Text.StringBuilder(raw.Length + openTag.Length + closeTag.Length);
+
+        sb.Append(raw.Substring(0, highlightStart));
+        sb.Append(openTag);
+        sb.Append(raw.Substring(highlightStart, highlightEnd - highlightStart));
+        sb.Append(closeTag);
+        sb.Append(raw.Substring(highlightEnd));
+
+        return sb.ToString();
+    }
+
 
     void HandleKeyHold(KeyCode key, int direction, bool vertical = false)
     {
@@ -207,7 +342,7 @@ public class EditingField : MonoBehaviour
             // Update cursorIndex if a character was found
             if (closestCharIndex != -1)
             {
-				cursorIndex = (direction > 0) ? Mathf.Max(0, closestCharIndex - 1) : closestCharIndex;
+                cursorIndex = (direction > 0) ? Mathf.Max(0, closestCharIndex - 1) : closestCharIndex;
             }
         }
 
@@ -237,16 +372,37 @@ public class EditingField : MonoBehaviour
         List<(int index, string tag)> inserts = new List<(int, string)>();
 
         // Add markers
+        // Add markers + law‑number badge
         foreach (var mark in markedSelections)
         {
+            // 1) Choose highlight color
             string color;
-            if (mark.lawId == -1) color = "yellow";
-            else if (GameManager.instance.lawList.laws.Count-1 < mark.lawId || mark.lawId < 0) color = "grey"; // Invalid law ID
-            else if (!GameManager.instance.lawList.laws[mark.lawId].isProhibition) color = "#2b8a31";
-            else color = "#e53e34";
+            if (mark.lawId == -1)                 color = "yellow";
+            else if (mark.lawId < 0 ||
+                     mark.lawId >= GameManager.instance.lawList.laws.Count) 
+                color = "grey";
+            else if (GameManager.instance.lawList.laws[mark.lawId].isProhibition)
+                color = "#e53e34";
+            else
+                color = "#2b8a31";
+
+            // 2) Insert open/close color tags
             inserts.Add((mark.startIndex, $"<color={color}>"));
-            inserts.Add((mark.endIndex, "</color>"));
+            inserts.Add((mark.endIndex,   "</color>"));
+
+            // 3) If a law is assigned, insert a little superscript badge
+            if (mark.lawId >= 0)
+            {
+                // Format law number as two digits
+                string num = (mark.lawId).ToString("D2");
+                // Use voffset to raise it above the baseline, size to shrink it
+                string badgeTag = $"<voffset=0.5em><size=60%>{num}</size></voffset>";
+                // Place it just before the period (i.e. at endIndex - 1)
+                int badgePos = Math.Max(mark.endIndex - 1, mark.startIndex);
+                inserts.Add((badgePos, badgeTag));
+            }
         }
+
 
         // Add selection
         if (selectionStart != -1 && selectionEnd != -1)
@@ -330,6 +486,7 @@ public class EditingField : MonoBehaviour
         {
             markedSelections.Clear();
         }
+
         AudioManager.instance.PlayClip(AudioManager.instance.articleLoadedClick);
         AudioManager.instance.PlayClip(AudioManager.instance.articleLoadedPaper);
         return article;
@@ -389,6 +546,7 @@ public class EditingField : MonoBehaviour
         resetButton.SetActive(false);
         AudioManager.instance.PlayClip(AudioManager.instance.acceptRejectReset);
     }
+
     public void ResetArticle()
     {
         currentArticle.text = originalText;
